@@ -9,7 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const output = path.join(root, "panel", "pr-audit.json")
 const query = `query($cursor: String) {
   repository(owner: "magpie-community", name: "plugins") {
-    pullRequests(states: OPEN, first: 100, after: $cursor, orderBy: {field: UPDATED_AT, direction: DESC}) {
+    pullRequests(states: OPEN, first: 50, after: $cursor, orderBy: {field: UPDATED_AT, direction: DESC}) {
       totalCount
       nodes {
         number
@@ -47,19 +47,19 @@ function graphql(cursor) {
   const args = ["api", "graphql", "-f", `query=${query}`]
   if (cursor) args.push("-f", `cursor=${cursor}`)
   let lastError
-  for (let attempt = 1; attempt <= 6; attempt += 1) {
+  for (let attempt = 1; attempt <= 8; attempt += 1) {
     try {
       const source = execFileSync("gh", args, {
         encoding: "utf8",
         env: process.env,
         windowsHide: true,
-        timeout: 60_000,
+        timeout: 90_000,
         stdio: ["ignore", "pipe", "pipe"],
       })
       return JSON.parse(source)
     } catch (error) {
       lastError = error
-      if (attempt < 6) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000)
+      if (attempt < 8) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000)
     }
   }
   throw lastError
