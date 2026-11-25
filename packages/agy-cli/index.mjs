@@ -110,6 +110,8 @@ const ACP_LINE_LIMIT = 64 * 1024 * 1024
 const LOG_TAIL_BYTES = 256 * 1024
 const NPM_ANTHROPIC = "@ai-sdk/anthropic"
 const PING_INTERVAL_MS = 15_000
+const LOG_WATCH_MS = 250
+const RETRY_LOG_LINE = /\] (?:Run|CallWithRetry): attempt \d+ failed \((.+)\), retrying in /
 // agy commits a model call to its conversation store just after the call ends.
 const STEP_USAGE_WAIT_MS = 1_000
 const STEP_USAGE_SAME_GEN_WAIT_MS = 75
@@ -173,6 +175,7 @@ const ATTEMPT_LINE = /^⚠ API error \(attempt \d+\): ?(.*)$/
 // hung (Lmohn39 on X, pi through agy-cli, 11-14). A banner with it ends the
 // turn at once, as the 429 ending would.
 const refused429 = (detail) => /code 429\b/i.test(detail) && /resource has been exhausted/i.test(detail)
+const noCapacity = (detail) => /\b503\b/.test(detail || "") && /no capacity\b/i.test(detail || "")
 // agy writes this into the reply when the model's first call came back with
 // neither text nor tool calls, then calls the model again in the same turn.
 // It is agy's, not the model's, and the turn goes on (#1124).
@@ -1301,6 +1304,10 @@ class AgentTurnError extends Error {
   }
 }
 
+function noCapacityError(detail) {
+  return new AgentTurnError(`agy bridge: Antigravity has no capacity for this model now: ${detail}`, "overloaded_error")
+}
+
 // Google refused the account (agyRefusal): a 403 no retry of this request
 // fixes, the account's and not the model's.
 function refusedError(why) {
@@ -1662,6 +1669,8 @@ class Turn {
     this.refusedDetail = ""
     this.agentErrorCore = ""
     this.timer = null
+    this.logTimer = null
+    this.logWatchToken = 0
     this.cleanupTimer = null
     this.logOffset = 0
     // One session/prompt can cover several HTTP responses (tool round-trips,
@@ -2026,6 +2035,7 @@ class Turn {
     if (this.done) return
     this.done = true
     clearTimeout(this.timer)
+    this.stopLogWatch()
     this.notifyAcpTools()
     this.push({ type: "result", result })
   }
@@ -2034,6 +2044,7 @@ class Turn {
     if (this.done || this.finalized) return
     this.done = true
     clearTimeout(this.timer)
+    this.stopLogWatch()
     this.notifyAcpTools()
     for (const waiter of this.lateWaiters.splice(0)) waiter.reject(error)
     this.push({ type: "error", error })
@@ -2042,6 +2053,34 @@ class Turn {
       this.proc.abandonTurn(this)
     }, IDLE_MS)
     this.cleanupTimer.unref()
+  }
+
+  // agy retries a model-level capacity 503 inside one session/prompt and
+  // writes each try only to its log. Poll this turn's new log lines while the
+  // prompt is silent, so the first such failure can become a retryable 503.
+  watchLog() {
+    this.stopLogWatch()
+    const token = this.logWatchToken
+    const check = async () => {
+      this.logTimer = null
+      if (token !== this.logWatchToken || this.done || this.finalized || this.cancelRequested || !this.promptInFlight) return
+      const detail = await noCapacitySince(this.proc.logPath, this.logOffset)
+      if (token !== this.logWatchToken || this.done || this.finalized || this.cancelRequested || !this.promptInFlight) return
+      if (detail) {
+        this.proc.noCapacityTurn(this, detail)
+        return
+      }
+      this.logTimer = setTimeout(check, LOG_WATCH_MS)
+      this.logTimer.unref?.()
+    }
+    this.logTimer = setTimeout(check, LOG_WATCH_MS)
+    this.logTimer.unref?.()
+  }
+
+  stopLogWatch() {
+    this.logWatchToken++
+    clearTimeout(this.logTimer)
+    this.logTimer = null
   }
 
   noteAcpToolUpdate(update) {
@@ -2833,6 +2872,7 @@ class Proc {
         promptParts = userTurnParts(promptParts, this.slashCommands)
         const promptNumber = turn.beginPrompt(promptParts, lateCalls)
         turn.promptInFlight = true
+        turn.watchLog()
         this.sessionPrompts++
         if (turn.promptSentAt == null) turn.promptSentAt = Date.now()
         let result
@@ -2923,7 +2963,7 @@ class Proc {
       return new AgentTurnError(`agy bridge: Antigravity quota reached: ${turn.quotaNotice}`, "rate_limit_error")
     }
     if (core === BUSY_CORE) {
-      return new AgentTurnError(`agy bridge: Antigravity has no capacity for this model now: ${turn.quotaNotice}`, "overloaded_error")
+      return noCapacityError(turn.quotaNotice)
     }
     // agy 1.5.10 leaves out the status agyRefusal reads the ban by
     if (core === DISABLED_CORE) return refusedError(ACCOUNT_DISABLED_REFUSED)
@@ -2943,6 +2983,7 @@ class Proc {
   }
 
   #formatAgentError(detail) {
+    if (noCapacity(detail)) return noCapacityError(detail)
     // The system prompt turned away, not a quota (cloak.mjs): a 400 the next
     // member of a group is asked after, and the client doesn't retry. It says
     // what Antigravity answered (a 429). Only where the cloak isn't enough:
@@ -2997,6 +3038,16 @@ class Proc {
   refuseTurn(turn, detail) {
     if (this.turn !== turn || turn.done) return
     turn.fail(this.#formatAgentError(detail))
+    dropFromPool(this)
+    this.stop().catch(() => {})
+  }
+
+  // A try Antigravity answered with the model-level 503 ends the turn now,
+  // with the same overloaded error as agy's final notice, so Magpie can ask
+  // another account instead of waiting for agy's same-account retries.
+  noCapacityTurn(turn, detail) {
+    if (this.turn !== turn || turn.done) return
+    turn.fail(noCapacityError(detail))
     dropFromPool(this)
     this.stop().catch(() => {})
   }
@@ -3205,6 +3256,7 @@ class Proc {
     }
     turn.detach()
     clearTimeout(turn.timer)
+    turn.stopLogWatch()
     for (const waiter of turn.waiters.splice(0)) {
       waiter.reject(new Error("agy bridge: response closed"))
     }
@@ -3441,13 +3493,23 @@ async function lastAgentError(file, offset) {
   let found = ""
   for (const line of text.split("\n")) {
     const match = /\] (?:agent executor error|failed to construct executor|inference connection failed[^:]*): (.+)$/.exec(line) ||
-      /\] (?:Run|CallWithRetry): attempt \d+ failed \((.+)\), retrying in /.exec(line)
+      RETRY_LOG_LINE.exec(line)
     if (match) found = match[1]
   }
   if (!found) return ""
   const cut = found.lastIndexOf("generating and executing: ")
   if (cut >= 0) found = found.slice(cut + "generating and executing: ".length)
   return found.trim().slice(0, 1000)
+}
+
+async function noCapacitySince(file, offset) {
+  const text = await logTail(file, offset)
+  if (!text) return ""
+  for (const line of text.split("\n")) {
+    const match = RETRY_LOG_LINE.exec(line)
+    if (match && noCapacity(match[1])) return match[1].trim().slice(0, 1000)
+  }
+  return ""
 }
 
 // Where agy's three-line notice (the output cap's, a malformed call's) ends,

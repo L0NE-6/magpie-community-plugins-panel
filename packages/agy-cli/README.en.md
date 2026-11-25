@@ -407,11 +407,14 @@ off unless you turn it on.
   Gemini's is not) ends the turn the same way, so magpie rests that model
   until then, asks the next account or model, and keeps asking this
   account's Gemini models.
-  The "⚠ Our servers are experiencing high traffic right now …" ending
-  (Google has no capacity for the model now, and agy's own retries met the
-  same 503) ends the turn as `overloaded_error` (HTTP 503 without
-  streaming), so the account is not rested and magpie tries again or
-  elsewhere. Found by ifccod, and ported from their patch.
+  The first "Run: attempt N failed (… HTTP 503 … No capacity available …)"
+  in this turn's `agy-acp.log` ends the turn at once as `overloaded_error`
+  (HTTP 503 without streaming) instead of waiting for agy to exhaust its
+  same-account retries, so magpie can ask another account. The "⚠ Our
+  servers are experiencing high traffic right now …" ending (Google has no
+  capacity for the model now) has the same meaning: the account is not
+  rested, and magpie tries again or elsewhere. Found by ifccod, and ported
+  from their patch.
 - **A reply with only thinking, no text and no tool call** (billion-context's
   "the turn degenerated again after the continuation nudge"): when one of the
   model's replies comes back empty, agy writes "⚠ Model produced invalid

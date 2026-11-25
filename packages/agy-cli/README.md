@@ -285,9 +285,11 @@ agy 自己的系统提示词，只剩插件的一行工具说明和客户端的�
   结尾是 "⚠ Third-party quota reached. Please switch to Gemini models … Resets in 3h22m19s."
   （这个账号 Claude 和 GPT-OSS 的额度用完，Gemini 的还在）时也一样结束本轮，magpie 让这个模型
   歇到重置，改问下一个账号或模型，这个账号的 Gemini 模型照常可用。
-  结尾是 "⚠ Our servers are experiencing high traffic right now …"（Google 这个模型暂时没有
-  余量，agy 的重试也都碰上了 503）时，按 `overloaded_error`（非流式为 HTTP 503）结束本轮，
-  不让账号歇着，magpie 会再试或改问别处。（由 ifccod 发现并移植自他的补丁。）
+  本轮 `agy-acp.log` 出现首条 "Run: attempt N failed (… HTTP 503 … No capacity available …)"
+  时，不再等 agy 把同一账号的剩余重试跑完，立即按 `overloaded_error`（非流式为 HTTP 503）
+  结束本轮，让 magpie 可以改问下一个账号。结尾是 "⚠ Our servers are experiencing high traffic right now …"
+  （Google 这个模型暂时没有余量）时同样结束本轮，不让账号歇着，magpie 会再试或改问别处。
+  （由 ifccod 发现并移植自他的补丁。）
 - **回复只有思考、没有正文也没有工具调用**（billion-context 报 "the turn degenerated
   again after the continuation nudge"）：模型的一次回复空了时，agy 会写一行
   "⚠ Model produced invalid output." 并重试；重试也空时，agy 以正常结束收尾。插件不把这样

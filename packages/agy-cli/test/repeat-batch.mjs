@@ -1593,6 +1593,61 @@ test("the model quoting the high-traffic ending with more text after keeps it", 
   }
 })
 
+// plugins#1541: agy retries a model-level 503 "No capacity" in the same turn,
+// writing each try only to agy-acp.log while the ACP stream stays silent.
+// Waiting for its final notice turns a transient model failure into a
+// one-to-two-minute TTFT and keeps Magpie from asking another account.
+const NO_CAPACITY_LOG = (n) => `E1125 13:34:23.878000 6120 retry.go:141] Run: attempt ${n} failed (transport error (Unavailable, HTTP 503): No capacity available for model gemini-3.8-flash-high on the server …), retrying in 4s\n`
+
+test("plugins#1541: a no-capacity retry in agy's log ends the silent turn at once", async () => {
+  await withKit({}, async (kit) => {
+    kit.defaultPrompt = async () => {
+      fs.appendFileSync(agyLogOf(kit), NO_CAPACITY_LOG(1))
+      // agy is still backing off before its next try: never, here.
+      await new Promise(() => {})
+    }
+    const reply = kit.request(baseBody({ metadata: { user_id: "no-capacity-log" },
+      messages: [{ role: "user", content: "hello" }] })).then((response) => response.text())
+    const text = await Promise.race([reply, sleep(5_000).then(() => "still waiting after 5s")])
+    assert.notEqual(text, "still waiting after 5s", "the first no-capacity log line must end the turn")
+    const error = sseError(text)
+    assert.equal(error.type, "overloaded_error")
+    assert.equal(error.status, 503)
+    assert.notEqual(error.noRetry, true)
+    assert.match(error.message, /Antigravity has no capacity for this model now: transport error \(Unavailable, HTTP 503\): No capacity available/)
+    assert.ok(!text.includes("text_delta"), "nothing of it went as the reply")
+  })
+  await withKit({}, async (kit) => {
+    kit.defaultPrompt = async () => {
+      fs.appendFileSync(agyLogOf(kit), NO_CAPACITY_LOG(1))
+      await new Promise(() => {})
+    }
+    const pending = kit.request(baseBody({ metadata: { user_id: "no-capacity-log-json" },
+      messages: [{ role: "user", content: "hello" }], stream: false }))
+    const response = await Promise.race([pending, sleep(5_000).then(() => "still waiting after 5s")])
+    assert.notEqual(response, "still waiting after 5s", "the first no-capacity log line must end the turn")
+    assert.equal(response.status, 503)
+    assert.equal(response.headers.get("x-should-retry"), null)
+    const body = await response.json()
+    assert.equal(body.error.type, "overloaded_error")
+    assert.match(body.error.message, /No capacity available for model gemini-3\.8-flash-high/)
+  })
+})
+
+test("plugins#1541: another 503 retry in agy's log still waits for the next try", async () => {
+  await withKit({}, async (kit) => {
+    kit.defaultPrompt = async (agent) => {
+      fs.appendFileSync(agyLogOf(kit), "E1125 13:34:23.878000 6120 retry.go:141] Run: attempt 1 failed (transport error (Unavailable, HTTP 503): try again), retrying in 4s\n")
+      await agent.text("answer")
+      return { stopReason: "end_turn" }
+    }
+    const parsed = await readSse(await kit.request(baseBody({ metadata: { user_id: "other-503-log" },
+      messages: [{ role: "user", content: "hello" }] })))
+    assert.equal(parsed.error, null)
+    assert.equal(replyText(parsed), "answer")
+  })
+})
+
 // agy 1.5.10, a banned account (seen on a real one, 11-18): Google's
 // sentence without the "PERMISSION_DENIED (code 403):" 1.5.9 put before it,
 // and the whole reply was that line, a 200.
