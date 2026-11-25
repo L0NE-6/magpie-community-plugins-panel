@@ -13,7 +13,10 @@ afterEach(() => {
   _internal.tokens.clear()
 })
 
-const s = { userId: "4242", access: "plain-access", systemId: "", org: "org-me", plan: "zed_pro", who: "octo" }
+// A non-hex letter keeps the fixture id from ever appearing in a generated
+// UUID, which is what made the 4242 fixture fail about once in a thousand
+// runs (#1553).
+const s = { userId: "user-qx42", access: "plain-access", systemId: "", org: "org-me", plan: "zed_pro", who: "octo" }
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
 
 // sent is the CompletionBody the plugin hands Zed for a request to path.
@@ -64,7 +67,7 @@ test("the session header goes no further than the plugin, and names nothing it w
   const text = JSON.stringify(got)
   expect(text).not.toContain("ses_abc")
   expect(text).not.toContain(_internal.SESSION)
-  expect(text).not.toContain("4242")
+  expect(text).not.toContain(s.userId)
 })
 
 test("two sessions, or two accounts, are two threads", async () => {
