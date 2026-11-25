@@ -16,16 +16,16 @@ The goal is not to create a competing plugin marketplace. The goal is to:
 
 ## Current Upstream Snapshot
 
-Live check: **2026-11-25 21:49 CST**
+Live check: **2026-11-25 22:08 CST**
 
 | Metric | Value |
 | :--- | ---: |
 | Upstream open issues | 392 |
-| Upstream open pull requests | 243 |
+| Upstream open pull requests | 242 |
 | Merged PRs in the previous 7 days | 5 |
 | Closed issues in the previous 7 days | 8 |
 | Upstream default branch | `main` |
-| Upstream `main` commit | `41a34f91` |
+| Upstream `main` commit | `e2ac2dd` |
 | License | MIT |
 
 The counts are a snapshot, not a promise. The generated dashboard under
