@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T11:23:08.708Z",
+  "generatedAt": "2026-11-25T11:26:28.415Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 394,
+    "issueCount": 393,
     "pullCount": 251,
     "draftPullCount": 12,
     "readyPullCount": 239,
@@ -16,7 +16,7 @@
         "P0": 0,
         "P1": 0,
         "P2": 1,
-        "P3": 393
+        "P3": 392
       },
       "pulls": {
         "P0": 0,
@@ -27,7 +27,7 @@
     },
     "byComments": {
       "issues": {
-        "none": 164,
+        "none": 163,
         "light": 175,
         "active": 45,
         "hot": 10
@@ -41,7 +41,7 @@
     },
     "byUpdated": {
       "issues": {
-        "24h": 28,
+        "24h": 27,
         "7d": 90,
         "30d": 211,
         "older": 65
@@ -347,23 +347,6 @@
       "createdAt": "2026-11-11T10:49:07.000Z",
       "labels": [],
       "author": "noblechang"
-    },
-    {
-      "number": 1534,
-      "title": "trae-cn: add a per-account \"hide plan-unavailable models\" filter",
-      "url": "https://github.com/magpie-community/plugins/issues/1534",
-      "package": "@magpie-community/opencode-trae-auth",
-      "packageDirectory": "trae",
-      "titlePrefix": "trae",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-25T02:48:50.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-25T02:48:50.000Z",
-      "labels": [],
-      "author": "zghstart"
     },
     {
       "number": 1503,
@@ -7122,6 +7105,24 @@
       "author": "KaranocaVe"
     },
     {
+      "number": 1530,
+      "title": "clash-nodes-verge 0.2.0: pick a Clash Verge node for a provider or per-account",
+      "url": "https://github.com/magpie-community/plugins/pull/1530",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "clash-nodes-verge 0.2.0",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 5,
+      "commentBucket": "active",
+      "updatedAt": "2026-11-25T11:24:57.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-24T17:26:26.000Z",
+      "labels": [],
+      "author": "hxquan-q"
+    },
+    {
       "number": 1175,
       "title": "docs(deja-vu): update harness count and local index details in registry",
       "url": "https://github.com/magpie-community/plugins/pull/1175",
@@ -7228,24 +7229,6 @@
       "createdAt": "2026-11-19T11:01:32.000Z",
       "labels": [],
       "author": "Aemiser"
-    },
-    {
-      "number": 1530,
-      "title": "clash-nodes-verge 0.2.0: pick a Clash Verge node for a provider or per-account",
-      "url": "https://github.com/magpie-community/plugins/pull/1530",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "clash-nodes-verge 0.2.0",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 4,
-      "commentBucket": "active",
-      "updatedAt": "2026-11-25T01:46:52.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-24T17:26:26.000Z",
-      "labels": [],
-      "author": "hxquan-q"
     },
     {
       "number": 1116,
@@ -8022,6 +8005,24 @@
       "author": "gaoyuyun"
     },
     {
+      "number": 1539,
+      "title": "Add CAM context attachment gateway plugin",
+      "url": "https://github.com/magpie-community/plugins/pull/1539",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": null,
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T11:23:18.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T05:44:55.000Z",
+      "labels": [],
+      "author": "zhaobomin"
+    },
+    {
       "number": 1427,
       "title": "catpaw 0.2.4: a pasted token gets its own identity",
       "url": "https://github.com/magpie-community/plugins/pull/1427",
@@ -8038,24 +8039,6 @@
       "createdAt": "2026-11-21T04:01:33.000Z",
       "labels": [],
       "author": "jinyue806"
-    },
-    {
-      "number": 1539,
-      "title": "Add CAM context attachment gateway plugin",
-      "url": "https://github.com/magpie-community/plugins/pull/1539",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": null,
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-25T09:00:30.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-25T05:44:55.000Z",
-      "labels": [],
-      "author": "zhaobomin"
     },
     {
       "number": 1455,

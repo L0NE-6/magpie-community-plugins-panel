@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-25T11:23:08.708Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-25T11:26:28.415Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
-- Open issues: **394**
-- Priority: P0 **0**, P1 **0**, P2 **1**, P3 **393**
-- Comments: none **164**, light **175**, active **45**, hot **10**
-- Updated: 24h **28**, 7d **90**, 30d **211**, older **65**
+- Open issues: **393**
+- Priority: P0 **0**, P1 **0**, P2 **1**, P3 **392**
+- Comments: none **163**, light **175**, active **45**, hot **10**
+- Updated: 24h **27**, 7d **90**, 30d **211**, older **65**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -463,7 +463,6 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-25T02:48:50.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1534 trae-cn: add a per-account "hide plan-unavailable models" filter](https://github.com/magpie-community/plugins/issues/1534) |
 | P3 | 2 (light) | 2026-11-25T02:47:31.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1503 trae-cn: complete GLM-5.3 reply is converted from stop to length when reasoning tokens exceed max_tokens](https://github.com/magpie-community/plugins/issues/1503) |
 | P3 | 2 (light) | 2026-11-25T02:47:31.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1501 trae-cn: route fallback hides 1005 plan errors behind the final 4001](https://github.com/magpie-community/plugins/issues/1501) |
 | P3 | 3 (light) | 2026-11-25T02:27:47.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1516 trae: an enterprise sign-in's bare host is rejected, so every chat goes to the consumer gateway](https://github.com/magpie-community/plugins/issues/1516) |

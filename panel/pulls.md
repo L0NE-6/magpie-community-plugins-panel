@@ -1,6 +1,6 @@
 # Upstream open pull requests
 
-Generated at `2026-11-25T11:23:08.708Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-25T11:26:28.415Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 
@@ -389,7 +389,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 3 (light) | 2026-11-05T04:51:29.000Z | 30d | _unmapped_ | [#717 Add WillDeep Desktop and WillDeep CLI agents](https://github.com/magpie-community/plugins/pull/717) |
 | P3 | ready | 2 (light) | 2026-11-25T06:25:20.000Z | 24h | _unmapped_ | [#1531 Add magpie-junie-auth (Junie Lite provider)](https://github.com/magpie-community/plugins/pull/1531) |
 | P3 | ready | 2 (light) | 2026-11-06T15:25:12.000Z | 30d | _unmapped_ | [#783 Add opt-in Agent Message Compat gateway hooks for Codex V2](https://github.com/magpie-community/plugins/pull/783) |
-| P3 | ready | 1 (light) | 2026-11-25T09:00:30.000Z | 24h | _unmapped_ | [#1539 Add CAM context attachment gateway plugin](https://github.com/magpie-community/plugins/pull/1539) |
+| P3 | ready | 1 (light) | 2026-11-25T11:23:18.000Z | 24h | _unmapped_ | [#1539 Add CAM context attachment gateway plugin](https://github.com/magpie-community/plugins/pull/1539) |
 | P3 | ready | 1 (light) | 2026-11-25T08:45:49.000Z | 24h | _unmapped_ | [#1455 Add Amazon Quick (magpie-aws-quick) to the registry](https://github.com/magpie-community/plugins/pull/1455) |
 | P3 | ready | 1 (light) | 2026-11-25T07:44:07.000Z | 24h | _unmapped_ | [#1438 Add magpie-unisound (Unisound Token Hub U Plan provider)](https://github.com/magpie-community/plugins/pull/1438) |
 | P3 | ready | 1 (light) | 2026-11-15T03:47:34.000Z | 30d | _unmapped_ | [#1162 List agent-notify-hooks request hook](https://github.com/magpie-community/plugins/pull/1162) |
@@ -571,7 +571,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 4 (active) | 2026-11-25T01:46:52.000Z | 24h | _unmapped_ (`clash-nodes-verge 0.2.0`) | [#1530 clash-nodes-verge 0.2.0: pick a Clash Verge node for a provider or per-account](https://github.com/magpie-community/plugins/pull/1530) |
+| P3 | ready | 5 (active) | 2026-11-25T11:24:57.000Z | 24h | _unmapped_ (`clash-nodes-verge 0.2.0`) | [#1530 clash-nodes-verge 0.2.0: pick a Clash Verge node for a provider or per-account](https://github.com/magpie-community/plugins/pull/1530) |
 
 ### Package: `unmapped:coda 0.1.0`
 
