@@ -19,6 +19,11 @@ the remaining upstream backlog is fixed.
 | #1123 | `codar` | Refreshes the registry summary for the 0.3.x model and sign-in surface | registry validation |
 | #1175 | `deja-vu` | Updates the harness count and local index description | registry validation |
 | #1438 | `unisound` | Adds the published Unisound U Plan package to the registry | registry validation; npm package provenance checked |
+| #1045 | `melete` | Adds the Melete reflection page | registry validation; npm package provenance checked |
+| #1087 | `claude-zh` | Adds the Claude Desktop Chinese catalog page | registry validation; npm package provenance checked |
+| #1144 | `godwit` | Adds the Godwit mail-client agent | registry validation; npm package provenance checked |
+| #1455 | `aws-quick` | Adds the Amazon Quick provider | registry validation; npm package provenance checked |
+| #1508 | `lingxi` | Adds the WPS Lingxi agent | registry validation; npm package provenance checked |
 
 ## Queue
 

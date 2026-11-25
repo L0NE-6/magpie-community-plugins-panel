@@ -1,6 +1,8 @@
 {
   "version": 1,
   "plugins": [
+    { "package": "magpie-plugin-melete", "name": "Melete Magpie", "kind": "page",
+      "summary": { "en": "Reflect with DSH or Codex: the selected agent reads its local history and uses its configured model to produce evidence-linked review cards.", "zh": "回顾与 DSH 或 Codex 的协作：所选 Agent 读取本机记录，并使用其配置的模型生成带出处的复盘卡片。" } },
     { "package": "@magpie-community/opencode-gumloop-auth", "name": "Gumloop", "icon": "https://www.gumloop.com/favicon.ico", "providers": ["gumloop"], "community": true,
       "summary": { "en": "Gumloop with your API key and user ID: account models, streaming, tool calls and a locally calibrated credit estimate.", "zh": "使用 API key 和用户 ID 接入 Gumloop：按账号发现模型，支持流式响应、工具调用和本地校准的积分估算。" } },
     { "package": "@magpie-community/opencode-agnes-auth", "name": "Agnes AI", "icon": "https://www.agnes-ai.com/images/biglogo.png", "providers": ["agnes"], "community": true,
@@ -216,6 +218,8 @@
     },
     { "package": "magpie-aws-bedrock-sso", "name": "AWS Bedrock SSO", "providers": ["bedrock-sso"],
       "summary": { "en": "Use Amazon Bedrock Claude and GPT models with your AWS CLI profile, including SSO / IAM Identity Center. SigV4 authentication; no Bedrock API key needed.", "zh": "使用 AWS CLI 配置（支持 SSO / IAM Identity Center）接入 Amazon Bedrock 的 Claude 和 GPT 模型，通过 SigV4 签名，无需 Bedrock API 密钥。" } },
+    { "package": "magpie-aws-quick", "name": "Amazon Quick", "icon": "https://aws.amazon.com/favicon.ico", "providers": ["aws-quick"],
+      "summary": { "en": "Unofficial: your own Amazon Quick account (Quick Lite included) through browser OAuth or the desktop app's saved sign-in. Quick's fast/balanced/smart/advanced modes as models, streaming, thinking effort, tool calls, thread reuse, small images and agent-hour usage.", "zh": "非官方：通过浏览器 OAuth 或桌面端已保存的登录态接入自己的 Amazon Quick 账号（含 Quick Lite）。把 fast/balanced/smart/advanced 四种模式作为模型，支持流式输出、思考强度、工具调用、会话复用、小图片和 Agent 时长用量。" } },
     {
       "package": "magpie-providers-hub",
       "name": "Providers Hub",
@@ -311,6 +315,13 @@
     { "package": "@magpie-community/agent-pine", "name": "Pine", "kind": "agent", "community": true,
       "icon": "https://raw.githubusercontent.com/pmndre/pine/next/docs/images/logo-light.svg",
       "summary": { "en": "Pine (pmndre/pine, the event-driven agent harness on pi's SDK) on magpie's Agents page: pick one of magpie's models and magpie writes its gateway and catalog into ~/.pine/models.json and the model into pine.json, so new conversations start on it. Restart Pine after a change; unofficial.", "zh": "把 Pine（pmndre/pine，跑在 pi SDK 上的事件驱动 Agent 框架）加到 magpie 的 Agent 页：选一个 magpie 的模型，magpie 把网关和模型目录写进 ~/.pine/models.json、把起始模型写进 pine.json，新对话就用它。换完模型要重启 Pine；非官方适配。" } },
+    { "package": "@godwit/magpie-agent", "name": "Godwit", "kind": "agent",
+      "icon": "https://godwit.email/icon.png",
+      "summary": { "en": "Godwit (the mail client) on magpie's Agents page: the model picked there is Wit's default, and the library's MCP servers, skills and instructions go to Wit too. MCP servers wait for a grant in Godwit. Switching it off gives Godwit its own default back. Needs Godwit 1.37.0 or later.", "zh": "把 Godwit 邮件客户端加到 magpie 的 Agent 页：在这里选的模型就是 Wit 的默认模型，资源库里的 MCP 服务器、技能和指令也一并给 Wit 用；MCP 服务器要在 Godwit 里授权后才会启动。关掉即回到 Godwit 自己的默认模型。需要 Godwit 1.37.0 或更新版本。" } },
+    {"package":"magpie-claude-zh","name":"Claude 中文","kind":"page","icon":"https://raw.githubusercontent.com/polang233/claude-desktop-zh/v1.1.6/assets/logo.png","summary":{"en":"Official Simplified and Traditional Chinese catalogs for Claude Desktop in third-party Gateway mode. On Windows, Magpie loads them at startup through DevTools and a file picker. On macOS, export the catalog with the CLI and load it manually in DevTools.","zh":"给 Claude Desktop 的第三方 Gateway 界面加载官方简繁中文，沿用原来的设置和会话。Windows 上由喜鹊在启动时通过开发者工具和文件选择框自动加载；macOS 可用 CLI 导出语言包，再到开发者工具里手动加载。"}},
+    { "package": "magpie-agent-lingxi", "name": "WPS 灵犀", "kind": "agent", "community": true,
+      "icon": "https://raw.githubusercontent.com/dongv88/magpie-agent-lingxi/main/icon.png",
+      "summary": { "en": "WPS Lingxi (WPS 灵犀) on magpie's Agents page: pick a magpie model and its models appear in Lingxi as magpie/<model>, through a local bridge. Windows only; unofficial.", "zh": "把 WPS 灵犀 加到 magpie 的 Agent 页：选一个 magpie 模型，magpie 的模型会以 magpie/<模型> 出现在灵犀的自定义模型里，走本地桥接。仅 Windows；非官方适配。" } },
     { "package": "magpie-unisound", "name": "Unisound U Plan", "icon": "https://raw.githubusercontent.com/aqiu817/magpie-unisound/main/icon.svg", "providers": ["unisound"], "summary": { "en": "Use Unisound Token Hub U Plan Free-tier models (u2-flash / u2-med / u2-radimed) with an API key: point-based costs from the official coefficient table, dual-pool quota windows (5h burst / weekly), live catalog and gift-quota vision.", "zh": "用 API Key 接入云知声 Token Hub U Plan Free 档（u2-flash / u2-med / u2-radimed）：按官方系数表积分计费、双池额度窗口（5h 突发池 / 周池）、动态模型目录与赠送池视觉模型。" } }
   ]
 }
