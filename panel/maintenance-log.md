@@ -27,6 +27,10 @@ the remaining upstream backlog is fixed.
 | #1538 | `codearts` | Streams GLM tool-call arguments with `tool_stream` | focused GLM test passes; package check passes; two unrelated Windows temp-cleanup errors remain in the full suite |
 | #1539 | `cam` | Adds the hardened context attachment gateway | 55 tests pass / 1 POSIX-permission skip; build and package dry-run pass |
 | #1541 | `agy-cli` | Returns a retryable capacity 503 immediately instead of waiting for silent agy retries | 6 focused and 99 repeat-batch tests pass |
+| #1542 | `agy-cli` | Stops a family alias from standing in for a model another signed-in account lists | upstream tests pass |
+| #1545 | `agy-cli` | Runs a Claude Code AgentSummary in a session scope beside its worker | upstream tests pass |
+| #1547 | `kiro` | Sends `TokenType: EXTERNAL_IDP` on control-plane calls for enterprise IdP sign-ins | 15 Kiro usage tests pass; package bumped to 0.1.42 |
+| #1524 | `agy-cli` | Preserves active DSH `<available_skills>` and workspace instructions when clipping large replays | upstream tests pass; synced as `d388cd6` |
 | upstream `3150bdc` | `codearts` | Treats InferHub `001001005` on a chat over 10 MB as a 413 size error instead of retrying or renewing the account | 217 package tests pass with 0 failures; two unrelated Windows temp-cleanup `EBUSY` errors remain |
 
 ## Queue
