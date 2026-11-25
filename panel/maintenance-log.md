@@ -26,6 +26,7 @@ the remaining upstream backlog is fixed.
 | #1508 | `lingxi` | Adds the WPS Lingxi agent | registry validation; npm package provenance checked |
 | #1538 | `codearts` | Streams GLM tool-call arguments with `tool_stream` | focused GLM test passes; package check passes; two unrelated Windows temp-cleanup errors remain in the full suite |
 | #1539 | `cam` | Adds the hardened context attachment gateway | 55 tests pass / 1 POSIX-permission skip; build and package dry-run pass |
+| #1541 | `agy-cli` | Returns a retryable capacity 503 immediately instead of waiting for silent agy retries | 6 focused and 99 repeat-batch tests pass |
 
 ## Queue
 
