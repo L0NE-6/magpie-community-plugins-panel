@@ -11,6 +11,7 @@
     "panel:sync": "node scripts/panel-sync.mjs",
     "panel:sync:fixture": "node scripts/panel-sync.mjs --fixture --out .sandbox/panel-fixture",
     "panel:test": "bun test scripts/panel.test.mjs",
-    "dashboard:check": "node scripts/dashboard-check.mjs"
+    "dashboard:check": "node scripts/dashboard-check.mjs",
+    "panel:pr-audit": "node scripts/panel-pr-audit.mjs"
   }
 }

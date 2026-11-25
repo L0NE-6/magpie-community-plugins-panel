@@ -154,9 +154,10 @@ async function waitForDashboard(cdp) {
       const started = Date.now();
       const check = () => {
         const count = document.querySelector("#issue-count")?.textContent;
+        const candidates = document.querySelector("#candidate-count")?.textContent;
         const rows = document.querySelectorAll("#item-rows tr").length;
-        if (count === "388" && rows > 300) resolve({ ok: true, count, rows });
-        else if (Date.now() - started > 10000) resolve({ ok: false, count, rows });
+        if (count === "388" && candidates !== "-" && rows > 300) resolve({ ok: true, count, candidates, rows });
+        else if (Date.now() - started > 10000) resolve({ ok: false, count, candidates, rows });
         else setTimeout(check, 100);
       };
       check();
@@ -260,10 +261,10 @@ async function main() {
     await cdp.send("Page.navigate", { url })
     await loaded
     const data = await waitForDashboard(cdp)
-    await interact(cdp)
     await mkdir(outputRoot, { recursive: true })
     const desktop = path.join(outputRoot, "dashboard-desktop.png")
     await screenshot(cdp, desktop)
+    await interact(cdp)
 
     await cdp.send("Emulation.setDeviceMetricsOverride", {
       width: 390,

@@ -1,6 +1,7 @@
 const state = {
   status: null,
   seed: null,
+  prAudit: null,
   type: "all",
   risk: "all",
   packageName: "all",
@@ -13,6 +14,7 @@ const elements = {
   issueCount: document.querySelector("#issue-count"),
   pullCount: document.querySelector("#pull-count"),
   draftCount: document.querySelector("#draft-count"),
+  candidateCount: document.querySelector("#candidate-count"),
   priorityCount: document.querySelector("#priority-count"),
   clusterCount: document.querySelector("#cluster-count"),
   priorityList: document.querySelector("#priority-list"),
@@ -76,6 +78,7 @@ function renderSummary() {
   elements.issueCount.textContent = String(summary.issueCount);
   elements.pullCount.textContent = String(summary.pullCount);
   elements.draftCount.textContent = `${summary.draftPullCount} drafts`;
+  elements.candidateCount.textContent = String(state.prAudit?.summary?.action?.candidate ?? "-");
   elements.priorityCount.textContent = String(
     state.seed.priority_issues.length + state.seed.priority_prs.length,
   );
@@ -200,9 +203,10 @@ function renderAll() {
 
 async function load() {
   try {
-    const [statusResponse, seedResponse] = await Promise.all([
+    const [statusResponse, seedResponse, prAuditResponse] = await Promise.all([
       fetch("./status.json", { cache: "no-store" }),
       fetch("./triage-seed.json", { cache: "no-store" }),
+      fetch("./pr-audit.json", { cache: "no-store" }),
     ]);
     if (!statusResponse.ok || !seedResponse.ok) {
       throw new Error(`Snapshot request failed: ${statusResponse.status}/${seedResponse.status}`);
@@ -211,6 +215,7 @@ async function load() {
       statusResponse.json(),
       seedResponse.json(),
     ]);
+    state.prAudit = prAuditResponse.ok ? await prAuditResponse.json() : null;
     renderAll();
   } catch (error) {
     console.error(error.stack || error);

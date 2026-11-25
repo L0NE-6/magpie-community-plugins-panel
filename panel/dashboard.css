@@ -193,7 +193,7 @@ h1 {
 .metrics {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
   background: rgb(255 255 255 / 78%);
@@ -608,11 +608,11 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .metric:nth-child(2) {
+  .metric:nth-child(2n) {
     border-right: 0;
   }
 
-  .metric:nth-child(-n + 2) {
+  .metric:nth-child(-n + 4) {
     border-bottom: 1px solid var(--line);
   }
 

@@ -6,6 +6,7 @@ upstream issue and pull-request snapshot.
 It reads:
 
 - `status.json` for the full open-item index;
+- `pr-audit.json` for mergeability and CI classification;
 - `triage-seed.json` for the curated priority queue.
 
 The page is designed to be published from the `panel/` directory. Upstream
