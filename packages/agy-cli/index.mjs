@@ -110,7 +110,6 @@ const ACP_LINE_LIMIT = 64 * 1024 * 1024
 const LOG_TAIL_BYTES = 256 * 1024
 const NPM_ANTHROPIC = "@ai-sdk/anthropic"
 const PING_INTERVAL_MS = 15_000
-const LOG_WATCH_MS = 250
 const RETRY_LOG_LINE = /\] (?:Run|CallWithRetry): attempt \d+ failed \((.+)\), retrying in /
 // agy commits a model call to its conversation store just after the call ends.
 const STEP_USAGE_WAIT_MS = 1_000
@@ -163,6 +162,17 @@ const DISABLED_CORE = AGENT_ERROR_CORES[6]
 // again. It is a 503 overloaded_error: the model's, not the account's, so
 // the account is not rested as a 429 would rest it.
 const BUSY_CORE = "⚠ Our servers are experiencing high traffic right now"
+// Before that ending, agy retries the 503 inside the turn for minutes, with
+// nothing streamed: only its log says "Run: attempt 1 failed (transport error
+// (Unavailable, HTTP 503): No capacity available for model … on the server
+// …), retrying in 4s". A 1 to 2 minute wait before the first token, past a
+// client's patience (Hermes cancels at 30s), and nothing behind magpie tried
+// another account (plugins#1541). The first such line, before anything was
+// streamed, ends the turn as the same overloaded 503.
+const noCapacity = (detail) =>
+  /\bNo capacity available for model\b/i.test(detail || "") ||
+  (/\b503\b/.test(detail || "") && /no capacity\b/i.test(detail || ""))
+const CAPACITY_POLL_MS = Math.max(50, Number(process.env.AGY_BRIDGE_CAPACITY_POLL_MS) || 500)
 const BUSY_MARKER = "\n" + BUSY_CORE
 // agy 1.5.8 writes each failed attempt of a model call into the reply as one
 // line, then tries again in the same turn (#1136). The line is agy's.
@@ -175,7 +185,6 @@ const ATTEMPT_LINE = /^⚠ API error \(attempt \d+\): ?(.*)$/
 // hung (Lmohn39 on X, pi through agy-cli, 11-14). A banner with it ends the
 // turn at once, as the 429 ending would.
 const refused429 = (detail) => /code 429\b/i.test(detail) && /resource has been exhausted/i.test(detail)
-const noCapacity = (detail) => /\b503\b/.test(detail || "") && /no capacity\b/i.test(detail || "")
 // agy writes this into the reply when the model's first call came back with
 // neither text nor tool calls, then calls the model again in the same turn.
 // It is agy's, not the model's, and the turn goes on (#1124).
@@ -1120,17 +1129,33 @@ function normalizeEffort(value) {
   return EFFORT_ORDER.includes(direct) ? direct : ""
 }
 
-function requestedEffort(body) {
+// The level the request names. magpie says the effort the client asked for in
+// X-Magpie-Effort (said): its Anthropic body carries only a thinking budget,
+// held under max_tokens, or no thinking at all when max_tokens is small, so a
+// level read from the budget put reasoning_effort "high" at max_tokens 4000 on
+// -low, and "low" at max_tokens 1500 on the family's default high
+// (plugins#1540). What magpie says comes first; the budget is the last guess.
+function namedEffort(body, said = "") {
   const forced = normalizeEffort(process.env.AGY_BRIDGE_EFFORT)
   if (forced) return forced
   const thinking = body.thinking?.type
   if (thinking === "disabled") return ""
+  const told = normalizeEffort(said)
+  if (told) return told
   const generic = [body.reasoning_effort, body.reasoningEffort, body.reasoning?.effort,
     body.generationConfig?.thinkingConfig?.thinkingLevel].map(normalizeEffort).find(Boolean)
   if (generic) return generic
   if (thinking !== "enabled" && thinking !== "adaptive") return ""
-  const direct = normalizeEffort(body.output_config?.effort)
-  if (direct) return direct
+  return normalizeEffort(body.output_config?.effort)
+}
+
+function requestedEffort(body, said = "") {
+  return namedEffort(body, said) || budgetEffort(body)
+}
+
+function budgetEffort(body) {
+  const thinking = body.thinking?.type
+  if (thinking !== "enabled" && thinking !== "adaptive") return ""
   const budget = Number(body.thinking?.budget_tokens)
   if (!Number.isFinite(budget) || budget <= 0) return ""
   if (budget <= 4096) return "low"
@@ -1196,12 +1221,13 @@ function resolveCatalogAlias(catalog, model) {
   return { id: model, inlineEffort: "" }
 }
 
-function resolveAgyModel(listed, model, body) {
+function resolveAgyModel(listed, model, body, said = "") {
   const catalog = listed.routing ?? listed
   const { id: resolvedId, inlineEffort } = resolveCatalogAlias(catalog, model)
   const family = catalog.routes.get(resolvedId)
   if (!family) return resolvedId
-  const requested = requestedEffort(body) || inlineEffort
+  // a level in the model's id beats one guessed from a thinking budget
+  const requested = namedEffort(body, said) || inlineEffort || budgetEffort(body)
   const effort = requested ? closestEffort(requested, family.efforts) : family.defaultEffort
   return family.byEffort.get(effort)
 }
@@ -1669,8 +1695,6 @@ class Turn {
     this.refusedDetail = ""
     this.agentErrorCore = ""
     this.timer = null
-    this.logTimer = null
-    this.logWatchToken = 0
     this.cleanupTimer = null
     this.logOffset = 0
     // One session/prompt can cover several HTTP responses (tool round-trips,
@@ -2035,7 +2059,6 @@ class Turn {
     if (this.done) return
     this.done = true
     clearTimeout(this.timer)
-    this.stopLogWatch()
     this.notifyAcpTools()
     this.push({ type: "result", result })
   }
@@ -2044,7 +2067,6 @@ class Turn {
     if (this.done || this.finalized) return
     this.done = true
     clearTimeout(this.timer)
-    this.stopLogWatch()
     this.notifyAcpTools()
     for (const waiter of this.lateWaiters.splice(0)) waiter.reject(error)
     this.push({ type: "error", error })
@@ -2053,34 +2075,6 @@ class Turn {
       this.proc.abandonTurn(this)
     }, IDLE_MS)
     this.cleanupTimer.unref()
-  }
-
-  // agy retries a model-level capacity 503 inside one session/prompt and
-  // writes each try only to its log. Poll this turn's new log lines while the
-  // prompt is silent, so the first such failure can become a retryable 503.
-  watchLog() {
-    this.stopLogWatch()
-    const token = this.logWatchToken
-    const check = async () => {
-      this.logTimer = null
-      if (token !== this.logWatchToken || this.done || this.finalized || this.cancelRequested || !this.promptInFlight) return
-      const detail = await noCapacitySince(this.proc.logPath, this.logOffset)
-      if (token !== this.logWatchToken || this.done || this.finalized || this.cancelRequested || !this.promptInFlight) return
-      if (detail) {
-        this.proc.noCapacityTurn(this, detail)
-        return
-      }
-      this.logTimer = setTimeout(check, LOG_WATCH_MS)
-      this.logTimer.unref?.()
-    }
-    this.logTimer = setTimeout(check, LOG_WATCH_MS)
-    this.logTimer.unref?.()
-  }
-
-  stopLogWatch() {
-    this.logWatchToken++
-    clearTimeout(this.logTimer)
-    this.logTimer = null
   }
 
   noteAcpToolUpdate(update) {
@@ -2872,10 +2866,10 @@ class Proc {
         promptParts = userTurnParts(promptParts, this.slashCommands)
         const promptNumber = turn.beginPrompt(promptParts, lateCalls)
         turn.promptInFlight = true
-        turn.watchLog()
         this.sessionPrompts++
         if (turn.promptSentAt == null) turn.promptSentAt = Date.now()
         let result
+        const capacityWatch = this.#watchCapacity(turn)
         try {
           result = await this.conn.request("session/prompt", {
             sessionId: this.sessionId,
@@ -2883,6 +2877,7 @@ class Proc {
           })
         } finally {
           turn.promptInFlight = false
+          clearInterval(capacityWatch)
         }
         if (promptNumber === 1) {
           // how long agy took to answer, beside the session row's start-up steps
@@ -3035,6 +3030,36 @@ class Proc {
   // A try Antigravity answered with the bare 429 ends the turn now, with the
   // same error as agy's own 429 ending, instead of after agy's retries: the
   // process goes, as on a timeout, since agy is still retrying in it.
+  // Reads agy's log while nothing has reached the client, for the retry of
+  // a "no capacity" 503 (noCapacity).
+  #watchCapacity(turn) {
+    let reading = false
+    const quiet = () => !turn.done && turn.firstOutputAt == null && !turn.calls.length
+    const timer = setInterval(async () => {
+      if (reading || !quiet()) return
+      reading = true
+      try {
+        const detail = await lastAgentError(this.logPath, turn.logOffset)
+        if (noCapacity(detail) && quiet()) this.capacityTurn(turn, detail)
+      } finally {
+        reading = false
+      }
+    }, CAPACITY_POLL_MS)
+    timer.unref?.()
+    return timer
+  }
+
+  capacityTurn(turn, detail) {
+    if (this.turn !== turn || turn.done) return
+    logSessionEvent(this, this.sessionReason ?? null, {
+      waited_ms: turn.promptSentAt != null ? Date.now() - turn.promptSentAt : null,
+      detail,
+    }, "no_capacity")
+    turn.fail(new AgentTurnError(`agy bridge: Antigravity has no capacity for this model now: ${detail}`, "overloaded_error"))
+    dropFromPool(this)
+    this.stop().catch(() => {})
+  }
+
   refuseTurn(turn, detail) {
     if (this.turn !== turn || turn.done) return
     turn.fail(this.#formatAgentError(detail))
@@ -3256,7 +3281,6 @@ class Proc {
     }
     turn.detach()
     clearTimeout(turn.timer)
-    turn.stopLogWatch()
     for (const waiter of turn.waiters.splice(0)) {
       waiter.reject(new Error("agy bridge: response closed"))
     }
@@ -3500,16 +3524,6 @@ async function lastAgentError(file, offset) {
   const cut = found.lastIndexOf("generating and executing: ")
   if (cut >= 0) found = found.slice(cut + "generating and executing: ".length)
   return found.trim().slice(0, 1000)
-}
-
-async function noCapacitySince(file, offset) {
-  const text = await logTail(file, offset)
-  if (!text) return ""
-  for (const line of text.split("\n")) {
-    const match = RETRY_LOG_LINE.exec(line)
-    if (match && noCapacity(match[1])) return match[1].trim().slice(0, 1000)
-  }
-  return ""
 }
 
 // Where agy's three-line notice (the output cap's, a malformed call's) ends,
@@ -5542,6 +5556,13 @@ function compactIdentity(text) {
 
 function sameInstructions(a, b) {
   return instructionsIdentity(a) === instructionsIdentity(b)
+}
+
+function requestHeader(fetchInput, init, name) {
+  const headers = new Headers(
+    init?.headers ?? (fetchInput instanceof Request ? fetchInput.headers : undefined) ?? {},
+  )
+  return headers.get(name)?.trim() || ""
 }
 
 // The model is not part of the key: agy switches models inside a live session.
@@ -8070,8 +8091,9 @@ export const AntigravityBridgePlugin = async () => {
             const layout = requestLayout(body)
             body = { ...foldSplitCalls(canonicalBody(body)), model: requestedModel }
             if (isOrchestrator(requestedModel)) return jsonError(400, orchestratorRefusal(requestedModel), undefined, { noRetry: true })
-            const model = resolveAgyModel(await loadModelCatalog(agy), requestedModel, body)
-            const selection = { model: requestedModel, effort: requestedEffort(body) }
+            const saidEffort = requestHeader(fetchInput, init, "x-magpie-effort")
+            const model = resolveAgyModel(await loadModelCatalog(agy), requestedModel, body, saidEffort)
+            const selection = { model: requestedModel, effort: requestedEffort(body, saidEffort) }
             const sessionScope = requestSessionScope(fetchInput, init)
             // an account's conversations are its own: its agy has them
             const callerWorkDir = namedWorkDirectory(body, init)
