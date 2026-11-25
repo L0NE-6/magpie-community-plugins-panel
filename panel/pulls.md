@@ -1,14 +1,14 @@
 # Upstream open pull requests
 
-Generated at `2026-11-25T11:26:28.415Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-25T17:10:52.110Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 
-- Open pull requests: **251**
-- Draft: **12**, ready: **239**
-- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **251**
-- Comments: none **133**, light **94**, active **23**, hot **1**
-- Updated: 24h **33**, 7d **105**, 30d **97**, older **16**
+- Open pull requests: **240**
+- Draft: **12**, ready: **228**
+- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **240**
+- Comments: none **124**, light **92**, active **23**, hot **1**
+- Updated: 24h **29**, 7d **91**, 30d **104**, older **16**
 
 Pull requests are ordered by draft state, priority, comments, updated time, and number.
 
@@ -100,24 +100,20 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 3 (light) | 2026-11-09T13:36:57.000Z | 30d | `@magpie-community/middleware-system-prompt` | [#863 system-prompt: the prompt goes after the agent's last system message](https://github.com/magpie-community/plugins/pull/863) |
 
+### Package: `@magpie-community/opencode-agnes-code-auth`
+
+| Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
+| --- | --- | ---: | --- | --- | --- | --- |
+| P3 | ready | 1 (light) | 2026-11-25T16:04:04.000Z | 24h | `@magpie-community/opencode-agnes-code-auth` | [#1554 agnes-code: serve both sites and add browser sign-in](https://github.com/magpie-community/plugins/pull/1554) |
+
 ### Package: `@magpie-community/opencode-agy-cli-auth`
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 3 (light) | 2026-11-25T08:42:12.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1524 agy-cli 0.1.122: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays](https://github.com/magpie-community/plugins/pull/1524) |
-| P3 | ready | 3 (light) | 2026-11-24T13:37:30.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1296 agy-cli 0.1.117: recover from agy UNAUTHENTICATED (code 401) endings on a fresh process](https://github.com/magpie-community/plugins/pull/1296) |
-| P3 | ready | 2 (light) | 2026-11-24T23:55:13.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1513 agy-cli: replay the last tool_use step on identical tool_result retry](https://github.com/magpie-community/plugins/pull/1513) |
-| P3 | ready | 2 (light) | 2026-11-24T21:18:05.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1520 agy-cli 0.1.117: isolate sibling branches sharing a conversationKey](https://github.com/magpie-community/plugins/pull/1520) |
+| P3 | ready | 3 (light) | 2026-11-24T13:37:30.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1296 agy-cli 0.1.117: recover from agy UNAUTHENTICATED (code 401) endings on a fresh process](https://github.com/magpie-community/plugins/pull/1296) |
 | P3 | ready | 1 (light) | 2026-11-19T06:54:04.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1287 agy-cli: preserve active context across suggestions, history forks and compaction](https://github.com/magpie-community/plugins/pull/1287) |
-| P3 | ready | 0 (none) | 2026-11-25T03:58:13.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1537 agy-cli 0.1.121: fix toolSummary collisions for eager MCP tools](https://github.com/magpie-community/plugins/pull/1537) |
-| P3 | ready | 0 (none) | 2026-11-25T00:10:42.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1533 agy-cli: strip <system-reminder>-wrapped and system-prompt placeholder notices](https://github.com/magpie-community/plugins/pull/1533) |
-| P3 | ready | 0 (none) | 2026-11-24T15:15:06.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1528 agy-cli: validate image bytes, AGY_BRIDGE_ALLOW_AGY_TOOLS, flash-preview alias](https://github.com/magpie-community/plugins/pull/1528) |
-| P3 | ready | 0 (none) | 2026-11-24T08:51:24.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1519 agy-cli 0.1.117: two sessions with the same opening in different folders are two conversations](https://github.com/magpie-community/plugins/pull/1519) |
-| P3 | ready | 0 (none) | 2026-11-24T07:48:30.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1515 agy-cli 0.1.117: unwrap JSON-string Arguments on call_mcp_tool calls](https://github.com/magpie-community/plugins/pull/1515) |
-| P3 | ready | 0 (none) | 2026-11-24T04:41:09.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1507 agy-cli 0.1.116: keep user text intact when clipping <current_turn>](https://github.com/magpie-community/plugins/pull/1507) |
-| P3 | ready | 0 (none) | 2026-11-23T15:32:20.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1496 agy-cli: use a private control socket on macOS](https://github.com/magpie-community/plugins/pull/1496) |
-| P3 | ready | 0 (none) | 2026-11-23T13:29:26.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1493 agy-cli 0.1.115: an earlier image image-slim swapped for its placeholder keeps the session](https://github.com/magpie-community/plugins/pull/1493) |
-| P3 | ready | 0 (none) | 2026-11-23T13:20:58.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1482 agy-cli 0.1.114: compare raw tool_result keys when checking duplicates (#1475)](https://github.com/magpie-community/plugins/pull/1482) |
+| P3 | ready | 0 (none) | 2026-11-25T14:23:48.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1551 agy-cli 0.1.132: add native image generation, editing and web search](https://github.com/magpie-community/plugins/pull/1551) |
+| P3 | ready | 0 (none) | 2026-11-25T13:32:12.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1496 agy-cli: use a private control socket on macOS](https://github.com/magpie-community/plugins/pull/1496) |
 | P3 | ready | 0 (none) | 2026-11-23T13:20:56.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1472 agy-cli 0.1.114: a Codex side conversation gets a session of its own](https://github.com/magpie-community/plugins/pull/1472) |
 | P3 | ready | 0 (none) | 2026-11-23T13:20:53.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1469 agy-cli 0.1.114: a home working directory is not added to agy's workspace, so the client's largest tools stay (#1405)](https://github.com/magpie-community/plugins/pull/1469) |
 | P3 | ready | 0 (none) | 2026-11-23T13:20:51.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1468 agy-cli 0.1.114: a turn left empty after agy's own tool was turned away is asked again, not a silent stop (#1464)](https://github.com/magpie-community/plugins/pull/1468) |
@@ -183,11 +179,10 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 1 (light) | 2026-11-25T08:27:41.000Z | 24h | `@magpie-community/opencode-codearts-auth` | [#1538 codearts 0.3.23: a GLM tool call's arguments stream, so a long one isn't cut off at 60 s](https://github.com/magpie-community/plugins/pull/1538) |
 | P3 | ready | 0 (none) | 2026-11-23T07:08:37.000Z | 7d | `@magpie-community/opencode-codearts-auth` | [#1479 codearts: the five multimodal models take images](https://github.com/magpie-community/plugins/pull/1479) |
 | P3 | ready | 0 (none) | 2026-11-22T08:57:39.000Z | 7d | `@magpie-community/opencode-codearts-auth` | [#1453 codearts: report user.login before a contest's daily check-in](https://github.com/magpie-community/plugins/pull/1453) |
-| P3 | ready | 0 (none) | 2026-11-18T14:13:51.000Z | 7d | `@magpie-community/opencode-codearts-auth` | [#1335 codearts 0.3.26: a refused OfficeAce catalog read names the gateway's own code](https://github.com/magpie-community/plugins/pull/1335) |
-| P3 | ready | 0 (none) | 2026-11-18T14:10:12.000Z | 7d | `@magpie-community/opencode-codearts-auth` | [#1334 codearts 0.3.25: an opt-in sign-in that links MaaS for an account that never opened it](https://github.com/magpie-community/plugins/pull/1334) |
+| P3 | ready | 0 (none) | 2026-11-18T14:13:51.000Z | 30d | `@magpie-community/opencode-codearts-auth` | [#1335 codearts 0.3.26: a refused OfficeAce catalog read names the gateway's own code](https://github.com/magpie-community/plugins/pull/1335) |
+| P3 | ready | 0 (none) | 2026-11-18T14:10:12.000Z | 30d | `@magpie-community/opencode-codearts-auth` | [#1334 codearts 0.3.25: an opt-in sign-in that links MaaS for an account that never opened it](https://github.com/magpie-community/plugins/pull/1334) |
 | P3 | ready | 0 (none) | 2026-11-18T07:14:48.000Z | 30d | `@magpie-community/opencode-codearts-auth` | [#1309 codearts 0.3.24: a daily campaign the list still calls CONFIRMED just after midnight is asked again](https://github.com/magpie-community/plugins/pull/1309) |
 | P3 | ready | 0 (none) | 2026-11-17T04:08:29.000Z | 30d | `@magpie-community/opencode-codearts-auth` | [#1246 codearts 0.3.23: a refused catalog read no longer signs an account out](https://github.com/magpie-community/plugins/pull/1246) |
 
@@ -310,8 +305,8 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 0 (none) | 2026-11-25T09:55:16.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1436 trae 0.2.55: cache hits, credits and models.dev cost in usage](https://github.com/magpie-community/plugins/pull/1436) |
-| P3 | ready | 0 (none) | 2026-11-18T13:28:51.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1331 trae 0.2.44: an enterprise account signs in on the enterprise console's authorization page (#1328)](https://github.com/magpie-community/plugins/pull/1331) |
+| P3 | ready | 0 (none) | 2026-11-25T12:51:05.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1436 trae 0.2.55: a turn's cache read and credits from the conversation's settled record](https://github.com/magpie-community/plugins/pull/1436) |
+| P3 | ready | 0 (none) | 2026-11-18T13:28:51.000Z | 30d | `@magpie-community/opencode-trae-auth` | [#1331 trae 0.2.44: an enterprise account signs in on the enterprise console's authorization page (#1328)](https://github.com/magpie-community/plugins/pull/1331) |
 
 ### Package: `@magpie-community/opencode-workbuddy-auth`
 
@@ -364,6 +359,12 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 2 (light) | 2026-11-13T01:48:02.000Z | 30d | `@magpie-community/page-usage-board` | [#1056 page-usage-board 0.1.2: remote provider icons + quota-card fallback, remaining-share bars](https://github.com/magpie-community/plugins/pull/1056) |
 
+### Package: `@magpie-community/page-usage-tree`
+
+| Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
+| --- | --- | ---: | --- | --- | --- | --- |
+| P3 | ready | 0 (none) | 2026-11-25T12:45:44.000Z | 24h | `@magpie-community/page-usage-tree` | [#1549 page-usage-tree 0.1.2: tighten phone layout margins](https://github.com/magpie-community/plugins/pull/1549) |
+
 ### Package: `@magpie-community/tools-layerfs`
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
@@ -387,9 +388,8 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 3 (light) | 2026-11-25T08:09:04.000Z | 24h | _unmapped_ | [#1508 Add WPS lingxi(magpie-agent-lingxi) agent](https://github.com/magpie-community/plugins/pull/1508) |
 | P3 | ready | 3 (light) | 2026-11-16T08:38:05.000Z | 30d | _unmapped_ | [#1184 List the LoongPass desktop companion plugin](https://github.com/magpie-community/plugins/pull/1184) |
 | P3 | ready | 3 (light) | 2026-11-05T04:51:29.000Z | 30d | _unmapped_ | [#717 Add WillDeep Desktop and WillDeep CLI agents](https://github.com/magpie-community/plugins/pull/717) |
-| P3 | ready | 2 (light) | 2026-11-25T06:25:20.000Z | 24h | _unmapped_ | [#1531 Add magpie-junie-auth (Junie Lite provider)](https://github.com/magpie-community/plugins/pull/1531) |
 | P3 | ready | 2 (light) | 2026-11-06T15:25:12.000Z | 30d | _unmapped_ | [#783 Add opt-in Agent Message Compat gateway hooks for Codex V2](https://github.com/magpie-community/plugins/pull/783) |
-| P3 | ready | 1 (light) | 2026-11-25T11:23:18.000Z | 24h | _unmapped_ | [#1539 Add CAM context attachment gateway plugin](https://github.com/magpie-community/plugins/pull/1539) |
+| P3 | ready | 1 (light) | 2026-11-25T13:03:52.000Z | 24h | _unmapped_ | [#1539 Add CAM context attachment gateway plugin](https://github.com/magpie-community/plugins/pull/1539) |
 | P3 | ready | 1 (light) | 2026-11-25T08:45:49.000Z | 24h | _unmapped_ | [#1455 Add Amazon Quick (magpie-aws-quick) to the registry](https://github.com/magpie-community/plugins/pull/1455) |
 | P3 | ready | 1 (light) | 2026-11-25T07:44:07.000Z | 24h | _unmapped_ | [#1438 Add magpie-unisound (Unisound Token Hub U Plan provider)](https://github.com/magpie-community/plugins/pull/1438) |
 | P3 | ready | 1 (light) | 2026-11-15T03:47:34.000Z | 30d | _unmapped_ | [#1162 List agent-notify-hooks request hook](https://github.com/magpie-community/plugins/pull/1162) |
@@ -408,8 +408,8 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 0 (none) | 2026-11-20T04:47:14.000Z | 7d | _unmapped_ | [#1383 Add Light Decision MCP (light-decision-mcp) to registry](https://github.com/magpie-community/plugins/pull/1383) |
 | P3 | ready | 0 (none) | 2026-11-19T15:44:06.000Z | 7d | _unmapped_ | [#1363 Add Magpie-only PackyAPI balance plugin](https://github.com/magpie-community/plugins/pull/1363) |
 | P3 | ready | 0 (none) | 2026-11-19T09:27:36.000Z | 7d | _unmapped_ | [#1347 Add Magpie Paseo Bridge gateway hook](https://github.com/magpie-community/plugins/pull/1347) |
-| P3 | ready | 0 (none) | 2026-11-18T16:35:59.000Z | 7d | _unmapped_ | [#1339 新增 ThinkFlow CLI 的 Agent 插件](https://github.com/magpie-community/plugins/pull/1339) |
-| P3 | ready | 0 (none) | 2026-11-18T14:49:51.000Z | 7d | _unmapped_ | [#1336 Add Local llama.cpp community provider plugin](https://github.com/magpie-community/plugins/pull/1336) |
+| P3 | ready | 0 (none) | 2026-11-18T16:35:59.000Z | 30d | _unmapped_ | [#1339 新增 ThinkFlow CLI 的 Agent 插件](https://github.com/magpie-community/plugins/pull/1339) |
+| P3 | ready | 0 (none) | 2026-11-18T14:49:51.000Z | 30d | _unmapped_ | [#1336 Add Local llama.cpp community provider plugin](https://github.com/magpie-community/plugins/pull/1336) |
 | P3 | ready | 0 (none) | 2026-11-17T13:46:08.000Z | 30d | _unmapped_ | [#1271 Add Exit IPs page for per-account proxy bindings](https://github.com/magpie-community/plugins/pull/1271) |
 | P3 | ready | 0 (none) | 2026-11-17T08:49:01.000Z | 30d | _unmapped_ | [#1257 Add Codex-free-api provider plugin](https://github.com/magpie-community/plugins/pull/1257) |
 | P3 | ready | 0 (none) | 2026-11-17T08:10:02.000Z | 30d | _unmapped_ | [#1237 Add Varin as an agent](https://github.com/magpie-community/plugins/pull/1237) |
@@ -625,7 +625,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 0 (none) | 2026-11-18T12:41:39.000Z | 7d | _unmapped_ (`dreamina 0.1.0`) | [#1327 dreamina 0.1.0: Dreamina (即梦) image and video provider via local dreamina-canvas CLI](https://github.com/magpie-community/plugins/pull/1327) |
+| P3 | ready | 0 (none) | 2026-11-18T12:41:39.000Z | 30d | _unmapped_ (`dreamina 0.1.0`) | [#1327 dreamina 0.1.0: Dreamina (即梦) image and video provider via local dreamina-canvas CLI](https://github.com/magpie-community/plugins/pull/1327) |
 
 ### Package: `unmapped:feat`
 
@@ -639,7 +639,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 1 (light) | 2026-10-29T13:12:23.000Z | 30d | _unmapped_ (`feat`) | [#341 feat: add native private TRAE provider with verified SSO and quota handling](https://github.com/magpie-community/plugins/pull/341) |
 | P3 | ready | 0 (none) | 2026-11-23T10:40:05.000Z | 7d | _unmapped_ (`feat`) | [#1245 feat: add account-level Provider Quota page](https://github.com/magpie-community/plugins/pull/1245) |
 | P3 | ready | 0 (none) | 2026-11-19T06:56:31.000Z | 7d | _unmapped_ (`feat`) | [#1274 feat: add GitHub profile usage cards page with local daily sync](https://github.com/magpie-community/plugins/pull/1274) |
-| P3 | ready | 0 (none) | 2026-11-18T17:05:30.000Z | 7d | _unmapped_ (`feat`) | [#1340 feat: add GenericAgent agent plugin](https://github.com/magpie-community/plugins/pull/1340) |
+| P3 | ready | 0 (none) | 2026-11-18T17:05:30.000Z | 30d | _unmapped_ (`feat`) | [#1340 feat: add GenericAgent agent plugin](https://github.com/magpie-community/plugins/pull/1340) |
 
 ### Package: `unmapped:feat(agents)`
 
@@ -685,7 +685,6 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 0 (none) | 2026-11-25T07:40:10.000Z | 24h | _unmapped_ (`fix(agy-cli)`) | [#1294 fix(agy-cli): 修复 agy acp 扫描 prompt 误触发 /learn 等内置斜杠命令的问题](https://github.com/magpie-community/plugins/pull/1294) |
-| P3 | ready | 0 (none) | 2026-11-24T01:24:59.000Z | 7d | _unmapped_ (`fix(agy-cli)`) | [#1485 fix(agy-cli): read default Linux file-backed sign-in](https://github.com/magpie-community/plugins/pull/1485) |
 | P3 | ready | 0 (none) | 2026-11-21T15:40:01.000Z | 7d | _unmapped_ (`fix(agy-cli)`) | [#1441 fix(agy-cli): fall back to default token file on macOS when Keychain item is missing](https://github.com/magpie-community/plugins/pull/1441) |
 | P3 | ready | 0 (none) | 2026-11-17T02:37:36.000Z | 30d | _unmapped_ (`fix(agy-cli)`) | [#1244 fix(agy-cli): intercept pseudo-tool text hallucinated by models and fail the turn (#1242)](https://github.com/magpie-community/plugins/pull/1244) |
 | P3 | ready | 0 (none) | 2026-11-17T01:52:09.000Z | 30d | _unmapped_ (`fix(agy-cli)`) | [#1238 fix(agy-cli): reflect omitted replay history in final Anthropic usage](https://github.com/magpie-community/plugins/pull/1238) |
@@ -697,11 +696,16 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 1 (light) | 2026-10-26T22:34:33.000Z | 30d | _unmapped_ (`fix(cursor)`) | [#372 fix(cursor): keep the card's reset date when the usage ledger answers empty](https://github.com/magpie-community/plugins/pull/372) |
 | P3 | ready | 0 (none) | 2026-11-18T04:52:32.000Z | 30d | _unmapped_ (`fix(cursor)`) | [#1300 fix(cursor): ignore ExecServerMessage metadata (#57-#59) in exec tracking](https://github.com/magpie-community/plugins/pull/1300) |
 
+### Package: `unmapped:fix(kiro)`
+
+| Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
+| --- | --- | ---: | --- | --- | --- | --- |
+| P3 | ready | 1 (light) | 2026-11-25T14:12:24.000Z | 24h | _unmapped_ (`fix(kiro)`) | [#1552 fix(kiro): send control-plane token type for external IdP sign-ins](https://github.com/magpie-community/plugins/pull/1552) |
+
 ### Package: `unmapped:fix(workbuddy)`
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 0 (none) | 2026-11-25T03:42:37.000Z | 24h | _unmapped_ (`fix(workbuddy)`) | [#1535 fix(workbuddy): strip empty tool_calls from reasoning deltas](https://github.com/magpie-community/plugins/pull/1535) |
 | P3 | ready | 0 (none) | 2026-11-17T10:28:28.000Z | 30d | _unmapped_ (`fix(workbuddy)`) | [#1261 fix(workbuddy): show Total credits first](https://github.com/magpie-community/plugins/pull/1261) |
 
 ### Package: `unmapped:fix(zcode)`
@@ -729,11 +733,11 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 1 (light) | 2026-11-14T22:53:19.000Z | 30d | _unmapped_ (`hindsight 1.0.0`) | [#1160 hindsight 1.0.0: recall from your own Hindsight before each request](https://github.com/magpie-community/plugins/pull/1160) |
 
-### Package: `unmapped:memorysql 0.6.0`
+### Package: `unmapped:memorysql 0.7.0`
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 0 (none) | 2026-11-20T13:37:41.000Z | 7d | _unmapped_ (`memorysql 0.6.0`) | [#1403 memorysql 0.6.0: cross-agent session archive, memory injection and project summaries](https://github.com/magpie-community/plugins/pull/1403) |
+| P3 | ready | 1 (light) | 2026-11-25T13:43:45.000Z | 24h | _unmapped_ (`memorysql 0.7.0`) | [#1403 memorysql 0.7.0: cross-agent session archive, memory activity, tidy undo and project summaries](https://github.com/magpie-community/plugins/pull/1403) |
 
 ### Package: `unmapped:multi-path-router 0.1.1`
 
