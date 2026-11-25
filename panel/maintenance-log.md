@@ -30,7 +30,7 @@ the remaining upstream backlog is fixed.
 | #1541 | `agy-cli` | Returns a retryable capacity 503 immediately instead of waiting for silent agy retries | 6 focused and 99 repeat-batch tests pass |
 | #1542 | `agy-cli` | Stops a family alias from standing in for a model another signed-in account lists | upstream tests pass |
 | #1545 | `agy-cli` | Runs a Claude Code AgentSummary in a session scope beside its worker | upstream tests pass |
-| #1547 | `kiro` | Sends `TokenType: EXTERNAL_IDP` on control-plane calls for enterprise IdP sign-ins | 15 Kiro usage tests pass; package bumped to 0.1.42 |
+| #1552 / #1547 | `kiro` | Sends `TokenType: EXTERNAL_IDP` on control-plane calls and renews enterprise IdP sign-ins through the company's own token endpoint, client ID and granted scopes | 15 Kiro usage tests pass; panel synced to upstream 0.1.43 |
 | #1549 | `page-usage-tree` | Tightens the phone layout at 360px and 420px and keeps the period, cache and refresh controls usable | CSS regression and package check pass; full Node suite is 68/69 with one pre-existing Windows CRLF icon-fixture failure |
 | #1553 | `zed` | Uses a non-hex fixture user id so random UUIDs cannot spell `4242` | 100 repeat runs, 700 tests and 3300 assertions pass; package check passes |
 | #1554 | `agnes-code` | Serves international and China sites as separate provider ids, adds browser loopback sign-in, pins desktop credentials to the site's trusted BFF, and fixes the README/package-file nits found in review | 10 package tests pass; registry/package check passes; author reports real China-site models, credits and chat checks |
