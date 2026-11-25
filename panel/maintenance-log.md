@@ -9,6 +9,7 @@ the remaining upstream backlog is fixed.
 | :--- | :--- | :--- | :--- |
 | #1358 | `zcode` | Adopted the `enc:v2` sign-in fix and added moved-data key selection coverage | focused package tests and PR review |
 | #1535 | `workbuddy` | Removed empty `tool_calls` from forwarded reasoning deltas | 21 focused tests pass |
+| #1112 | `providers-hub` | Added Tencent Marvis as `hub-marvis` and refreshed the provider summary | registry validation and upstream PR evidence |
 | #1474 | `workbuddy` | Renews long-lived browser sign-ins ahead of expiry | package tests |
 | #1294 | `agy-cli` | Defused upstream slash-command scanning in normal prompts | package tests |
 | #1533 | `agy-cli` | Preserves live sessions across masking placeholder drift | package tests |
