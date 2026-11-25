@@ -34,6 +34,7 @@ the remaining upstream backlog is fixed.
 | #1522 | `agy-cli` | Uses Magpie's namespaced proxy variables for OAuth refresh, Code Assist quota reads and `agy` child processes | 17 platform tests and 2 proxy/usage tests pass; no live proxy/account A/B verification |
 | #1475 | `agy-cli` | Treats an unchanged replayed `tool_result` as the same history after bridge notices were appended | upstream duplicate-result notice tests pass |
 | #1491 | `agy-cli` | Keeps the live session when an earlier image has already been swapped for its placeholder | upstream image-slim tests pass |
+| upstream `0.1.131`–`0.1.133` | `agy-cli` | Preserves the emitted tool step on identical retries, keeps short user text during large-reminder clipping, and prevents one account's request from continuing in another account's agy | 24 account-scope, retry, compatibility and clipping tests pass |
 | upstream `3150bdc` | `codearts` | Treats InferHub `001001005` on a chat over 10 MB as a 413 size error instead of retrying or renewing the account | 217 package tests pass with 0 failures; two unrelated Windows temp-cleanup `EBUSY` errors remain |
 
 ## Queue
