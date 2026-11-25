@@ -1056,6 +1056,36 @@ test("an access token about to end is renewed in memory for the direct read, nev
   assert.equal(ending.token.access_token, "ya29.live")
 })
 
+test("the direct read uses Magpie's namespaced proxy for renewal and Code Assist", async t => {
+  const api = await codeAssist(t)
+  const seen = []
+  const proxy = "http://127.0.0.1:7890"
+  const fetchFn = async (url, init = {}) => {
+    seen.push({ url: String(url), proxy: init.proxy })
+    const { proxy: _proxy, ...direct } = init
+    if (String(url).startsWith("https://oauth2.googleapis.com/token")) {
+      return new Response(JSON.stringify({ access_token: "ya29.fresh", expires_in: 3599 }), { status: 200 })
+    }
+    return fetch(url, direct)
+  }
+  const ending = structuredClone(STORED)
+  ending.token.expiry = new Date(Date.now() + 30_000).toISOString()
+  const data = await readQuotaDirect({
+    env: {
+      CLOUD_CODE_URL: api.url,
+      MAGPIE_HTTPS_PROXY: proxy,
+      HTTPS_PROXY: "http://explicit.invalid",
+    },
+    version: "1.5.9",
+    deadline: Date.now() + 5000,
+    stored: async () => ending,
+    fetch: fetchFn,
+  })
+  assert.deepEqual(data, SUMMARY)
+  assert.equal(seen.length, 3)
+  assert.ok(seen.every(call => call.proxy === proxy), JSON.stringify(seen))
+})
+
 test("a direct read that fails leaves the region refusal standing: unknown, never zero or full", async t => {
   for (const [answer, stored] of [
     [{ retrieveUserQuotaSummary: [403, { error: { code: 403, message: "secret@example.com" } }] }, STORED],

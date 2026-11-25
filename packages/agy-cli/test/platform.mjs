@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import childProcess from "node:child_process"
 import { syncBuiltinESMExports } from "node:module"
 import { test } from "node:test"
-import { agyCandidates, agySpawnSpec, childEnv, holdsHome, spawnAgy, windowsMcpShim } from "../platform.mjs"
+import { agyCandidates, agySpawnSpec, childEnv, holdsHome, proxyUrl, spawnAgy, windowsMcpShim } from "../platform.mjs"
 
 // plugins#1405 (Danco): agy loads the home folder's contents as the
 // workspace's customizations and drops the client's biggest tools to fit
@@ -178,4 +178,45 @@ test("childEnv keeps any user-set update value, in any case, from the parent or 
   assert.deepEqual(Object.keys(windows).filter(key => /^agy_cli_disable_auto_update$/i.test(key)), ["agy_cli_disable_auto_update"])
   assert.equal(childEnv({ PATH: "p" }, { X: undefined }, "linux").AGY_CLI_DISABLE_AUTO_UPDATE, "true")
   assert.equal("X" in childEnv({ PATH: "p" }, { X: undefined }, "linux"), false)
+})
+
+test("childEnv maps Magpie proxy names for agy and keeps standard values explicit", () => {
+  const mapped = childEnv({
+    MAGPIE_HTTPS_PROXY: "http://127.0.0.1:7890",
+    magpie_http_proxy: "http://127.0.0.1:7891",
+    MAGPIE_ALL_PROXY: "socks5://127.0.0.1:7892",
+    MAGPIE_NO_PROXY: "localhost,127.0.0.1",
+  }, {}, "linux")
+  assert.equal(mapped.HTTPS_PROXY, "http://127.0.0.1:7890")
+  assert.equal(mapped.HTTP_PROXY, "http://127.0.0.1:7891")
+  assert.equal(mapped.ALL_PROXY, "socks5://127.0.0.1:7892")
+  assert.equal(mapped.NO_PROXY, "localhost,127.0.0.1")
+
+  const explicit = childEnv({
+    MAGPIE_HTTPS_PROXY: "http://namespaced.invalid",
+    HTTPS_PROXY: "http://explicit.invalid",
+    no_proxy: "explicit.invalid",
+    MAGPIE_NO_PROXY: "namespaced.invalid",
+  }, {}, "linux")
+  assert.equal(explicit.HTTPS_PROXY, "http://explicit.invalid")
+  assert.equal(explicit.NO_PROXY, undefined)
+  assert.equal(explicit.no_proxy, "explicit.invalid")
+})
+
+test("proxyUrl prefers Magpie HTTPS, then HTTP, then ALL", () => {
+  assert.equal(proxyUrl({
+    MAGPIE_HTTPS_PROXY: "http://magpie-https.invalid",
+    HTTPS_PROXY: "http://standard-https.invalid",
+    MAGPIE_HTTP_PROXY: "http://magpie-http.invalid",
+  }), "http://magpie-https.invalid")
+  assert.equal(proxyUrl({
+    HTTPS_PROXY: "http://standard-https.invalid",
+    MAGPIE_HTTP_PROXY: "http://magpie-http.invalid",
+  }), "http://standard-https.invalid")
+  assert.equal(proxyUrl({
+    MAGPIE_HTTP_PROXY: "http://magpie-http.invalid",
+    MAGPIE_ALL_PROXY: "socks5://magpie-all.invalid",
+  }), "http://magpie-http.invalid")
+  assert.equal(proxyUrl({ MAGPIE_ALL_PROXY: "socks5://magpie-all.invalid" }), "socks5://magpie-all.invalid")
+  assert.equal(proxyUrl({}), "")
 })

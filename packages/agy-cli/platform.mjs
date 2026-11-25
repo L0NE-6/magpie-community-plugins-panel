@@ -3,6 +3,38 @@ import os from "node:os"
 import path from "node:path"
 import { accountEnv, currentHome } from "./account.mjs"
 
+const PROXY_GROUPS = [
+  ["HTTPS_PROXY", ["MAGPIE_HTTPS_PROXY", "magpie_https_proxy", "HTTPS_PROXY", "https_proxy"]],
+  ["HTTP_PROXY", ["MAGPIE_HTTP_PROXY", "magpie_http_proxy", "HTTP_PROXY", "http_proxy"]],
+  ["ALL_PROXY", ["MAGPIE_ALL_PROXY", "magpie_all_proxy", "ALL_PROXY", "all_proxy"]],
+]
+
+const NO_PROXY_NAMES = ["MAGPIE_NO_PROXY", "magpie_no_proxy", "NO_PROXY", "no_proxy"]
+
+function firstEnv(env, names) {
+  for (const name of names) {
+    const value = env?.[name]
+    if (typeof value === "string" && value.trim() !== "") return value.trim()
+  }
+  return ""
+}
+
+function hasEnv(env, name) {
+  const upper = name.toUpperCase()
+  return Object.keys(env || {}).some(key => key.toUpperCase() === upper)
+}
+
+// proxyUrl is the proxy a plugin-host fetch should use when Magpie gives
+// its proxy only the namespaced MAGPIE_* names. HTTPS wins over HTTP, then
+// ALL, as the standard fetch environment does.
+export function proxyUrl(env = process.env) {
+  for (const [, names] of PROXY_GROUPS) {
+    const value = firstEnv(env, names)
+    if (value) return value
+  }
+  return ""
+}
+
 // holdsHome says whether dir is the user's home folder or a folder above
 // it ("/", "C:\Users"); on Windows case aside, as the system ignores it.
 export function holdsHome(dir, home = os.homedir(), platform = process.platform) {
@@ -115,6 +147,18 @@ export function childEnv(parent = process.env, extra = {}, platform = process.pl
   }
   if (![...names.keys()].some(name => name.toUpperCase() === "AGY_CLI_DISABLE_AUTO_UPDATE")) {
     env.AGY_CLI_DISABLE_AUTO_UPDATE = "true"
+  }
+  // Magpie passes a proxy to the plugin host under namespaced names. An
+  // agy child speaks the standard proxy variables, so map them back while
+  // keeping any standard value the user or caller set explicitly.
+  for (const [target, aliases] of PROXY_GROUPS) {
+    if (hasEnv(env, target)) continue
+    const value = firstEnv(env, aliases.slice(0, 2))
+    if (value) env[target] = value
+  }
+  if (!hasEnv(env, "NO_PROXY")) {
+    const value = firstEnv(env, NO_PROXY_NAMES.slice(0, 2))
+    if (value) env.NO_PROXY = value
   }
   return env
 }

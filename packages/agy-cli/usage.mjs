@@ -2,7 +2,7 @@ import { spawn } from "node:child_process"
 import fs from "node:fs/promises"
 import os from "node:os"
 import path from "node:path"
-import { agySpawnSpec, childEnv as agyChildEnv } from "./platform.mjs"
+import { agySpawnSpec, childEnv as agyChildEnv, proxyUrl } from "./platform.mjs"
 import { familiesInGroup } from "./model-ids.mjs"
 import { cannotSignIn, isDead, noteDead, storedSignIn, storedToken } from "./signin.mjs"
 
@@ -449,6 +449,7 @@ export async function readQuotaDirect({
   env = process.env, version, deadline, signal,
   stored = storedToken, fetch: fetchFn = globalThis.fetch, now = Date.now,
 } = {}) {
+  const proxy = proxyUrl(env)
   const left = () => deadline - now()
   const timed = () => {
     if (left() <= 0) throw new UsageError("agy usage query timed out.")
@@ -467,6 +468,7 @@ export async function readQuotaDirect({
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: token.refresh_token, client_id: CLIENT_ID, client_secret: CLIENT_SECRET }).toString(),
       signal: timed(),
+      ...(proxy ? { proxy } : {}),
     })
     let fresh
     try { fresh = JSON.parse(await res.text()) } catch {}
@@ -486,7 +488,7 @@ export async function readQuotaDirect({
     "Accept-Encoding": "gzip",
   }
   const call = async (method, body) => {
-    const res = await fetchFn(`${base}/v1internal:${method}`, { method: "POST", headers, body: JSON.stringify(body), signal: timed() })
+    const res = await fetchFn(`${base}/v1internal:${method}`, { method: "POST", headers, body: JSON.stringify(body), signal: timed(), ...(proxy ? { proxy } : {}) })
     const reply = await res.text()
     if (res.status !== 200) throw new UsageError(`Antigravity's ${method} answered ${res.status}.`)
     try { return JSON.parse(reply) } catch { throw new UsageError(`Antigravity's ${method} answered with no JSON.`) }
