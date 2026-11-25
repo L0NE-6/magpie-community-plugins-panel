@@ -149,6 +149,8 @@ class CDP {
 }
 
 async function waitForDashboard(cdp) {
+  const status = JSON.parse(await readFile(path.join(dashboardRoot, "status.json"), "utf8"))
+  const expectedCount = String(status.summary.issueCount)
   const result = await cdp.send("Runtime.evaluate", {
     expression: `new Promise((resolve) => {
       const started = Date.now();
@@ -156,7 +158,7 @@ async function waitForDashboard(cdp) {
         const count = document.querySelector("#issue-count")?.textContent;
         const candidates = document.querySelector("#candidate-count")?.textContent;
         const rows = document.querySelectorAll("#item-rows tr").length;
-        if (count === "388" && candidates !== "-" && rows > 300) resolve({ ok: true, count, candidates, rows });
+        if (count === ${JSON.stringify(expectedCount)} && candidates !== "-" && rows > 300) resolve({ ok: true, count, candidates, rows });
         else if (Date.now() - started > 10000) resolve({ ok: false, count, candidates, rows });
         else setTimeout(check, 100);
       };
