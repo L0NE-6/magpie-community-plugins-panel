@@ -13,6 +13,9 @@ the remaining upstream backlog is fixed.
 | #1474 | `workbuddy` | Renews long-lived browser sign-ins ahead of expiry | package tests |
 | #1294 | `agy-cli` | Defused upstream slash-command scanning in normal prompts | package tests |
 | #1533 | `agy-cli` | Preserves live sessions across masking placeholder drift | package tests |
+| #1427 | `catpaw` | Gives pasted-token accounts a distinct current-user identity | 76 focused tests pass |
+| #1368 | `orcaterm` | Refuses tool action envelopes written as assistant replies | 178 focused tests pass |
+| #1134 | `meowcode` | Refreshes the agent icon without changing model behavior | 5 focused tests pass |
 
 ## Queue
 
