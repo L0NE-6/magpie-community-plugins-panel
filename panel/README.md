@@ -2,6 +2,9 @@
 
 This directory is generated and maintained by the panel workflows.
 
+The static maintenance dashboard starts at `index.html` and is published by
+the `pages` workflow.
+
 | File | Purpose |
 | :--- | :--- |
 | `status.json` | Upstream repository, issue, PR and sync metadata |

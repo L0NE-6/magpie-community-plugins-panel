@@ -30,6 +30,11 @@ Live check: **2026-11-25 11:17 CST**
 The counts are a snapshot, not a promise. The generated dashboard under
 [`panel/`](panel/) refreshes from GitHub Actions.
 
+The published maintenance dashboard is available at
+<https://l0ne-6.github.io/magpie-community-plugins-panel/>. It reads the same
+generated snapshot as the repository, with search, package filters and the
+curated priority queue.
+
 ## Source Of Truth
 
 Upstream remains authoritative:

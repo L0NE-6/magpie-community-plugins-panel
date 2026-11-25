@@ -6,7 +6,9 @@
 > Upstream remains the source of truth for packages, npm releases and
 > production installs. This fork adds issue/PR triage, upstream sync,
 > reproducible fixes and a maintenance dashboard. Start at
-> [`PANEL.md`](PANEL.md) and [`panel/README.md`](panel/README.md).
+> [`PANEL.md`](PANEL.md), the
+> [live maintenance dashboard](https://l0ne-6.github.io/magpie-community-plugins-panel/),
+> and [`panel/README.md`](panel/README.md).
 >
 > Do not publish packages from this fork to the upstream
 > `@magpie-community` npm scope.
