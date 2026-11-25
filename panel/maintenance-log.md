@@ -24,6 +24,7 @@ the remaining upstream backlog is fixed.
 | #1144 | `godwit` | Adds the Godwit mail-client agent | registry validation; npm package provenance checked |
 | #1455 | `aws-quick` | Adds the Amazon Quick provider | registry validation; npm package provenance checked |
 | #1508 | `lingxi` | Adds the WPS Lingxi agent | registry validation; npm package provenance checked |
+| #1538 | `codearts` | Streams GLM tool-call arguments with `tool_stream` | focused GLM test passes; package check passes; two unrelated Windows temp-cleanup errors remain in the full suite |
 
 ## Queue
 
