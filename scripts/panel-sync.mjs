@@ -140,7 +140,7 @@ function knownPrefix(value, catalog) {
   for (const [alias, entry] of packageAliasEntries(catalog)) {
     if (!lower.startsWith(alias)) continue;
     const boundary = lower.slice(alias.length);
-    if (boundary === "" || /^[\s:|/\-–—]/.test(boundary)) {
+    if (boundary === "" || /^[\s:|/\-–—：]/.test(boundary)) {
       return {
         package: entry.name,
         packageDirectory: entry.directory,
@@ -164,7 +164,7 @@ export function matchTitlePrefix(title, catalog = new Map()) {
   if (!candidate) {
     const known = knownPrefix(withoutPriority, catalog);
     if (known) return known;
-    const separated = withoutPriority.match(/^(.{1,160}?)(?=\s*(?::|\||-|–|—)\s+|\s*\/\s*)/);
+    const separated = withoutPriority.match(/^(.{1,160}?)(?=\s*(?::|：|\||-|–|—)\s*|\s*\/\s*)/);
     if (separated) candidate = separated[1].trim();
   }
 

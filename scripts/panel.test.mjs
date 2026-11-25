@@ -9,6 +9,7 @@ import {
   createFixturePanel,
   fetchPaginated,
   makeRepository,
+  matchTitlePrefix,
   writePanelFiles,
 } from "./panel-sync.mjs"
 
@@ -49,6 +50,17 @@ test("pagination follows Link headers without fetching past the limit", async ()
   })
   expect(calls).toEqual(["1", "2"])
   expect(rows.map((row) => row.number)).toEqual([1, 2])
+})
+
+test("a Chinese full-width colon maps a package prefix", () => {
+  const catalog = new Map([
+    ["qoder", { name: "@magpie-community/opencode-qoder-auth", directory: "packages/qoder" }],
+  ])
+  expect(matchTitlePrefix("qoder：请增加签到清洗", catalog)).toEqual({
+    package: "@magpie-community/opencode-qoder-auth",
+    packageDirectory: "packages/qoder",
+    titlePrefix: "qoder",
+  })
 })
 
 test("panel excludes pull requests from issues and carries their comment count", () => {
