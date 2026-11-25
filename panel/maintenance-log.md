@@ -35,6 +35,8 @@ the remaining upstream backlog is fixed.
 | #1475 | `agy-cli` | Treats an unchanged replayed `tool_result` as the same history after bridge notices were appended | upstream duplicate-result notice tests pass |
 | #1491 | `agy-cli` | Keeps the live session when an earlier image has already been swapped for its placeholder | upstream image-slim tests pass |
 | upstream `0.1.131`–`0.1.133` | `agy-cli` | Preserves the emitted tool step on identical retries, keeps short user text during large-reminder clipping, and prevents one account's request from continuing in another account's agy | 24 account-scope, retry, compatibility and clipping tests pass |
+| #7736 | `agy-cli` | Marks a no-output agy read timeout as a non-retryable 504 while every output chunk renews the inactivity deadline | 3 timeout tests pass; tool-wait timeout keeps its prior shape |
+| #1543 | `agy-cli` | Adds Gemini 4 Hydrogen variants to the cold-start catalog without aliasing the independent Argon family | 2 focused catalog tests pass |
 | upstream `3150bdc` | `codearts` | Treats InferHub `001001005` on a chat over 10 MB as a 413 size error instead of retrying or renewing the account | 217 package tests pass with 0 failures; two unrelated Windows temp-cleanup `EBUSY` errors remain |
 
 ## Queue
