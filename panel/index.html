@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Magpie Maintenance Panel</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="https://github.com/L0NE-6/magpie-community-plugins-panel">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span>
+          <strong>Magpie Maintenance</strong>
+          <small>community plugin operations</small>
+        </span>
+      </a>
+      <nav class="topnav" aria-label="Repository links">
+        <a href="https://github.com/magpie-community/plugins">Upstream</a>
+        <a href="https://github.com/magpie-community/plugins/issues">Issues</a>
+        <a href="https://github.com/magpie-community/plugins/pulls">Pull requests</a>
+        <a href="https://github.com/L0NE-6/magpie-community-plugins-panel">Fork</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="overview" aria-labelledby="page-title">
+        <div class="overview-copy">
+          <p class="eyebrow">Maintenance control</p>
+          <h1 id="page-title">Community plugin backlog,<br />made operable.</h1>
+          <p class="lede">
+            A working index of upstream issues and pull requests. Upstream remains
+            the source of truth; this panel tracks triage, reproduction and focused
+            fixes without claiming unverified results.
+          </p>
+        </div>
+        <div class="sync-state">
+          <span class="state-dot" aria-hidden="true"></span>
+          <div>
+            <strong>Upstream mirror</strong>
+            <span id="generated-at">Loading snapshot...</span>
+          </div>
+        </div>
+        <div class="metrics" aria-label="Backlog summary">
+          <article class="metric">
+            <span>Open issues</span>
+            <strong id="issue-count">-</strong>
+            <small>upstream backlog</small>
+          </article>
+          <article class="metric">
+            <span>Open pull requests</span>
+            <strong id="pull-count">-</strong>
+            <small id="draft-count">- drafts</small>
+          </article>
+          <article class="metric">
+            <span>Priority queue</span>
+            <strong id="priority-count">-</strong>
+            <small>curated P0/P1 items</small>
+          </article>
+          <article class="metric">
+            <span>Package clusters</span>
+            <strong id="cluster-count">-</strong>
+            <small>known package groups</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="priority-rail" aria-labelledby="priority-title">
+          <div class="rail-heading">
+            <div>
+              <p class="eyebrow">Review first</p>
+              <h2 id="priority-title">Priority queue</h2>
+            </div>
+            <span class="rail-note">Evidence-led</span>
+          </div>
+          <ol id="priority-list" class="priority-list">
+            <li class="loading-line">Loading priority items...</li>
+          </ol>
+          <p class="rail-boundary">
+            Risk labels are triage hints. Reproduce and verify before treating an
+            item as fixed.
+          </p>
+        </aside>
+
+        <div class="explorer" aria-labelledby="explorer-title">
+          <div class="explorer-heading">
+            <div>
+              <p class="eyebrow">Full upstream index</p>
+              <h2 id="explorer-title">Issues and pull requests</h2>
+            </div>
+            <span id="result-count" class="result-count">Loading...</span>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-field">
+              <span>Search</span>
+              <input id="search" type="search" placeholder="Package, title or number" autocomplete="off" />
+            </label>
+            <div class="segmented" role="group" aria-label="Item type">
+              <button type="button" class="active" data-type="all">All</button>
+              <button type="button" data-type="issue">Issues</button>
+              <button type="button" data-type="pull">Pull requests</button>
+            </div>
+            <label class="select-field">
+              <span>Risk</span>
+              <select id="risk-filter">
+                <option value="all">All priorities</option>
+                <option value="P0">P0</option>
+                <option value="P1">P1</option>
+                <option value="P2">P2</option>
+                <option value="P3">P3</option>
+              </select>
+            </label>
+            <label class="select-field">
+              <span>Package</span>
+              <select id="package-filter">
+                <option value="all">All packages</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Risk</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Package</th>
+                  <th scope="col">Item</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Updated</th>
+                </tr>
+              </thead>
+              <tbody id="item-rows">
+                <tr>
+                  <td colspan="6" class="empty-cell">Loading upstream index...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="empty-state" class="empty-state" hidden>
+            <strong>No matching items</strong>
+            <span>Change the search or filters to widen the result.</span>
+          </div>
+          <div id="error-state" class="error-state" hidden>
+            <strong>Snapshot unavailable</strong>
+            <span>The dashboard could not load the generated panel data.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Unofficial maintenance fork. No upstream publish access is implied.</span>
+      <span>Generated from <code>panel/status.json</code> and <code>panel/triage-seed.json</code>.</span>
+    </footer>
+
+    <script type="module" src="./dashboard.js"></script>
+  </body>
+</html>
