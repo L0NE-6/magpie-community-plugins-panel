@@ -7,6 +7,7 @@ the remaining upstream backlog is fixed.
 
 | Upstream item | Package | Result | Evidence |
 | :--- | :--- | :--- | :--- |
+| pages workflow | maintenance CI | Uses the stable `upload-pages-artifact@v3` and `deploy-pages@v4` pair after two v5 deployments could not find the uploaded artifact | runs `45677823883` and `45677845224` both succeeded |
 | #1358 | `zcode` | Adopted the `enc:v2` sign-in fix and added moved-data key selection coverage | focused package tests and PR review |
 | #1535 | `workbuddy` | Removed empty `tool_calls` from forwarded reasoning deltas | 21 focused tests pass |
 | #1112 | `providers-hub` | Added Tencent Marvis as `hub-marvis` and refreshed the provider summary | registry validation and upstream PR evidence |
