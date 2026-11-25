@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T08:31:39.367Z",
+  "generatedAt": "2026-11-25T10:51:59.660Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 391,
+    "issueCount": 394,
     "pullCount": 250,
     "draftPullCount": 12,
     "readyPullCount": 238,
@@ -16,7 +16,7 @@
         "P0": 0,
         "P1": 0,
         "P2": 1,
-        "P3": 390
+        "P3": 393
       },
       "pulls": {
         "P0": 0,
@@ -28,27 +28,27 @@
     "byComments": {
       "issues": {
         "none": 164,
-        "light": 172,
+        "light": 175,
         "active": 45,
         "hot": 10
       },
       "pulls": {
-        "none": 134,
-        "light": 92,
+        "none": 132,
+        "light": 94,
         "active": 23,
         "hot": 1
       }
     },
     "byUpdated": {
       "issues": {
-        "24h": 25,
-        "7d": 93,
-        "30d": 208,
+        "24h": 27,
+        "7d": 91,
+        "30d": 211,
         "older": 65
       },
       "pulls": {
-        "24h": 30,
-        "7d": 108,
+        "24h": 32,
+        "7d": 106,
         "30d": 96,
         "older": 16
       }
@@ -75,6 +75,91 @@
       "createdAt": "2026-11-23T12:18:48.000Z",
       "labels": [],
       "author": "tyh97"
+    },
+    {
+      "number": 1545,
+      "title": "agy-cli: Claude Code AgentSummary shares the worker's live session and retries 503",
+      "url": "https://github.com/magpie-community/plugins/issues/1545",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T10:13:41.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T10:06:40.000Z",
+      "labels": [],
+      "author": "Fartown"
+    },
+    {
+      "number": 1541,
+      "title": "agy-cli: agy's silent \"503 No capacity\" retries show as a 1–2 min TTFT, with no log and no failover to another account",
+      "url": "https://github.com/magpie-community/plugins/issues/1541",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T10:10:06.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T06:31:48.000Z",
+      "labels": [],
+      "author": "DedSecer"
+    },
+    {
+      "number": 1544,
+      "title": "agy-cli quota refresh times out when agy --version takes more than three seconds",
+      "url": "https://github.com/magpie-community/plugins/issues/1544",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T09:58:19.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T09:53:15.000Z",
+      "labels": [],
+      "author": "talkingape"
+    },
+    {
+      "number": 1543,
+      "title": "agy-cli: gemini-4-argon fails with 400 Unknown model ID; FALLBACK_MODELS and resolveCatalogAlias lack gemini-4-hydrogen mapping",
+      "url": "https://github.com/magpie-community/plugins/issues/1543",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T09:14:57.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T09:14:57.000Z",
+      "labels": [],
+      "author": "wowaly"
+    },
+    {
+      "number": 1517,
+      "title": "qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)",
+      "url": "https://github.com/magpie-community/plugins/issues/1517",
+      "package": "@magpie-community/opencode-qoder-auth",
+      "packageDirectory": "qoder",
+      "titlePrefix": "qoder",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T09:01:25.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-24T08:09:27.000Z",
+      "labels": [],
+      "author": "Cnxiaohun"
     },
     {
       "number": 1326,
@@ -124,23 +209,6 @@
       "updatedAt": "2026-11-25T06:31:51.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-25T06:31:51.000Z",
-      "labels": [],
-      "author": "DedSecer"
-    },
-    {
-      "number": 1541,
-      "title": "agy-cli: agy's silent \"503 No capacity\" retries show as a 1–2 min TTFT, with no log and no failover to another account",
-      "url": "https://github.com/magpie-community/plugins/issues/1541",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-25T06:31:48.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-25T06:31:48.000Z",
       "labels": [],
       "author": "DedSecer"
     },
@@ -479,7 +547,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-24T10:37:51.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T10:37:51.000Z",
       "labels": [],
       "author": "flmaximwang"
@@ -496,27 +564,10 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-24T08:38:31.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T08:38:31.000Z",
       "labels": [],
       "author": "avatar0813"
-    },
-    {
-      "number": 1517,
-      "title": "qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)",
-      "url": "https://github.com/magpie-community/plugins/issues/1517",
-      "package": "@magpie-community/opencode-qoder-auth",
-      "packageDirectory": "qoder",
-      "titlePrefix": "qoder",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-24T08:09:27.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-24T08:09:27.000Z",
-      "labels": [],
-      "author": "Cnxiaohun"
     },
     {
       "number": 1366,
@@ -2026,7 +2077,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-18T09:45:30.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T09:45:30.000Z",
       "labels": [],
       "author": "wangbingnan136"
@@ -2043,7 +2094,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-18T09:38:25.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T09:38:25.000Z",
       "labels": [],
       "author": "Ziqi-Cui"
@@ -2060,7 +2111,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-18T08:53:27.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T08:53:27.000Z",
       "labels": [],
       "author": "SkinAir"
@@ -6963,6 +7014,24 @@
       "author": "MisonL"
     },
     {
+      "number": 1019,
+      "title": "sap-aicore: improve Gemini and Codex support",
+      "url": "https://github.com/magpie-community/plugins/pull/1019",
+      "draft": false,
+      "package": "@magpie-community/opencode-sap-aicore-auth",
+      "packageDirectory": "sap-aicore",
+      "titlePrefix": "sap-aicore",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 8,
+      "commentBucket": "active",
+      "updatedAt": "2026-11-25T08:35:56.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-11T17:54:33.000Z",
+      "labels": [],
+      "author": "caikn"
+    },
+    {
       "number": 1004,
       "title": "route-insight: a routing board page, with numeric fingerprint and protocol audit",
       "url": "https://github.com/magpie-community/plugins/pull/1004",
@@ -6997,24 +7066,6 @@
       "createdAt": "2026-10-11T15:38:50.000Z",
       "labels": [],
       "author": "sundjly"
-    },
-    {
-      "number": 1019,
-      "title": "sap-aicore: improve Gemini and Codex support",
-      "url": "https://github.com/magpie-community/plugins/pull/1019",
-      "draft": false,
-      "package": "@magpie-community/opencode-sap-aicore-auth",
-      "packageDirectory": "sap-aicore",
-      "titlePrefix": "sap-aicore",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 7,
-      "commentBucket": "active",
-      "updatedAt": "2026-11-18T10:49:03.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-11T17:54:33.000Z",
-      "labels": [],
-      "author": "caikn"
     },
     {
       "number": 1112,
@@ -7323,6 +7374,24 @@
       "author": "jinpy666"
     },
     {
+      "number": 1524,
+      "title": "agy-cli 0.1.122: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays",
+      "url": "https://github.com/magpie-community/plugins/pull/1524",
+      "draft": false,
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 3,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T08:42:12.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-24T13:12:13.000Z",
+      "labels": [],
+      "author": "kombier"
+    },
+    {
       "number": 1508,
       "title": "Add WPS lingxi(magpie-agent-lingxi) agent",
       "url": "https://github.com/magpie-community/plugins/pull/1508",
@@ -7593,6 +7662,24 @@
       "author": "shiyang1026"
     },
     {
+      "number": 1144,
+      "title": "registry: list @godwit/magpie-agent (Godwit)",
+      "url": "https://github.com/magpie-community/plugins/pull/1144",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "registry",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T08:45:25.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-14T10:58:28.000Z",
+      "labels": [],
+      "author": "baranwang"
+    },
+    {
       "number": 1045,
       "title": "registry: add Melete Magpie",
       "url": "https://github.com/magpie-community/plugins/pull/1045",
@@ -7609,24 +7696,6 @@
       "createdAt": "2026-11-12T08:05:58.000Z",
       "labels": [],
       "author": "yancanny"
-    },
-    {
-      "number": 1524,
-      "title": "agy-cli 0.1.122: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays",
-      "url": "https://github.com/magpie-community/plugins/pull/1524",
-      "draft": false,
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 2,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-25T06:52:03.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-24T13:12:13.000Z",
-      "labels": [],
-      "author": "kombier"
     },
     {
       "number": 1531,
@@ -7951,6 +8020,42 @@
       "createdAt": "2026-10-06T18:07:37.000Z",
       "labels": [],
       "author": "gaoyuyun"
+    },
+    {
+      "number": 1539,
+      "title": "Add CAM context attachment gateway plugin",
+      "url": "https://github.com/magpie-community/plugins/pull/1539",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": null,
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T09:00:30.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T05:44:55.000Z",
+      "labels": [],
+      "author": "zhaobomin"
+    },
+    {
+      "number": 1455,
+      "title": "Add Amazon Quick (magpie-aws-quick) to the registry",
+      "url": "https://github.com/magpie-community/plugins/pull/1455",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": null,
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T08:45:49.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-22T09:25:46.000Z",
+      "labels": [],
+      "author": "httpdone"
     },
     {
       "number": 1538,
@@ -8307,7 +8412,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-18T09:27:14.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T09:21:27.000Z",
       "labels": [],
       "author": "JohnWangggg"
@@ -8563,24 +8668,6 @@
       "createdAt": "2026-11-14T11:48:19.000Z",
       "labels": [],
       "author": "hahhforest"
-    },
-    {
-      "number": 1144,
-      "title": "registry: list @godwit/magpie-agent (Godwit)",
-      "url": "https://github.com/magpie-community/plugins/pull/1144",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "registry",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-14T11:04:36.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-14T10:58:28.000Z",
-      "labels": [],
-      "author": "baranwang"
     },
     {
       "number": 1129,
@@ -8871,6 +8958,24 @@
       "author": "MasakiMu319"
     },
     {
+      "number": 1436,
+      "title": "trae 0.2.55: cache hits, credits and models.dev cost in usage",
+      "url": "https://github.com/magpie-community/plugins/pull/1436",
+      "draft": false,
+      "package": "@magpie-community/opencode-trae-auth",
+      "packageDirectory": "trae",
+      "titlePrefix": "trae",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T09:55:16.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-21T11:37:45.000Z",
+      "labels": [],
+      "author": "facron2004"
+    },
+    {
       "number": 1294,
       "title": "fix(agy-cli): 修复 agy acp 扫描 prompt 误触发 /learn 等内置斜杠命令的问题",
       "url": "https://github.com/magpie-community/plugins/pull/1294",
@@ -8887,24 +8992,6 @@
       "createdAt": "2026-11-18T02:48:01.000Z",
       "labels": [],
       "author": "huangzhenhao90"
-    },
-    {
-      "number": 1539,
-      "title": "Add CAM context attachment gateway plugin",
-      "url": "https://github.com/magpie-community/plugins/pull/1539",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": null,
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-25T05:44:55.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-25T05:44:55.000Z",
-      "labels": [],
-      "author": "zhaobomin"
     },
     {
       "number": 1537,
@@ -8941,24 +9028,6 @@
       "createdAt": "2026-11-25T03:42:37.000Z",
       "labels": [],
       "author": "L0NE-6"
-    },
-    {
-      "number": 1436,
-      "title": "trae 0.2.55: cache hits, credits and models.dev cost in usage",
-      "url": "https://github.com/magpie-community/plugins/pull/1436",
-      "draft": false,
-      "package": "@magpie-community/opencode-trae-auth",
-      "packageDirectory": "trae",
-      "titlePrefix": "trae",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-25T02:30:24.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-21T11:37:45.000Z",
-      "labels": [],
-      "author": "facron2004"
     },
     {
       "number": 1533,
@@ -9027,7 +9096,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-24T08:51:24.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T08:51:24.000Z",
       "labels": [],
       "author": "oli-bot"
@@ -9553,24 +9622,6 @@
       "createdAt": "2026-11-22T08:34:42.000Z",
       "labels": [],
       "author": "lizimu0"
-    },
-    {
-      "number": 1455,
-      "title": "Add Amazon Quick (magpie-aws-quick) to the registry",
-      "url": "https://github.com/magpie-community/plugins/pull/1455",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": null,
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-22T09:25:46.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-22T09:25:46.000Z",
-      "labels": [],
-      "author": "httpdone"
     },
     {
       "number": 1453,
