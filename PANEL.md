@@ -16,12 +16,12 @@ The goal is not to create a competing plugin marketplace. The goal is to:
 
 ## Current Upstream Snapshot
 
-Live check: **2026-11-25 22:08 CST**
+Live check: **2026-11-25 22:15 CST**
 
 | Metric | Value |
 | :--- | ---: |
 | Upstream open issues | 392 |
-| Upstream open pull requests | 242 |
+| Upstream open pull requests | 241 |
 | Merged PRs in the previous 7 days | 5 |
 | Closed issues in the previous 7 days | 8 |
 | Upstream default branch | `main` |
