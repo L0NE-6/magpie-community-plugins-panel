@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-25T04:10:43.325Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-25T04:56:06.083Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
 - Open issues: **388**
 - Priority: P0 **0**, P1 **0**, P2 **1**, P3 **387**
-- Comments: none **163**, light **170**, active **45**, hot **10**
-- Updated: 24h **24**, 7d **98**, 30d **204**, older **62**
+- Comments: none **162**, light **171**, active **45**, hot **10**
+- Updated: 24h **25**, 7d **96**, 30d **205**, older **62**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -124,8 +124,9 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 2 (light) | 2026-11-25T04:51:27.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1233 agy-cli: 任务进行中插件进程重启（含自动更新）时会话不会被保存，只能新建会话重放，长任务丢失大部分上下文](https://github.com/magpie-community/plugins/issues/1233) |
+| P3 | 1 (light) | 2026-11-25T04:39:57.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1475 agy-cli: replaying an unchanged tool_result can return 409 after the bridge appends system notices](https://github.com/magpie-community/plugins/issues/1475) |
 | P3 | 0 (none) | 2026-11-25T03:57:52.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1536 agy-cli: Magpie Artifacts eager tool fails toolbox schema validation](https://github.com/magpie-community/plugins/issues/1536) |
-| P3 | 2 (light) | 2026-11-25T03:56:35.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1233 agy-cli: 任务进行中插件进程重启（含自动更新）时会话不会被保存，只能新建会话重放，长任务丢失大部分上下文](https://github.com/magpie-community/plugins/issues/1233) |
 | P3 | 1 (light) | 2026-11-25T03:47:39.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1495 agy-cli: preserve native compaction history and cache, and fail closed on oversized replay](https://github.com/magpie-community/plugins/issues/1495) |
 | P3 | 4 (active) | 2026-11-25T00:52:15.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1405 agy-cli 0.1.103: 工作目录为家目录时 --add-dir ~ 让 agy 丢弃最大的客户端工具（Bash/Read 等，#1166 后续）](https://github.com/magpie-community/plugins/issues/1405) |
 | P3 | 5 (active) | 2026-11-24T21:13:04.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1070 agy-cli: "test/smoke.mjs against a fake agy" red at 40s under the root bun test on macOS (mica), green alone](https://github.com/magpie-community/plugins/issues/1070) |
@@ -140,7 +141,6 @@ _No open issues._
 | P3 | 0 (none) | 2026-11-23T12:23:40.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1490 agy-cli 0.1.114：Codex 调用 Magpie 服务端 web_search 后，下一轮必触发 drop_live (history_mismatch) 导致缓存归零](https://github.com/magpie-community/plugins/issues/1490) |
 | P3 | 0 (none) | 2026-11-23T10:04:35.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1486 agy-cli: 多账号场景下，路由未按账号校验模型列表导致请求被分发至不支持该模型的账号](https://github.com/magpie-community/plugins/issues/1486) |
 | P3 | 2 (light) | 2026-11-23T07:55:48.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1337 agy-cli 0.1.95: agy 1.5.11 fails to preload ide-tools MCP server (context deadline exceeded -> 502 tools_not_loaded)](https://github.com/magpie-community/plugins/issues/1337) |
-| P3 | 0 (none) | 2026-11-23T03:32:39.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1475 agy-cli: replaying an unchanged tool_result can return 409 after the bridge appends system notices](https://github.com/magpie-community/plugins/issues/1475) |
 | P3 | 0 (none) | 2026-11-22T17:26:11.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1464 agy-cli: a turn that ends after agy's own tool is turned away stops silently, as a finished empty reply](https://github.com/magpie-community/plugins/issues/1464) |
 | P3 | 1 (light) | 2026-11-22T10:01:41.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1454 agy-cli 0.1.109: dropRetryBanner 漏拦 Malformed function call 重试提示及横幅/流式边界 3 处 Bug](https://github.com/magpie-community/plugins/issues/1454) |
 | P3 | 0 (none) | 2026-11-22T03:22:05.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1447 agy-cli 0.1.109: OMP 图片配额裁剪与上下文压缩触发 drop_live，重建受 112 KiB 预算截断导致长任务失忆死循环](https://github.com/magpie-community/plugins/issues/1447) |
@@ -436,7 +436,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-18T04:49:07.000Z | 7d | `@magpie-community/opencode-raccoon-auth` | [#1299 raccoon: 积分消耗计算不准确](https://github.com/magpie-community/plugins/issues/1299) |
+| P3 | 0 (none) | 2026-11-18T04:49:07.000Z | 30d | `@magpie-community/opencode-raccoon-auth` | [#1299 raccoon: 积分消耗计算不准确](https://github.com/magpie-community/plugins/issues/1299) |
 | P3 | 1 (light) | 2026-11-17T19:13:31.000Z | 30d | `@magpie-community/opencode-raccoon-auth` | [#598 raccoon: every model says it thinks, none gives variants, so its reasoning levels are a guess](https://github.com/magpie-community/plugins/issues/598) |
 | P3 | 0 (none) | 2026-10-31T08:23:08.000Z | 30d | `@magpie-community/opencode-raccoon-auth` | [#554 raccoon: X-Client-Platform test fails once under the full suite (macOS)](https://github.com/magpie-community/plugins/issues/554) |
 | P3 | 1 (light) | 2026-10-30T07:41:21.000Z | 30d | `@magpie-community/opencode-raccoon-auth` | [#512 raccoon: an account-level token throughput wall (`user_model_rate_limited`) is retried 8x as if it were transient throttling](https://github.com/magpie-community/plugins/issues/512) |
