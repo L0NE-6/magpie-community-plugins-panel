@@ -1,14 +1,14 @@
 # Upstream open pull requests
 
-Generated at `2026-11-25T10:51:59.660Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-25T11:23:08.708Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 
-- Open pull requests: **250**
-- Draft: **12**, ready: **238**
-- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **250**
-- Comments: none **132**, light **94**, active **23**, hot **1**
-- Updated: 24h **32**, 7d **106**, 30d **96**, older **16**
+- Open pull requests: **251**
+- Draft: **12**, ready: **239**
+- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **251**
+- Comments: none **133**, light **94**, active **23**, hot **1**
+- Updated: 24h **33**, 7d **105**, 30d **97**, older **16**
 
 Pull requests are ordered by draft state, priority, comments, updated time, and number.
 
@@ -170,6 +170,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
+| P3 | ready | 1 (light) | 2026-11-25T11:10:20.000Z | 24h | `@magpie-community/opencode-catpaw-auth` | [#1427 catpaw 0.2.4: a pasted token gets its own identity](https://github.com/magpie-community/plugins/pull/1427) |
 | P3 | ready | 0 (none) | 2026-11-19T14:50:19.000Z | 7d | `@magpie-community/opencode-catpaw-auth` | [#1367 catpaw 0.2.3: kimi-k3.1-pro's native tool_use frames become tool_calls; newline-bearing JSON repaired](https://github.com/magpie-community/plugins/pull/1367) |
 
 ### Package: `@magpie-community/opencode-cloudflare-workers-ai-auth`
@@ -395,6 +396,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 1 (light) | 2026-11-14T16:18:32.000Z | 30d | _unmapped_ | [#1130 Add OpenCode Console and Go browser account providers](https://github.com/magpie-community/plugins/pull/1130) |
 | P3 | ready | 1 (light) | 2026-11-04T15:41:44.000Z | 30d | _unmapped_ | [#713 Add DeepSeek MaaS to GCP AI](https://github.com/magpie-community/plugins/pull/713) |
 | P3 | ready | 1 (light) | 2026-10-14T07:31:11.000Z | older | _unmapped_ | [#111 List Gemini Web provider plugin](https://github.com/magpie-community/plugins/pull/111) |
+| P3 | ready | 0 (none) | 2026-11-25T11:20:52.000Z | 24h | _unmapped_ | [#1546 List CodeZ (magpie-plugin-codez)](https://github.com/magpie-community/plugins/pull/1546) |
 | P3 | ready | 0 (none) | 2026-11-24T17:22:22.000Z | 24h | _unmapped_ | [#1288 Add Credit Balance & Tokens page](https://github.com/magpie-community/plugins/pull/1288) |
 | P3 | ready | 0 (none) | 2026-11-24T07:04:43.000Z | 7d | _unmapped_ | [#1488 Add Firstmate Dashboard 0.8.9](https://github.com/magpie-community/plugins/pull/1488) |
 | P3 | ready | 0 (none) | 2026-11-23T02:45:45.000Z | 7d | _unmapped_ | [#1396 List 鹈鹕巡检 (Pelican Monitor) as a page plugin](https://github.com/magpie-community/plugins/pull/1396) |
@@ -688,12 +690,6 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 0 (none) | 2026-11-17T02:37:36.000Z | 30d | _unmapped_ (`fix(agy-cli)`) | [#1244 fix(agy-cli): intercept pseudo-tool text hallucinated by models and fail the turn (#1242)](https://github.com/magpie-community/plugins/pull/1244) |
 | P3 | ready | 0 (none) | 2026-11-17T01:52:09.000Z | 30d | _unmapped_ (`fix(agy-cli)`) | [#1238 fix(agy-cli): reflect omitted replay history in final Anthropic usage](https://github.com/magpie-community/plugins/pull/1238) |
 
-### Package: `unmapped:fix(catpaw)`
-
-| Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
-| --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 1 (light) | 2026-11-25T07:15:55.000Z | 24h | _unmapped_ (`fix(catpaw)`) | [#1427 fix(catpaw): 手动粘贴 token 补 current-user 身份，多个粘贴账号不再互相覆盖](https://github.com/magpie-community/plugins/pull/1427) |
-
 ### Package: `unmapped:fix(cursor)`
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
@@ -798,7 +794,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 2 (light) | 2026-11-25T08:03:08.000Z | 24h | _unmapped_ (`registry`) | [#1045 registry: add Melete Magpie](https://github.com/magpie-community/plugins/pull/1045) |
 | P3 | ready | 2 (light) | 2026-11-16T07:48:55.000Z | 30d | _unmapped_ (`registry`) | [#1209 registry: add magpie-lobsterai-auth (LobsterAI)](https://github.com/magpie-community/plugins/pull/1209) |
 | P3 | ready | 1 (light) | 2026-11-25T08:08:23.000Z | 24h | _unmapped_ (`registry`) | [#1448 registry: magpie-providers-hub 摘要加防冒名判据，并登记千问国际版 hub-qwenwork-intl](https://github.com/magpie-community/plugins/pull/1448) |
-| P3 | ready | 1 (light) | 2026-11-18T11:02:20.000Z | 7d | _unmapped_ (`registry`) | [#1320 registry: magpie-traecode (Trae CN / Global, rebuilt on llm-api's trae channel)](https://github.com/magpie-community/plugins/pull/1320) |
+| P3 | ready | 1 (light) | 2026-11-18T11:02:20.000Z | 30d | _unmapped_ (`registry`) | [#1320 registry: magpie-traecode (Trae CN / Global, rebuilt on llm-api's trae channel)](https://github.com/magpie-community/plugins/pull/1320) |
 | P3 | ready | 1 (light) | 2026-11-18T09:27:14.000Z | 30d | _unmapped_ (`registry`) | [#1317 registry: add magpie-muse-web-connector (Muse Web connector)](https://github.com/magpie-community/plugins/pull/1317) |
 | P3 | ready | 1 (light) | 2026-11-16T16:38:43.000Z | 30d | _unmapped_ (`registry`) | [#1232 registry: add Ducoro agent plugin](https://github.com/magpie-community/plugins/pull/1232) |
 | P3 | ready | 1 (light) | 2026-11-14T12:07:33.000Z | 30d | _unmapped_ (`registry`) | [#1149 registry: add magpie-kilo-auth (Kilo Gateway provider plugin)](https://github.com/magpie-community/plugins/pull/1149) |

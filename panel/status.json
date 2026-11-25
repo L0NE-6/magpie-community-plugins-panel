@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T10:51:59.660Z",
+  "generatedAt": "2026-11-25T11:23:08.708Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
@@ -8,9 +8,9 @@
   },
   "summary": {
     "issueCount": 394,
-    "pullCount": 250,
+    "pullCount": 251,
     "draftPullCount": 12,
-    "readyPullCount": 238,
+    "readyPullCount": 239,
     "byPriority": {
       "issues": {
         "P0": 0,
@@ -22,7 +22,7 @@
         "P0": 0,
         "P1": 0,
         "P2": 0,
-        "P3": 250
+        "P3": 251
       }
     },
     "byComments": {
@@ -33,7 +33,7 @@
         "hot": 10
       },
       "pulls": {
-        "none": 132,
+        "none": 133,
         "light": 94,
         "active": 23,
         "hot": 1
@@ -41,21 +41,21 @@
     },
     "byUpdated": {
       "issues": {
-        "24h": 27,
-        "7d": 91,
+        "24h": 28,
+        "7d": 90,
         "30d": 211,
         "older": 65
       },
       "pulls": {
-        "24h": 32,
-        "7d": 106,
-        "30d": 96,
+        "24h": 33,
+        "7d": 105,
+        "30d": 97,
         "older": 16
       }
     },
     "byDraft": {
       "draft": 12,
-      "ready": 238
+      "ready": 239
     }
   },
   "issues": [
@@ -75,6 +75,23 @@
       "createdAt": "2026-11-23T12:18:48.000Z",
       "labels": [],
       "author": "tyh97"
+    },
+    {
+      "number": 1421,
+      "title": "agy-cli 0.1.106: renderInitialPrompt's clipMiddle silently drops the entire user prompt when sandwiched between Claude Code's <system-reminder> blocks",
+      "url": "https://github.com/magpie-community/plugins/issues/1421",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T11:06:48.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-20T23:33:09.000Z",
+      "labels": [],
+      "author": "canwaals"
     },
     {
       "number": 1545,
@@ -1078,23 +1095,6 @@
       "createdAt": "2026-11-20T11:11:42.000Z",
       "labels": [],
       "author": "sevenqcx"
-    },
-    {
-      "number": 1421,
-      "title": "agy-cli 0.1.106: renderInitialPrompt's clipMiddle silently drops the entire user prompt when sandwiched between Claude Code's <system-reminder> blocks",
-      "url": "https://github.com/magpie-community/plugins/issues/1421",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-21T04:13:48.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-20T23:33:09.000Z",
-      "labels": [],
-      "author": "canwaals"
     },
     {
       "number": 1426,
@@ -8022,6 +8022,24 @@
       "author": "gaoyuyun"
     },
     {
+      "number": 1427,
+      "title": "catpaw 0.2.4: a pasted token gets its own identity",
+      "url": "https://github.com/magpie-community/plugins/pull/1427",
+      "draft": false,
+      "package": "@magpie-community/opencode-catpaw-auth",
+      "packageDirectory": "catpaw",
+      "titlePrefix": "catpaw",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T11:10:20.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-21T04:01:33.000Z",
+      "labels": [],
+      "author": "jinyue806"
+    },
+    {
       "number": 1539,
       "title": "Add CAM context attachment gateway plugin",
       "url": "https://github.com/magpie-community/plugins/pull/1539",
@@ -8128,24 +8146,6 @@
       "createdAt": "2026-11-19T15:44:08.000Z",
       "labels": [],
       "author": "Beyfish"
-    },
-    {
-      "number": 1427,
-      "title": "fix(catpaw): 手动粘贴 token 补 current-user 身份，多个粘贴账号不再互相覆盖",
-      "url": "https://github.com/magpie-community/plugins/pull/1427",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "fix(catpaw)",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-25T07:15:55.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-21T04:01:33.000Z",
-      "labels": [],
-      "author": "jinyue806"
     },
     {
       "number": 1529,
@@ -8394,7 +8394,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-18T11:02:20.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T10:22:43.000Z",
       "labels": [],
       "author": "ruoxhub"
@@ -8956,6 +8956,24 @@
       "createdAt": "2026-10-10T08:10:43.000Z",
       "labels": [],
       "author": "MasakiMu319"
+    },
+    {
+      "number": 1546,
+      "title": "List CodeZ (magpie-plugin-codez)",
+      "url": "https://github.com/magpie-community/plugins/pull/1546",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": null,
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T11:20:52.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T11:20:52.000Z",
+      "labels": [],
+      "author": "zwenooo"
     },
     {
       "number": 1436,

@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-25T10:51:59.660Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-25T11:23:08.708Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
 - Open issues: **394**
 - Priority: P0 **0**, P1 **0**, P2 **1**, P3 **393**
 - Comments: none **164**, light **175**, active **45**, hot **10**
-- Updated: 24h **27**, 7d **91**, 30d **211**, older **65**
+- Updated: 24h **28**, 7d **90**, 30d **211**, older **65**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -124,6 +124,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 2 (light) | 2026-11-25T11:06:48.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1421 agy-cli 0.1.106: renderInitialPrompt's clipMiddle silently drops the entire user prompt when sandwiched between Claude Code's <system-reminder> blocks](https://github.com/magpie-community/plugins/issues/1421) |
 | P3 | 0 (none) | 2026-11-25T10:13:41.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1545 agy-cli: Claude Code AgentSummary shares the worker's live session and retries 503](https://github.com/magpie-community/plugins/issues/1545) |
 | P3 | 1 (light) | 2026-11-25T10:10:06.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1541 agy-cli: agy's silent "503 No capacity" retries show as a 1–2 min TTFT, with no log and no failover to another account](https://github.com/magpie-community/plugins/issues/1541) |
 | P3 | 1 (light) | 2026-11-25T09:58:19.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1544 agy-cli quota refresh times out when agy --version takes more than three seconds](https://github.com/magpie-community/plugins/issues/1544) |
@@ -153,7 +154,6 @@ _No open issues._
 | P3 | 0 (none) | 2026-11-22T03:22:05.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1447 agy-cli 0.1.109: OMP 图片配额裁剪与上下文压缩触发 drop_live，重建受 112 KiB 预算截断导致长任务失忆死循环](https://github.com/magpie-community/plugins/issues/1447) |
 | P3 | 0 (none) | 2026-11-21T06:06:40.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1428 agy-cli on Windows: `nc.exe` never builds when the build cwd is inside `%LOCALAPPDATA%\\Temp` (`Error initializing PE file: InvalidPEFile`)](https://github.com/magpie-community/plugins/issues/1428) |
 | P3 | 8 (active) | 2026-11-21T05:14:50.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1401 agy-cli + DSH：长任务中助手丢失原始需求并反复检查上下文](https://github.com/magpie-community/plugins/issues/1401) |
-| P3 | 1 (light) | 2026-11-21T04:13:48.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1421 agy-cli 0.1.106: renderInitialPrompt's clipMiddle silently drops the entire user prompt when sandwiched between Claude Code's <system-reminder> blocks](https://github.com/magpie-community/plugins/issues/1421) |
 | P3 | 0 (none) | 2026-11-20T17:51:40.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1416 \[agy-cli\] Upstream `⚠ FAILED_PRECONDITION (code 400)` banner leaks as HTTP 200 assistant text / 上游 400 地区限制报错被当作 HTTP 200 助手消息透传](https://github.com/magpie-community/plugins/issues/1416) |
 | P3 | 0 (none) | 2026-11-20T16:32:46.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1412 agy-cli 0.1.104: renamed tool_use IDs + earlier history mutation (e.g. Droid image pruning) hits 409 instead of drop_live replay](https://github.com/magpie-community/plugins/issues/1412) |
 | P3 | 0 (none) | 2026-11-20T16:18:54.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1409 agy-cli catalog.mjs: "失败、超时、空输出…" went red once in a package run (WSL)](https://github.com/magpie-community/plugins/issues/1409) |
