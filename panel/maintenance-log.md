@@ -31,6 +31,8 @@ the remaining upstream backlog is fixed.
 | #1542 | `agy-cli` | Stops a family alias from standing in for a model another signed-in account lists | upstream tests pass |
 | #1545 | `agy-cli` | Runs a Claude Code AgentSummary in a session scope beside its worker | upstream tests pass |
 | #1547 | `kiro` | Sends `TokenType: EXTERNAL_IDP` on control-plane calls for enterprise IdP sign-ins | 15 Kiro usage tests pass; package bumped to 0.1.42 |
+| #1549 | `page-usage-tree` | Tightens the phone layout at 360px and 420px and keeps the period, cache and refresh controls usable | CSS regression and package check pass; full Node suite is 68/69 with one pre-existing Windows CRLF icon-fixture failure |
+| #1553 | `zed` | Uses a non-hex fixture user id so random UUIDs cannot spell `4242` | 100 repeat runs, 700 tests and 3300 assertions pass; package check passes |
 | #1524 | `agy-cli` | Preserves active DSH `<available_skills>` and workspace instructions when clipping large replays | upstream tests pass; synced as `d388cd6` |
 | #1522 | `agy-cli` | Uses Magpie's namespaced proxy variables for OAuth refresh, Code Assist quota reads and `agy` child processes | 17 platform tests and 2 proxy/usage tests pass; no live proxy/account A/B verification |
 | #1475 | `agy-cli` | Treats an unchanged replayed `tool_result` as the same history after bridge notices were appended | upstream duplicate-result notice tests pass |
