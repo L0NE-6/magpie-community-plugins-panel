@@ -115,6 +115,11 @@ itself.
     powered by DeepSeek Harness.`, goes with a comma before `powered by`
     (since 0.2.73, #1517): Qoder CN puts a request whose system prompt
     holds that line, as written, in a queue that never moves.
+  - **Hide DeepSeekRuntime's name** (on by default, since 0.2.74, #1489)
+    removes DeepSeekRuntime and DSH prose from the system prompt and tool
+    descriptions before they are sent. Paths, commands, tool names, tool
+    results and the user's own words stay as they are. Turn it off to send
+    the prompt unchanged apart from the comma above.
   - Messages become text and image blocks.
   - Tool calls and results become OpenAI tool turns. Images a tool returned
     follow in a user turn.

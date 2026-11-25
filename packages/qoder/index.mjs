@@ -96,6 +96,71 @@ const asAgentSDK = (text) => text.replace(CLAUDE_CODE_LINE, AGENT_SDK_LINE)
 const HARNESS_OPENER = /(\bYou are (?:an?|the)\s[^\n.,]{0,60}?\b(?:agent|assistant))\s+(powered by|running on|running in|built on|based on)\b/gi
 const harnessComma = (text) => text.replace(HARNESS_OPENER, "$1, $2")
 
+// HIDE_DSH is the switch, on unless the user turns it off, that removes
+// DeepSeekRuntime's name from the prompt and tool descriptions Qoder is
+// sent (#1489). Qoder answers a DSH system prompt with a silent p2 queue,
+// and the same request completes after WorkBuddy's hide_dsh rewriting.
+// Paths, commands, tool names and a tool's result stay as they are; the
+// user's and assistant's own words get only DSH's own lines reworded.
+const HIDE_DSH = "hide_dsh"
+const DSH_LINES = [
+  [/You are an AI agent,? powered by DeepSeekRuntime\.?/g, "You are an AI agent."],
+  [/DeepSeekRuntime (Web GUI)/g, "$1"],
+  [/DeepSeekRuntime (implementation checkout)/g, "agent $1"],
+  [/\bDSH itself\b/g, "the agent itself"],
+]
+const IN_PATH_BEFORE = String.raw`(?<![\w/\\.~:@-])`
+const IN_PATH_AFTER = String.raw`(?![\w/\\@-]|\.\w)`
+const DSH_PROSE = [
+  ...DSH_LINES,
+  [new RegExp(IN_PATH_BEFORE + "([Tt]he )?DeepSeekRuntime" + IN_PATH_AFTER, "g"), (_, the) => (the ?? "the ") + "agent harness"],
+  [new RegExp(IN_PATH_BEFORE + "DSH" + IN_PATH_AFTER, "g"), "the agent harness"],
+]
+
+function dshHidden(text, said = false) {
+  for (const [re, to] of said ? DSH_LINES : DSH_PROSE) text = text.replace(re, to)
+  return text
+}
+
+function hideDsh(chat) {
+  if (!chat || typeof chat !== "object") return false
+  let changed = false
+  const parts = (content, said) => {
+    if (typeof content === "string") {
+      const t = dshHidden(content, said)
+      if (t !== content) changed = true
+      return t
+    }
+    if (!Array.isArray(content)) return content
+    return content.map((p) => {
+      if (!p || typeof p.text !== "string" || (p.type !== undefined && p.type !== "text")) return p
+      const t = dshHidden(p.text, said)
+      if (t === p.text) return p
+      changed = true
+      return { ...p, text: t }
+    })
+  }
+  if (Array.isArray(chat.messages))
+    for (const m of chat.messages)
+      if (m && typeof m === "object" && m.role !== "tool") m.content = parts(m.content, m.role !== "system" && m.role !== "developer")
+  if (chat.system !== undefined) chat.system = parts(chat.system, false)
+  const described = (o) => {
+    if (!o || typeof o !== "object") return
+    if (Array.isArray(o)) return o.forEach(described)
+    for (const k of Object.keys(o)) {
+      if (k === "description" && typeof o[k] === "string") {
+        const t = dshHidden(o[k])
+        if (t !== o[k]) {
+          o[k] = t
+          changed = true
+        }
+      } else described(o[k])
+    }
+  }
+  if (Array.isArray(chat.tools)) described(chat.tools)
+  return changed
+}
+
 const hexID = () => randomUUID().replaceAll("-", "")
 
 // ---- the COSY envelope --------------------------------------------------------
@@ -3314,7 +3379,7 @@ const SITES = {
   },
 }
 
-const makePlugin = (site) => async ({ client }) => {
+const makePlugin = (site) => async ({ client, magpie }) => {
   const ID = site.id
   // The SDK identity is account-specific. Share an in-flight read, refresh
   // after an hour, and leave a failed read available for the next attempt.
@@ -3485,6 +3550,7 @@ const makePlugin = (site) => async ({ client }) => {
   const served = new Set(site.models.map((m) => m.id))
   // the job tokens a renewal gave that Qoder still listed the free view for
   const stillFree = new Set()
+  const dshOff = () => magpie?.option?.(ID, HIDE_DSH) !== false
   const knows = (id) => served.has(id)
   const models = async (cred, again = false) => {
     const key = listingKey(cred)
@@ -4008,6 +4074,21 @@ const makePlugin = (site) => async ({ client }) => {
     },
     auth: {
       provider: ID,
+      options: [
+        {
+          key: HIDE_DSH,
+          label: `Hide DeepSeekRuntime's name`,
+          description: `Takes DeepSeekRuntime's name out of the prompt and tool descriptions sent to ${site.name}. Paths, commands and tool names stay as they are.`,
+          default: true,
+          labels: { zh: "隐去 DeepSeekRuntime 的名字", "zh-TW": "隱去 DeepSeekRuntime 的名字", ja: "DeepSeekRuntime の名前を伏せる", de: "Namen von DeepSeekRuntime ausblenden" },
+          descriptions: {
+            zh: `把 DeepSeekRuntime 的名字从发给 ${site.name} 的提示词和工具说明里去掉，路径、命令和工具名保持不变。`,
+            "zh-TW": `把 DeepSeekRuntime 的名字從送給 ${site.name} 的提示詞和工具說明裡去掉，路徑、指令和工具名保持不變。`,
+            ja: `${site.name} に送るプロンプトとツール説明から DeepSeekRuntime の名前を外します。パス、コマンド、ツール名はそのままです。`,
+            de: `Entfernt den Namen von DeepSeekRuntime aus dem an ${site.name} gesendeten Prompt und den Tool-Beschreibungen. Pfade, Befehle und Tool-Namen bleiben unverändert.`,
+          },
+        },
+      ],
       // magpie renews the chat token RENEW_LEAD before its end, once for
       // the account, before its requests, models and usage ask for it; the
       // check before each request (REFRESH_LEAD) stays for OpenCode, which
@@ -4076,6 +4157,7 @@ const makePlugin = (site) => async ({ client }) => {
             } catch {
               return errorResponse({ status: 400, message: "a request that isn't JSON" })
             }
+            if (dshOff()) hideDsh(chat)
             let cred
             try {
               cred = await fresh(getAuth)
@@ -4300,4 +4382,4 @@ export async function QwenWorkEnterpriseAuthPlugin({ client }) {
 export const protocol = { makePlugin, deviceSignIn, openapi, siteOf }
 
 // for tests
-export const _internal = { spentOf, OUTPUT_CAPS, LEARNED_CAPS, outputCap, fetchListing, accountIdentity, deviceRefreshBody, qwenworkClientHeaders, freeView, maskPhone, phoneLabelOf, realEmailOf, chatHeaders, machineOS, machineHostname, cosyHeaders, typedUnions, Splitter, campaignRuntime, RUNTIMES, campaignPage, campaignTarget, vpcInstance, vpcSite, dedicatedOrigin, dedicatedHost, dedicatedSite, lingmaRoots, lingmaDecode, lingmaSite, lingmaHeaders, LINGMA_MODELS, parseUsage, gfmt, when, failure, modelInfo, qoderBody, asAgentSDK, harnessComma, qoderMessages, kimiModel, cacheMarked, sessionOf, namedSession, taskOf, TASKS, TASK_MAX, TASK_IDLE, SESSION, SITES, decodeBody, events, QUEUE, queueState }
+export const _internal = { spentOf, OUTPUT_CAPS, LEARNED_CAPS, outputCap, fetchListing, accountIdentity, deviceRefreshBody, qwenworkClientHeaders, freeView, maskPhone, phoneLabelOf, realEmailOf, chatHeaders, machineOS, machineHostname, cosyHeaders, typedUnions, Splitter, campaignRuntime, RUNTIMES, campaignPage, campaignTarget, vpcInstance, vpcSite, dedicatedOrigin, dedicatedHost, dedicatedSite, lingmaRoots, lingmaDecode, lingmaSite, lingmaHeaders, LINGMA_MODELS, parseUsage, gfmt, when, failure, modelInfo, qoderBody, asAgentSDK, harnessComma, HIDE_DSH, dshHidden, hideDsh, qoderMessages, kimiModel, cacheMarked, sessionOf, namedSession, taskOf, TASKS, TASK_MAX, TASK_IDLE, SESSION, SITES, decodeBody, events, QUEUE, queueState }
