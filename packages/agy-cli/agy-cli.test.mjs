@@ -35,6 +35,7 @@ for (const [name, mocks] of [
   ["spare.mjs", false],
   ["stateless-reuse.mjs", false],
   ["tools-listed.mjs", false],
+  ["slash-commands.mjs", false],
   ["concurrent-convs.mjs", false],
   ["masking-drift.mjs", false],
   ["spilled-output.mjs", false],
