@@ -9,3 +9,8 @@ atomcode-state.json
 
 # Claude Code 本地目录（worktree 与本地设置），不入库
 .claude/
+
+# CAM generated panel views, thumbnails, and build output
+packages/cam/panel/live.js
+packages/cam/panel/images/
+packages/cam/dist/
