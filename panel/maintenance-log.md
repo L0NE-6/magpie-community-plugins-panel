@@ -18,6 +18,7 @@ the remaining upstream backlog is fixed.
 | #1134 | `meowcode` | Refreshes the agent icon without changing model behavior | 5 focused tests pass |
 | #1123 | `codar` | Refreshes the registry summary for the 0.3.x model and sign-in surface | registry validation |
 | #1175 | `deja-vu` | Updates the harness count and local index description | registry validation |
+| #1438 | `unisound` | Adds the published Unisound U Plan package to the registry | registry validation; npm package provenance checked |
 
 ## Queue
 
