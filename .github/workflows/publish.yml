@@ -38,6 +38,7 @@ jobs:
         run: bun scripts/check.mjs
 
   dist:
+    if: github.repository == 'magpie-community/plugins'
     needs: test
     runs-on: ubuntu-latest
     permissions:
@@ -67,6 +68,7 @@ jobs:
           fi
 
   npm:
+    if: github.repository == 'magpie-community/plugins'
     needs: test
     runs-on: ubuntu-latest
     permissions:

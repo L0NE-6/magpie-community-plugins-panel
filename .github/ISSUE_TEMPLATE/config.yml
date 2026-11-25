@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Upstream bug report
+    url: https://github.com/magpie-community/plugins/issues
+    about: Report a bug that exists in the upstream project.
+  - name: Upstream pull requests
+    url: https://github.com/magpie-community/plugins/pulls
+    about: Review existing fixes before opening a duplicate.

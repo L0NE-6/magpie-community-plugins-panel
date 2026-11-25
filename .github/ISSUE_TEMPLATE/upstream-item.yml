@@ -1,0 +1,61 @@
+name: Upstream issue or PR review
+description: Track a focused review, reproduction or fix for an upstream item.
+title: "[Upstream]: "
+labels:
+  - upstream
+body:
+  - type: input
+    id: upstream
+    attributes:
+      label: Upstream issue or pull request
+      placeholder: https://github.com/magpie-community/plugins/issues/123
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Issue reproduction
+        - Pull request review
+        - Fix ready
+        - Documentation or registry
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 - security, credential or data loss
+        - P1 - login or platform-wide failure
+        - P2 - single provider or model failure
+        - P3 - documentation or polish
+    validations:
+      required: true
+  - type: input
+    id: package
+    attributes:
+      label: Affected package
+      placeholder: "@magpie-community/opencode-example-auth"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Current evidence
+      description: State what was reproduced, how, and what remains unverified.
+    validations:
+      required: true
+  - type: textarea
+    id: next
+    attributes:
+      label: Next action
+      description: Name the failing test, patch, review question or upstream comment needed.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: This report contains no credentials, account identifiers or private prompts.
+          required: true

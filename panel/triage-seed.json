@@ -1,0 +1,1205 @@
+{
+  "schema_version": "panel-triage-seed/v1",
+  "generated_at": "2026-11-25T11:02:20+08:00",
+  "repository": {
+    "full_name": "magpie-community/plugins",
+    "default_branch": "main",
+    "snapshot_state": "open"
+  },
+  "summary": {
+    "open_total": 634,
+    "open_issues": 388,
+    "open_prs": 246,
+    "counts_match_github_page": true,
+    "labeled_items_observed": 1,
+    "package_clusters_total": 63,
+    "package_clusters_listed": 40,
+    "other_known_packages": 23,
+    "other_known_items": 27,
+    "unclassified_items": 200,
+    "priority_issue_count": 15,
+    "priority_pr_count": 15
+  },
+  "source": {
+    "access_mode": "read-only",
+    "transport": "GitHub REST snapshots through the r.jina.ai public reader because direct GitHub egress and the configured 7900 proxy were unavailable",
+    "api_base": "https://api.github.com/repos/magpie-community/plugins",
+    "snapshot_fetched_at": "2026-11-25T02:39:18Z",
+    "pagination": {
+      "page_size": 100,
+      "pages": 7,
+      "deduplicated_by": "number"
+    },
+    "upstream_actions_taken": {
+      "comments_posted": 0,
+      "issues_closed": 0,
+      "prs_reviewed_or_merged": 0,
+      "git_commands_run": 0,
+      "repository_files_modified": [
+        "panel/triage-seed.json"
+      ]
+    },
+    "evidence_boundaries": [
+      "Titles, bodies, open counts, comment counts, reactions, timestamps, draft state, and top-PR changed-file paths were read from the open-item snapshot.",
+      "Labels are almost unused upstream; only one labeled item was observed, so title prefixes, body/package names, and changed-file paths drive clustering.",
+      "Issue comments were not fetched; only comment counts are represented.",
+      "PR mergeability, conflict state, review approvals, and CI conclusions were not fetched and must be treated as unverified.",
+      "Author test claims in PR bodies are recorded as claims; this audit did not run package tests.",
+      "Direct GitHub egress was unavailable; the snapshot was obtained through a public read-only mirror, so panel-sync should refresh from GitHub before acting."
+    ]
+  },
+  "risk_levels": {
+    "P0": "Security exposure or broad irreversible harm; act first.",
+    "P1": "Account safety, session/data loss, core workflow interruption, or a release-blocking compatibility failure.",
+    "P2": "Material but scoped reliability or compatibility issue.",
+    "P3": "Low-impact cleanup or enhancement."
+  },
+  "risk_signal_counts": {
+    "method": "Keyword signals across all open titles and bodies; counts overlap and are triage hints, not severity totals.",
+    "issues": [
+      {
+        "signal": "os_compatibility",
+        "count": 188
+      },
+      {
+        "signal": "login_failure",
+        "count": 130
+      },
+      {
+        "signal": "stream_interruption",
+        "count": 68
+      },
+      {
+        "signal": "data_loss",
+        "count": 63
+      },
+      {
+        "signal": "security",
+        "count": 47
+      },
+      {
+        "signal": "crash_freeze",
+        "count": 20
+      },
+      {
+        "signal": "account_ban",
+        "count": 8
+      }
+    ],
+    "prs": [
+      {
+        "signal": "os_compatibility",
+        "count": 102
+      },
+      {
+        "signal": "login_failure",
+        "count": 98
+      },
+      {
+        "signal": "security",
+        "count": 79
+      },
+      {
+        "signal": "stream_interruption",
+        "count": 49
+      },
+      {
+        "signal": "data_loss",
+        "count": 30
+      },
+      {
+        "signal": "crash_freeze",
+        "count": 7
+      },
+      {
+        "signal": "account_ban",
+        "count": 3
+      }
+    ]
+  },
+  "package_clusters": [
+    {
+      "package": "unclassified",
+      "path": null,
+      "issues": 78,
+      "prs": 122,
+      "total": 200,
+      "confidence": "low",
+      "reason": "New providers, generic feature requests, and titles without a registered package id."
+    },
+    {
+      "package": "agy-cli",
+      "path": "packages/agy-cli",
+      "issues": 72,
+      "prs": 38,
+      "total": 110,
+      "confidence": "high"
+    },
+    {
+      "package": "trae",
+      "path": "packages/trae",
+      "issues": 22,
+      "prs": 6,
+      "total": 28,
+      "confidence": "high"
+    },
+    {
+      "package": "qoder",
+      "path": "packages/qoder",
+      "issues": 26,
+      "prs": 1,
+      "total": 27,
+      "confidence": "high"
+    },
+    {
+      "package": "cursor",
+      "path": "packages/cursor",
+      "issues": 18,
+      "prs": 5,
+      "total": 23,
+      "confidence": "high"
+    },
+    {
+      "package": "zcode",
+      "path": "packages/zcode",
+      "issues": 13,
+      "prs": 8,
+      "total": 21,
+      "confidence": "high"
+    },
+    {
+      "package": "workbuddy",
+      "path": "packages/workbuddy",
+      "issues": 14,
+      "prs": 4,
+      "total": 18,
+      "confidence": "high"
+    },
+    {
+      "package": "factory",
+      "path": "packages/factory",
+      "issues": 12,
+      "prs": 2,
+      "total": 14,
+      "confidence": "high"
+    },
+    {
+      "package": "gcp-ai",
+      "path": "packages/gcp-ai",
+      "issues": 9,
+      "prs": 3,
+      "total": 12,
+      "confidence": "high"
+    },
+    {
+      "package": "codearts",
+      "path": "packages/codearts",
+      "issues": 5,
+      "prs": 6,
+      "total": 11,
+      "confidence": "high"
+    },
+    {
+      "package": "agent-office",
+      "path": "packages/agent-office",
+      "issues": 8,
+      "prs": 3,
+      "total": 11,
+      "confidence": "high"
+    },
+    {
+      "package": "zen-free",
+      "path": "packages/zen-free",
+      "issues": 7,
+      "prs": 3,
+      "total": 10,
+      "confidence": "high"
+    },
+    {
+      "package": "agent-console",
+      "path": "packages/agent-console",
+      "issues": 7,
+      "prs": 3,
+      "total": 10,
+      "confidence": "high"
+    },
+    {
+      "package": "minimax",
+      "path": "packages/minimax",
+      "issues": 7,
+      "prs": 1,
+      "total": 8,
+      "confidence": "high"
+    },
+    {
+      "package": "grok",
+      "path": "packages/grok",
+      "issues": 6,
+      "prs": 1,
+      "total": 7,
+      "confidence": "high"
+    },
+    {
+      "package": "doubao-work",
+      "path": "packages/doubao-work",
+      "issues": 5,
+      "prs": 2,
+      "total": 7,
+      "confidence": "high"
+    },
+    {
+      "package": "antigravity",
+      "path": "packages/antigravity",
+      "issues": 6,
+      "prs": 1,
+      "total": 7,
+      "confidence": "high"
+    },
+    {
+      "package": "autoclaw",
+      "path": "packages/autoclaw",
+      "issues": 5,
+      "prs": 2,
+      "total": 7,
+      "confidence": "high"
+    },
+    {
+      "package": "atomcode",
+      "path": "packages/atomcode",
+      "issues": 3,
+      "prs": 2,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "devin",
+      "path": "packages/devin",
+      "issues": 3,
+      "prs": 2,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "kiro",
+      "path": "packages/kiro",
+      "issues": 4,
+      "prs": 1,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "commandcode",
+      "path": "packages/commandcode",
+      "issues": 5,
+      "prs": 0,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "raccoon",
+      "path": "packages/raccoon",
+      "issues": 4,
+      "prs": 1,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "zed",
+      "path": "packages/zed",
+      "issues": 3,
+      "prs": 1,
+      "total": 4,
+      "confidence": "high"
+    },
+    {
+      "package": "kimi-work",
+      "path": "packages/kimi-work",
+      "issues": 3,
+      "prs": 1,
+      "total": 4,
+      "confidence": "high"
+    },
+    {
+      "package": "layerfs",
+      "path": "packages/layerfs",
+      "issues": 3,
+      "prs": 1,
+      "total": 4,
+      "confidence": "high"
+    },
+    {
+      "package": "catpaw",
+      "path": "packages/catpaw",
+      "issues": 1,
+      "prs": 3,
+      "total": 4,
+      "confidence": "high"
+    },
+    {
+      "package": "inkstone",
+      "path": "packages/inkstone",
+      "issues": 3,
+      "prs": 1,
+      "total": 4,
+      "confidence": "high"
+    },
+    {
+      "package": "nowledge-mem",
+      "path": "packages/nowledge-mem",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "loomy",
+      "path": "packages/loomy",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "notify",
+      "path": "packages/notify",
+      "issues": 0,
+      "prs": 3,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "kimi-desktop",
+      "path": "packages/kimi-desktop",
+      "issues": 3,
+      "prs": 0,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "system-prompt",
+      "path": "packages/system-prompt",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "think-tags",
+      "path": "packages/think-tags",
+      "issues": 3,
+      "prs": 0,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "page-usage-board",
+      "path": "packages/page-usage-board",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "joycode",
+      "path": "packages/joycode",
+      "issues": 0,
+      "prs": 2,
+      "total": 2,
+      "confidence": "high"
+    },
+    {
+      "package": "tabbit",
+      "path": "packages/tabbit",
+      "issues": 1,
+      "prs": 1,
+      "total": 2,
+      "confidence": "high"
+    },
+    {
+      "package": "orcaterm",
+      "path": "packages/orcaterm",
+      "issues": 1,
+      "prs": 1,
+      "total": 2,
+      "confidence": "high"
+    },
+    {
+      "package": "lorca",
+      "path": "packages/lorca",
+      "issues": 1,
+      "prs": 1,
+      "total": 2,
+      "confidence": "high"
+    },
+    {
+      "package": "day-card",
+      "path": "packages/day-card",
+      "issues": 2,
+      "prs": 0,
+      "total": 2,
+      "confidence": "high"
+    }
+  ],
+  "package_cluster_tail": {
+    "omitted_known_packages": 23,
+    "omitted_items": 27,
+    "reason": "The panel seed keeps the 40 largest clusters inline; panel-sync can hydrate the tail from the same snapshot."
+  },
+  "priority_issues": [
+    {
+      "rank": 1,
+      "number": 699,
+      "title": "providers-hub: the sign-in page's /paste takes a POST from any web page (no Origin check, no token)",
+      "package": "providers-hub",
+      "risk": "P0",
+      "risk_tags": [
+        "security",
+        "credential-confusion",
+        "local-service"
+      ],
+      "reason": "During the 15-minute loopback login window, any web page can POST attacker-controlled credentials to /paste; the user can then be signed in to the wrong account.",
+      "action": {
+        "primary": "提交修复",
+        "detail": "Require a per-window URL token and same-origin POST, reject null origins, and add a cross-origin regression test."
+      },
+      "evidence": {
+        "comments": 0,
+        "reactions": 0,
+        "created_at": "2026-11-04T02:53:35Z",
+        "updated_at": "2026-11-04T02:53:35Z"
+      }
+    },
+    {
+      "rank": 2,
+      "number": 1433,
+      "title": "opencode-lobster-auth 这个插件让网易给我封号了",
+      "package": "opencode-lobster-auth",
+      "risk": "P1",
+      "risk_tags": [
+        "account_ban",
+        "provenance"
+      ],
+      "reason": "A user reports a NetEase account ban after using an installable plugin that is absent from this repository, leaving source provenance and request behavior unresolved.",
+      "action": {
+        "primary": "求日志",
+        "detail": "Request plugin source/version, request timeline, and the ban notice; hold any registry promotion until ban-risk evidence is reviewed."
+      },
+      "evidence": {
+        "comments": 1,
+        "reactions": 0,
+        "created_at": "2026-11-21T10:42:25Z",
+        "updated_at": "2026-11-21T14:46:46Z"
+      }
+    },
+    {
+      "rank": 3,
+      "number": 1148,
+      "title": "[请求优化] antigravity被ban了，推测在多次预测/取消后产生429提示被ban",
+      "package": "antigravity",
+      "risk": "P1",
+      "risk_tags": [
+        "account_ban",
+        "rate_limit"
+      ],
+      "reason": "The report links repeated 403 responses followed by 429 and account blocking to repeated prediction/cancel behavior; 31 comments indicate sustained user impact.",
+      "action": {
+        "primary": "求日志",
+        "detail": "Collect request counts, cancellation timestamps, response bodies, and ban notices; add cancellation/backoff guardrails after reproduction."
+      },
+      "evidence": {
+        "comments": 31,
+        "reactions": 1,
+        "created_at": "2026-11-14T11:32:56Z",
+        "updated_at": "2026-11-14T18:57:26Z"
+      }
+    },
+    {
+      "rank": 4,
+      "number": 893,
+      "title": "agy-cli: isolate agy home (--gemini-dir / --disable-telemetry), guard built-in tools, strip Claude Code CLI identity, and intercept in-band soft-ban notices",
+      "package": "agy-cli",
+      "risk": "P1",
+      "risk_tags": [
+        "account_ban",
+        "privacy",
+        "tool-safety"
+      ],
+      "reason": "Shared Gemini state and telemetry, built-in tool exposure, client identity leakage, and unclassified in-band soft-ban notices all increase account and data-exposure risk.",
+      "action": {
+        "primary": "提交修复",
+        "detail": "Isolate agy state, disable telemetry, guard built-in tools, normalize client identity, and classify soft-ban notices as errors with tests."
+      },
+      "evidence": {
+        "comments": 0,
+        "reactions": 0,
+        "created_at": "2026-11-09T09:09:45Z",
+        "updated_at": "2026-11-09T09:09:45Z"
+      }
+    },
+    {
+      "rank": 5,
+      "number": 1446,
+      "title": "Factory 0.1.56: Cowork built-in MCP tool declarations still receive content_policy_rejected on Magpie 0.1.4657",
+      "package": "factory",
+      "risk": "P1",
+      "risk_tags": [
+        "policy_rejection",
+        "account_risk",
+        "stream_interruption"
+      ],
+      "reason": "Tool-free requests succeed while Cowork's built-in MCP declarations trigger content_policy_rejected, blocking the first turn and risking repeated policy violations.",
+      "action": {
+        "primary": "复现",
+        "detail": "Bisect the built-in tool declarations on the same account and map policy rejection to a precise refusal without retry loops."
+      },
+      "evidence": {
+        "comments": 0,
+        "reactions": 0,
+        "created_at": "2026-11-21T23:36:31Z",
+        "updated_at": "2026-11-21T23:42:05Z"
+      }
+    },
+    {
+      "rank": 6,
+      "number": 1532,
+      "title": "workbuddy: empty delta.tool_calls: [] splits reasoning into thousands of parts and freezes OpenCode Desktop 2.x",
+      "package": "workbuddy",
+      "risk": "P1",
+      "risk_tags": [
+        "crash_freeze",
+        "session_corruption"
+      ],
+      "reason": "Empty tool_calls frames fragment reasoning into thousands of persisted parts; 83 affected messages make session restore freeze on Windows OpenCode Desktop 2.x.",
+      "action": {
+        "primary": "提交修复",
+        "detail": "Ignore empty tool_calls arrays, coalesce reasoning chunks, and add a session-restore regression with the reported part counts."
+      },
+      "evidence": {
+        "comments": 0,
+        "reactions": 0,
+        "created_at": "2026-11-24T22:02:25Z",
+        "updated_at": "2026-11-24T22:02:25Z"
+      }
+    },
+    {
+      "rank": 7,
+      "number": 1512,
+      "title": "agy-cli 0.1.116: validateBody 无条件拦截 tool_result + assistant prefill tail，导致流中断后 Magpie 断点续传必死 400",
+      "package": "agy-cli",
+      "risk": "P1",
+      "risk_tags": [
+        "stream_interruption",
+        "data_loss",
+        "protocol"
+      ],
+      "reason": "After an interrupted tool turn, Magpie's prefill resume is unconditionally rejected when history ends in tool_result plus assistant text, losing the live session and forcing clipped replay.",
+      "action": {
+        "primary": "提交修复",
+        "detail": "Support or safely transform the prefill-tail shape, and add a resume test covering tool_result plus partial assistant text."
+      },
+      "evidence": {
+        "comments": 0,
+        "reactions": 0,
+        "created_at": "2026-11-24T07:03:09Z",
+        "updated_at": "2026-11-24T07:03:09Z"
+      }
+    },
+    {
+      "rank": 8,
+      "number": 209,
+      "title": "[zen-free] Dropping unknown tool calls as text ends autonomous DSH turns instead of allowing recovery",
+      "package": "zen-free",
+      "risk": "P1",
+      "risk_tags": [
+        "data_loss",
+        "silent_failure"
+      ],
+      "reason": "Unknown tool calls are deleted, the finish reason is rewritten to stop, and an autonomous turn ends as a false success with no recoverable tool error.",
+      "action": {
+        "primary": "提交修复",
+        "detail": "Preserve a recoverable tool error and stop rewriting malformed tool calls into a normal stop."
+      },
+      "evidence": {
+        "comments": 1,
+        "reactions": 0,
+        "created_at": "2026-10-17T13:04:53Z",
+        "updated_at": "2026-10-17T13:17:11Z"
+      }
+    },
+    {
+      "rank": 9,
+      "number": 1204,
+      "title": "qoder-cn: chat returns 200 + keepalive only, never a single token (ideVersion sent empty)",
+      "package": "qoder",
+      "risk": "P1",
+      "risk_tags": [
+        "stream_interruption",
+        "login_false_negative"
+      ],
+      "reason": "Qoder CN returns HTTP 200 and keepalives but no token, error, or finish reason; credentials and quota reads remain valid.",
+      "action": {
+        "primary": "直接 review",
+        "detail": "Review PR #1253, which cancels the pending first-event read on watchdog timeout and returns a bounded 504."
+      },
+      "evidence": {
+        "comments": 5,
+        "reactions": 0,
+        "created_at": "2026-11-16T06:10:55Z",
+        "updated_at": "2026-11-17T09:14:30Z"
+      }
+    },
+    {
+      "rank": 10,
+      "number": 1517,
+      "title": "qoder-cn: with DeepSeekRuntime (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)",
+      "package": "qoder",
+      "risk": "P1",
+      "risk_tags": [
+        "stream_interruption",
+        "linux",
+        "container"
+      ],
+      "reason": "The same keepalive-only symptom appears with DSH in Docker on Linux, so the Windows-only watchdog fix may not cover the full environment matrix.",
+      "action": {
+        "primary": "求日志",
+        "detail": "Cross-link #1204/#1220 and verify PR #1253 in the Linux container with request and gateway traces; close as duplicate only if the root cause matches."
+      },
+      "evidence": {
+        "comments": 0,
+        "reactions": 0,
+        "created_at": "2026-11-24T08:09:27Z",
+        "updated_at": "2026-11-24T08:09:27Z"
+      }
+    },
+    {
+      "rank": 11,
+      "number": 1196,
+      "title": "zcode: ZCode 3.18 saves credentials as enc:v2: — decrypt() only reads enc:v1, so ZCode app's sign-in loses the ZCode session",
+      "package": "zcode",
+      "risk": "P1",
+      "risk_tags": [
+        "login_failure",
+        "windows"
+      ],
+      "reason": "ZCode 3.18 stores all credential values as enc:v2, while the plugin only understands enc:v1; gift and trial models disappear despite an active desktop sign-in.",
+      "action": {
+        "primary": "直接 review",
+        "detail": "Review PR #1358 as the canonical enc:v2 fix; consolidate or close overlapping PRs #1161/#1116/#1154 after comparison."
+      },
+      "evidence": {
+        "comments": 5,
+        "reactions": 0,
+        "created_at": "2026-11-16T02:46:29Z",
+        "updated_at": "2026-11-20T16:05:53Z"
+      }
+    },
+    {
+      "rank": 12,
+      "number": 618,
+      "title": "Copilot slots lapse after ~24h idle although the GitHub OAuth token is still valid",
+      "package": "copilot",
+      "risk": "P2",
+      "risk_tags": [
+        "login_failure",
+        "multi_account"
+      ],
+      "reason": "Idle Copilot slots are marked expired even though refresh tokens remain valid; only the active account is renewed.",
+      "action": {
+        "primary": "复现",
+        "detail": "Add a background refresh path for every signed-in slot and verify idle multi-account renewal."
+      },
+      "evidence": {
+        "comments": 1,
+        "reactions": 0,
+        "created_at": "2026-11-02T03:12:33Z",
+        "updated_at": "2026-11-02T04:04:01Z"
+      }
+    },
+    {
+      "rank": 13,
+      "number": 1516,
+      "title": "trae: an enterprise sign-in's bare host is rejected, so every chat goes to the consumer gateway",
+      "package": "trae",
+      "risk": "P1",
+      "risk_tags": [
+        "login_failure",
+        "enterprise"
+      ],
+      "reason": "A valid enterprise SaaS JWT is rejected because traeHost does not normalize a bare hostname; enterprise models disappear and chats route to the consumer gateway.",
+      "action": {
+        "primary": "提交修复",
+        "detail": "Normalize enterprise bare-host storage and add a SaaS catalog/chat regression."
+      },
+      "evidence": {
+        "comments": 3,
+        "reactions": 0,
+        "created_at": "2026-11-24T07:51:20Z",
+        "updated_at": "2026-11-25T02:27:47Z"
+      }
+    },
+    {
+      "rank": 14,
+      "number": 1417,
+      "title": "[doubao-work] Windows 环境下非默认路径安装时启动崩溃 (0x80000003)",
+      "package": "doubao-work",
+      "risk": "P1",
+      "risk_tags": [
+        "windows",
+        "crash_freeze"
+      ],
+      "reason": "Launching Doubao Work from a non-default Windows path exits with STATUS_BREAKPOINT and never opens the CDP port, blocking login and chat.",
+      "action": {
+        "primary": "复现",
+        "detail": "Capture a crash dump and test the proposed launch-argument change on Windows custom-path installs before adopting it."
+      },
+      "evidence": {
+        "comments": 0,
+        "reactions": 0,
+        "created_at": "2026-11-20T17:56:17Z",
+        "updated_at": "2026-11-20T17:56:17Z"
+      }
+    },
+    {
+      "rank": 15,
+      "number": 1234,
+      "title": "agy-cli (Windows): background quota refresh opens Google OAuth on transient token refresh failure at startup",
+      "package": "agy-cli",
+      "risk": "P2",
+      "risk_tags": [
+        "windows",
+        "privacy",
+        "login_failure"
+      ],
+      "reason": "A background quota read can fall back to interactive Google OAuth on a transient refresh failure, opening a browser at startup without user intent.",
+      "action": {
+        "primary": "提交修复",
+        "detail": "Suppress interactive OAuth for background quota work and retry the stored refresh token silently."
+      },
+      "evidence": {
+        "comments": 2,
+        "reactions": 0,
+        "created_at": "2026-11-16T18:18:10Z",
+        "updated_at": "2026-11-18T19:42:46Z"
+      }
+    }
+  ],
+  "priority_prs": [
+    {
+      "rank": 1,
+      "number": 1358,
+      "title": "zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)",
+      "package": "zcode",
+      "risk": "P1",
+      "reason": "Directly fixes the current ZCode 3.18 credential format and restores app-backed sign-in.",
+      "action": "直接 review",
+      "linked_issues": [
+        1196
+      ],
+      "files": [
+        "packages/zcode/index.mjs",
+        "packages/zcode/own.test.mjs",
+        "packages/zcode/package.json"
+      ],
+      "validation_claim": "Author describes enc:v2 os/env key handling and test changes; CI and live matrix are unverified here.",
+      "draft": false,
+      "comments": 3,
+      "updated_at": "2026-11-23T03:12:42Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 2,
+      "number": 1253,
+      "title": "qoder 0.2.72: cancel the first-event read on watchdog",
+      "package": "qoder",
+      "risk": "P1",
+      "reason": "Small, targeted fix for silent HTTP 200 streams that never deliver a first event, including the reported qoder-cn keepalive-only failure.",
+      "action": "直接 review",
+      "linked_issues": [
+        1204,
+        1517
+      ],
+      "files": [
+        "packages/qoder/index.mjs",
+        "packages/qoder/package.json",
+        "packages/qoder/silent.test.mjs"
+      ],
+      "validation_claim": "Author adds a regression that keeps the body reader cancellable by the watchdog; CI is unverified here.",
+      "draft": false,
+      "comments": 2,
+      "updated_at": "2026-11-18T05:01:05Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 3,
+      "number": 1418,
+      "title": "agy-cli 0.1.110: a standalone upstream status line is its HTTP error, not assistant text (#1416)",
+      "package": "agy-cli",
+      "risk": "P1",
+      "reason": "Stops upstream 400/403 status banners from being returned as successful assistant text, restoring correct retry and refusal behavior.",
+      "action": "直接 review",
+      "linked_issues": [
+        1416
+      ],
+      "files": [
+        "packages/agy-cli/index.mjs",
+        "packages/agy-cli/package.json",
+        "packages/agy-cli/test/repeat-batch.mjs"
+      ],
+      "validation_claim": "Author maps standalone status lines to HTTP errors and adds repeat-batch coverage; CI is unverified here.",
+      "draft": false,
+      "comments": 0,
+      "updated_at": "2026-11-21T16:22:26Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 4,
+      "number": 1427,
+      "title": "fix(catpaw): 手动粘贴 token 补 current-user 身份，多个粘贴账号不再互相覆盖",
+      "package": "catpaw",
+      "risk": "P1",
+      "reason": "Prevents a second manually pasted account from overwriting the first account's derived storage slot.",
+      "action": "直接 review",
+      "linked_issues": [
+        1426
+      ],
+      "files": [
+        "packages/catpaw/README.md",
+        "packages/catpaw/index.mjs",
+        "packages/catpaw/index.test.mjs",
+        "packages/catpaw/package.json"
+      ],
+      "validation_claim": "Author reports current-user lookup plus fallback identity and 74+2 tests; CI is unverified here.",
+      "draft": false,
+      "comments": 0,
+      "updated_at": "2026-11-21T04:43:01Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 5,
+      "number": 1246,
+      "title": "codearts 0.3.23: a refused catalog read no longer signs an account out",
+      "package": "codearts",
+      "risk": "P1",
+      "reason": "Separates an OfficeAce catalog credential refusal from the user's actual sign-in state, preventing false logout alarms.",
+      "action": "直接 review",
+      "linked_issues": [
+        1247
+      ],
+      "files": [
+        "packages/codearts/README.md",
+        "packages/codearts/index.mjs",
+        "packages/codearts/index.test.mjs",
+        "packages/codearts/package.json"
+      ],
+      "validation_claim": "Author documents live multi-account reproduction and a focused fix; CI is unverified here.",
+      "draft": false,
+      "comments": 0,
+      "updated_at": "2026-11-17T04:08:29Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 6,
+      "number": 1485,
+      "title": "fix(agy-cli): read default Linux file-backed sign-in",
+      "package": "agy-cli",
+      "risk": "P1",
+      "reason": "Restores quota access for headless/container Linux installs where agy writes a token file instead of using D-Bus keyring.",
+      "action": "直接 review",
+      "linked_issues": [
+        1502
+      ],
+      "files": [
+        "packages/agy-cli/package.json",
+        "packages/agy-cli/signin.mjs",
+        "packages/agy-cli/test/signin.mjs"
+      ],
+      "validation_claim": "Author adds default-Linux token-file tests; CI is unverified here.",
+      "draft": false,
+      "comments": 0,
+      "updated_at": "2026-11-24T01:24:59Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 7,
+      "number": 1441,
+      "title": "fix(agy-cli): fall back to default token file on macOS when Keychain item is missing",
+      "package": "agy-cli",
+      "risk": "P2",
+      "reason": "Avoids false sign-in expiry on macOS when agy has a valid token file but no Keychain item.",
+      "action": "直接 review",
+      "linked_issues": [],
+      "files": [
+        "packages/agy-cli/signin.mjs",
+        "packages/agy-cli/test/signin.mjs"
+      ],
+      "validation_claim": "Author adds Keychain-not-found fallback coverage; CI is unverified here.",
+      "draft": false,
+      "comments": 0,
+      "updated_at": "2026-11-21T15:40:01Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 8,
+      "number": 1296,
+      "title": "agy-cli 0.1.117: recover from agy UNAUTHENTICATED (code 401) endings on a fresh process",
+      "package": "agy-cli",
+      "risk": "P1",
+      "reason": "Recovers long-lived ACP sessions whose in-memory token cache goes stale after another process refreshes the token.",
+      "action": "直接 review",
+      "linked_issues": [
+        1326
+      ],
+      "files": [
+        "packages/agy-cli/README.en.md",
+        "packages/agy-cli/README.md",
+        "packages/agy-cli/index.mjs",
+        "packages/agy-cli/package.json",
+        "packages/agy-cli/test/repeat-batch.mjs"
+      ],
+      "validation_claim": "Author describes fresh-process retry and repeat-batch coverage; CI is unverified here.",
+      "draft": false,
+      "comments": 3,
+      "updated_at": "2026-11-24T13:37:30Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 9,
+      "number": 1520,
+      "title": "agy-cli 0.1.117: isolate sibling branches sharing a conversationKey",
+      "package": "agy-cli",
+      "risk": "P1",
+      "reason": "Prevents side chats and forks from colliding on one live ACP process, which causes 503 active-response errors and cache/session loss.",
+      "action": "直接 review",
+      "linked_issues": [
+        1471
+      ],
+      "files": [
+        "packages/agy-cli/agy-cli.test.mjs",
+        "packages/agy-cli/index.mjs",
+        "packages/agy-cli/package.json",
+        "packages/agy-cli/test/sibling-branches.mjs"
+      ],
+      "validation_claim": "Author adds sibling-branch regression coverage; CI is unverified here.",
+      "draft": false,
+      "comments": 2,
+      "updated_at": "2026-11-24T21:18:05Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 10,
+      "number": 1394,
+      "title": "agy-cli 0.1.113: preserve ACP sessions and support long MCP tool names",
+      "package": "agy-cli",
+      "risk": "P1",
+      "reason": "Avoids dropping a live ACP session when tool_search grows tools mid-turn and supports long MCP tool names.",
+      "action": "直接 review",
+      "linked_issues": [
+        1369,
+        1371
+      ],
+      "files": [
+        "packages/agy-cli/index.mjs",
+        "packages/agy-cli/package.json",
+        "packages/agy-cli/test/conversation-key.mjs",
+        "packages/agy-cli/test/smoke.mjs",
+        "packages/agy-cli/test/steer-in-session.mjs",
+        "packages/agy-cli/test/tools-listed.mjs"
+      ],
+      "validation_claim": "Author combines two live-session fixes with targeted tests; CI is unverified here.",
+      "draft": false,
+      "comments": 0,
+      "updated_at": "2026-11-22T11:48:15Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 11,
+      "number": 1287,
+      "title": "agy-cli: preserve active context across suggestions, history forks and compaction",
+      "package": "agy-cli",
+      "risk": "P1",
+      "reason": "Separates background suggestions from the live conversation and preserves alternate histories before replay budget clipping.",
+      "action": "直接 review",
+      "linked_issues": [],
+      "files": [
+        "packages/agy-cli/index.mjs",
+        "packages/agy-cli/package.json",
+        "packages/agy-cli/test/conversation-key.mjs",
+        "packages/agy-cli/test/repeat-batch.mjs",
+        "packages/agy-cli/test/smoke.mjs"
+      ],
+      "validation_claim": "Author adds conversation-key and repeat-batch coverage; CI is unverified here.",
+      "draft": false,
+      "comments": 1,
+      "updated_at": "2026-11-19T06:54:04Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 12,
+      "number": 1524,
+      "title": "agy-cli 0.1.117: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays",
+      "package": "agy-cli",
+      "risk": "P1",
+      "reason": "Prevents long DSH sessions from losing workspace instructions and available skills during cold replay clipping.",
+      "action": "直接 review",
+      "linked_issues": [
+        1401
+      ],
+      "files": [
+        "packages/agy-cli/agy-cli.test.mjs",
+        "packages/agy-cli/index.mjs",
+        "packages/agy-cli/package.json",
+        "packages/agy-cli/test/dsh-replay-state.mjs"
+      ],
+      "validation_claim": "Author adds DSH replay-state coverage; CI is unverified here.",
+      "draft": false,
+      "comments": 1,
+      "updated_at": "2026-11-24T21:18:07Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 13,
+      "number": 219,
+      "title": "autoclaw: proactively refresh token on 401/403 before failing",
+      "package": "autoclaw",
+      "risk": "P1",
+      "reason": "Adds a single-flight refresh and retry path so a revoked but refreshable access token no longer strands an account in backoff.",
+      "action": "直接 review",
+      "linked_issues": [
+        217
+      ],
+      "files": [
+        "packages/autoclaw/README.md",
+        "packages/autoclaw/index.mjs",
+        "packages/autoclaw/index.test.mjs",
+        "packages/autoclaw/package.json"
+      ],
+      "validation_claim": "Author documents single-flight refresh, save-before-swap, and tests; CI is unverified here.",
+      "draft": false,
+      "comments": 1,
+      "updated_at": "2026-11-10T13:17:31Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 14,
+      "number": 1333,
+      "title": "agent-console 1.3.11: keep following replies and queued turns active",
+      "package": "agent-console",
+      "risk": "P2",
+      "reason": "Fixes stream-follow scroll races and queued-turn handoff so a live reply does not appear to stop while content continues.",
+      "action": "直接 review",
+      "linked_issues": [],
+      "files": [
+        "packages/agent-console/README.md",
+        "packages/agent-console/app/app.js",
+        "packages/agent-console/daemon/dist/main.js",
+        "packages/agent-console/daemon/dist/main.js.map",
+        "packages/agent-console/daemon/src/agents/manager.ts",
+        "packages/agent-console/package-lock.json",
+        "packages/agent-console/package.json",
+        "packages/agent-console/test/v1/chat-scroll-browser.test.ts",
+        "packages/agent-console/test/v1/manager-default-model.test.ts",
+        "packages/agent-console/test/v1/manager.test.ts",
+        "packages/agent-console/test/v1/plugin-entry.test.ts",
+        "packages/agent-console/test/v1/proc-liveness.test.ts",
+        "packages/agent-console/test/v1/zombie-fixture.ts",
+        "packages/agent-console/web/src/components/Chat.tsx",
+        "packages/agent-console/web/src/timeline/stick.test.ts",
+        "packages/agent-console/web/src/timeline/stick.ts"
+      ],
+      "validation_claim": "Author adds deterministic Chromium and manager coverage; larger surface requires CI review.",
+      "draft": false,
+      "comments": 0,
+      "updated_at": "2026-11-24T06:28:35Z",
+      "mergeability": "unverified"
+    },
+    {
+      "rank": 15,
+      "number": 1066,
+      "title": "autoclaw 0.2.26: remote-web panel login and startup isolation",
+      "package": "autoclaw",
+      "risk": "P1",
+      "reason": "Adds CSRF-protected remote login, one-time tickets, bounded bodies, and startup isolation while preventing a panel port conflict from disabling both providers.",
+      "action": "直接 review",
+      "linked_issues": [],
+      "files": [
+        "packages/autoclaw/README.en.md",
+        "packages/autoclaw/README.md",
+        "packages/autoclaw/index.mjs",
+        "packages/autoclaw/login-panel.mjs",
+        "packages/autoclaw/login-panel.test.mjs",
+        "packages/autoclaw/opencode-lifecycle.test.mjs",
+        "packages/autoclaw/opencode.mjs",
+        "packages/autoclaw/package.json",
+        "packages/autoclaw/page/boot.js",
+        "packages/autoclaw/page/index.html",
+        "packages/autoclaw/page/login.html",
+        "packages/autoclaw/page/login.js"
+      ],
+      "validation_claim": "Author documents CSRF, state validation, ticket TTL, and startup isolation; CI is unverified here.",
+      "draft": false,
+      "comments": 2,
+      "updated_at": "2026-11-13T03:41:40Z",
+      "mergeability": "unverified"
+    }
+  ],
+  "overlap_and_hold_clusters": [
+    {
+      "id": "zcode-v2-credential-fixes",
+      "package": "zcode",
+      "numbers": [
+        1358,
+        1161,
+        1116,
+        1154
+      ],
+      "canonical": 1358,
+      "action": "直接 review",
+      "reason": "All four touch ZCode 3.18 credential decryption or Keychain prompting. Review #1358 first, compare platform coverage, then consolidate the remaining stack instead of merging overlapping implementations."
+    },
+    {
+      "id": "agy-session-context-stack",
+      "package": "agy-cli",
+      "numbers": [
+        1520,
+        1394,
+        1287,
+        1524,
+        1283
+      ],
+      "canonical": 1520,
+      "action": "直接 review",
+      "reason": "These changes overlap in packages/agy-cli/index.mjs and address related conversation-key, replay, and live-session behavior. Review in the listed order and require rebases after each merge."
+    },
+    {
+      "id": "lobster-account-ban-evidence",
+      "package": "opencode-lobster-auth",
+      "numbers": [
+        1433,
+        1209
+      ],
+      "canonical": 1433,
+      "action": "求日志",
+      "reason": "Issue #1433 reports an account ban while PR #1209 would add a LobsterAI registry entry. Do not promote the entry until source provenance and ban-risk evidence are reviewed."
+    }
+  ],
+  "panel_sync": {
+    "recommended_sort": [
+      "risk asc",
+      "rank asc",
+      "updated_at desc"
+    ],
+    "risk_rank_map": {
+      "P0": 0,
+      "P1": 1,
+      "P2": 2,
+      "P3": 3
+    },
+    "stable_keys": {
+      "issue": "number",
+      "pr": "number",
+      "package": "package"
+    },
+    "refresh_required": true,
+    "refresh_reason": "Mergeability and CI were not fetched in this seed, and the public mirror snapshot must be reconciled with GitHub before panel actions."
+  }
+}

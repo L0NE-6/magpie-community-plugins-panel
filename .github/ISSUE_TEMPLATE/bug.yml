@@ -1,0 +1,95 @@
+name: Maintenance fork bug
+description: Report a reproducible problem in a package or in the panel automation.
+title: "[Bug]: "
+labels:
+  - bug
+  - needs-repro
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove credentials, account identifiers and private prompts before submitting.
+        If the problem exists upstream, link the upstream issue instead of duplicating it.
+  - type: input
+    id: upstream
+    attributes:
+      label: Upstream issue or pull request
+      description: Link an existing upstream item when one exists.
+      placeholder: https://github.com/magpie-community/plugins/issues/123
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Provider plugin
+        - Gateway plugin
+        - Page or agent plugin
+        - Registry or documentation
+        - Panel automation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: package
+    attributes:
+      label: Package and version
+      placeholder: "@magpie-community/opencode-example-auth 1.2.3"
+    validations:
+      required: true
+  - type: input
+    id: magpie
+    attributes:
+      label: Magpie version
+      placeholder: "0.1.3113"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Multiple platforms
+        - Not platform-specific
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Give the shortest deterministic sequence.
+      placeholder: |
+        1. Install ...
+        2. Sign in with ...
+        3. Send ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Include redacted logs and the exact error.
+    validations:
+      required: true
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression test
+      description: Link a failing test, if one exists.
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I removed cookies, tokens, account identifiers, private prompts and local paths.
+          required: true
+        - label: I searched open and closed upstream issues and pull requests.
+          required: true

@@ -1,0 +1,56 @@
+name: panel-sync
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: panel-write
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.repository == 'L0NE-6/magpie-community-plugins-panel'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out panel
+        uses: actions/checkout@v4
+        with:
+          ref: panel
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Generate panel data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UPSTREAM_REPO: magpie-community/plugins
+          PANEL_DIR: panel
+        run: node scripts/panel-sync.mjs
+
+      - name: Validate panel data
+        env:
+          PANEL_DIR: panel
+        run: node scripts/panel-check.mjs
+
+      - name: Commit generated panel data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add panel/status.json panel/issues.md panel/pulls.md
+          if git diff --cached --quiet; then
+            echo "panel data is current"
+            exit 0
+          fi
+          git commit -m "panel: sync upstream issues and pull requests"
+          git push origin HEAD:panel

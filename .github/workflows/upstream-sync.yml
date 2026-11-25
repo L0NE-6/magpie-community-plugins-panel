@@ -1,0 +1,94 @@
+name: upstream-sync
+
+on:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: panel-write
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.repository == 'L0NE-6/magpie-community-plugins-panel'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out panel
+        uses: actions/checkout@v4
+        with:
+          ref: panel
+          fetch-depth: 0
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Configure git
+        env:
+          PANEL_SYNC_TOKEN: ${{ secrets.PANEL_SYNC_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$PANEL_SYNC_TOKEN" ]; then
+            git remote set-url origin "https://x-access-token:${PANEL_SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          else
+            echo "::warning title=PANEL_SYNC_TOKEN not set::Using GITHUB_TOKEN; a sync that changes workflow files may be rejected."
+          fi
+          git remote add upstream https://github.com/magpie-community/plugins.git
+
+      - name: Fetch upstream main
+        run: git fetch --no-tags upstream main:refs/remotes/upstream/main
+
+      - name: Fast-forward main mirror
+        run: |
+          git switch --force-create main --track origin/main
+          git merge --ff-only upstream/main
+
+      - name: Merge main into panel
+        run: |
+          git switch --force-create panel --track origin/panel
+          if ! git merge --no-edit main; then
+            echo "::error title=Upstream merge conflict::Resolve conflicts on panel and rerun; no push was attempted."
+            git status --short
+            git diff --name-only --diff-filter=U
+            exit 1
+          fi
+
+      - name: Check merged tree
+        run: |
+          bun scripts/check.mjs
+          node scripts/panel-check.mjs --fixture
+
+      - name: Capture merge conflict details
+        if: failure()
+        run: |
+          {
+            echo "# Upstream merge failure"
+            echo "time: $(date -u +%FT%TZ)"
+            echo
+            echo "## status"
+            git status --short
+            echo
+            echo "## conflicted files"
+            git diff --name-only --diff-filter=U
+            echo
+            echo "## conflict diff"
+            git diff --cc
+          } > "$RUNNER_TEMP/upstream-merge-conflict.txt"
+          cat "$RUNNER_TEMP/upstream-merge-conflict.txt"
+
+      - name: Upload merge conflict details
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: upstream-merge-conflict
+          path: ${{ runner.temp }}/upstream-merge-conflict.txt
+          if-no-files-found: warn
+
+      - name: Push main mirror and panel atomically
+        if: success()
+        run: git push --atomic origin main:main panel:panel
