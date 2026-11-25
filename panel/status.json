@@ -1,39 +1,39 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T04:56:06.083Z",
+  "generatedAt": "2026-11-25T07:00:27.316Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 388,
-    "pullCount": 249,
+    "issueCount": 391,
+    "pullCount": 250,
     "draftPullCount": 12,
-    "readyPullCount": 237,
+    "readyPullCount": 238,
     "byPriority": {
       "issues": {
         "P0": 0,
         "P1": 0,
         "P2": 1,
-        "P3": 387
+        "P3": 390
       },
       "pulls": {
         "P0": 0,
         "P1": 0,
         "P2": 0,
-        "P3": 249
+        "P3": 250
       }
     },
     "byComments": {
       "issues": {
-        "none": 162,
+        "none": 165,
         "light": 171,
         "active": 45,
         "hot": 10
       },
       "pulls": {
-        "none": 138,
+        "none": 139,
         "light": 88,
         "active": 22,
         "hot": 1
@@ -41,21 +41,21 @@
     },
     "byUpdated": {
       "issues": {
-        "24h": 25,
-        "7d": 96,
-        "30d": 205,
-        "older": 62
+        "24h": 27,
+        "7d": 93,
+        "30d": 208,
+        "older": 63
       },
       "pulls": {
-        "24h": 23,
+        "24h": 22,
         "7d": 115,
-        "30d": 95,
+        "30d": 97,
         "older": 16
       }
     },
     "byDraft": {
       "draft": 12,
-      "ready": 237
+      "ready": 238
     }
   },
   "issues": [
@@ -75,6 +75,57 @@
       "createdAt": "2026-11-23T12:18:48.000Z",
       "labels": [],
       "author": "tyh97"
+    },
+    {
+      "number": 1542,
+      "title": "agy-cli: models only the own-~/.gemini account offers are routed to the other accounts (sonnet-5-5 silently served as sonnet-4-6, gemini-4-argon 400)",
+      "url": "https://github.com/magpie-community/plugins/issues/1542",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T06:31:51.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T06:31:51.000Z",
+      "labels": [],
+      "author": "DedSecer"
+    },
+    {
+      "number": 1541,
+      "title": "agy-cli: agy's silent \"503 No capacity\" retries show as a 1–2 min TTFT, with no log and no failover to another account",
+      "url": "https://github.com/magpie-community/plugins/issues/1541",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T06:31:48.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T06:31:48.000Z",
+      "labels": [],
+      "author": "DedSecer"
+    },
+    {
+      "number": 1540,
+      "title": "agy-cli: the thinking level follows max_tokens, not the requested effort (reasoning_effort=high runs -low at max_tokens 4000)",
+      "url": "https://github.com/magpie-community/plugins/issues/1540",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T06:31:46.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T06:31:46.000Z",
+      "labels": [],
+      "author": "DedSecer"
     },
     {
       "number": 1233,
@@ -496,7 +547,7 @@
       "comments": 3,
       "commentBucket": "light",
       "updatedAt": "2026-11-24T05:53:31.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-12T14:01:36.000Z",
       "labels": [],
       "author": "hiee3"
@@ -2060,7 +2111,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-18T06:28:44.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T01:49:40.000Z",
       "labels": [],
       "author": "infinitr0us"
@@ -2077,7 +2128,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-18T05:37:13.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T05:37:13.000Z",
       "labels": [],
       "author": "HuHong-Tao"
@@ -2094,7 +2145,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-18T05:22:13.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T05:22:13.000Z",
       "labels": [],
       "author": "yetone"
@@ -2111,7 +2162,7 @@
       "comments": 17,
       "commentBucket": "hot",
       "updatedAt": "2026-11-18T05:08:25.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-10-29T01:49:09.000Z",
       "labels": [],
       "author": "Lieguch"
@@ -5598,7 +5649,7 @@
       "comments": 2,
       "commentBucket": "light",
       "updatedAt": "2026-10-26T05:05:59.000Z",
-      "updatedBucket": "30d",
+      "updatedBucket": "older",
       "createdAt": "2026-10-19T21:07:25.000Z",
       "labels": [],
       "author": "nonamelane"
@@ -7506,8 +7557,26 @@
       "author": "shiyang1026"
     },
     {
+      "number": 1524,
+      "title": "agy-cli 0.1.122: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays",
+      "url": "https://github.com/magpie-community/plugins/pull/1524",
+      "draft": false,
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T06:52:03.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-24T13:12:13.000Z",
+      "labels": [],
+      "author": "kombier"
+    },
+    {
       "number": 1531,
-      "title": "Add magpie-junie-auth (Junie Lite provider, v0.2.5)",
+      "title": "Add magpie-junie-auth (Junie Lite provider)",
       "url": "https://github.com/magpie-community/plugins/pull/1531",
       "draft": false,
       "package": null,
@@ -7517,7 +7586,7 @@
       "prioritySource": "default",
       "comments": 2,
       "commentBucket": "light",
-      "updatedAt": "2026-11-25T04:15:25.000Z",
+      "updatedAt": "2026-11-25T06:25:20.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-24T18:21:37.000Z",
       "labels": [],
@@ -7540,24 +7609,6 @@
       "createdAt": "2026-11-23T16:43:44.000Z",
       "labels": [],
       "author": "jinyue806"
-    },
-    {
-      "number": 1524,
-      "title": "agy-cli 0.1.121: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays",
-      "url": "https://github.com/magpie-community/plugins/pull/1524",
-      "draft": false,
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 2,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-25T02:54:36.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-24T13:12:13.000Z",
-      "labels": [],
-      "author": "kombier"
     },
     {
       "number": 1513,
@@ -7644,7 +7695,7 @@
       "comments": 2,
       "commentBucket": "light",
       "updatedAt": "2026-11-18T05:01:05.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-17T06:34:11.000Z",
       "labels": [],
       "author": "yetihan"
@@ -7932,7 +7983,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-24T05:38:43.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T04:42:31.000Z",
       "labels": [],
       "author": "dongv88"
@@ -8730,6 +8781,24 @@
       "author": "MasakiMu319"
     },
     {
+      "number": 1539,
+      "title": "Add CAM context attachment gateway plugin",
+      "url": "https://github.com/magpie-community/plugins/pull/1539",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": null,
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T05:44:55.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T05:44:55.000Z",
+      "labels": [],
+      "author": "zhaobomin"
+    },
+    {
       "number": 1538,
       "title": "codearts 0.3.23: a GLM tool call's arguments stream, so a long one isn't cut off at 60 s",
       "url": "https://github.com/magpie-community/plugins/pull/1538",
@@ -8922,7 +8991,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-24T06:28:35.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-18T13:52:50.000Z",
       "labels": [],
       "author": "qingnian108"
@@ -10560,7 +10629,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-18T04:58:30.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T04:58:30.000Z",
       "labels": [],
       "author": "misinics"

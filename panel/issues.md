@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-25T04:56:06.083Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-25T07:00:27.316Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
-- Open issues: **388**
-- Priority: P0 **0**, P1 **0**, P2 **1**, P3 **387**
-- Comments: none **162**, light **171**, active **45**, hot **10**
-- Updated: 24h **25**, 7d **96**, 30d **205**, older **62**
+- Open issues: **391**
+- Priority: P0 **0**, P1 **0**, P2 **1**, P3 **390**
+- Comments: none **165**, light **171**, active **45**, hot **10**
+- Updated: 24h **27**, 7d **93**, 30d **208**, older **63**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -103,7 +103,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-18T05:22:13.000Z | 7d | `@magpie-community/middleware-system-prompt` | [#1302 middleware-system-prompt 0.1.1 can't publish: E404, publish.yml isn't its trusted publisher](https://github.com/magpie-community/plugins/issues/1302) |
+| P3 | 0 (none) | 2026-11-18T05:22:13.000Z | 30d | `@magpie-community/middleware-system-prompt` | [#1302 middleware-system-prompt 0.1.1 can't publish: E404, publish.yml isn't its trusted publisher](https://github.com/magpie-community/plugins/issues/1302) |
 | P3 | 0 (none) | 2026-11-09T07:05:01.000Z | 30d | `@magpie-community/middleware-system-prompt` | [#887 middleware-system-prompt 0.1.1 isn't on npm: publish.yml isn't its Trusted Publisher with publish allowed](https://github.com/magpie-community/plugins/issues/887) |
 
 ### Package: `@magpie-community/middleware-think-tags`
@@ -124,6 +124,9 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 0 (none) | 2026-11-25T06:31:51.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1542 agy-cli: models only the own-~/.gemini account offers are routed to the other accounts (sonnet-5-5 silently served as sonnet-4-6, gemini-4-argon 400)](https://github.com/magpie-community/plugins/issues/1542) |
+| P3 | 0 (none) | 2026-11-25T06:31:48.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1541 agy-cli: agy's silent "503 No capacity" retries show as a 1–2 min TTFT, with no log and no failover to another account](https://github.com/magpie-community/plugins/issues/1541) |
+| P3 | 0 (none) | 2026-11-25T06:31:46.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1540 agy-cli: the thinking level follows max_tokens, not the requested effort (reasoning_effort=high runs -low at max_tokens 4000)](https://github.com/magpie-community/plugins/issues/1540) |
 | P3 | 2 (light) | 2026-11-25T04:51:27.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1233 agy-cli: 任务进行中插件进程重启（含自动更新）时会话不会被保存，只能新建会话重放，长任务丢失大部分上下文](https://github.com/magpie-community/plugins/issues/1233) |
 | P3 | 1 (light) | 2026-11-25T04:39:57.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1475 agy-cli: replaying an unchanged tool_result can return 409 after the bridge appends system notices](https://github.com/magpie-community/plugins/issues/1475) |
 | P3 | 0 (none) | 2026-11-25T03:57:52.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1536 agy-cli: Magpie Artifacts eager tool fails toolbox schema validation](https://github.com/magpie-community/plugins/issues/1536) |
@@ -134,7 +137,7 @@ _No open issues._
 | P3 | 0 (none) | 2026-11-24T15:14:08.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1527 agy-cli: Gemini 400 'Unable to process input image' on non-image base64; no way to auto-approve agy tools](https://github.com/magpie-community/plugins/issues/1527) |
 | P3 | 0 (none) | 2026-11-24T10:37:51.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1522 agy-cli: readQuotaDirect ignores Magpie's MAGPIE_*_PROXY names, so the quota read times out and blames the sign-in](https://github.com/magpie-community/plugins/issues/1522) |
 | P3 | 0 (none) | 2026-11-24T07:03:09.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1512 agy-cli 0.1.116: validateBody 无条件拦截 tool_result + assistant prefill tail，导致流中断后 Magpie 断点续传必死 400（补 #1319/#1465 未覆盖根因与修复定位）](https://github.com/magpie-community/plugins/issues/1512) |
-| P3 | 3 (light) | 2026-11-24T05:53:31.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1055 agy-cli: replace 112 KiB eager block-clipping with progressive 180 KB replay tiers and compaction-aware budget signaling](https://github.com/magpie-community/plugins/issues/1055) |
+| P3 | 3 (light) | 2026-11-24T05:53:31.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1055 agy-cli: replace 112 KiB eager block-clipping with progressive 180 KB replay tiers and compaction-aware budget signaling](https://github.com/magpie-community/plugins/issues/1055) |
 | P3 | 0 (none) | 2026-11-24T03:49:35.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1502 agy-cli plugin: quota read always fails on Linux — readStoredValue never reads agy's token file](https://github.com/magpie-community/plugins/issues/1502) |
 | P3 | 0 (none) | 2026-11-23T13:33:17.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1494 agy-cli: pass Magpie proxy settings to the agy subprocess](https://github.com/magpie-community/plugins/issues/1494) |
 | P3 | 0 (none) | 2026-11-23T12:48:12.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1491 agy-cli: image-slim's placeholder for an earlier image drops the live session (Codex view_image)](https://github.com/magpie-community/plugins/issues/1491) |
@@ -269,7 +272,7 @@ _No open issues._
 | --- | ---: | --- | --- | --- | --- |
 | P3 | 0 (none) | 2026-11-24T01:48:02.000Z | 7d | `@magpie-community/opencode-cursor-auth` | [#1499 cursor: billing-cycle windows send no span, so the Usage table can't place them](https://github.com/magpie-community/plugins/issues/1499) |
 | P3 | 0 (none) | 2026-11-20T11:26:57.000Z | 7d | `@magpie-community/opencode-cursor-auth` | [#1402 cursor 0.2.48: reuse server checkpoint across user turns (and past 120s resultWait) to avoid ~67-69% new-turn cache misses](https://github.com/magpie-community/plugins/issues/1402) |
-| P3 | 1 (light) | 2026-11-18T06:28:44.000Z | 7d | `@magpie-community/opencode-cursor-auth` | [#1290 cursor: a temporary `resource_exhausted` ("Network Error ... please try again") is reported as "usage limit reached", so OpenCode stops instead of retrying](https://github.com/magpie-community/plugins/issues/1290) |
+| P3 | 1 (light) | 2026-11-18T06:28:44.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#1290 cursor: a temporary `resource_exhausted` ("Network Error ... please try again") is reported as "usage limit reached", so OpenCode stops instead of retrying](https://github.com/magpie-community/plugins/issues/1290) |
 | P3 | 0 (none) | 2026-11-10T13:48:16.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#940 cursor: native-e2e.test.mjs HTTP/2 writeWait test red under a full suite run (WSL)](https://github.com/magpie-community/plugins/issues/940) |
 | P3 | 0 (none) | 2026-11-06T12:54:36.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#797 cursor: follow-ups from #796 (nextStep reset untested; #31-counted stateless step leaves its dashboard event unowned)](https://github.com/magpie-community/plugins/issues/797) |
 | P3 | 0 (none) | 2026-11-05T06:01:58.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#754 cursor: native-http1 'KV replies go 16 at once … outbound bytes bound' red once under load (writeWait 100 ms)](https://github.com/magpie-community/plugins/issues/754) |
@@ -345,7 +348,7 @@ _No open issues._
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
 | P3 | 0 (none) | 2026-11-20T16:19:45.000Z | 7d | `@magpie-community/opencode-inkstone-auth` | [#1411 inkstone fake-browser test: an unnamed test goes red at 5s in a full run (WSL)](https://github.com/magpie-community/plugins/issues/1411) |
-| P3 | 0 (none) | 2026-11-18T05:37:13.000Z | 7d | `@magpie-community/opencode-inkstone-auth` | [#1303 inkstone: image-count preflight caps at 8 but the platform now takes 100 (verified 2026-11-18) — valid requests get refused locally](https://github.com/magpie-community/plugins/issues/1303) |
+| P3 | 0 (none) | 2026-11-18T05:37:13.000Z | 30d | `@magpie-community/opencode-inkstone-auth` | [#1303 inkstone: image-count preflight caps at 8 but the platform now takes 100 (verified 2026-11-18) — valid requests get refused locally](https://github.com/magpie-community/plugins/issues/1303) |
 | P3 | 6 (active) | 2026-11-10T10:44:18.000Z | 30d | `@magpie-community/opencode-inkstone-auth` | [#825 inkstone: "Browser sign-in" is offered where no Chromium browser exists, then fails only in the callback while its own instructions say "a browser window opens"](https://github.com/magpie-community/plugins/issues/825) |
 | P3 | 2 (light) | 2026-11-07T14:36:28.000Z | 30d | `@magpie-community/opencode-inkstone-auth` | [#826 inkstone: manual "API key + console token" sign-in saves the uaa-token under metadata, where the plugin never reads it — the ink-credit card never appears](https://github.com/magpie-community/plugins/issues/826) |
 
@@ -619,7 +622,7 @@ _No open issues._
 | P3 | 0 (none) | 2026-11-19T04:25:23.000Z | 7d | _unmapped_ | [#1346 workbuddy自动签到功能失效](https://github.com/magpie-community/plugins/issues/1346) |
 | P3 | 0 (none) | 2026-11-18T08:53:27.000Z | 7d | _unmapped_ | [#1315 agy-cli插件使用gemini-4-Argon异常缓慢](https://github.com/magpie-community/plugins/issues/1315) |
 | P3 | 0 (none) | 2026-11-18T07:27:43.000Z | 7d | _unmapped_ | [#1311 接入咨询：Magpie GitHub Stats 用量卡片适合怎样收录到插件市场？](https://github.com/magpie-community/plugins/issues/1311) |
-| P3 | 17 (hot) | 2026-11-18T05:08:25.000Z | 7d | _unmapped_ | [#473 raccoon商汤小浣熊插件有盗号嫌疑 There's a burglary on the raccoon plug.](https://github.com/magpie-community/plugins/issues/473) |
+| P3 | 17 (hot) | 2026-11-18T05:08:25.000Z | 30d | _unmapped_ | [#473 raccoon商汤小浣熊插件有盗号嫌疑 There's a burglary on the raccoon plug.](https://github.com/magpie-community/plugins/issues/473) |
 | P3 | 0 (none) | 2026-11-17T11:09:08.000Z | 30d | _unmapped_ | [#1266 feat：可选的、命中率可自定义的缓存估算（当 Trae 不返回 cache token 时）](https://github.com/magpie-community/plugins/issues/1266) |
 | P3 | 0 (none) | 2026-11-17T06:21:17.000Z | 30d | _unmapped_ | [#1252 Day Card 存在token消费记录不足的地方](https://github.com/magpie-community/plugins/issues/1252) |
 | P3 | 10 (hot) | 2026-11-17T00:11:04.000Z | 30d | _unmapped_ | [#1224 近期在zcode中积分消耗速度过快](https://github.com/magpie-community/plugins/issues/1224) |
@@ -665,7 +668,7 @@ _No open issues._
 | P3 | 0 (none) | 2026-11-17T15:37:25.000Z | 30d | _unmapped_ (`Bug`) | [#1276 \[Bug\] trae-cn 全系模型失败（4222/4001/404）：trae 桌面端更新后 opencode-trae-auth 插件的旧版请求格式被企业 console 拒绝](https://github.com/magpie-community/plugins/issues/1276) |
 | P3 | 0 (none) | 2026-11-17T14:25:03.000Z | 30d | _unmapped_ (`Bug`) | [#1273 \[Bug\] `trae-cn/aliyuncs/kimi-k3.1-pro` 转发失败，assistant 返回空](https://github.com/magpie-community/plugins/issues/1273) |
 | P3 | 1 (light) | 2026-10-26T08:15:48.000Z | 30d | _unmapped_ (`Bug`) | [#410 \[Bug\] ZCode 本机登录仅有 project-key-location 时无法识别 BigModel Coding Plan](https://github.com/magpie-community/plugins/issues/410) |
-| P3 | 2 (light) | 2026-10-26T05:05:59.000Z | 30d | _unmapped_ (`Bug`) | [#254 \[Bug\] 插件每日签到会跳过同名账号（AutoClaw 多账号，插件 0.2.2）](https://github.com/magpie-community/plugins/issues/254) |
+| P3 | 2 (light) | 2026-10-26T05:05:59.000Z | older | _unmapped_ (`Bug`) | [#254 \[Bug\] 插件每日签到会跳过同名账号（AutoClaw 多账号，插件 0.2.2）](https://github.com/magpie-community/plugins/issues/254) |
 
 ### Package: `unmapped:CI`
 
