@@ -68,13 +68,14 @@ beforeAll(() => {
   const exeName = process.platform === "win32" ? "fake-chrome.exe" : "fake-chrome"
   const out = join(fakeDir, exeName)
   if (!existsSync(out)) {
-    // bun build --compile appends its own .exe on Windows, so the temp name
-    // is computed after the build: look for whatever `*.building-<pid>*`
-    // came out. The pid suffix keeps two concurrent runs of the same source
-    // from racing on one temp file.
-    const tmpOut = join(fakeDir, `${exeName}.building-${process.pid}`)
+    // A pid suffix keeps two concurrent runs of the same source from racing
+    // on one temp file. Windows needs the .exe suffix on the output itself.
+    const tmpName = process.platform === "win32" ? `fake-chrome-${process.pid}.exe` : `fake-chrome-${process.pid}`
+    const tmpOut = join(fakeDir, tmpName)
     execSync(`${JSON.stringify(process.execPath)} build --compile ${JSON.stringify(entry)} --outfile ${JSON.stringify(tmpOut)}`, { stdio: "pipe" })
-    const built = existsSync(tmpOut) ? tmpOut : join(fakeDir, `${exeName}.building-${process.pid}.exe`)
+    const builtName = readdirSync(fakeDir).find((name) => name === tmpName || name.startsWith(tmpName + "."))
+    const built = builtName ? join(fakeDir, builtName) : tmpOut
+    if (!existsSync(built)) throw new Error(`bun build --compile produced no file named ${tmpName}`)
     renameSync(built, out)
   }
   fakeExe = out

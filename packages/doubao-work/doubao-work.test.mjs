@@ -143,14 +143,20 @@ test("usageOf adds Doubao's prompt counts", () => {
 
 test("on Windows a running copy of the app never blocks: Chromium keeps one copy per profile there", async () => {
   if (process.platform === "win32") return expect(copies("C:\\x.exe")).toEqual([])
-  const child = Bun.spawn(["/bin/sleep", "30"])
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "doubao-copies-"))
+  const binary = path.join(dir, `sleep-${process.pid}`)
+  let child
   try {
+    fs.copyFileSync("/bin/sleep", binary)
+    fs.chmodSync(binary, 0o755)
+    child = Bun.spawn([binary, "30"])
     let seen = []
-    for (let i = 0; i < 50 && !seen.length; i++) { seen = copies("/bin/sleep"); if (!seen.length) await Bun.sleep(20) }
+    for (let i = 0; i < 50 && !seen.length; i++) { seen = copies(binary); if (!seen.length) await Bun.sleep(20) }
     expect(seen.length).toBeGreaterThan(0)
-    expect(copies("/bin/sleep", "win32")).toEqual([])
+    expect(copies(binary, "win32")).toEqual([])
   } finally {
-    child.kill()
+    child?.kill()
+    fs.rmSync(dir, { recursive: true, force: true })
   }
 })
 

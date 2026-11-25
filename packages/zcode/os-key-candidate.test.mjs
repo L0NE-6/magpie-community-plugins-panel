@@ -12,7 +12,8 @@ mock.module("node:child_process", () => ({
   execFileSync() {
     return ""
   },
-  execSync() {
+  execSync(command) {
+    if (!String(command).includes("-EncodedCommand")) return ""
     const key = credentialReads++ === 0 ? oldKey : activeKey
     return Buffer.from(key, "utf16le").toString("base64")
   },
@@ -36,6 +37,7 @@ function enc2(text, key) {
 }
 
 test("a moved ZCode data folder uses the matching credential-store entry", async () => {
+  credentialReads = 0
   const homeStore = join(home, ".zcode", "v2")
   const activeStore = join(moved, ".zcode", "v2")
   mkdirSync(homeStore, { recursive: true })
