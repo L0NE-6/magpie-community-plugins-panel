@@ -1,14 +1,14 @@
 # Upstream open pull requests
 
-Generated at `2026-11-25T03:17:04.868Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-25T04:10:43.325Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 
-- Open pull requests: **246**
-- Draft: **12**, ready: **234**
-- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **246**
-- Comments: none **135**, light **89**, active **21**, hot **1**
-- Updated: 24h **21**, 7d **115**, 30d **94**, older **16**
+- Open pull requests: **248**
+- Draft: **12**, ready: **236**
+- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **248**
+- Comments: none **137**, light **88**, active **22**, hot **1**
+- Updated: 24h **24**, 7d **114**, 30d **94**, older **16**
 
 Pull requests are ordered by draft state, priority, comments, updated time, and number.
 
@@ -109,6 +109,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 2 (light) | 2026-11-24T23:55:13.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1513 agy-cli: replay the last tool_use step on identical tool_result retry](https://github.com/magpie-community/plugins/pull/1513) |
 | P3 | ready | 2 (light) | 2026-11-24T21:18:05.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1520 agy-cli 0.1.117: isolate sibling branches sharing a conversationKey](https://github.com/magpie-community/plugins/pull/1520) |
 | P3 | ready | 1 (light) | 2026-11-19T06:54:04.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1287 agy-cli: preserve active context across suggestions, history forks and compaction](https://github.com/magpie-community/plugins/pull/1287) |
+| P3 | ready | 0 (none) | 2026-11-25T03:58:13.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1537 agy-cli 0.1.121: fix toolSummary collisions for eager MCP tools](https://github.com/magpie-community/plugins/pull/1537) |
 | P3 | ready | 0 (none) | 2026-11-25T00:10:42.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1533 agy-cli: strip <system-reminder>-wrapped and system-prompt placeholder notices](https://github.com/magpie-community/plugins/pull/1533) |
 | P3 | ready | 0 (none) | 2026-11-24T15:15:06.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1528 agy-cli: validate image bytes, AGY_BRIDGE_ALLOW_AGY_TOOLS, flash-preview alias](https://github.com/magpie-community/plugins/pull/1528) |
 | P3 | ready | 0 (none) | 2026-11-24T08:51:24.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1519 agy-cli 0.1.117: two sessions with the same opening in different folders are two conversations](https://github.com/magpie-community/plugins/pull/1519) |
@@ -149,7 +150,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 1 (light) | 2026-11-23T16:56:31.000Z | 7d | `@magpie-community/opencode-astudio-auth` | [#1497 astudio 0.2.3: 补位 GLM-5.3 / GLM-5.3-Flash，目录接口仍落后桌面端](https://github.com/magpie-community/plugins/pull/1497) |
+| P3 | ready | 2 (light) | 2026-11-25T03:51:00.000Z | 24h | `@magpie-community/opencode-astudio-auth` | [#1497 astudio 0.2.3: 补位 GLM-5.3 / GLM-5.3-Flash，目录接口仍落后桌面端](https://github.com/magpie-community/plugins/pull/1497) |
 
 ### Package: `@magpie-community/opencode-atomcode-auth`
 
@@ -321,9 +322,9 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
+| P3 | ready | 4 (active) | 2026-11-25T03:26:27.000Z | 24h | `@magpie-community/opencode-zcode-auth` | [#1358 zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)](https://github.com/magpie-community/plugins/pull/1358) |
 | P3 | ready | 4 (active) | 2026-11-17T09:27:09.000Z | 30d | `@magpie-community/opencode-zcode-auth` | [#1116 zcode 0.1.62: ZCode 3.18's vault-encrypted credentials read like the older ones](https://github.com/magpie-community/plugins/pull/1116) |
 | P3 | ready | 4 (active) | 2026-11-02T18:29:59.000Z | 30d | `@magpie-community/opencode-zcode-auth` | [#545 zcode 0.1.40: freeFirst's refusals show on the card, and a blocked address rests the whole gift](https://github.com/magpie-community/plugins/pull/545) |
-| P3 | ready | 3 (light) | 2026-11-23T03:12:42.000Z | 7d | `@magpie-community/opencode-zcode-auth` | [#1358 zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)](https://github.com/magpie-community/plugins/pull/1358) |
 | P3 | ready | 2 (light) | 2026-11-11T02:00:45.000Z | 30d | `@magpie-community/opencode-zcode-auth` | [#956 zcode 0.1.59: the Start Plan's texts are ZCode 3.18.0's](https://github.com/magpie-community/plugins/pull/956) |
 
 ### Package: `@magpie-community/opencode-zed-auth`
@@ -702,6 +703,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
+| P3 | ready | 0 (none) | 2026-11-25T03:42:37.000Z | 24h | _unmapped_ (`fix(workbuddy)`) | [#1535 fix(workbuddy): strip empty tool_calls from reasoning deltas](https://github.com/magpie-community/plugins/pull/1535) |
 | P3 | ready | 0 (none) | 2026-11-17T10:28:28.000Z | 30d | _unmapped_ (`fix(workbuddy)`) | [#1261 fix(workbuddy): show Total credits first](https://github.com/magpie-community/plugins/pull/1261) |
 
 ### Package: `unmapped:fix(zcode)`
@@ -797,7 +799,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 1 (light) | 2026-11-14T12:07:33.000Z | 30d | _unmapped_ (`registry`) | [#1149 registry: add magpie-kilo-auth (Kilo Gateway provider plugin)](https://github.com/magpie-community/plugins/pull/1149) |
 | P3 | ready | 1 (light) | 2026-11-14T11:04:36.000Z | 30d | _unmapped_ (`registry`) | [#1144 registry: list @godwit/magpie-agent (Godwit)](https://github.com/magpie-community/plugins/pull/1144) |
 | P3 | ready | 1 (light) | 2026-11-12T08:34:00.000Z | 30d | _unmapped_ (`registry`) | [#1045 registry: add Melete Magpie](https://github.com/magpie-community/plugins/pull/1045) |
-| P3 | ready | 0 (none) | 2026-11-24T04:10:42.000Z | 24h | _unmapped_ (`registry`) | [#1504 registry: add Claude Desktop 1P (magpie-claude-desktop-1p)](https://github.com/magpie-community/plugins/pull/1504) |
+| P3 | ready | 0 (none) | 2026-11-24T04:10:42.000Z | 7d | _unmapped_ (`registry`) | [#1504 registry: add Claude Desktop 1P (magpie-claude-desktop-1p)](https://github.com/magpie-community/plugins/pull/1504) |
 | P3 | ready | 0 (none) | 2026-11-22T08:06:43.000Z | 7d | _unmapped_ (`registry`) | [#1448 registry: magpie-providers-hub 摘要加防冒名判据，并登记千问国际版 hub-qwenwork-intl](https://github.com/magpie-community/plugins/pull/1448) |
 | P3 | ready | 0 (none) | 2026-11-21T16:06:57.000Z | 7d | _unmapped_ (`registry`) | [#1442 registry: add Model Speed Test page plugin](https://github.com/magpie-community/plugins/pull/1442) |
 | P3 | ready | 0 (none) | 2026-11-21T15:15:24.000Z | 7d | _unmapped_ (`registry`) | [#1440 registry: add 天枢 Tianshu (magpie-agent-tianshu-harness)](https://github.com/magpie-community/plugins/pull/1440) |

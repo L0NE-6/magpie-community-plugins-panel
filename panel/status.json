@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T03:17:04.868Z",
+  "generatedAt": "2026-11-25T04:10:43.325Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
@@ -8,9 +8,9 @@
   },
   "summary": {
     "issueCount": 388,
-    "pullCount": 246,
+    "pullCount": 248,
     "draftPullCount": 12,
-    "readyPullCount": 234,
+    "readyPullCount": 236,
     "byPriority": {
       "issues": {
         "P0": 0,
@@ -22,40 +22,40 @@
         "P0": 0,
         "P1": 0,
         "P2": 0,
-        "P3": 246
+        "P3": 248
       }
     },
     "byComments": {
       "issues": {
-        "none": 165,
-        "light": 168,
+        "none": 163,
+        "light": 170,
         "active": 45,
         "hot": 10
       },
       "pulls": {
-        "none": 135,
-        "light": 89,
-        "active": 21,
+        "none": 137,
+        "light": 88,
+        "active": 22,
         "hot": 1
       }
     },
     "byUpdated": {
       "issues": {
-        "24h": 21,
-        "7d": 99,
-        "30d": 206,
+        "24h": 24,
+        "7d": 98,
+        "30d": 204,
         "older": 62
       },
       "pulls": {
-        "24h": 21,
-        "7d": 115,
+        "24h": 24,
+        "7d": 114,
         "30d": 94,
         "older": 16
       }
     },
     "byDraft": {
       "draft": 12,
-      "ready": 234
+      "ready": 236
     }
   },
   "issues": [
@@ -75,6 +75,108 @@
       "createdAt": "2026-11-23T12:18:48.000Z",
       "labels": [],
       "author": "tyh97"
+    },
+    {
+      "number": 1536,
+      "title": "agy-cli: Magpie Artifacts eager tool fails toolbox schema validation",
+      "url": "https://github.com/magpie-community/plugins/issues/1536",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T03:57:52.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T03:57:52.000Z",
+      "labels": [],
+      "author": "visamz"
+    },
+    {
+      "number": 1233,
+      "title": "agy-cli: 任务进行中插件进程重启（含自动更新）时会话不会被保存，只能新建会话重放，长任务丢失大部分上下文",
+      "url": "https://github.com/magpie-community/plugins/issues/1233",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T03:56:35.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-16T17:42:55.000Z",
+      "labels": [],
+      "author": "kanzaki-chiya"
+    },
+    {
+      "number": 1495,
+      "title": "agy-cli: preserve native compaction history and cache, and fail closed on oversized replay",
+      "url": "https://github.com/magpie-community/plugins/issues/1495",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T03:47:39.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-23T14:25:28.000Z",
+      "labels": [],
+      "author": "Gahyu96"
+    },
+    {
+      "number": 1532,
+      "title": "workbuddy: empty delta.tool_calls: [] splits reasoning into thousands of parts and freezes OpenCode Desktop 2.x",
+      "url": "https://github.com/magpie-community/plugins/issues/1532",
+      "package": "@magpie-community/opencode-workbuddy-auth",
+      "packageDirectory": "workbuddy",
+      "titlePrefix": "workbuddy",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T03:41:07.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-24T22:02:25.000Z",
+      "labels": [],
+      "author": "yulinyuzhu"
+    },
+    {
+      "number": 699,
+      "title": "providers-hub: the sign-in page's /paste takes a POST from any web page (no Origin check, no token)",
+      "url": "https://github.com/magpie-community/plugins/issues/699",
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "providers-hub",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T03:39:01.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-04T02:53:35.000Z",
+      "labels": [],
+      "author": "yetone"
+    },
+    {
+      "number": 990,
+      "title": "astudio: two credit windows make magpie misread account as exhausted; never picked as fallback",
+      "url": "https://github.com/magpie-community/plugins/issues/990",
+      "package": "@magpie-community/opencode-astudio-auth",
+      "packageDirectory": "astudio",
+      "titlePrefix": "astudio",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T03:37:09.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-11T10:49:07.000Z",
+      "labels": [],
+      "author": "noblechang"
     },
     {
       "number": 1534,
@@ -162,23 +264,6 @@
       "author": "OutmanSay"
     },
     {
-      "number": 1532,
-      "title": "workbuddy: empty delta.tool_calls: [] splits reasoning into thousands of parts and freezes OpenCode Desktop 2.x",
-      "url": "https://github.com/magpie-community/plugins/issues/1532",
-      "package": "@magpie-community/opencode-workbuddy-auth",
-      "packageDirectory": "workbuddy",
-      "titlePrefix": "workbuddy",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-24T22:02:25.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-24T22:02:25.000Z",
-      "labels": [],
-      "author": "yulinyuzhu"
-    },
-    {
       "number": 1500,
       "title": "page-usage-board: a reused port is never re-bound, so the board goes blank after magpie's rolling self-update",
       "url": "https://github.com/magpie-community/plugins/issues/1500",
@@ -228,23 +313,6 @@
       "createdAt": "2026-11-24T01:19:00.000Z",
       "labels": [],
       "author": "joeshen2021"
-    },
-    {
-      "number": 1509,
-      "title": "krio插件无法登录",
-      "url": "https://github.com/magpie-community/plugins/issues/1509",
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": null,
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-24T21:05:19.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-24T04:56:58.000Z",
-      "labels": [],
-      "author": "YeSongYun"
     },
     {
       "number": 1506,
@@ -428,7 +496,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-24T03:49:35.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T03:49:35.000Z",
       "labels": [],
       "author": "west5211"
@@ -466,23 +534,6 @@
       "createdAt": "2026-11-16T10:37:19.000Z",
       "labels": [],
       "author": "nsyan"
-    },
-    {
-      "number": 1495,
-      "title": "agy-cli: preserve native compaction history and cache, and fail closed on oversized replay",
-      "url": "https://github.com/magpie-community/plugins/issues/1495",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-23T14:25:28.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-23T14:25:28.000Z",
-      "labels": [],
-      "author": "Gahyu96"
     },
     {
       "number": 1494,
@@ -2094,7 +2145,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-18T03:53:24.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T03:53:24.000Z",
       "labels": [],
       "author": "Vigilans"
@@ -2472,23 +2523,6 @@
       "createdAt": "2026-11-08T05:17:33.000Z",
       "labels": [],
       "author": "yetone"
-    },
-    {
-      "number": 1233,
-      "title": "agy-cli: 任务进行中插件进程重启（含自动更新）时会话不会被保存，只能新建会话重放，长任务丢失大部分上下文",
-      "url": "https://github.com/magpie-community/plugins/issues/1233",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-16T18:00:00.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-16T17:42:55.000Z",
-      "labels": [],
-      "author": "kanzaki-chiya"
     },
     {
       "number": 1229,
@@ -3407,23 +3441,6 @@
       "createdAt": "2026-11-11T10:39:13.000Z",
       "labels": [],
       "author": "klarkxy"
-    },
-    {
-      "number": 990,
-      "title": "astudio: two credit windows make magpie misread account as exhausted; never picked as fallback",
-      "url": "https://github.com/magpie-community/plugins/issues/990",
-      "package": "@magpie-community/opencode-astudio-auth",
-      "packageDirectory": "astudio",
-      "titlePrefix": "astudio",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-11T11:25:54.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-11T10:49:07.000Z",
-      "labels": [],
-      "author": "noblechang"
     },
     {
       "number": 848,
@@ -4446,23 +4463,6 @@
       "createdAt": "2026-11-04T02:45:08.000Z",
       "labels": [],
       "author": "zfsdream96"
-    },
-    {
-      "number": 699,
-      "title": "providers-hub: the sign-in page's /paste takes a POST from any web page (no Origin check, no token)",
-      "url": "https://github.com/magpie-community/plugins/issues/699",
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "providers-hub",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-04T02:53:35.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-04T02:53:35.000Z",
-      "labels": [],
-      "author": "yetone"
     },
     {
       "number": 684,
@@ -7074,6 +7074,24 @@
       "author": "yee94"
     },
     {
+      "number": 1358,
+      "title": "zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)",
+      "url": "https://github.com/magpie-community/plugins/pull/1358",
+      "draft": false,
+      "package": "@magpie-community/opencode-zcode-auth",
+      "packageDirectory": "zcode",
+      "titlePrefix": "zcode",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 4,
+      "commentBucket": "active",
+      "updatedAt": "2026-11-25T03:26:27.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-19T11:01:32.000Z",
+      "labels": [],
+      "author": "Aemiser"
+    },
+    {
       "number": 1530,
       "title": "clash-nodes-verge 0.2.0: pick a Clash Verge node for a provider or per-account",
       "url": "https://github.com/magpie-community/plugins/pull/1530",
@@ -7252,24 +7270,6 @@
       "createdAt": "2026-11-18T03:48:12.000Z",
       "labels": [],
       "author": "bigbitbox"
-    },
-    {
-      "number": 1358,
-      "title": "zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)",
-      "url": "https://github.com/magpie-community/plugins/pull/1358",
-      "draft": false,
-      "package": "@magpie-community/opencode-zcode-auth",
-      "packageDirectory": "zcode",
-      "titlePrefix": "zcode",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 3,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-23T03:12:42.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-19T11:01:32.000Z",
-      "labels": [],
-      "author": "Aemiser"
     },
     {
       "number": 1087,
@@ -7504,6 +7504,24 @@
       "createdAt": "2026-10-13T06:50:04.000Z",
       "labels": [],
       "author": "shiyang1026"
+    },
+    {
+      "number": 1497,
+      "title": "astudio 0.2.3: 补位 GLM-5.3 / GLM-5.3-Flash，目录接口仍落后桌面端",
+      "url": "https://github.com/magpie-community/plugins/pull/1497",
+      "draft": false,
+      "package": "@magpie-community/opencode-astudio-auth",
+      "packageDirectory": "astudio",
+      "titlePrefix": "astudio",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-25T03:51:00.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-23T16:43:44.000Z",
+      "labels": [],
+      "author": "jinyue806"
     },
     {
       "number": 1524,
@@ -7954,24 +7972,6 @@
       "createdAt": "2026-11-17T22:33:43.000Z",
       "labels": [],
       "author": "lsjlyy"
-    },
-    {
-      "number": 1497,
-      "title": "astudio 0.2.3: 补位 GLM-5.3 / GLM-5.3-Flash，目录接口仍落后桌面端",
-      "url": "https://github.com/magpie-community/plugins/pull/1497",
-      "draft": false,
-      "package": "@magpie-community/opencode-astudio-auth",
-      "packageDirectory": "astudio",
-      "titlePrefix": "astudio",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-23T16:56:31.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-23T16:43:44.000Z",
-      "labels": [],
-      "author": "jinyue806"
     },
     {
       "number": 1372,
@@ -8730,6 +8730,42 @@
       "author": "MasakiMu319"
     },
     {
+      "number": 1537,
+      "title": "agy-cli 0.1.121: fix toolSummary collisions for eager MCP tools",
+      "url": "https://github.com/magpie-community/plugins/pull/1537",
+      "draft": false,
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T03:58:13.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T03:58:13.000Z",
+      "labels": [],
+      "author": "visamz"
+    },
+    {
+      "number": 1535,
+      "title": "fix(workbuddy): strip empty tool_calls from reasoning deltas",
+      "url": "https://github.com/magpie-community/plugins/pull/1535",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "fix(workbuddy)",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T03:42:37.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T03:42:37.000Z",
+      "labels": [],
+      "author": "L0NE-6"
+    },
+    {
       "number": 1436,
       "title": "trae 0.2.55: cache hits, credits and models.dev cost in usage",
       "url": "https://github.com/magpie-community/plugins/pull/1436",
@@ -8904,7 +8940,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-24T04:10:42.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T04:10:26.000Z",
       "labels": [],
       "author": "chxsong"
