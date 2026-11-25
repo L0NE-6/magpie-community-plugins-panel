@@ -35,6 +35,9 @@ The published maintenance dashboard is available at
 generated snapshot as the repository, with search, package filters and the
 curated priority queue.
 
+The [maintenance log](panel/maintenance-log.md) separates verified local
+integrations from the remaining upstream queue.
+
 ## Source Of Truth
 
 Upstream remains authoritative:

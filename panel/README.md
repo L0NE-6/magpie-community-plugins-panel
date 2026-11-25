@@ -12,6 +12,7 @@ the `pages` workflow.
 | `pulls.md` | Open upstream PRs grouped by package and review priority |
 | `triage-seed.json` | Curated high-impact queue |
 | `priority.md` | Human-readable P0/P1 issue and PR queue |
+| `maintenance-log.md` | Verified fixes already integrated into the panel |
 | `triage-policy.md` | Priority and status rules |
 | `upstream-sync.md` | Sync and conflict policy |
 
