@@ -1,6 +1,6 @@
 # Upstream open pull requests
 
-Generated at `2026-11-25T03:20:00.000Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-25T03:17:04.868Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 

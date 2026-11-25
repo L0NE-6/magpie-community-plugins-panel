@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T03:20:00.000Z",
+  "generatedAt": "2026-11-25T03:17:04.868Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 389,
+    "issueCount": 388,
     "pullCount": 246,
     "draftPullCount": 12,
     "readyPullCount": 234,
@@ -16,7 +16,7 @@
         "P0": 0,
         "P1": 0,
         "P2": 1,
-        "P3": 388
+        "P3": 387
       },
       "pulls": {
         "P0": 0,
@@ -28,7 +28,7 @@
     "byComments": {
       "issues": {
         "none": 165,
-        "light": 169,
+        "light": 168,
         "active": 45,
         "hot": 10
       },
@@ -41,7 +41,7 @@
     },
     "byUpdated": {
       "issues": {
-        "24h": 22,
+        "24h": 21,
         "7d": 99,
         "30d": 206,
         "older": 62
@@ -262,23 +262,6 @@
       "createdAt": "2026-11-24T04:33:25.000Z",
       "labels": [],
       "author": "sb1733831438-maker"
-    },
-    {
-      "number": 1510,
-      "title": "qoder 0.2.71: interactive Claude Code always gets 400 \"Cannot find model\" — only the official CLI identity line differs",
-      "url": "https://github.com/magpie-community/plugins/issues/1510",
-      "package": "@magpie-community/opencode-qoder-auth",
-      "packageDirectory": "qoder",
-      "titlePrefix": "qoder",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-24T21:04:22.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-24T05:29:21.000Z",
-      "labels": [],
-      "author": "ByronFinn"
     },
     {
       "number": 1471,

@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-25T03:20:00.000Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-25T03:17:04.868Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
-- Open issues: **389**
-- Priority: P0 **0**, P1 **0**, P2 **1**, P3 **388**
-- Comments: none **165**, light **169**, active **45**, hot **10**
-- Updated: 24h **22**, 7d **99**, 30d **206**, older **62**
+- Open issues: **388**
+- Priority: P0 **0**, P1 **0**, P2 **1**, P3 **387**
+- Comments: none **165**, light **168**, active **45**, hot **10**
+- Updated: 24h **21**, 7d **99**, 30d **206**, older **62**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -407,7 +407,6 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 1 (light) | 2026-11-24T21:04:22.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1510 qoder 0.2.71: interactive Claude Code always gets 400 "Cannot find model" — only the official CLI identity line differs](https://github.com/magpie-community/plugins/issues/1510) |
 | P3 | 0 (none) | 2026-11-24T08:09:27.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1517 qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)](https://github.com/magpie-community/plugins/issues/1517) |
 | P3 | 4 (active) | 2026-11-24T01:25:59.000Z | 7d | `@magpie-community/opencode-qoder-auth` | [#1220 qoder-cn: a frozen RESOURCE_LIMIT queue (10605, queueCount never advances) is waited out silently for the full QUEUE.held hour — agent sees only keepalives](https://github.com/magpie-community/plugins/issues/1220) |
 | P3 | 0 (none) | 2026-11-23T08:55:21.000Z | 7d | `@magpie-community/opencode-qoder-auth` | [#1483 qoder: models never expose "none" reasoning level in variants even when thinking can be disabled](https://github.com/magpie-community/plugins/issues/1483) |
