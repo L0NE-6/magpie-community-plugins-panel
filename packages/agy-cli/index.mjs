@@ -1350,6 +1350,8 @@ export function streamErrorOf(error) {
   if (type === "permission_error") out.status = 403
   // Google had no capacity for the model (BUSY_CORE): try again, or elsewhere
   if (type === "overloaded_error") out.status = 503
+  // An error that names its own status carries it past the kind's.
+  if (error?.statusCode) out.status = error.statusCode
   if (error?.noRetry) out.noRetry = true
   return out
 }
@@ -2214,9 +2216,20 @@ class Turn {
     this.deadlineAt = (waitingForTools && !this.attached ? this.clientProgressAt : now) + timeout
     this.timer = setTimeout(() => {
       const what = waitingForTools ? "waiting for a client tool result" : "reading agy output"
-      this.proc.timeoutTurn(this, new Error(
+      const error = new Error(
         `agy bridge: timed out ${what} after ${timeout}ms; stderr tail: ${this.proc.stderrTail.trim() || "(empty)"}`,
-      ))
+      )
+      // A reply cut at the bridge's reading deadline may still be in agy. For
+      // the oversized single write in #7736, retrying the same request reaches
+      // the same cutoff; name the 504 where the gateway reads a status (#4855),
+      // so it asks another member at once instead of replaying the same write
+      // blind. Waiting on a client tool result is that client's stall, not the
+      // bridge's cutoff, and keeps its old shape.
+      if (!waitingForTools) {
+        error.statusCode = 504
+        error.noRetry = true
+      }
+      this.proc.timeoutTurn(this, error)
     }, Math.max(0, this.deadlineAt - now))
     this.timer.unref?.()
   }

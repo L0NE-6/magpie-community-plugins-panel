@@ -258,6 +258,10 @@ agy 自己的系统提示词，只剩插件的一行工具说明和客户端的�
   `AGY_ADC_AUTH` 就去掉；关掉把你放到 Antigravity 未开放地区的 VPN 或代理。
 - **HTTP 503**：进程池满。提高 `AGY_BRIDGE_MAX_PROCS` 和 Providers 页的 Concurrency，
   或者减少同时进行的会话。
+- **HTTP 504（"timed out reading agy output"）**：agy 在桥的读超时（`AGY_BRIDGE_TURN_TIMEOUT_MS`，
+  默认 5 分钟）里没有任何输出，回复被切断。每次 agy 输出都会重新计时；单次回复只要有一次
+  静默超过这个时限，重试同样的请求也会在同一处超时，所以错误带 504 且不重试。把一次写的大
+  文件拆小，或调大该超时。
 - **额度显示 "Limits not available" 或报版本错误**：该窗口没有可测量的数据；版本错误则
   把 agy 升级到 1.1.11 以上。
 - **图片请求返回 HTTP 400**：当前 agy 没有声明图片能力（需要 1.5.0 以上）。另外只接受

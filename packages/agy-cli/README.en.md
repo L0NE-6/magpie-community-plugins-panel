@@ -369,6 +369,12 @@ off unless you turn it on.
   proxy that puts you in a region Antigravity isn't offered in.
 - **HTTP 503**: the pool is full. Raise `AGY_BRIDGE_MAX_PROCS` and the Providers
   page Concurrency, or reduce the number of simultaneous sessions.
+- **HTTP 504 ("timed out reading agy output")**: agy produced nothing within the
+  bridge's read timeout (`AGY_BRIDGE_TURN_TIMEOUT_MS`, 5 minutes by default) and
+  the reply was cut. Each agy output re-arms the deadline; a reply with one
+  silence longer than the timeout still hits the same cutoff on retry, so the
+  error says 504 and is not retried. Split the large write into smaller ones, or
+  raise that timeout.
 - **Usage shows "Limits not available" or a version error**: that window has no
   measurable data. For a version error, upgrade agy to 1.1.11 or later.
 - **Image requests return HTTP 400**: the running agy does not advertise image
