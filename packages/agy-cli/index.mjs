@@ -244,11 +244,16 @@ const systemAppend = () => /^(?:1|true|on|yes)$/i.test(process.env.AGY_BRIDGE_SY
 const FORWARD_THINKING = process.env.AGY_BRIDGE_THINKING !== "0"
 
 // Until `agy models` answers. Gemini only: agy's ACP server decides which other
-// models a client gets, and the plugin serves no more than it offers.
+// models a client gets, and the plugin serves no more than it offers. Argon and
+// Hydrogen are separate real families; one never stands in for the other.
 const FALLBACK_MODELS = [
   { id: "gemini-4-argon-high", name: "Gemini 4 Argon (High)", effort: "high" },
   { id: "gemini-4-argon-medium", name: "Gemini 4 Argon (Medium)", effort: "medium" },
   { id: "gemini-4-argon-low", name: "Gemini 4 Argon (Low)", effort: "low" },
+  { id: "gemini-4-hydrogen-high", name: "Gemini 4 Hydrogen (High)", effort: "high" },
+  { id: "gemini-4-hydrogen-xhigh", name: "Gemini 4 Hydrogen (XHigh)", effort: "xhigh" },
+  { id: "gemini-4-hydrogen-medium", name: "Gemini 4 Hydrogen (Medium)", effort: "medium" },
+  { id: "gemini-4-hydrogen-low", name: "Gemini 4 Hydrogen (Low)", effort: "low" },
   { id: "gemini-3.8-flash-high", name: "Gemini 3.8 Flash (High)", effort: "high" },
   { id: "gemini-3.8-flash-medium", name: "Gemini 3.8 Flash (Medium)", effort: "medium" },
   { id: "gemini-3.8-flash-low", name: "Gemini 3.8 Flash (Low)", effort: "low" },

@@ -16,7 +16,7 @@ import {
 
 const FAST_BUDGET_MS = 750 // 计划给的调度容差；补丁内部等待预算是 500ms，远低于 Magpie 的 2s。
 // 会话报出 agy 向本客户端开放的型号之前，只列 Gemini。
-const FALLBACK_IDS = ["gemini-4-argon", "gemini-3.8-flash"]
+const FALLBACK_IDS = ["gemini-4-argon", "gemini-4-hydrogen", "gemini-3.8-flash"]
 const OFFERED_ALL = [
   ["gemini-4-argon-high", "Gemini 4 Argon (High)"], ["gemini-4-argon-low", "Gemini 4 Argon (Low)"],
   ["claude-sonnet-5-5-high", "Claude Sonnet 5.5 (High)"], ["claude-sonnet-5-5-low", "Claude Sonnet 5.5 (Low)"],
@@ -63,6 +63,48 @@ test("没有 agy 时直接给静态目录，不起子进程", async () => {
     assertFallbackPresent(value)
     assert.equal(kit.modelsSpawns.length, 0)
     assert.ok(ms < FAST_BUDGET_MS, `耗时 ${ms}ms`)
+  })
+})
+
+test("#1543 cold-start fallback lists Hydrogen as its own Gemini 4 family", async () => {
+  await withKit({ agyPath: null }, async (kit) => {
+    const models = await kit.models()
+    assert.ok(models["gemini-4-argon"], "fallback lost the real Argon family")
+    assert.ok(models["gemini-4-hydrogen"], "fallback omitted the lower-tier Hydrogen family")
+    assert.deepEqual(Object.keys(models["gemini-4-hydrogen"].variants ?? {}).sort(), ["high", "low", "medium", "xhigh"])
+    assert.notEqual(models["gemini-4-hydrogen"].api.id, "gemini-4-argon")
+  })
+})
+
+test("#1543 a Hydrogen-only account never aliases Argon to Hydrogen", async () => {
+  const rows = [
+    ["gemini-4-hydrogen-high", "Gemini 4 Hydrogen (High)"],
+    ["gemini-4-hydrogen-xhigh", "Gemini 4 Hydrogen (XHigh)"],
+    ["gemini-4-hydrogen-medium", "Gemini 4 Hydrogen (Medium)"],
+    ["gemini-4-hydrogen-low", "Gemini 4 Hydrogen (Low)"],
+    ["gemini-3.8-flash-high", "Gemini 3.8 Flash (High)"],
+    ["gemini-3.8-flash-low", "Gemini 3.8 Flash (Low)"],
+  ]
+  await withKit({ modelsBehavior: { stdout: modelsOutput(rows) }, offeredModels: rows }, async (kit) => {
+    await kit.models()
+    await settle(kit)
+    await kit.models()
+    kit.defaultPrompt = async (agent) => {
+      await agent.text("ok")
+      return { stopReason: "end_turn" }
+    }
+
+    const hydrogen = await kit.request(baseBody({ model: "agy-cli/gemini-4-hydrogen", tools: [], messages: [{ role: "user", content: "hi" }] }))
+    await hydrogen.text()
+    assert.equal(hydrogen.status, 200)
+    assert.equal(kit.setModels.at(-1), "gemini-4-hydrogen-high")
+
+    kit.setModelError = { code: -32603, message: "Unknown model ID: gemini-4-argon-high" }
+    const before = kit.setModels.length
+    const argon = await kit.request(baseBody({ model: "agy-cli/gemini-4-argon", tools: [], messages: [{ role: "user", content: "hi" }] }))
+    assert.equal(argon.status, 400)
+    assert.match((await argon.json()).error.message, /gemini-4-argon is unavailable to this agy account/)
+    assert.deepEqual(kit.setModels.slice(before), ["gemini-4-argon"])
   })
 })
 
