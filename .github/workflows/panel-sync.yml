@@ -54,3 +54,10 @@ jobs:
           fi
           git commit -m "panel: sync upstream issues and pull requests"
           git push origin HEAD:panel
+
+      - name: Refresh published dashboard
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.PANEL_SYNC_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run pages.yml --ref panel
