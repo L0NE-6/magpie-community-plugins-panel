@@ -2786,6 +2786,9 @@ class Proc {
       if (historyKey(expectedStripped) === historyKey(actualStripped) ||
         sameHistoryUpToMasking(expectedStripped, actualStripped)) return true
     }
+    // magpie's image-slim swaps an earlier image for its placeholder text; agy
+    // has that image already, so the history it has is otherwise as it was.
+    if (sameHistoryUpToImages(this.expectedMessages, messages)) return true
     // A client that compacts its own context (billion-context in DeepSeek
     // Harness) folds earlier messages into a summary the live session never
     // saw. agy still holds those messages whole, so the session holds as long
@@ -3158,6 +3161,7 @@ class Proc {
       ready: true,
       socket,
       result: null,
+      rawResultKey: null,
       deferred: false,
       lateDelivered: false,
       deadline: null,
@@ -3248,15 +3252,15 @@ class Proc {
     const unique = new Map()
     for (const item of results) {
       const id = item.block.tool_use_id
-      const serialized = JSON.stringify(item.result)
+      const rawKey = item.rawKey ?? JSON.stringify(item.result)
       const previous = unique.get(id)
-      if ((previous && JSON.stringify(previous.result) !== serialized) ||
-        (item.call.result && JSON.stringify(item.call.result) !== serialized)) {
+      const storedKey = item.call.rawResultKey ?? (item.call.result ? JSON.stringify(item.call.result) : null)
+      if ((previous && previous.rawKey !== rawKey) || (storedKey !== null && storedKey !== rawKey)) {
         const error = new Error(`agy bridge: conflicting duplicate result for ${id}`)
         error.statusCode = 409
         throw error
       }
-      if (!previous) unique.set(id, item)
+      if (!previous) unique.set(id, item.rawKey === rawKey ? item : { ...item, rawKey })
     }
     return unique
   }
@@ -3265,17 +3269,19 @@ class Proc {
     const turn = this.turn
     if (!turn || turn.finalized) throw new BusyError("agy bridge: no response is waiting for these tool results")
     turn.touchClient()
-    for (const { call, result } of this.validateResults(results).values()) {
+    for (const { call, result, rawKey } of this.validateResults(results).values()) {
       clearTimeout(call.deadline)
       if (call.deferred) {
         if (!call.result) {
           call.result = result
+          call.rawResultKey = rawKey
           this.#deliverLate(turn, call)
         }
         continue
       }
       if (call.mcpResponded || !call.ready || turn.done) continue
       call.result = result
+      call.rawResultKey = rawKey
       this.#respondMcp(call, { result })
     }
     turn.arm()
@@ -4326,11 +4332,15 @@ function replayHistoryProblem(body, resultBlocks) {
 async function keepDroppedTurn(proc, turn, opts) {
   if (proc.toolsGrew(opts.tools) || proc.workDir !== opts.workDir ||
     !sameInstructions(proc.instructions, opts.instructions)) return false
-  const results = turn.calls.filter((call) => call.id && !call.result && !call.mcpResponded).map((call) => ({
-    block: { tool_use_id: call.id },
-    call,
-    result: { content: [{ type: "text", text: DROPPED_NOTE }], isError: true },
-  }))
+  const results = turn.calls.filter((call) => call.id && !call.result && !call.mcpResponded).map((call) => {
+    const result = { content: [{ type: "text", text: DROPPED_NOTE }], isError: true }
+    return {
+      block: { tool_use_id: call.id },
+      call,
+      result,
+      rawKey: JSON.stringify(result),
+    }
+  })
   try {
     return await proc.steerInSession(turn, results, opts.history)
   } catch {
@@ -5246,6 +5256,70 @@ function messageDiff(a, b) {
 // them.
 function sameHistoryUpToMasking(expected, actual) {
   return sameUpToMasking(historyRows(expected), historyRows(actual))
+}
+
+// What magpie's image-slim middleware writes where it took out an image the
+// model has already seen: a text block, or on Codex a whole view_image output
+// set to it as a plain string.
+const IMAGE_SLIM_RE = /^\[\d+(?:\.\d+)? MB image left out here: [\s\S]*\]$/
+// magpie's gateway writes these where it leaves out an earlier image itself:
+// under a provider's byte cap (body_cap.go imageLeftOut), a model's image cap
+// (image_cap.go imageOverCap), or an image the request carries again later
+// (imageShownLater). agy has seen each of those images too.
+const MAGPIE_IMAGE_PLACEHOLDERS = new Set([
+  "[An earlier image was left out here to keep this request under its size limit.]",
+  "[An earlier image was omitted here to keep this request within the model's image limit.]",
+  "[This image is omitted here; the same image appears again later in this conversation.]",
+])
+
+function isImagePlaceholder(text) {
+  if (typeof text !== "string") return false
+  const trimmed = text.trim()
+  return IMAGE_SLIM_RE.test(trimmed) || MAGPIE_IMAGE_PLACEHOLDERS.has(trimmed)
+}
+
+function isImageSlot(block) {
+  return block?.type === "image" || (block?.type === "text" && isImagePlaceholder(block.text))
+}
+
+// How many images a message has where they were, each counted as an image or
+// as the placeholder that stands for it, tool results' included.
+function imageSlots(message) {
+  if (!Array.isArray(message?.content)) return isImagePlaceholder(message?.content) ? 1 : 0
+  let n = 0
+  for (const block of message.content) {
+    if (isImageSlot(block)) n++
+    else if (block?.type === "tool_result") {
+      if (typeof block.content === "string") n += isImagePlaceholder(block.content) ? 1 : 0
+      else if (Array.isArray(block.content)) n += block.content.filter(isImageSlot).length
+    }
+  }
+  return n
+}
+
+function withoutImages(messages) {
+  const kept = (block) => !isImageSlot(block)
+  const resultContent = (content) => typeof content === "string"
+    ? (isImagePlaceholder(content) ? [] : content)
+    : content.filter(kept)
+  return messages.map((message) => !Array.isArray(message?.content) ? message : {
+    ...message,
+    content: message.content.filter(kept).map((block) => block?.type === "tool_result" &&
+      (Array.isArray(block.content) || typeof block.content === "string")
+      ? { ...block, content: resultContent(block.content) }
+      : block),
+  })
+}
+
+// The same history but for images swapped for placeholders. Each message
+// keeps as many images-or-placeholders as it had, so an image added to or
+// taken out of an earlier message is still a changed history.
+function sameHistoryUpToImages(expected, actual) {
+  if (!Array.isArray(expected) || !Array.isArray(actual) || expected.length !== actual.length) return false
+  if (expected.some((message, i) => imageSlots(message) !== imageSlots(actual[i]))) return false
+  const a = withoutImages(expected)
+  const b = withoutImages(actual)
+  return historyKey(a) === historyKey(b) || sameHistoryUpToMasking(a, b)
 }
 
 // One block as the history key reads it, or null for a block the key
@@ -8375,11 +8449,17 @@ export const AntigravityBridgePlugin = async () => {
                   if (proc.turn !== turn) return jsonError(409, "agy bridge: the tool response has already completed")
                   if (turn.attached) throw new BusyError("agy bridge: this conversation already has an active response")
                   if (turn.steering) throw new BusyError("agy bridge: this conversation is already steering this tool turn")
-                  const rawResults = matches.map(({ block, match }) => ({
-                    block,
-                    call: match.call,
-                    result: toolResult(block),
-                  }))
+                  // Notices appended by inspectToolTurn belong in call.result for
+                  // agy, while duplicate checks compare the raw tool_result (#1475).
+                  const rawResults = matches.map(({ block, match }) => {
+                    const result = toolResult(block)
+                    return {
+                      block,
+                      call: match.call,
+                      result,
+                      rawKey: JSON.stringify(result),
+                    }
+                  })
                   proc.validateResults(rawResults)
                   let interrupted = isInterruptedToolTurn(body)
                   let results = rawResults
