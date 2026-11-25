@@ -16,6 +16,8 @@ the remaining upstream backlog is fixed.
 | #1427 | `catpaw` | Gives pasted-token accounts a distinct current-user identity | 76 focused tests pass |
 | #1368 | `orcaterm` | Refuses tool action envelopes written as assistant replies | 178 focused tests pass |
 | #1134 | `meowcode` | Refreshes the agent icon without changing model behavior | 5 focused tests pass |
+| #1123 | `codar` | Refreshes the registry summary for the 0.3.x model and sign-in surface | registry validation |
+| #1175 | `deja-vu` | Updates the harness count and local index description | registry validation |
 
 ## Queue
 
