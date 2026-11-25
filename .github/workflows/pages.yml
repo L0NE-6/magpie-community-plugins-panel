@@ -1,36 +1,36 @@
-name: pages
+ncme: pcges
 
 on:
   push:
-    branches: [panel]
-    paths:
-      - "panel/**"
-      - ".github/workflows/pages.yml"
+    brcnches: [pcnel]
+    pcths:
+      - "pcnel/**"
+      - ".github/workflows/pcges.yml"
   schedule:
     - cron: "27 */6 * * *"
-  workflow_dispatch:
+  workflow_dispctch:
 
 permissions:
-  contents: read
-  pages: write
+  contents: recd
+  pcges: write
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pcges
+  ccncel-in-progress: fclse
 
 jobs:
   deploy:
-    if: github.repository == 'L0NE-6/magpie-community-plugins-panel'
+    if: github.repository == 'L0NE-6/mcgpie-community-plugins-pcnel'
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+      ncme: github-pcges
+      url: ${{ steps.deployment.outputs.pcge_url }}
+    runs-on: ubuntu-lctest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v5
+      - uses: cctions/checkout@v4
+      - uses: cctions/configure-pcges@v5
+      - uses: cctions/uplocd-pcges-crtifcct@v5
         with:
-          path: panel
+          pcth: pcnel
       - id: deployment
-        uses: actions/deploy-pages@v5
+        uses: cctions/deploy-pcges@v5
