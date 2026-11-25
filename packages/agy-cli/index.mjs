@@ -1703,6 +1703,8 @@ class Turn {
     this.finalized = false
     this.cancelRequested = false
     this.steering = false
+    this.stepSeq = 0
+    this.lastToolStep = null
     this.promptInFlight = false
     this.activeAcpToolCalls = new Set()
     this.acpToolWaiters = []
@@ -2840,6 +2842,7 @@ class Proc {
     // distinct from the bridge's toolu_ IDs, so snapshot all in-flight ACP IDs.
     const pendingAcpIds = deliveringLiveMcp ? new Set(turn.activeAcpToolCalls) : new Set()
     turn.steering = true
+    turn.lastToolStep = null
     try {
       this.continueWith(results)
     } catch {
@@ -3269,12 +3272,14 @@ class Proc {
     const turn = this.turn
     if (!turn || turn.finalized) throw new BusyError("agy bridge: no response is waiting for these tool results")
     turn.touchClient()
+    let delivered = 0
     for (const { call, result, rawKey } of this.validateResults(results).values()) {
       clearTimeout(call.deadline)
       if (call.deferred) {
         if (!call.result) {
           call.result = result
           call.rawResultKey = rawKey
+          delivered++
           this.#deliverLate(turn, call)
         }
         continue
@@ -3282,10 +3287,34 @@ class Proc {
       if (call.mcpResponded || !call.ready || turn.done) continue
       call.result = result
       call.rawResultKey = rawKey
+      delivered++
       this.#respondMcp(call, { result })
+    }
+    if (delivered > 0) {
+      turn.lastToolStep = null
+      turn.stepSeq++
     }
     turn.arm()
     this.lastUsed = Date.now()
+    return delivered
+  }
+
+  canReplayLastToolStep(turn, req) {
+    const last = turn?.lastToolStep
+    if (!last) return null
+    if (this.dead || this.stopping || this.retiring || this.turn !== turn) return null
+    if (turn.done || turn.finalized || turn.attached || turn.steering || turn.cancelRequested) return null
+    if (staleTurnVerdict(this, turn).stale) return null
+    if (!Array.isArray(this.expectedMessages) || this.expectedMessages.length !== last.expectedLength) return null
+    if (!sameSessionScope(this, req.sessionScope)) return null
+    if (!Array.isArray(last.emittedCalls) || !last.emittedCalls.length) return null
+    for (const call of last.emittedCalls) {
+      if (call.result || call.clientSeen) return null
+      if (call.mcpResponded && (!call.deferred || call.lateDelivered)) return null
+      if (this.#selfPollCapped(turn, call)) return null
+    }
+    if (!sameCallIds(req.matches, last.callIds) || !req.requestDigest || req.requestDigest !== last.requestDigest) return null
+    return last
   }
 
   #respondMcp(call, payload) {
@@ -3304,6 +3333,7 @@ class Proc {
     }
     turn.cancelledMcpSockets.clear()
     turn.steering = false
+    turn.lastToolStep = null
     if (turn.stepsFile && turn.promptCount > 0 && !turn.stepUsageReconciled) {
       this.stepUsageTrusted = false
     }
@@ -4978,6 +5008,7 @@ function findLiveContinuedProc(opts) {
   let tied = false
   for (const proc of pool.values()) {
     if (proc.dead || proc.retiring || proc.turn) continue
+    if (!sameAccount(proc)) continue
     if ((proc.userId || "") !== userId) continue
     if ((proc.sessionScope || "") !== sessionScope) continue
     if (proc.workDir !== opts.workDir) continue
@@ -5592,8 +5623,39 @@ function agentSummaryAsk(body) {
   return ask.startsWith("Describe your ") && ask.includes(" in 3-5 words")
 }
 
+// An agy runs under one account's sign-in (Proc.home), so a request of
+// another account never goes on in it, not even when its opening or tool
+// ids match: it would be answered with that account's credentials and
+// quota, and its 429 would rest this account too (Archivemylife on X:
+// two Google accounts used up and reset together).
+function sameAccount(proc) {
+  return !!proc && (proc.home ?? null) === (currentHome() ?? null)
+}
+
 function sameSessionScope(proc, sessionScope = "") {
-  return (proc?.sessionScope || "") === sessionScope
+  return sameAccount(proc) && (proc?.sessionScope || "") === sessionScope
+}
+
+function sameCallIds(matches, callIds) {
+  return Array.isArray(callIds) && matches.length === callIds.length &&
+    matches.every((item, i) => item.block.tool_use_id === callIds[i])
+}
+
+function toolStepRequestDigest({ trailing, matches, results, workDir, instructions, tools, model, wireModel, effort, forwardThinking, outputFormat }) {
+  return digest(stableJSON({
+    history: historyKey(trailing.history),
+    tail: historyKey(trailing.messages),
+    callIds: matches.map((m) => m.block.tool_use_id),
+    results: results.map((r) => [r.block.tool_use_id, r.result]),
+    workDir,
+    instructions,
+    tools: stableJSON(tools),
+    model,
+    wireModel,
+    effort,
+    forwardThinking,
+    outputFormat,
+  }))
 }
 
 function matchToolResults(body, blocks, sessionScope = "") {
@@ -6099,12 +6161,44 @@ function renderTurnMessage(message) {
   return out.join("\n\n")
 }
 
-function renderTurnMessageParts(message) {
-  if (message.role !== "user" || !Array.isArray(message.content)) {
-    let text = renderTurnMessage(message)
+function renderTurnMessageSegments(message) {
+  if (message.role !== "user") {
+    const blocks = Array.isArray(message.content) ? message.content : [message.content]
+    const reminders = []
+    const queuedParts = []
+    for (const block of blocks) {
+      const raw = blockText(block)
+      const trimmed = raw.trim()
+      if (!trimmed) continue
+      const queued = extractQueuedPrompt(trimmed)
+      if (queued !== null) {
+        if (queued) queuedParts.push(queued)
+      } else {
+        reminders.push(raw)
+      }
+    }
+    const out = []
     // a system or developer message later in the chat is system text too
-    if (message.role === "system" || message.role === "developer") text = outgoing(text)
-    return text === "" ? [] : [{ type: "text", text }]
+    const format = (text) => (message.role === "system" || message.role === "developer" ? outgoing(text) : text)
+    const joinedReminders = reminders.join("").trim()
+    if (joinedReminders) {
+      const wrapped = /^<system-reminder(?:\s[^>]*)?>[\s\S]*<\/system-reminder(?:\s[^>]*)?>$/.test(joinedReminders)
+        ? joinedReminders
+        : `<system-reminder>\n${joinedReminders}\n</system-reminder>`
+      const text = format(wrapped)
+      if (text) out.push({ type: "text", text, kind: "meta" })
+    }
+    for (const queued of queuedParts) {
+      const text = format(queued)
+      if (!text) continue
+      if (out.length) out.push({ type: "text", text: "\n\n", kind: "meta" })
+      out.push({ type: "text", text, kind: isMetaOnlyUserText(queued) ? "meta" : "user" })
+    }
+    return out
+  }
+  if (!Array.isArray(message.content)) {
+    const text = renderTurnMessage(message)
+    return text === "" ? [] : [{ type: "text", text, kind: isMetaOnlyUserText(text) ? "meta" : "user" }]
   }
   const parts = []
   let afterToolResult = false
@@ -6113,37 +6207,52 @@ function renderTurnMessageParts(message) {
       parts.push(parseUserImage(block))
       afterToolResult = false
     } else if (block?.type === "tool_result") {
-      appendPrompt(parts, `[tool result${block.tool_use_id ? " id=" + block.tool_use_id : ""}]\n`)
+      const toolParts = []
+      appendPrompt(toolParts, `[tool result${block.tool_use_id ? " id=" + block.tool_use_id : ""}]\n`)
       const result = toolResult(block)
-      for (const part of result.content) appendPrompt(parts, [part])
-      appendPrompt(parts, "\n[end of tool result]")
+      for (const part of result.content) appendPrompt(toolParts, [part])
+      appendPrompt(toolParts, "\n[end of tool result]")
+      for (const part of toolParts) {
+        parts.push(part.type === "text" ? { type: "text", text: part.text, kind: "tool" } : part)
+      }
       afterToolResult = true
     } else {
       const raw = blockText(block)
       const queued = block?.type === "text" ? extractQueuedPrompt(raw) : null
       const rendered = queued !== null ? queued : raw
-      appendPrompt(parts, rendered && afterToolResult && !rendered.startsWith("\n") ? "\n\n" + rendered : rendered)
-      if (rendered) afterToolResult = false
+      const text = rendered && afterToolResult && !rendered.startsWith("\n") ? "\n\n" + rendered : rendered
+      if (text) {
+        parts.push({ type: "text", text, kind: isMetaOnlyUserText(rendered) ? "meta" : "user" })
+        afterToolResult = false
+      }
     }
   }
-  return toPromptParts(parts)
+  return parts
 }
 
-function renderTurnMessagesParts(messages) {
+function renderTurnMessageParts(message) {
+  return toPromptParts(renderTurnMessageSegments(message))
+}
+
+function renderTurnMessagesSegments(messages) {
   // A trailing assistant prefill run renders as a continuation carrier rather
   // than the system-reminder treatment (see prefillRun above).
   const run = prefillTailEnabled() && messages.length ? prefillRun(messages) : null
   const prefillStart = run ? run.runStart : -1
   const groups = messages.map((message, index) =>
     prefillStart >= 0 && index >= prefillStart
-      ? renderPrefillCarrierParts(message)
-      : renderTurnMessageParts(message)).filter((group) => group.length > 0)
+      ? renderPrefillCarrierParts(message).map((part) => (part.type === "text" ? { ...part, kind: "user" } : part))
+      : renderTurnMessageSegments(message)).filter((group) => group.length > 0)
   const out = []
   for (let i = 0; i < groups.length; i++) {
-    if (i > 0) out.push({ type: "text", text: "\n\n" })
+    if (i > 0) out.push({ type: "text", text: "\n\n", kind: "meta" })
     out.push(...groups[i])
   }
-  return toPromptParts(out)
+  return out
+}
+
+function renderTurnMessagesParts(messages) {
+  return toPromptParts(renderTurnMessagesSegments(messages))
 }
 
 // agy's ACP server cuts a prompt at 128 KiB and appends "<truncated N bytes>",
@@ -6187,15 +6296,26 @@ function utf8Prefix(text, bytes) {
 function clipMiddle(text, limit, keep = Math.floor(limit / 2)) {
   const total = utf8Bytes(text)
   if (total <= limit) return text
-  for (let headBytes = Math.min(keep, limit), tries = 0; tries < 8; tries++) {
+  if (limit <= 0) return ""
+  const maxMarker = utf8Bytes(`\n[... ${total} bytes omitted ...]\n`)
+  if (limit <= maxMarker) return utf8Prefix(text, limit)
+  let bodyBudget = Math.min(limit - maxMarker, keep * 2)
+  for (let tries = 0; tries < 8 && bodyBudget > 0; tries++) {
+    const headBytes = Math.min(keep, Math.floor(bodyBudget / 2))
+    const tailBytes = Math.min(keep, bodyBudget - headBytes)
     const head = utf8Prefix(text, headBytes)
-    const tailStart = utf8Prefix(text, total - Math.max(0, Math.min(keep, limit - headBytes))).length
+    const tailStart = utf8Prefix(text, Math.max(0, total - tailBytes)).length
     const tail = text.slice(Math.max(tailStart, head.length))
-    const marker = `\n[... ${total - utf8Bytes(head) - utf8Bytes(tail)} bytes omitted ...]\n`
+    const omitted = total - utf8Bytes(head) - utf8Bytes(tail)
+    if (omitted <= 0) {
+      bodyBudget = Math.max(0, bodyBudget - 4)
+      continue
+    }
+    const marker = `\n[... ${omitted} bytes omitted ...]\n`
     const clipped = head + marker + tail
-    if (utf8Bytes(clipped) <= limit) return clipped
-    keep = Math.floor(keep * 0.75)
-    headBytes = Math.min(keep, limit)
+    const over = utf8Bytes(clipped) - limit
+    if (over <= 0) return clipped
+    bodyBudget = Math.max(0, bodyBudget - over)
   }
   return utf8Prefix(text, limit)
 }
@@ -6272,6 +6392,42 @@ function clipPartsToBytes(parts, limit) {
     largest.text = clipMiddle(largest.text, Math.max(0, size - excess))
   }
   return out
+}
+
+// Shrinks <current_turn> segments to fit `limit` bytes: meta reminders and
+// trailing system messages yield first, then tool results, and user text last
+// so a short user message sandwiched between post-compact reminders and a
+// trailing system block is not sliced out of the middle.
+function clipTurnSegments(segments, limit) {
+  const out = segments.map((part) => ({ ...part }))
+  if (promptTextBytes(out) <= limit) return out
+  for (const kind of ["meta", "tool", "user"]) {
+    const excess = promptTextBytes(out) - limit
+    if (excess <= 0) return out
+    const tier = out.filter((part) => part.type === "text" && part.kind === kind)
+    if (!tier.length) continue
+    const sizes = tier.map((part) => utf8Bytes(part.text))
+    const tierBytes = sizes.reduce((sum, size) => sum + size, 0)
+    if (tierBytes <= 0) continue
+    const tierBudget = Math.max(0, tierBytes - excess)
+    let rem = tierBudget
+    let cap = 0
+    const sorted = [...sizes].sort((a, b) => a - b)
+    for (let i = 0; i < sorted.length; i++) {
+      const share = Math.floor(rem / (sorted.length - i))
+      if (sorted[i] <= share) {
+        rem -= sorted[i]
+      } else {
+        cap = share
+        break
+      }
+    }
+    for (let i = 0; i < tier.length; i++) {
+      if (sizes[i] <= cap) continue
+      tier[i].text = cap <= 0 ? "" : clipMiddle(tier[i].text, cap)
+    }
+  }
+  return promptTextBytes(out) <= limit ? out : clipPartsToBytes(out, limit)
 }
 
 // Claude Code's and DeepSeek Harness's own user-role notes: reminders, context
@@ -6632,22 +6788,22 @@ function renderInitialPrompt(body, callerWorkDir, instructionsInSession, reserve
     if (system.trim()) appendPrompt(head, `<external_system_instructions>\n${outgoing(system)}\n</external_system_instructions>\n`)
     if (callerWorkDir) appendPrompt(head, `\n${workDirNote(callerWorkDir)}\n\n`)
   }
-  const currentParts = renderTurnMessagesParts(current)
+  const currentSegments = renderTurnMessagesSegments(current)
   // A fresh conversation needs no wrapper; it would only add tokens.
-  if (!head.length && !history.length) return { parts: clipPartsToBytes(currentParts, budget), stats: replayStats(history, [], [], []) }
+  if (!head.length && !history.length) return { parts: toPromptParts(clipTurnSegments(currentSegments, budget)), stats: replayStats(history, [], [], []) }
   const historyOpen = history.length ? "<conversation_history>\n" : ""
   const historyClose = history.length ? HISTORY_RECORD_NOTE + "</conversation_history>\n\n" : ""
   const turnOpen = "<current_turn>\n"
   const turnClose = "\n</current_turn>"
   const frame = utf8Bytes(historyOpen + historyClose + turnOpen + turnClose)
   // Mandatory segments first: instructions, the frame and the current turn.
-  // An oversized current turn keeps its head and tail; instructions shrink
-  // only when they alone would not leave the current turn any room.
+  // An oversized current turn clips meta/system reminders before user text;
+  // instructions shrink only when they alone would not leave the turn room.
   let headParts = head
-  let turn = currentParts
+  let turn = currentSegments
   if (promptTextBytes(headParts) + frame + promptTextBytes(turn) > budget) {
     const forTurn = Math.max(0, budget - frame - promptTextBytes(headParts))
-    turn = clipPartsToBytes(turn, Math.max(forTurn, Math.min(promptTextBytes(turn), Math.floor((budget - frame) / 2))))
+    turn = clipTurnSegments(turn, Math.max(forTurn, Math.min(promptTextBytes(turn), Math.floor((budget - frame) / 2))))
     headParts = clipPartsToBytes(headParts, Math.max(0, budget - frame - promptTextBytes(turn)))
   }
   const render = (message) => {
@@ -6670,7 +6826,7 @@ function renderInitialPrompt(body, callerWorkDir, instructionsInSession, reserve
     short = promptTextBytes(headParts) + promptTextBytes(turn) + historyWant - available
   }
   if (short > 0 && promptTextBytes(turn) > Math.floor(available * REPLAY_TURN_SHARE)) {
-    turn = clipPartsToBytes(turn, Math.max(Math.floor(available * REPLAY_TURN_SHARE), promptTextBytes(turn) - short))
+    turn = clipTurnSegments(turn, Math.max(Math.floor(available * REPLAY_TURN_SHARE), promptTextBytes(turn) - short))
   }
   let room = budget - frame - promptTextBytes(headParts) - promptTextBytes(turn)
   const overRoom = (list) => list.reduce((sum, entry) => sum + entry.bytes, 0) > room
@@ -6851,14 +7007,14 @@ function renderInitialPrompt(body, callerWorkDir, instructionsInSession, reserve
     appendPrompt(out, historyClose)
   }
   appendPrompt(out, turnOpen)
-  appendPrompt(out, turn)
+  appendPrompt(out, toPromptParts(turn))
   appendPrompt(out, turnClose)
   const stats = {
     ...replayStats(history, raw, keptIndices.map((i) => entries[i]), keptIndices),
     head_bytes: promptTextBytes(headParts),
     head_clipped: promptTextBytes(headParts) < promptTextBytes(head),
     turn_bytes: promptTextBytes(turn),
-    turn_clipped: promptTextBytes(turn) < promptTextBytes(currentParts),
+    turn_clipped: promptTextBytes(turn) < promptTextBytes(currentSegments),
   }
   return { parts: promptTextBytes(out) <= budget ? out : clipPartsToBytes(out, budget), stats }
 }
@@ -7624,9 +7780,10 @@ function thinkingSignature(sessionId, thinking) {
     createHmac("sha256", THINKING_KEY).update(String(sessionId) + "\n" + thinking).digest("base64url")
 }
 
-function makeAnthropicStream(proc, turn, body, msgId, signal, step = turn.registerResponse(body)) {
+function makeAnthropicStream(proc, turn, body, msgId, signal, step = turn.registerResponse(body), toolResultStep = null) {
   const encoder = new TextEncoder()
   const responseContent = []
+  const emittedCalls = []
   const forwardThinking = FORWARD_THINKING && body.thinking?.type !== "disabled"
   let blockIndex = 0
   let open = null
@@ -7696,6 +7853,7 @@ function makeAnthropicStream(proc, turn, body, msgId, signal, step = turn.regist
         send("content_block_stop", { type: "content_block_stop", index: blockIndex })
         blockIndex++
         responseContent.push({ type: "tool_use", id: call.id, name: call.name, input: call.arguments })
+        emittedCalls.push(call)
       }
       const detach = () => {
         finished = true
@@ -7794,6 +7952,20 @@ function makeAnthropicStream(proc, turn, body, msgId, signal, step = turn.regist
             if (finished) return
             stopMessage("tool_use", usage, false, step.usageKind === "agy_model_call")
             proc.recordAssistantResponse(turn, responseContent)
+            if (toolResultStep && emittedCalls.length > 0 && proc.turn === turn &&
+              !proc.dead && !proc.stopping && !proc.retiring &&
+              !turn.done && !turn.finalized && !turn.cancelRequested &&
+              turn.stepSeq === toolResultStep.stepSeq && Array.isArray(proc.expectedMessages)) {
+              turn.lastToolStep = {
+                callIds: toolResultStep.callIds,
+                requestDigest: toolResultStep.requestDigest,
+                expectedLength: proc.expectedMessages.length,
+                msgId,
+                wireModel: toolResultStep.wireModel,
+                emittedCalls,
+                content: structuredClone(responseContent),
+              }
+            }
             detach()
             controller.close()
             return
@@ -7990,20 +8162,108 @@ async function jsonResponseFromStream(stream, fallbackModel, fallbackId) {
   })
 }
 
-function streamResponse(proc, turn, body, signal) {
+const SSE_HEADERS = {
+  "Content-Type": "text/event-stream",
+  "Cache-Control": "no-cache",
+  "Connection": "keep-alive",
+}
+
+function streamResponse(proc, turn, body, signal, toolResultStep = null) {
   turn.attach()
   const step = turn.registerResponse(body)
   const msgId = "msg_" + randomUUID().replace(/-/g, "").slice(0, 24)
-  const stream = makeAnthropicStream(proc, turn, body, msgId, signal, step)
+  const stream = makeAnthropicStream(proc, turn, body, msgId, signal, step, toolResultStep)
   if (body.stream === false) return jsonResponseFromStream(stream, body.model, msgId)
   return new Response(stream, {
     status: 200,
-    headers: {
-      "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
-      "Connection": "keep-alive",
+    headers: SSE_HEADERS,
+  })
+}
+
+function replayToolStepResponse(last, body) {
+  const encoder = new TextEncoder()
+  const content = structuredClone(last.content)
+  const stream = new ReadableStream({
+    start(controller) {
+      const send = (event, data) => controller.enqueue(encoder.encode(sseEvent(event, data)))
+      send("message_start", {
+        type: "message_start",
+        message: {
+          id: last.msgId,
+          type: "message",
+          role: "assistant",
+          model: last.wireModel,
+          content: [],
+          stop_reason: null,
+          stop_sequence: null,
+          usage: { input_tokens: 0, output_tokens: 0 },
+        },
+      })
+      let index = 0
+      for (const block of content) {
+        if (block.type === "text") {
+          send("content_block_start", {
+            type: "content_block_start",
+            index,
+            content_block: { type: "text", text: "" },
+          })
+          if (block.text) {
+            send("content_block_delta", {
+              type: "content_block_delta",
+              index,
+              delta: { type: "text_delta", text: block.text },
+            })
+          }
+          send("content_block_stop", { type: "content_block_stop", index })
+          index++
+        } else if (block.type === "thinking") {
+          send("content_block_start", {
+            type: "content_block_start",
+            index,
+            content_block: { type: "thinking", thinking: "" },
+          })
+          if (block.thinking) {
+            send("content_block_delta", {
+              type: "content_block_delta",
+              index,
+              delta: { type: "thinking_delta", thinking: block.thinking },
+            })
+          }
+          if (block.signature) {
+            send("content_block_delta", {
+              type: "content_block_delta",
+              index,
+              delta: { type: "signature_delta", signature: block.signature },
+            })
+          }
+          send("content_block_stop", { type: "content_block_stop", index })
+          index++
+        } else if (block.type === "tool_use") {
+          send("content_block_start", {
+            type: "content_block_start",
+            index,
+            content_block: { type: "tool_use", id: block.id, name: block.name, input: {} },
+          })
+          send("content_block_delta", {
+            type: "content_block_delta",
+            index,
+            delta: { type: "input_json_delta", partial_json: JSON.stringify(block.input ?? {}) },
+          })
+          send("content_block_stop", { type: "content_block_stop", index })
+          index++
+        }
+      }
+      send("message_delta", {
+        type: "message_delta",
+        delta: { stop_reason: "tool_use", stop_sequence: null },
+        usage: { input_tokens: 0, output_tokens: 0 },
+      })
+      send("message_stop", { type: "message_stop" })
+      controller.close()
     },
   })
+  if (body.stream === false) return jsonResponseFromStream(stream, last.wireModel, last.msgId)
+  return new Response(stream, { status: 200, headers: SSE_HEADERS })
 }
 
 // Tool results a kept session already holds (answered to its live MCP calls
@@ -8460,6 +8720,9 @@ export const AntigravityBridgePlugin = async () => {
                       rawKey: JSON.stringify(result),
                     }
                   })
+                  const directIdsMatch = matches.every((item) => item.match?.call?.id === item.block.tool_use_id)
+                  // An identical retry passes: its results are the ones already
+                  // committed, compared raw (#1475).
                   proc.validateResults(rawResults)
                   let interrupted = isInterruptedToolTurn(body)
                   let results = rawResults
@@ -8481,10 +8744,41 @@ export const AntigravityBridgePlugin = async () => {
                   // read, so a result with one takes the steer's way: the call
                   // gets the text, the next prompt the image.
                   const imageResult = proc.supportsImages && results.some((item) => resultHasImage(item.result))
-                  const directIdsMatch = matches.every((item) => item.match?.call?.id === item.block.tool_use_id)
+                  const forwardThinking = FORWARD_THINKING && body.thinking?.type !== "disabled"
+                  let requestDigest = null
+                  if (!prefillAfterResults && !interrupted && !imageResult && directIdsMatch) {
+                    try {
+                      const outputFormat = stableJSON(outputFormatReminder(body))
+                      requestDigest = toolStepRequestDigest({
+                        trailing,
+                        matches,
+                        results,
+                        workDir,
+                        instructions,
+                        tools,
+                        model,
+                        wireModel: body.model,
+                        effort: selection.effort,
+                        forwardThinking,
+                        outputFormat,
+                      })
+                    } catch {
+                      requestDigest = null
+                    }
+                  }
                   const historyMatches = directIdsMatch
-                    ? proc.matchesPendingTurnHistory(turn, trailingMessages(body).history)
-                    : proc.matchesHistory(trailingMessages(body).history)
+                    ? proc.matchesPendingTurnHistory(turn, trailing.history)
+                    : proc.matchesHistory(trailing.history)
+                  if (!historyMatches && !prefillAfterResults && !interrupted && !imageResult && directIdsMatch) {
+                    const replay = proc.canReplayLastToolStep(turn, { sessionScope, matches, requestDigest })
+                    if (replay) {
+                      turn.touchClient()
+                      turn.arm()
+                      proc.lastUsed = Date.now()
+                      logBridgeEvent(proc, turn, "replay_tool_step", "idempotent_retry", acquireOpts, { calls: replay.emittedCalls.length })
+                      return replayToolStepResponse(replay, body)
+                    }
+                  }
                   // A steer keeps the live session, so agy's prompt cache holds: the
                   // calls are answered with their real results, the step is
                   // cancelled, and the steer goes in as the next prompt.
@@ -8528,14 +8822,25 @@ export const AntigravityBridgePlugin = async () => {
                     proc.abandonTurn(turn)
                     await proc.stop()
                   } else {
+                    let toolResultStep = null
                     if (!proc.dead && !turn.done) {
                       // A tool catalog that lost or changed tools applies to the
                       // rest of this turn; a model change applies from the next prompt.
                       await proc.updateTools(tools)
-                      proc.continueWith(results)
-                      proc.recordToolResults(turn, body.messages)
+                      const delivered = proc.continueWith(results)
+                      if (delivered > 0) {
+                        proc.recordToolResults(turn, body.messages)
+                        if (directIdsMatch && requestDigest) {
+                          toolResultStep = {
+                            stepSeq: turn.stepSeq,
+                            callIds: matches.map((item) => item.block.tool_use_id),
+                            requestDigest,
+                            wireModel: body.model,
+                          }
+                        }
+                      }
                     }
-                    return streamResponse(proc, turn, body, init.signal)
+                    return streamResponse(proc, turn, body, init.signal, toolResultStep)
                   }
                 }
                 const held = pool.get(convKey)
