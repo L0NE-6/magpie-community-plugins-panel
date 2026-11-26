@@ -22,8 +22,8 @@ Live check: **2026-11-26 14:15 CST**
 | :--- | ---: |
 | Upstream open issues | 395 |
 | Upstream open pull requests | 236 |
-| Merged PRs in the previous 7 days | 11 |
-| Closed issues in the previous 7 days | 11 |
+| Merged PRs in the previous 7 days | 15 |
+| Closed issues in the previous 7 days | 12 |
 | Upstream default branch | `main` |
 | Upstream `main` commit | `be00f49` |
 | License | MIT |
