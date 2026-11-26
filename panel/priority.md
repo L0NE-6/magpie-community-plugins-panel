@@ -1,6 +1,6 @@
 # Upstream Priority Queue
 
-Curated from the public upstream snapshot at `2026-11-26T11:51:58+08:00`.
+Curated from the public upstream snapshot at `2026-11-26T14:15:00+08:00`.
 
 > This is a triage snapshot, not a claim that every item is reproduced.
 > Mergeability, CI and live-account behavior must be verified before action.
@@ -9,10 +9,10 @@ Curated from the public upstream snapshot at `2026-11-26T11:51:58+08:00`.
 
 | Open items | Count |
 | :--- | ---: |
-| Issues | 396 |
-| Pull requests | 235 |
+| Issues | 395 |
+| Pull requests | 236 |
 | Total | 631 |
-| Recognized package clusters | 63 |
+| Recognized package clusters | 60 |
 
 ## Priority Issues
 
