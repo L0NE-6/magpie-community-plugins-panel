@@ -2809,6 +2809,15 @@ class Proc {
     // had it, so the next request's history goes on without it
     // (yetone/magpie#7223).
     if (droppedOneRequestText(this.expectedMessages, messages)) return true
+    // A client can hoist a tool result's image and caption into the result's
+    // user row for one request, then leave them out when it persists history.
+    // The live session already saw the tool result itself, so the exact
+    // transient suffix is not a new conversation (plugins#1556).
+    if (droppedHoistedToolImages(this.expectedMessages, messages)) return true
+    // Gateway hooks can append a transient reminder block to a plain user
+    // turn for one request. Only a complete known reminder suffix is forgiven;
+    // any other user text change remains a history change (plugins#1556).
+    if (droppedOneRequestReminder(this.expectedMessages, messages)) return true
     // Clients such as Claude Code canonicalize tool_use.input when they
     // persist history (e.g. filling default replace_all: false). The live
     // session still has the model-issued arguments. historyKey already
@@ -4655,6 +4664,79 @@ function droppedOneRequestText(expected, actual) {
   if (kept != null && (kept === mine.at(-1).text || !mine.at(-1).text.startsWith(kept))) return false
   const cut = a.map((item, index) => index !== row ? item
     : { ...item, content: kept == null ? mine.slice(0, -1) : [...mine.slice(0, -1), { ...mine.at(-1), text: kept }] })
+  return sameUpToMasking(cut, b)
+}
+
+// Whether actual is expected but for a client's one-request hoisting of a
+// tool result's image and caption into that result's user row. The suffix
+// must be exactly the three history blocks [tool_result, image, text], and
+// only that one row may differ. This is deliberately narrower than ignoring
+// images generally: a real image edit or a different row still changes the
+// history.
+function droppedHoistedToolImages(expected, actual) {
+  if (!Array.isArray(expected) || !Array.isArray(actual)) return false
+  const a = historyRows(expected)
+  const b = historyRows(actual)
+  if (a.length !== b.length) return false
+  let row = -1
+  for (let index = 0; index < a.length; index++) {
+    if (sameUpToMasking(a[index], b[index])) continue
+    if (row >= 0) return false
+    row = index
+  }
+  if (row < 0) return false
+  if (a[row].role !== "user" || b[row].role !== "user") return false
+  const mine = a[row].content
+  const theirs = b[row].content
+  if (mine.length !== theirs.length + 2) return false
+  if (mine.at(-3)?.type !== "tool_result" ||
+    mine.at(-2)?.type !== "image" ||
+    mine.at(-1)?.type !== "text") return false
+  return sameUpToMasking(mine.slice(0, -2), theirs)
+}
+
+// A gateway may append one of these complete wrappers to a plain user turn
+// for one request only. The wrapper must cover the whole removed suffix; a
+// prefix, an unrelated text block, or text after the wrapper is still a real
+// history edit.
+function isGatewayHookSuffix(text) {
+  let rest = String(text ?? "").trim()
+  if (!rest) return false
+  while (rest) {
+    const lower = asciiLower(rest)
+    const open = /^<(system-reminder|system_message)(?:\s[^>]*)?>/.exec(lower)
+    if (!open) return false
+    const tag = open[1]
+    const closeStart = lower.indexOf(`</${tag}`, open[0].length)
+    if (closeStart < 0) return false
+    const closeEnd = rest.indexOf(">", closeStart)
+    if (closeEnd < 0) return false
+    const close = rest.slice(closeStart, closeEnd + 1)
+    const closeTail = close.slice(tag.length + 2, -1)
+    if (closeTail && !/^\s/.test(closeTail)) return false
+    rest = rest.slice(closeEnd + 1).trimStart()
+  }
+  return true
+}
+
+function droppedOneRequestReminder(expected, actual) {
+  if (!Array.isArray(expected) || !Array.isArray(actual)) return false
+  const a = historyRows(expected)
+  const b = historyRows(actual)
+  if (a.length !== b.length) return false
+  let row = a.length - 1
+  while (row >= 0 && a[row].role !== "user") row--
+  if (row < 0 || b[row].role !== "user") return false
+  const mine = a[row].content
+  const theirs = b[row].content
+  if (mine.length !== 1 || theirs.length !== 1 ||
+    mine[0].type !== "text" || theirs[0].type !== "text") return false
+  const expectedText = mine[0].text
+  const actualText = theirs[0].text
+  if (expectedText === actualText || !expectedText.startsWith(actualText)) return false
+  if (!isGatewayHookSuffix(expectedText.slice(actualText.length))) return false
+  const cut = a.map((item, index) => index !== row ? item
+    : { ...item, content: [{ ...mine[0], text: actualText }] })
   return sameUpToMasking(cut, b)
 }
 
