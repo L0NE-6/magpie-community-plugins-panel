@@ -1,6 +1,6 @@
 # Upstream open pull requests
 
-Generated at `2026-11-25T20:59:54.288Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-26T01:46:33.397Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 
@@ -8,7 +8,7 @@ Generated at `2026-11-25T20:59:54.288Z` from [magpie-community/plugins](https://
 - Draft: **12**, ready: **221**
 - Priority: P0 **0**, P1 **0**, P2 **0**, P3 **233**
 - Comments: none **118**, light **90**, active **24**, hot **1**
-- Updated: 24h **25**, 7d **89**, 30d **102**, older **17**
+- Updated: 24h **26**, 7d **88**, 30d **101**, older **18**
 
 Pull requests are ordered by draft state, priority, comments, updated time, and number.
 
@@ -187,7 +187,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 2 (light) | 2026-11-19T02:07:04.000Z | 7d | `@magpie-community/opencode-cursor-auth` | [#1307 cursor 0.2.49: a temporary resource_exhausted is an upstream failure, not a quota (#1290)](https://github.com/magpie-community/plugins/pull/1307) |
+| P3 | ready | 2 (light) | 2026-11-26T00:52:47.000Z | 24h | `@magpie-community/opencode-cursor-auth` | [#1307 cursor 0.2.49: a temporary resource_exhausted is an upstream failure, not a quota (#1290)](https://github.com/magpie-community/plugins/pull/1307) |
 
 ### Package: `@magpie-community/opencode-devin-auth`
 
@@ -723,7 +723,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 1 (light) | 2026-10-26T22:34:33.000Z | 30d | _unmapped_ (`fix(cursor)`) | [#372 fix(cursor): keep the card's reset date when the usage ledger answers empty](https://github.com/magpie-community/plugins/pull/372) |
+| P3 | ready | 1 (light) | 2026-10-26T22:34:33.000Z | older | _unmapped_ (`fix(cursor)`) | [#372 fix(cursor): keep the card's reset date when the usage ledger answers empty](https://github.com/magpie-community/plugins/pull/372) |
 | P3 | ready | 0 (none) | 2026-11-18T04:52:32.000Z | 30d | _unmapped_ (`fix(cursor)`) | [#1300 fix(cursor): ignore ExecServerMessage metadata (#57-#59) in exec tracking](https://github.com/magpie-community/plugins/pull/1300) |
 
 ### Package: `unmapped:fix(workbuddy)`

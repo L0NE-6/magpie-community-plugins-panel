@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T20:59:54.288Z",
+  "generatedAt": "2026-11-26T01:46:33.397Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 390,
+    "issueCount": 392,
     "pullCount": 233,
     "draftPullCount": 12,
     "readyPullCount": 221,
@@ -16,7 +16,7 @@
         "P0": 0,
         "P1": 0,
         "P2": 1,
-        "P3": 389
+        "P3": 391
       },
       "pulls": {
         "P0": 0,
@@ -27,8 +27,8 @@
     },
     "byComments": {
       "issues": {
-        "none": 151,
-        "light": 184,
+        "none": 152,
+        "light": 185,
         "active": 45,
         "hot": 10
       },
@@ -41,16 +41,16 @@
     },
     "byUpdated": {
       "issues": {
-        "24h": 28,
-        "7d": 81,
-        "30d": 216,
+        "24h": 27,
+        "7d": 83,
+        "30d": 217,
         "older": 65
       },
       "pulls": {
-        "24h": 25,
-        "7d": 89,
-        "30d": 102,
-        "older": 17
+        "24h": 26,
+        "7d": 88,
+        "30d": 101,
+        "older": 18
       }
     },
     "byDraft": {
@@ -75,6 +75,74 @@
       "createdAt": "2026-11-23T12:18:48.000Z",
       "labels": [],
       "author": "tyh97"
+    },
+    {
+      "number": 1369,
+      "title": "[agy-cli] Codex message predictions can replace the main session history and force a replay",
+      "url": "https://github.com/magpie-community/plugins/issues/1369",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T01:37:14.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-19T16:28:08.000Z",
+      "labels": [],
+      "author": "nullburn"
+    },
+    {
+      "number": 873,
+      "title": "chat: reuse Library native OAuth through credential-free resolved MCP descriptors",
+      "url": "https://github.com/magpie-community/plugins/issues/873",
+      "package": "@magpie-community/page-chat",
+      "packageDirectory": "chat",
+      "titlePrefix": "chat",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T01:33:47.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-08T15:22:54.000Z",
+      "labels": [],
+      "author": "duhu2000"
+    },
+    {
+      "number": 1557,
+      "title": "astudio: sign-in can't find a portable Chrome++ default browser, and Chrome++'s relaunch drops the CDP pipe",
+      "url": "https://github.com/magpie-community/plugins/issues/1557",
+      "package": "@magpie-community/opencode-astudio-auth",
+      "packageDirectory": "astudio",
+      "titlePrefix": "astudio",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-26T01:26:06.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T01:26:06.000Z",
+      "labels": [],
+      "author": "LingYingNX"
+    },
+    {
+      "number": 1556,
+      "title": "agy-cli: matchesHistory drops live ACP session on transient hoisted tool images and one-request gateway hook tags",
+      "url": "https://github.com/magpie-community/plugins/issues/1556",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-25T23:07:20.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-25T23:07:20.000Z",
+      "labels": [],
+      "author": "shinnamu"
     },
     {
       "number": 1494,
@@ -479,7 +547,7 @@
       "comments": 4,
       "commentBucket": "active",
       "updatedAt": "2026-11-25T00:52:15.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-20T15:02:41.000Z",
       "labels": [],
       "author": "OutmanSay"
@@ -496,7 +564,7 @@
       "comments": 2,
       "commentBucket": "light",
       "updatedAt": "2026-11-24T21:20:39.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T02:56:53.000Z",
       "labels": [],
       "author": "6westboy9"
@@ -513,7 +581,7 @@
       "comments": 5,
       "commentBucket": "active",
       "updatedAt": "2026-11-24T21:13:04.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-13T05:17:00.000Z",
       "labels": [],
       "author": "yetone"
@@ -530,7 +598,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-24T21:05:21.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T01:19:00.000Z",
       "labels": [],
       "author": "joeshen2021"
@@ -547,7 +615,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-24T21:05:17.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-24T04:33:25.000Z",
       "labels": [],
       "author": "sb1733831438-maker"
@@ -1522,23 +1590,6 @@
       "author": "nullburn"
     },
     {
-      "number": 1369,
-      "title": "[agy-cli] Codex message predictions can replace the main session history and force a replay",
-      "url": "https://github.com/magpie-community/plugins/issues/1369",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-19T17:00:21.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-19T16:28:08.000Z",
-      "labels": [],
-      "author": "nullburn"
-    },
-    {
       "number": 1370,
       "title": "zcode: browser re-login rejects phone accounts with an active ZCODE GLOBAL BUILD plan",
       "url": "https://github.com/magpie-community/plugins/issues/1370",
@@ -1890,7 +1941,7 @@
       "comments": 5,
       "commentBucket": "active",
       "updatedAt": "2026-11-19T01:08:05.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T01:58:21.000Z",
       "labels": [],
       "author": "liuyejinghong"
@@ -1907,7 +1958,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-19T01:01:57.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-19T01:01:57.000Z",
       "labels": [],
       "author": "maye4"
@@ -3900,23 +3951,6 @@
       "createdAt": "2026-11-09T01:46:34.000Z",
       "labels": [],
       "author": "zane668"
-    },
-    {
-      "number": 873,
-      "title": "chat: reuse Library native OAuth through credential-free resolved MCP descriptors",
-      "url": "https://github.com/magpie-community/plugins/issues/873",
-      "package": "@magpie-community/page-chat",
-      "packageDirectory": "chat",
-      "titlePrefix": "chat",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-08T15:22:54.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-08T15:22:54.000Z",
-      "labels": [],
-      "author": "duhu2000"
     },
     {
       "number": 642,
@@ -7576,6 +7610,24 @@
       "author": "shiyang1026"
     },
     {
+      "number": 1307,
+      "title": "cursor 0.2.49: a temporary resource_exhausted is an upstream failure, not a quota (#1290)",
+      "url": "https://github.com/magpie-community/plugins/pull/1307",
+      "draft": false,
+      "package": "@magpie-community/opencode-cursor-auth",
+      "packageDirectory": "cursor",
+      "titlePrefix": "cursor",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T00:52:47.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-18T06:28:52.000Z",
+      "labels": [],
+      "author": "liyihang866"
+    },
+    {
       "number": 1144,
       "title": "registry: list @godwit/magpie-agent (Godwit)",
       "url": "https://github.com/magpie-community/plugins/pull/1144",
@@ -7610,24 +7662,6 @@
       "createdAt": "2026-11-12T08:05:58.000Z",
       "labels": [],
       "author": "yancanny"
-    },
-    {
-      "number": 1307,
-      "title": "cursor 0.2.49: a temporary resource_exhausted is an upstream failure, not a quota (#1290)",
-      "url": "https://github.com/magpie-community/plugins/pull/1307",
-      "draft": false,
-      "package": "@magpie-community/opencode-cursor-auth",
-      "packageDirectory": "cursor",
-      "titlePrefix": "cursor",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 2,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-19T02:07:04.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-18T06:28:52.000Z",
-      "labels": [],
-      "author": "liyihang866"
     },
     {
       "number": 1253,
@@ -8758,7 +8792,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-10-26T22:34:33.000Z",
-      "updatedBucket": "30d",
+      "updatedBucket": "older",
       "createdAt": "2026-10-24T16:52:29.000Z",
       "labels": [],
       "author": "Relightstar"
