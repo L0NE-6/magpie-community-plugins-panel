@@ -193,7 +193,7 @@ async function layout(cdp) {
   return result.result.value
 }
 
-async function interact(cdp) {
+async function interact(cdp, issueNumber) {
   await cdp.send("Runtime.evaluate", {
     expression: `document.querySelector('button[data-type="issue"]').click()`,
   })
@@ -207,7 +207,7 @@ async function interact(cdp) {
   await cdp.send("Runtime.evaluate", {
     expression: `(() => {
       const input = document.querySelector("#search");
-      input.value = "1532";
+      input.value = ${JSON.stringify(String(issueNumber))};
       input.dispatchEvent(new Event("input", { bubbles: true }));
     })()`,
   })
@@ -263,10 +263,13 @@ async function main() {
     await cdp.send("Page.navigate", { url })
     await loaded
     const data = await waitForDashboard(cdp)
+    const status = JSON.parse(await readFile(path.join(dashboardRoot, "status.json"), "utf8"))
+    const issueNumber = status.issues[0]?.number
+    if (!Number.isSafeInteger(issueNumber)) throw new Error("dashboard snapshot has no open issue to search")
     await mkdir(outputRoot, { recursive: true })
     const desktop = path.join(outputRoot, "dashboard-desktop.png")
     await screenshot(cdp, desktop)
-    await interact(cdp)
+    await interact(cdp, issueNumber)
 
     await cdp.send("Emulation.setDeviceMetricsOverride", {
       width: 390,

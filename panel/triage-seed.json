@@ -1,15 +1,15 @@
 {
   "schema_version": "panel-triage-seed/v1",
-  "generated_at": "2026-11-25T11:02:20+08:00",
+  "generated_at": "2026-11-26T11:51:58+08:00",
   "repository": {
     "full_name": "magpie-community/plugins",
     "default_branch": "main",
     "snapshot_state": "open"
   },
   "summary": {
-    "open_total": 634,
-    "open_issues": 388,
-    "open_prs": 246,
+    "open_total": 631,
+    "open_issues": 396,
+    "open_prs": 235,
     "counts_match_github_page": true,
     "labeled_items_observed": 1,
     "package_clusters_total": 63,
@@ -22,12 +22,13 @@
   },
   "source": {
     "access_mode": "read-only",
-    "transport": "GitHub REST snapshots through the r.jina.ai public reader because direct GitHub egress and the configured 7900 proxy were unavailable",
+    "transport": "GitHub REST API through the local 7897 proxy",
     "api_base": "https://api.github.com/repos/magpie-community/plugins",
-    "snapshot_fetched_at": "2026-11-25T02:39:18Z",
+    "snapshot_fetched_at": "2026-11-26T03:51:58Z",
     "pagination": {
       "page_size": 100,
-      "pages": 7,
+      "issue_pages": 7,
+      "pull_pages": 3,
       "deduplicated_by": "number"
     },
     "upstream_actions_taken": {
@@ -43,9 +44,9 @@
       "Titles, bodies, open counts, comment counts, reactions, timestamps, draft state, and top-PR changed-file paths were read from the open-item snapshot.",
       "Labels are almost unused upstream; only one labeled item was observed, so title prefixes, body/package names, and changed-file paths drive clustering.",
       "Issue comments were not fetched; only comment counts are represented.",
-      "PR mergeability, conflict state, review approvals, and CI conclusions were not fetched and must be treated as unverified.",
-      "Author test claims in PR bodies are recorded as claims; this audit did not run package tests.",
-      "Direct GitHub egress was unavailable; the snapshot was obtained through a public read-only mirror, so panel-sync should refresh from GitHub before acting."
+      "PR mergeability, conflict state and CI conclusions are recorded separately in panel/pr-audit.json; live behavior remains unverified.",
+      "Author test claims in PR bodies are recorded as claims; this audit did not run every package suite.",
+      "The snapshot is point-in-time; panel-sync and panel-pr-audit must refresh from GitHub before acting."
     ]
   },
   "risk_levels": {

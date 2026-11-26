@@ -122,10 +122,11 @@ test("checker rejects a generated status file after mutation", async () => {
 
 test("curated triage seed has unique, ranked issue and pull-request queues", async () => {
   const seed = JSON.parse(await readFile(new URL("../panel/triage-seed.json", import.meta.url), "utf8"))
+  const status = JSON.parse(await readFile(new URL("../panel/status.json", import.meta.url), "utf8"))
   expect(seed.schema_version).toBe("panel-triage-seed/v1")
   expect(seed.repository.full_name).toBe("magpie-community/plugins")
-  expect(seed.summary.open_issues).toBe(388)
-  expect(seed.summary.open_prs).toBe(246)
+  expect(seed.summary.open_issues).toBe(status.summary.issueCount)
+  expect(seed.summary.open_prs).toBe(status.summary.pullCount)
   expect(seed.summary.open_total).toBe(seed.summary.open_issues + seed.summary.open_prs)
   expect(seed.priority_issues).toHaveLength(seed.summary.priority_issue_count)
   expect(seed.priority_prs).toHaveLength(seed.summary.priority_pr_count)
