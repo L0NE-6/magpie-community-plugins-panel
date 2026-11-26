@@ -49,6 +49,7 @@ the remaining upstream backlog is fixed.
 | #7214 / upstream PR #1555 | `gcp-ai` | Adds Gemini 4 Neon to the pre-sign-in model seed with its 1,048,576-token window, 65,536-token output and low/medium/high/xhigh efforts | package check and direct seed assertion pass; full suite has pre-existing Windows gcloud/Chrome fixture failures |
 | upstream `d8e0ed7` | plugin repository | Syncs the panel through Kiro 0.1.43, Zed 0.1.20, agy-cli 0.1.134, CodeArts 0.3.25, JoyCode 0.2.8, Notify 2.1.330 fixtures and Trae 0.2.55 | registry and package checks pass; Notify is 81/81; environment-dependent suites retain their existing Windows/Bun limitations |
 | upstream `3150bdc` | `codearts` | Treats InferHub `001001005` on a chat over 10 MB as a 413 size error instead of retrying or renewing the account | 217 package tests pass with 0 failures; two unrelated Windows temp-cleanup `EBUSY` errors remain |
+| upstream `be00f49` | `minimax` | Syncs 0.2.10 so a refresh result remains associated with the token it spent, including when Magpie's save fails | 194 MiniMax tests pass; panel tests 7/7; dashboard desktop/mobile checks pass; no live account refresh exercised |
 
 ## Queue
 

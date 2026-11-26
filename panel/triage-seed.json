@@ -1,6 +1,6 @@
 {
   "schema_version": "panel-triage-seed/v1",
-  "generated_at": "2026-11-26T11:51:58+08:00",
+  "generated_at": "2026-11-26T14:15:00+08:00",
   "repository": {
     "full_name": "magpie-community/plugins",
     "default_branch": "main",
@@ -8,15 +8,15 @@
   },
   "summary": {
     "open_total": 631,
-    "open_issues": 396,
-    "open_prs": 235,
+    "open_issues": 395,
+    "open_prs": 236,
     "counts_match_github_page": true,
     "labeled_items_observed": 1,
-    "package_clusters_total": 63,
+    "package_clusters_total": 60,
     "package_clusters_listed": 40,
     "other_known_packages": 23,
     "other_known_items": 27,
-    "unclassified_items": 200,
+    "unclassified_items": 222,
     "priority_issue_count": 15,
     "priority_pr_count": 15
   },
@@ -24,7 +24,7 @@
     "access_mode": "read-only",
     "transport": "GitHub REST API through the local 7897 proxy",
     "api_base": "https://api.github.com/repos/magpie-community/plugins",
-    "snapshot_fetched_at": "2026-11-26T03:51:58Z",
+    "snapshot_fetched_at": "2026-11-26T06:15:00Z",
     "pagination": {
       "page_size": 100,
       "issue_pages": 7,
