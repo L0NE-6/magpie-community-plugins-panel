@@ -85,3 +85,57 @@ test("a live tool round answered with a prefill tail drops the live session and 
     await kit.dispose()
   }
 })
+
+test("a tool-result prefill tail without a user turn is refused before starting agy", async () => {
+  const kit = await createBridgeKit({})
+  try {
+    const response = await kit.request(baseBody({
+      messages: [
+        { role: "assistant", content: [{ type: "tool_use", id: "toolu_cut1", name: "Read", input: { path: "/repo/a.txt" } }] },
+        { role: "user", content: [{ type: "tool_result", tool_use_id: "toolu_cut1", content: "FILE BODY: hello" }] },
+        { role: "assistant", content: "I read the file" },
+      ],
+    }))
+    assert.equal(response.status, 400, await response.clone().text())
+    assert.match(await response.text(), /no user turn to continue from/)
+    assert.equal(kit.acpSpawns.length, 0)
+  } finally {
+    await kit.dispose()
+  }
+})
+
+test("a tool-result prefill tail with an unmatched result is refused", async () => {
+  const kit = await createBridgeKit({})
+  try {
+    const response = await kit.request(baseBody({
+      messages: [
+        { role: "user", content: "read a.txt" },
+        { role: "assistant", content: [{ type: "tool_use", id: "toolu_cut1", name: "Read", input: { path: "/repo/a.txt" } }] },
+        { role: "user", content: [{ type: "tool_result", tool_use_id: "toolu_wrong", content: "FILE BODY: hello" }] },
+        { role: "assistant", content: "I read the file" },
+      ],
+    }))
+    assert.equal(response.status, 400, await response.clone().text())
+    assert.match(await response.text(), /incomplete tool history/)
+  } finally {
+    await kit.dispose()
+  }
+})
+
+test("an earlier tool_result cannot stand in for the user turn before a tool_use", async () => {
+  const kit = await createBridgeKit({})
+  try {
+    const response = await kit.request(baseBody({
+      messages: [
+        { role: "user", content: [{ type: "tool_result", tool_use_id: "toolu_old", content: "old result" }] },
+        { role: "assistant", content: [{ type: "tool_use", id: "toolu_cut1", name: "Read", input: { path: "/repo/a.txt" } }] },
+        { role: "user", content: [{ type: "tool_result", tool_use_id: "toolu_cut1", content: "FILE BODY: hello" }] },
+        { role: "assistant", content: "I read the file" },
+      ],
+    }))
+    assert.equal(response.status, 400, await response.clone().text())
+    assert.match(await response.text(), /no user turn to continue from/)
+  } finally {
+    await kit.dispose()
+  }
+})

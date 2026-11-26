@@ -5527,6 +5527,22 @@ function lastAssistantCalls(messages) {
     ? message.content.filter(block => block.type === "tool_use") : [])
 }
 
+// A tool round can only be resumed when its calls follow a user turn. This is
+// checked before the prefill split so a malformed body cannot start a session
+// just because it carries a tool_result.
+function hasUserBeforeToolUse(messages) {
+  let sawUser = false
+  for (const message of messages) {
+    const userTurn = message?.role === "user" &&
+      (typeof message.content === "string" || (Array.isArray(message.content) &&
+        message.content.some(block => block?.type !== "tool_result")))
+    if (userTurn) sawUser = true
+    if (message?.role === "assistant" && Array.isArray(message.content) &&
+      message.content.some(block => block?.type === "tool_use") && !sawUser) return false
+  }
+  return true
+}
+
 // agy cuts a tool result over its size short, saves the whole of it as
 // <agy dir>/brain/<session>/.system_generated/steps/<step>/output.txt and
 // has the model read that file. With magpie on a server (Docker) and the
@@ -7065,8 +7081,12 @@ function validateBody(body) {
   const lastRole = body.messages.at(-1)?.role
   // A text-only assistant tail is a client-side prefill (see prefillRun).
   const prefillTail = prefillTailEnabled() && lastRole === "assistant" && assistantTextOf(body.messages.at(-1)) !== null
+  const resultBlocks = extractToolResults(body)
   const validTailRole = lastRole === "user" || lastRole === "system" || lastRole === "developer" || prefillTail
-  if (!validTailRole || (!extractToolResults(body).length &&
+  if (prefillTail && resultBlocks.length && !hasUserBeforeToolUse(trailing.history)) {
+    throw new UnsupportedContent("a request combining a tool_result with an assistant prefill tail and no user turn to continue from")
+  }
+  if (!validTailRole || (!resultBlocks.length &&
     !trailing.messages.some((message) => message.role === "user") && !trailing.history.length)) {
     throw new UnsupportedContent(prefillTail
       ? "a request whose only messages are assistant prefill turns (no user turn to continue from)"
