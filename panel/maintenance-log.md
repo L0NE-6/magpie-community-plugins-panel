@@ -38,6 +38,9 @@ the remaining upstream backlog is fixed.
 | #1522 | `agy-cli` | Uses Magpie's namespaced proxy variables for OAuth refresh, Code Assist quota reads and `agy` child processes | 17 platform tests and 2 proxy/usage tests pass; no live proxy/account A/B verification |
 | #1475 | `agy-cli` | Treats an unchanged replayed `tool_result` as the same history after bridge notices were appended | upstream duplicate-result notice tests pass |
 | #1491 | `agy-cli` | Keeps the live session when an earlier image has already been swapped for its placeholder | upstream image-slim tests pass |
+| #1512 | `agy-cli` | Accepts valid `tool_result` + assistant prefill resumes while keeping malformed tails rejected | 5 focused prefill tests pass; no real interrupted gateway resume |
+| #1556 | `agy-cli` | Keeps one live ACP session across transient hoisted images and one-request gateway reminder blocks | 5 focused transient-history tests pass; no real Codex client capture |
+| #1557 | `astudio` | Finds a portable Chrome++ default browser without trusting a relaunch-only CDP pipe | 88 package tests and real Windows default-browser resolution pass; no live Chrome++ sign-in |
 | upstream `0.1.131`–`0.1.133` | `agy-cli` | Preserves the emitted tool step on identical retries, keeps short user text during large-reminder clipping, and prevents one account's request from continuing in another account's agy | 24 account-scope, retry, compatibility and clipping tests pass |
 | #7736 | `agy-cli` | Marks a no-output agy read timeout as a non-retryable 504 while every output chunk renews the inactivity deadline | 3 timeout tests pass; tool-wait timeout keeps its prior shape |
 | #1543 | `agy-cli` | Adds Gemini 4 Hydrogen variants to the cold-start catalog without aliasing the independent Argon family | 2 focused catalog tests pass |
