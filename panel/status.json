@@ -7475,24 +7475,6 @@
       "author": "jinpy666"
     },
     {
-      "number": 1590,
-      "title": "minimax-design-auth 0.1.0: MiniMax Design desktop provider plugin (CN & Global)",
-      "url": "https://github.com/magpie-community/plugins/pull/1590",
-      "draft": false,
-      "package": "@magpie-community/agent-minimax-design",
-      "packageDirectory": "minimax-design",
-      "titlePrefix": "minimax-design",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 3,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-27T01:10:09.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T13:39:47.000Z",
-      "labels": [],
-      "author": "GoooIce"
-    },
-    {
       "number": 1134,
       "title": "agent-meowcode 0.1.1: the new icon",
       "url": "https://github.com/magpie-community/plugins/pull/1134",
