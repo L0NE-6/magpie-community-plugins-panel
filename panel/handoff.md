@@ -91,41 +91,41 @@ All three are `agy-cli`, and each needs a decision rather than more work:
 | #1033 (in `yetone/magpie`) | **in progress**: `wip/1033-reasonix` carries 38 new files and all eight modified ones, and `go build -tags nogui ./...` passes. See below for what is left
 
 
-## #1033 in progress: what is left
+## #1033 is done: `sessions` and `gui` both pass
 
-`wip/1033-reasonix` (L0NE-6/magpie-panel) compiles. Two things remain, both
-needing a decision or a debugger rather than a rebase.
+`wip/1033-reasonix` (L0NE-6/magpie-panel, `b3256e002`) carries the 38 new files
+and the PR's changes to eight existing ones, and reads a Reasonix history in all
+three shapes it is kept in.
 
-**1. A panic under `refresh`.** The trace lands on `reasonix.go:300`
-(`s.DBRevision = f.m().rev`) with the parameter printed as `0x0?`; a build
-with `-gcflags=all='-N -l'` prints the real one and it is **not** nil, so the
-printed argument was an inlined artefact. A nil guard at the top of
-`reasonixMetadata` and an `s != nil` at its call site are both in place. Next:
-`dlv` on that line, or a look at what the compiler inserts for the string
-assignment.
+    go build -tags nogui ./...                → OK
+    go test  -tags nogui ./internal/sessions/ → ok
+    go test  -tags nogui ./internal/gui/      → ok
 
-**2. `TestReasonix229SidecarRefreshAndTail` reads `Input` 0.** A probe in
-`parseRead`'s cache check shows **both** files of that session arriving with
-`old == false` after the marker is written:
+**The one thing worth knowing if you touch this again:** main's
+`parse(f, old)` is `parseWith(f, old, nil)` -- a one-line wrapper -- so the
+patch's three dispatch branches belong in **`parseRead`**. Put them anywhere
+else and `parseReasonixWire` / `parseReasonixStore` (the PR's real readers) are
+never called; the generic line parser runs instead and every usage line is lost.
 
-    [probe] …/2026-10-06.session.jsonl       old false size 7477
-    [probe] …/2026-10-06.session.wire.jsonl  old false size 2894
+Six independent bugs had to be fixed on the way, each of which made this agent's
+usage read 0: `refresh` not knowing reasonix; `s.ID` set after the scan;
+an empty sessionId judged "another session's"; `recordType` vs `kind`; a wire
+line keeping `usage` at the top level while a ledger line nests it under
+`event`; and a usage line with no time of its own (the file's mtime is the
+fallback `droid.go` and `liveagent.go` already use).
 
-So the whole conversation is re-parsed as new, not just its usage dropped —
-`reasonixMetadata` never touches tokens. Two readings, and the maintainer
-decides:
+Two more things that cost time and are not obvious:
 
-- the PR's `List` kept the previous state in the cache and re-read
-  incrementally; main does not, so `Input` 0 is correct and the **test**
-  should expect it (or only check `UsageIncomplete`);
-- or main's cache semantics are unchanged and the wiring puts a changing value
-  into `f.path`, so every poll is a new file.
+- `state` embeds **`*StateMore`**, so writing `s.DBRevision` dereferences a nil
+  pointer -- that was a panic, and `s.own().DBRevision` is the fix.
+- A probe env var left in `parseRead` is caught by `internal/agent`'s
+  `TestFolderVarsAreListed`: every variable `sessions` reads must be listed in
+  `agentenv.Vars`, or no sandbox clears it and a test meets the agent the
+  developer really has installed.
 
-Five structure adaptations main needed were made on that branch and are worth
-reusing for any other reasonix work: `fileMore` (`f.m().sid` to read),
-`named[Tokens]` for Models, Reasonix's fields inside `StateMore` (so `state`
-stays in the 416-byte class, `s.more()` / `s.own()`), `lazyre.New`, and
-`allFilesWith` / `Dirs` for the wiring.
+Baseline for judging failures here: `internal/agent` and `internal/cli` fail on
+clean `upstream/main` too (`TestAside*`, `TestKeyNote`); `internal/davsync`
+passes alone and only fails when run beside everything else.
 
 ## Do not touch: 3 (in `yetone/magpie`)
 
