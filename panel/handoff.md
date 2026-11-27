@@ -79,6 +79,43 @@ minus what main already has), which is what those six needed.
 **What the audit does not prove**: that each branch's own change still applies cleanly on top of a
 current main — it only proves the registry it carries is the right one.
 
+## Where the work ended, and what needs an author (2026-11-28)
+
+`magpie-community/plugins`, after 133 rounds against its 224 open pull requests:
+
+| | count |
+| --- | --- |
+| a branch exists in this fork | **154** |
+| of those, delivered and verified (branch + green suite + `check.mjs` + a comment with the exact command) | **160** pull requests |
+| shown to be already in main | 3 (`#1456`, `#1469`, and the pattern repeats on others) |
+| judged not rebaseable | 14 |
+| waiting on the author | 13 |
+| a second PR for a package that already has one | 2 |
+| untouched | 70 |
+
+**Six things only an author can settle, with the PR numbers**:
+
+1. **Two packages claimed twice** — `#869` (thinkrail, beside the delivered `#1301`) and
+   `#1160` (hindsight, beside the delivered `#876`). One PR each must close; the code is otherwise fine.
+2. **Missing adapter surface** — `#531` (no `opencode.mjs`/`opencode2.mjs`, and maybe it is a tool, not a
+   provider), `#802`'s `magpie-provider` (no 1.x export; its build also pins Bun 1.3.14), `#1449`
+   (no registry entry; `magpie` block has no name/summary to build one from).
+3. **Two generations of one subsystem, main's side is newer** — `#1279` (window objects), `#1244`
+   (`QUOTA_MARKER` array), `#928` (identity-less accounts), `#545` (`rest/refused`), `#1041`,
+   `#713`. Each needs the patch rewritten on main's skeleton, not merged.
+4. **A patch that changes a contract main pins in a test** — `#1437` (the first browser sign-in must
+   stay prompt-free), `#1261` (suite green on main, red with the patch).
+5. **A branch that is behind main** — `#1435` (version 0.1.110 against main's 0.1.134; `testkit.mjs`
+   diverged) and `#1640` (patch wants `index.mjs:4568`, main has 4303 lines).
+6. **A patch whose own tests fail on a clean checkout, for reasons that are in the patch** — `#1245`
+   (asserts 403 where the code answers 200), `#1288` (`peak.tokens` 50,000,000 against 100,000,000),
+   `#1068` (`python3 -I -c "import gflow"` cannot find an uninstalled package).
+
+**What "clear to zero" cannot mean here**: the 224 open pull requests are upstream's to merge or
+close; a fork account cannot. What can be done from here is exactly what was done — a branch per
+PR that still applies, a green suite, `check.mjs`, the exact commands in a comment, and an honest
+line when the patch needs its author.
+
 ## How a pull request was judged
 
 In this order, because the order is what saves time:
