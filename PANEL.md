@@ -16,16 +16,16 @@ The goal is not to create a competing plugin marketplace. The goal is to:
 
 ## Current Upstream Snapshot
 
-Live check: **2026-11-26 14:15 CST**
+Live check: **2026-11-27 10:48 CST**
 
 | Metric | Value |
 | :--- | ---: |
-| Upstream open issues | 395 |
-| Upstream open pull requests | 236 |
-| Merged PRs in the previous 7 days | 15 |
-| Closed issues in the previous 7 days | 12 |
+| Upstream open issues | 401 |
+| Upstream open pull requests | 223 |
+| Merged PRs in the previous 7 days | 37 |
+| Closed issues in the previous 7 days | 25 |
 | Upstream default branch | `main` |
-| Upstream `main` commit | `be00f49` |
+| Upstream `main` commit | `7909098` |
 | License | MIT |
 
 The counts are a snapshot, not a promise. The generated dashboard under
@@ -71,8 +71,11 @@ The panel sync workflow reads upstream open issues and PRs, then generates:
 
 - `panel/status.json`: machine-readable counts and metadata;
 - `panel/issues.md`: issues grouped by package and priority;
-- `panel/pulls.md`: PRs grouped by package, draft state and review priority;
-- `panel/triage-seed.json`: curated high-priority queue.
+- `panel/pulls.md`: PRs grouped by package, draft state and review priority.
+
+`panel/triage-seed.json` is the curated high-priority queue. Its snapshot-derived
+counts and package clusters are reconciled with those generated files, while
+its priority and overlap selections remain maintainer-curated.
 
 ### 2. Triage
 
