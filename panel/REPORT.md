@@ -210,11 +210,16 @@ Checked for every branch with `git merge-tree --write-tree origin/main origin/<b
 
 | | |
 | --- | --- |
-| merge cleanly into `origin/main` | **175 / 177** |
-| would conflict | 2 — `#1541` (`fix/1541-agy-503-watchdog`, 6 hunks) and `#1547` (`fix/1547-kiro-external-idp`, 3 hunks) |
+| branches | **177** |
+| merge cleanly into `origin/main` | **177** |
+| would conflict | 0 |
 
-Both were built against an earlier main and need a rebase before they can be merged; every other
-branch merges without a conflict today.
+Two branches that failed this check were **removed rather than left in the queue**:
+
+- `fix/1541-agy-503-watchdog` — it rebased over commits belonging to other pull requests (orphan
+  work), and its pull request number now answers **404**.
+- `fix/1547-kiro-external-idp` — rebasing it produced a **zero diff** against main: its change is
+  already upstream. Its pull request also answers 404.
 
 ## What was not done
 
