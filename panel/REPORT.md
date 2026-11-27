@@ -203,7 +203,21 @@ a suite has pre-existing failures on this machine, the comment says so with the 
 | `#1634` | `add/1634-mobook` | `400c4146` | mobook | mobook: MoBook (书灵墨宝) as a subscription provider |
 | `#7214` | `fix/7214-gcp-ai-neon-upstream` | `c8b3fc7c` | gcp-ai | gcp-ai 0.2.4: seed Gemini 4 Neon (#7214) |
 
+
+## Do the branches still merge into today's main?
+
+Checked for every branch with `git merge-tree --write-tree origin/main origin/<branch>`:
+
+| | |
+| --- | --- |
+| merge cleanly into `origin/main` | **175 / 177** |
+| would conflict | 2 — `#1541` (`fix/1541-agy-503-watchdog`, 6 hunks) and `#1547` (`fix/1547-kiro-external-idp`, 3 hunks) |
+
+Both were built against an earlier main and need a rebase before they can be merged; every other
+branch merges without a conflict today.
+
 ## What was not done
+
 
 - **Nothing was merged or closed.** Those 224 pull requests are upstream's; a fork account cannot
   merge them. The work here is a branch plus the evidence that it is safe to merge.
