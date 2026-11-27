@@ -231,6 +231,21 @@ Checked for every branch with `git merge-tree --write-tree origin/main origin/<b
 | `magpie-community/plugins` | **403** | 289 | 692 |
 | `Gyl1219/magpie-providers-hub` | **6** | 4 | 10 |
 
+**Exact counts (search API, 2026-11-28)** — magpie's 5343:
+
+| what | count |
+| --- | --- |
+| opened by the maintainer himself (`author:yetone`) | **1364** (26%) |
+| opened by anyone else | 3979 |
+| **opened by anyone else and never commented on** | **1681** ← the ones nobody ever answered |
+| no label at all | **4953** (93%) |
+| zero comments (any author) | 2394 |
+| labelled `bug` / `enhancement` | 201 / 189 |
+
+So the part that "clear them all" could even mean is **1681 unanswered non-maintainer issues** in
+magpie, plus the equivalent in plugins — not 5343. The other 1364 are the maintainer's own notes and
+are his to close, and 4953 of the whole set were never triaged at all.
+
 Three measurements decide how this has to be worked:
 
 1. **80–100% carry no label** (magpie sample 401 of 500 unlabeled; plugins 301 of 302). There is no
