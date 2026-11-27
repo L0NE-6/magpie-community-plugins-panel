@@ -52,6 +52,7 @@ the remaining upstream backlog is fixed.
 | upstream `be00f49` | `minimax` | Syncs 0.2.10 so a refresh result remains associated with the token it spent, including when Magpie's save fails | 194 MiniMax tests pass; panel tests 7/7; dashboard desktop/mobile checks pass; no live account refresh exercised |
 | #1446 | `factory` | Full-name retry now aliases exact-refused Cowork MCP tool names and restores their calls; upstream PR #1611 remains open | 253 Factory tests pass; package and panel checks pass; no live Cowork/account rerun |
 | PR audit `2026-11-27T04:44:54Z` | `maintenance panel` | Refreshes the stale 2026-11-25 PR audit to 227 current open PRs and 23 merge candidates | panel tests 7/7; panel check passes at 401 issues / 223 PRs; desktop/mobile dashboard data render; Windows Chrome dictionary cleanup remains an EBUSY environment boundary |
+| #1253 | `qoder` | Cancels the pending first-event response reader when the silent watchdog fires, so headers followed by no SSE event return the existing 504 instead of hanging; fork PR #17 carries 0.2.76 and upstream PR #1253 remains open | 7 focused watchdog tests and 467 Qoder tests pass; registry, bumped and panel checks pass; controlled reader test only, no live Qoder account |
 
 ## Queue
 
