@@ -207,6 +207,64 @@ That is the pattern across the rest: **either the adapter surface is missing, th
 edits is gone, or the package has moved to a different generation.** None of those are settled by
 trying harder.
 
+## Every pull request whose outcome is already decided
+
+Delivered branches are on this fork (`git ls-remote --heads origin`); each carries a comment on the
+pull request with the command that was run. This is the other side: the ones that will not move
+without their author, grouped by **what is actually wrong**, because that is what decides who can
+fix it.
+
+### A. Two pull requests for one package — the maintainer picks one
+
+| package | delivered | duplicate |
+| --- | --- | --- |
+| thinkrail | `#1301` (`add/1301-thinkrail`) | `#869` — connect-only, writes ~/.pi/agent/models.json |
+| hindsight | `#876` (`add/876-hindsight`) | `#1160` — 1.0.0 vs the delivered 0.1.0 |
+
+### B. Missing adapter surface — the author adds files
+
+| PR | what is missing |
+| --- | --- |
+| `#531` volcengine-asr | `opencode.mjs` + `opencode2.mjs`; and it may be a **tool**, not a provider |
+| `#73` index-translate | same two files, same question |
+| `#802` magpie-provider | a 1.x export (its `dist` is 2.x only); also pins Bun 1.3.14 to build |
+| `#1449` zcode-cli | a registry entry (its `magpie` block has no name/summary to build one from) |
+
+### C. Two generations of one subsystem — main's is newer
+
+`#1279` (window objects), `#1244` (`QUOTA_MARKER` → `QUOTA_MARKERS`), `#345` (minimax `usageOf`
+metrics: main's ledger counts credits as a share of live batches, #393), `#238` (loomy:
+`LoomyAuthPlugin`+`bun:test` against `Loomy`+`node:test`), `#928`, `#545`, `#1041`, `#713`.
+
+### D. The context a patch edits no longer exists
+
+| PR | evidence |
+| --- | --- |
+| `#1640` qoder | `patch failed: index.mjs:4568`, main has 4303 lines |
+| `#1641` zcode | `patch failed: index.mjs:4107`, main has 3674 lines |
+| `#1435` agy | version 0.1.110 against main's 0.1.134; `testkit.mjs` diverged |
+
+### E. The patch's own tests are red on a clean checkout
+
+| PR | what fails |
+| --- | --- |
+| `#1245` page-provider-quota | asserts 403 where the code answers 200 (the `sec-fetch-mode` guard) |
+| `#1288` page-credit-balance | `peak.tokens` 50,000,000 against an expected 100,000,000 |
+| `#1068` gflow | `python3 -I -c "import gflow"` cannot import a package that is never installed |
+| `#1333` agent-console | makes main's `a real Linux zombie cannot keep the old host session alive` fail |
+| `#1384` agent-office | its own `scan-cadence.test.mjs:143` fails deterministically |
+
+### F. A patch that changes a contract main pins
+
+`#1437` — main asserts the first browser sign-in has no prompts ("the host opens the window straight
+away"); the patch gives both browser methods a browser-select prompt.
+
+### G. The patch asks for a decision, and has been asked
+
+`#233` (cursor team override — a merge that keeps main's automatic team selection is drafted in the
+comment), `#545` (`refused` as a side channel), `#713` (shared probe), `#928` (identity-less
+accounts), `#1296`, `#1416`, `#1418`, `#978` (magpie-panel).
+
 ## How a pull request was judged
 
 In this order, because the order is what saves time:
