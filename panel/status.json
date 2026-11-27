@@ -1,39 +1,39 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-27T06:49:50.337Z",
+  "generatedAt": "2026-11-27T07:20:20.220Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 403,
-    "pullCount": 229,
+    "issueCount": 401,
+    "pullCount": 228,
     "draftPullCount": 11,
-    "readyPullCount": 218,
+    "readyPullCount": 217,
     "byPriority": {
       "issues": {
         "P0": 0,
         "P1": 0,
         "P2": 2,
-        "P3": 401
+        "P3": 399
       },
       "pulls": {
         "P0": 0,
         "P1": 0,
         "P2": 0,
-        "P3": 229
+        "P3": 228
       }
     },
     "byComments": {
       "issues": {
-        "none": 154,
+        "none": 152,
         "light": 187,
         "active": 51,
         "hot": 11
       },
       "pulls": {
-        "none": 116,
+        "none": 115,
         "light": 88,
         "active": 24,
         "hot": 1
@@ -42,12 +42,12 @@
     "byUpdated": {
       "issues": {
         "24h": 32,
-        "7d": 70,
-        "30d": 231,
+        "7d": 67,
+        "30d": 232,
         "older": 70
       },
       "pulls": {
-        "24h": 18,
+        "24h": 17,
         "7d": 72,
         "30d": 121,
         "older": 18
@@ -55,7 +55,7 @@
     },
     "byDraft": {
       "draft": 11,
-      "ready": 218
+      "ready": 217
     }
   },
   "issues": [
@@ -68,9 +68,9 @@
       "titlePrefix": "qoder",
       "priority": "P2",
       "prioritySource": "title",
-      "comments": 7,
+      "comments": 8,
       "commentBucket": "active",
-      "updatedAt": "2026-11-27T02:06:20.000Z",
+      "updatedAt": "2026-11-27T07:10:52.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T02:34:06.000Z",
       "labels": [],
@@ -94,6 +94,23 @@
       "author": "tyh97"
     },
     {
+      "number": 873,
+      "title": "chat: reuse Library native OAuth through credential-free resolved MCP descriptors",
+      "url": "https://github.com/magpie-community/plugins/issues/873",
+      "package": "@magpie-community/page-chat",
+      "packageDirectory": "chat",
+      "titlePrefix": "chat",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-27T07:09:29.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-08T15:22:54.000Z",
+      "labels": [],
+      "author": "duhu2000"
+    },
+    {
       "number": 1563,
       "title": "antigravity 在magpie的 antigravity CLI 插件封号概率高吗？",
       "url": "https://github.com/magpie-community/plugins/issues/1563",
@@ -102,13 +119,47 @@
       "titlePrefix": "antigravity",
       "priority": "P3",
       "prioritySource": "default",
-      "comments": 18,
+      "comments": 21,
       "commentBucket": "hot",
-      "updatedAt": "2026-11-27T06:45:38.000Z",
+      "updatedAt": "2026-11-27T06:53:45.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T03:43:58.000Z",
       "labels": [],
       "author": "NeroLiang19"
+    },
+    {
+      "number": 1619,
+      "title": "[Feature Request] 支持 CLI 工具的统一管理与自动更新",
+      "url": "https://github.com/magpie-community/plugins/issues/1619",
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "Feature Request",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T06:52:35.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T06:52:35.000Z",
+      "labels": [],
+      "author": "I-am-c"
+    },
+    {
+      "number": 1615,
+      "title": "挂载到sub2api 中转上，出现0输入和0输出token 情况",
+      "url": "https://github.com/magpie-community/plugins/issues/1615",
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": null,
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-27T06:51:49.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T05:05:14.000Z",
+      "labels": [],
+      "author": "easyku"
     },
     {
       "number": 1617,
@@ -143,23 +194,6 @@
       "createdAt": "2026-11-26T15:18:03.000Z",
       "labels": [],
       "author": "ninago4nina"
-    },
-    {
-      "number": 1615,
-      "title": "挂载到sub2api 中转上，出现0输入和0输出token 情况",
-      "url": "https://github.com/magpie-community/plugins/issues/1615",
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": null,
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-27T05:05:14.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-27T05:05:14.000Z",
-      "labels": [],
-      "author": "easyku"
     },
     {
       "number": 1572,
@@ -211,23 +245,6 @@
       "createdAt": "2026-11-10T15:22:11.000Z",
       "labels": [],
       "author": "chrisjian"
-    },
-    {
-      "number": 1446,
-      "title": "Factory 0.1.56: Cowork built-in MCP tool declarations still receive content_policy_rejected on Magpie 0.1.4657",
-      "url": "https://github.com/magpie-community/plugins/issues/1446",
-      "package": "@magpie-community/opencode-factory-auth",
-      "packageDirectory": "factory",
-      "titlePrefix": "Factory",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-27T04:01:32.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-21T23:36:31.000Z",
-      "labels": [],
-      "author": "q1831507766-a11y"
     },
     {
       "number": 209,
@@ -468,23 +485,6 @@
       "author": "yetone"
     },
     {
-      "number": 1588,
-      "title": "uebox: the paths test is red on macOS (XDG_CONFIG_HOME guard is !== win32)",
-      "url": "https://github.com/magpie-community/plugins/issues/1588",
-      "package": "@magpie-community/agent-uebox",
-      "packageDirectory": "uebox",
-      "titlePrefix": "uebox",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-26T13:03:23.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T13:03:23.000Z",
-      "labels": [],
-      "author": "yetone"
-    },
-    {
       "number": 1584,
       "title": "agy-cli: test/catalog.mjs \"an account of agy's own that agy held once…\" fails on Windows (kept file mode 0o666)",
       "url": "https://github.com/magpie-community/plugins/issues/1584",
@@ -670,23 +670,6 @@
       "createdAt": "2026-11-23T12:48:12.000Z",
       "labels": [],
       "author": "wangbingnan136"
-    },
-    {
-      "number": 873,
-      "title": "chat: reuse Library native OAuth through credential-free resolved MCP descriptors",
-      "url": "https://github.com/magpie-community/plugins/issues/873",
-      "package": "@magpie-community/page-chat",
-      "packageDirectory": "chat",
-      "titlePrefix": "chat",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T01:33:47.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-08T15:22:54.000Z",
-      "labels": [],
-      "author": "duhu2000"
     },
     {
       "number": 1502,
@@ -1771,7 +1754,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-20T07:13:27.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-20T07:13:27.000Z",
       "labels": [],
       "author": "Aevisen"
@@ -1788,7 +1771,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-20T07:11:35.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-20T07:11:35.000Z",
       "labels": [],
       "author": "zhetoo"
@@ -1877,23 +1860,6 @@
       "createdAt": "2026-11-20T02:38:19.000Z",
       "labels": [],
       "author": "yetone"
-    },
-    {
-      "number": 1379,
-      "title": "agy-cli: Claude Code's compaction request is summarized from a 112 KiB clipped replay instead of the live session",
-      "url": "https://github.com/magpie-community/plugins/issues/1379",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-20T02:29:29.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-20T02:29:29.000Z",
-      "labels": [],
-      "author": "Laokashouji"
     },
     {
       "number": 1374,
@@ -7268,7 +7234,7 @@
       "prioritySource": "default",
       "comments": 5,
       "commentBucket": "active",
-      "updatedAt": "2026-11-27T06:06:33.000Z",
+      "updatedAt": "2026-11-27T07:18:48.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T08:38:26.000Z",
       "labels": [],
@@ -9003,6 +8969,42 @@
       "author": "MasakiMu319"
     },
     {
+      "number": 1620,
+      "title": "agy-cli 0.1.154: re-probe what agy acp offers after a TTL, so the model list follows the server (#1592)",
+      "url": "https://github.com/magpie-community/plugins/pull/1620",
+      "draft": false,
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T07:16:40.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T07:16:40.000Z",
+      "labels": [],
+      "author": "ninago4nina"
+    },
+    {
+      "number": 1612,
+      "title": "agy-cli 0.1.154: a user's video or audio reaches Gemini through agy's view_file",
+      "url": "https://github.com/magpie-community/plugins/pull/1612",
+      "draft": false,
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T07:11:41.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T04:25:38.000Z",
+      "labels": [],
+      "author": "wy-z"
+    },
+    {
       "number": 1618,
       "title": "minimax-design-auth 0.2.0: native image & video models and canonical model names",
       "url": "https://github.com/magpie-community/plugins/pull/1618",
@@ -9075,42 +9077,6 @@
       "author": "ArtrixTech"
     },
     {
-      "number": 1612,
-      "title": "agy-cli 0.1.154: a user's video or audio reaches Gemini through agy's view_file",
-      "url": "https://github.com/magpie-community/plugins/pull/1612",
-      "draft": false,
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-27T04:25:38.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-27T04:25:38.000Z",
-      "labels": [],
-      "author": "wy-z"
-    },
-    {
-      "number": 1611,
-      "title": "factory 0.1.60: Cowork MCP names take part in full retry",
-      "url": "https://github.com/magpie-community/plugins/pull/1611",
-      "draft": false,
-      "package": "@magpie-community/opencode-factory-auth",
-      "packageDirectory": "factory",
-      "titlePrefix": "factory",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-27T03:50:22.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-27T03:50:22.000Z",
-      "labels": [],
-      "author": "L0NE-6"
-    },
-    {
       "number": 1610,
       "title": "agy-cli: compare and hash long conversation histories incrementally",
       "url": "https://github.com/magpie-community/plugins/pull/1610",
@@ -9145,24 +9111,6 @@
       "createdAt": "2026-11-27T03:38:22.000Z",
       "labels": [],
       "author": "WillSuo-Github"
-    },
-    {
-      "number": 1607,
-      "title": "uebox: the paths test runs its linux assertion on every host (#1588)",
-      "url": "https://github.com/magpie-community/plugins/pull/1607",
-      "draft": false,
-      "package": "@magpie-community/agent-uebox",
-      "packageDirectory": "uebox",
-      "titlePrefix": "uebox",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-27T03:08:52.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-27T03:03:23.000Z",
-      "labels": [],
-      "author": "EarnMikasong"
     },
     {
       "number": 1606,

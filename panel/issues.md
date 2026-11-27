@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-27T06:49:50.337Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-27T07:20:20.220Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
-- Open issues: **403**
-- Priority: P0 **0**, P1 **0**, P2 **2**, P3 **401**
-- Comments: none **154**, light **187**, active **51**, hot **11**
-- Updated: 24h **32**, 7d **70**, 30d **231**, older **70**
+- Open issues: **401**
+- Priority: P0 **0**, P1 **0**, P2 **2**, P3 **399**
+- Comments: none **152**, light **187**, active **51**, hot **11**
+- Updated: 24h **32**, 7d **67**, 30d **232**, older **70**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -25,7 +25,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P2 | 7 (active) | 2026-11-27T02:06:20.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1560 qoder：账号订阅里面的积分无法使用，都显示被放到p2队伍，已经测试了所有模型了](https://github.com/magpie-community/plugins/issues/1560) |
+| P2 | 8 (active) | 2026-11-27T07:10:52.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1560 qoder：账号订阅里面的积分无法使用，都显示被放到p2队伍，已经测试了所有模型了](https://github.com/magpie-community/plugins/issues/1560) |
 | P2 | 0 (none) | 2026-11-23T12:42:29.000Z | 7d | `@magpie-community/opencode-qoder-auth` | [#1489 qoder：请增加 WorkBuddy 插件同款“隐去 DeepSeek Harness 名字”清洗，避免 DSH 请求被 Qoder 放进 p2 队列](https://github.com/magpie-community/plugins/issues/1489) |
 
 
@@ -68,12 +68,6 @@ _No open issues._
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
 | P3 | 0 (none) | 2026-11-20T16:19:43.000Z | 7d | `@magpie-community/agent-nowledge-mem` | [#1410 nowledge-mem-agent sync.test: "unchanged managed provider stays…" red at 5.9s in a full run (WSL)](https://github.com/magpie-community/plugins/issues/1410) |
-
-### Package: `@magpie-community/agent-uebox`
-
-| Priority | Comments | Updated | Updated bucket | Package | Issue |
-| --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-26T13:03:23.000Z | 24h | `@magpie-community/agent-uebox` | [#1588 uebox: the paths test is red on macOS (XDG_CONFIG_HOME guard is !== win32)](https://github.com/magpie-community/plugins/issues/1588) |
 
 ### Package: `@magpie-community/gateway-nowledge-mem`
 
@@ -173,7 +167,6 @@ _No open issues._
 | P3 | 0 (none) | 2026-11-20T10:22:56.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1398 agy-cli: reject_active on live attached/steering turn returns 409 instead of retryable 503 BusyError](https://github.com/magpie-community/plugins/issues/1398) |
 | P3 | 0 (none) | 2026-11-20T10:22:51.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1397 agy-cli: agy_same_generation emits all-zero usage (0/0/0/0), triggering uncached fallback tokenization in downstream proxies](https://github.com/magpie-community/plugins/issues/1397) |
 | P3 | 4 (active) | 2026-11-20T04:04:10.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1058 agy-cli 又出现缓存率0%的情况](https://github.com/magpie-community/plugins/issues/1058) |
-| P3 | 0 (none) | 2026-11-20T02:29:29.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1379 agy-cli: Claude Code's compaction request is summarized from a 112 KiB clipped replay instead of the live session](https://github.com/magpie-community/plugins/issues/1379) |
 | P3 | 0 (none) | 2026-11-19T17:05:54.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1371 \[agy-cli\] Preserve session context when Codex tool_search adds tools mid-turn](https://github.com/magpie-community/plugins/issues/1371) |
 | P3 | 0 (none) | 2026-11-19T12:34:20.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1361 agy-cli：Gemini 请求中的 googleSearch 未执行或未返回搜索证据，仍返回 HTTP 200](https://github.com/magpie-community/plugins/issues/1361) |
 | P3 | 0 (none) | 2026-11-19T12:06:19.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1360 agy-cli: degraded ACP session with empty/missing configOptions falls back to legacy session/set_model with effort suffix and wraps error as 400](https://github.com/magpie-community/plugins/issues/1360) |
@@ -214,7 +207,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 18 (hot) | 2026-11-27T06:45:38.000Z | 24h | `@magpie-community/opencode-antigravity-auth` | [#1563 antigravity 在magpie的 antigravity CLI 插件封号概率高吗？](https://github.com/magpie-community/plugins/issues/1563) |
+| P3 | 21 (hot) | 2026-11-27T06:53:45.000Z | 24h | `@magpie-community/opencode-antigravity-auth` | [#1563 antigravity 在magpie的 antigravity CLI 插件封号概率高吗？](https://github.com/magpie-community/plugins/issues/1563) |
 | P3 | 0 (none) | 2026-11-18T09:38:25.000Z | 30d | `@magpie-community/opencode-antigravity-auth` | [#1318 antigravity: disable Bun fixed 300s fetch timeout on streamGenerateContent and enforce explicit first-chunk / stream-idle deadlines](https://github.com/magpie-community/plugins/issues/1318) |
 | P3 | 4 (active) | 2026-11-17T08:05:20.000Z | 30d | `@magpie-community/opencode-antigravity-auth` | [#1105 opencode-antigravity-auth: DeepSeek Harness identity lines are not cloaked, Carbon output falls back to Flash Lite behavior](https://github.com/magpie-community/plugins/issues/1105) |
 | P3 | 3 (light) | 2026-11-14T11:38:02.000Z | 30d | `@magpie-community/opencode-antigravity-auth` | [#1118 antigravity: broken-up Claude Code, Codex and Hermes lines are still turned away 1-2 times in 10](https://github.com/magpie-community/plugins/issues/1118) |
@@ -319,7 +312,6 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 1 (light) | 2026-11-27T04:01:32.000Z | 24h | `@magpie-community/opencode-factory-auth` | [#1446 Factory 0.1.56: Cowork built-in MCP tool declarations still receive content_policy_rejected on Magpie 0.1.4657](https://github.com/magpie-community/plugins/issues/1446) |
 | P3 | 1 (light) | 2026-11-27T03:00:29.000Z | 24h | `@magpie-community/opencode-factory-auth` | [#1603 factory 0.1.58: Codex 调用 factory/deepseek-v4.1-flash-1017 仍返回 400 content_policy_rejected](https://github.com/magpie-community/plugins/issues/1603) |
 | P3 | 3 (light) | 2026-11-21T07:10:26.000Z | 7d | `@magpie-community/opencode-factory-auth` | [#1310 factory: Codex 无法再通过 Magpie 使用 Factory 模型](https://github.com/magpie-community/plugins/issues/1310) |
 | P3 | 4 (active) | 2026-11-19T09:06:39.000Z | 30d | `@magpie-community/opencode-factory-auth` | [#1284 Factory: Compatibility issue with OMP default system prompt](https://github.com/magpie-community/plugins/issues/1284) |
@@ -588,7 +580,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 1 (light) | 2026-11-26T01:33:47.000Z | 7d | `@magpie-community/page-chat` | [#873 chat: reuse Library native OAuth through credential-free resolved MCP descriptors](https://github.com/magpie-community/plugins/issues/873) |
+| P3 | 2 (light) | 2026-11-27T07:09:29.000Z | 24h | `@magpie-community/page-chat` | [#873 chat: reuse Library native OAuth through credential-free resolved MCP descriptors](https://github.com/magpie-community/plugins/issues/873) |
 | P3 | 1 (light) | 2026-11-03T23:27:40.000Z | 30d | `@magpie-community/page-chat` | [#684 chat: epub-reader test times out launching the browser on CI and blocks publish](https://github.com/magpie-community/plugins/issues/684) |
 
 ### Package: `@magpie-community/page-day-card`
@@ -628,13 +620,13 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 1 (light) | 2026-11-27T06:51:49.000Z | 24h | _unmapped_ | [#1615 挂载到sub2api 中转上，出现0输入和0输出token 情况](https://github.com/magpie-community/plugins/issues/1615) |
 | P3 | 0 (none) | 2026-11-27T06:09:50.000Z | 24h | _unmapped_ | [#1617 workbuddy插件添加TTS、ASR](https://github.com/magpie-community/plugins/issues/1617) |
-| P3 | 0 (none) | 2026-11-27T05:05:14.000Z | 24h | _unmapped_ | [#1615 挂载到sub2api 中转上，出现0输入和0输出token 情况](https://github.com/magpie-community/plugins/issues/1615) |
 | P3 | 1 (light) | 2026-11-26T19:01:00.000Z | 24h | _unmapped_ | [#1598 workbuddy插件可以增加自动保活与刷新凭证吗](https://github.com/magpie-community/plugins/issues/1598) |
 | P3 | 1 (light) | 2026-11-24T21:05:21.000Z | 7d | _unmapped_ | [#1498 这个经常做任务或签到等其他方式获取的积分，还有n小时就过期了，这个在magpie中路由使用反而最先使用还有m天过期的（已尝试使用多种路由模式）](https://github.com/magpie-community/plugins/issues/1498) |
 | P3 | 6 (active) | 2026-11-24T14:46:27.000Z | 7d | _unmapped_ | [#427 Qoder插件好像用不了](https://github.com/magpie-community/plugins/issues/427) |
 | P3 | 0 (none) | 2026-11-21T07:47:40.000Z | 7d | _unmapped_ | [#1430 zcode有多个订阅，没读取到](https://github.com/magpie-community/plugins/issues/1430) |
-| P3 | 0 (none) | 2026-11-20T07:13:27.000Z | 7d | _unmapped_ | [#1388 Fetching quota timed out](https://github.com/magpie-community/plugins/issues/1388) |
+| P3 | 0 (none) | 2026-11-20T07:13:27.000Z | 30d | _unmapped_ | [#1388 Fetching quota timed out](https://github.com/magpie-community/plugins/issues/1388) |
 | P3 | 0 (none) | 2026-11-20T05:34:18.000Z | 30d | _unmapped_ | [#1385 目前不支持图生图](https://github.com/magpie-community/plugins/issues/1385) |
 | P3 | 0 (none) | 2026-11-19T04:25:23.000Z | 30d | _unmapped_ | [#1346 workbuddy自动签到功能失效](https://github.com/magpie-community/plugins/issues/1346) |
 | P3 | 17 (hot) | 2026-11-18T05:08:25.000Z | 30d | _unmapped_ | [#473 raccoon商汤小浣熊插件有盗号嫌疑 There's a burglary on the raccoon plug.](https://github.com/magpie-community/plugins/issues/473) |
@@ -714,7 +706,8 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-20T07:11:35.000Z | 7d | _unmapped_ (`Feature Request`) | [#1387 Feature Request: Support Custom WorkBuddy Enterprise Login Domain (*.copilot.qq.com)](https://github.com/magpie-community/plugins/issues/1387) |
+| P3 | 0 (none) | 2026-11-27T06:52:35.000Z | 24h | _unmapped_ (`Feature Request`) | [#1619 \[Feature Request\] 支持 CLI 工具的统一管理与自动更新](https://github.com/magpie-community/plugins/issues/1619) |
+| P3 | 0 (none) | 2026-11-20T07:11:35.000Z | 30d | _unmapped_ (`Feature Request`) | [#1387 Feature Request: Support Custom WorkBuddy Enterprise Login Domain (*.copilot.qq.com)](https://github.com/magpie-community/plugins/issues/1387) |
 | P3 | 0 (none) | 2026-11-19T11:51:02.000Z | 30d | _unmapped_ (`Feature Request`) | [#1359 \[Feature Request\] ZCode：在用量卡中手动使用 GLM Coding Plan 重置卡](https://github.com/magpie-community/plugins/issues/1359) |
 | P3 | 1 (light) | 2026-11-09T19:05:46.000Z | 30d | _unmapped_ (`Feature Request`) | [#888 \[Feature Request\] OpenDesign: expose all three supported API protocols for each model](https://github.com/magpie-community/plugins/issues/888) |
 

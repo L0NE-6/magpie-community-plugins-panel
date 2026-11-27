@@ -1,22 +1,22 @@
 {
   "schema_version": "panel-triage-seed/v1",
-  "generated_at": "2026-11-27T14:49:50.337+08:00",
+  "generated_at": "2026-11-27T15:20:20.220+08:00",
   "repository": {
     "full_name": "magpie-community/plugins",
     "default_branch": "main",
     "snapshot_state": "open"
   },
   "summary": {
-    "open_total": 632,
-    "open_issues": 403,
-    "open_prs": 229,
+    "open_total": 629,
+    "open_issues": 401,
+    "open_prs": 228,
     "counts_match_github_page": true,
     "labeled_items_observed": 1,
-    "package_clusters_total": 63,
+    "package_clusters_total": 62,
     "package_clusters_listed": 40,
-    "other_known_packages": 23,
-    "other_known_items": 25,
-    "unclassified_items": 218,
+    "other_known_packages": 22,
+    "other_known_items": 23,
+    "unclassified_items": 219,
     "priority_issue_count": 15,
     "priority_pr_count": 15
   },
@@ -24,7 +24,7 @@
     "access_mode": "read-only",
     "transport": "GitHub REST through authenticated gh api with HTTPS_PROXY=http://127.0.0.1:7897",
     "api_base": "https://api.github.com/repos/magpie-community/plugins",
-    "snapshot_fetched_at": "2026-11-27T06:49:27.6216967Z",
+    "snapshot_fetched_at": "2026-11-27T07:20:04.6060669Z",
     "pagination": {
       "issues": {
         "page_size": 100,
@@ -70,37 +70,37 @@
     "issues": [
       {
         "signal": "os_compatibility",
-        "count": 207
+        "count": 302
       },
       {
         "signal": "login_failure",
-        "count": 231
+        "count": 382
       },
       {
         "signal": "stream_interruption",
-        "count": 113
+        "count": 187
       },
       {
         "signal": "data_loss",
-        "count": 185
+        "count": 303
       },
       {
         "signal": "security",
-        "count": 5
+        "count": 22
       },
       {
         "signal": "crash_freeze",
-        "count": 9
+        "count": 13
       },
       {
         "signal": "account_ban",
-        "count": 12
+        "count": 14
       }
     ],
     "prs": [
       {
         "signal": "os_compatibility",
-        "count": 99
+        "count": 98
       },
       {
         "signal": "login_failure",
@@ -112,7 +112,7 @@
       },
       {
         "signal": "data_loss",
-        "count": 120
+        "count": 119
       },
       {
         "signal": "security",
@@ -132,17 +132,17 @@
     {
       "package": "unclassified",
       "path": null,
-      "issues": 83,
+      "issues": 84,
       "prs": 135,
-      "total": 218,
+      "total": 219,
       "confidence": "low",
       "reason": "Open titles that panel-sync could not map to a package in the current catalog."
     },
     {
       "package": "@magpie-community/opencode-agy-cli-auth",
       "path": "agy-cli",
-      "issues": 78,
-      "prs": 26,
+      "issues": 77,
+      "prs": 27,
       "total": 104,
       "confidence": "high",
       "reason": "Open titles whose package prefix resolves in the current catalog."
@@ -195,9 +195,9 @@
     {
       "package": "@magpie-community/opencode-factory-auth",
       "path": "factory",
-      "issues": 12,
-      "prs": 3,
-      "total": 15,
+      "issues": 11,
+      "prs": 2,
+      "total": 13,
       "confidence": "high",
       "reason": "Open titles whose package prefix resolves in the current catalog."
     },
@@ -445,15 +445,6 @@
       "reason": "Open titles whose package prefix resolves in the current catalog."
     },
     {
-      "package": "@magpie-community/agent-uebox",
-      "path": "uebox",
-      "issues": 1,
-      "prs": 1,
-      "total": 2,
-      "confidence": "high",
-      "reason": "Open titles whose package prefix resolves in the current catalog."
-    },
-    {
       "package": "@magpie-community/opencode-astudio-auth",
       "path": "astudio",
       "issues": 2,
@@ -488,11 +479,20 @@
       "total": 2,
       "confidence": "high",
       "reason": "Open titles whose package prefix resolves in the current catalog."
+    },
+    {
+      "package": "@magpie-community/page-day-card",
+      "path": "day-card",
+      "issues": 2,
+      "prs": 0,
+      "total": 2,
+      "confidence": "high",
+      "reason": "Open titles whose package prefix resolves in the current catalog."
     }
   ],
   "package_cluster_tail": {
-    "omitted_known_packages": 23,
-    "omitted_items": 25,
+    "omitted_known_packages": 22,
+    "omitted_items": 23,
     "reason": "The panel seed keeps the 40 largest clusters inline; panel-sync can hydrate the tail from the same snapshot."
   },
   "priority_issues": [
@@ -1397,6 +1397,6 @@
       "package": "package"
     },
     "refresh_required": true,
-    "refresh_reason": "Counts, package clusters, unclassified items, labels, evidence boundaries, and risk signals were regenerated from the final 2026-11-27 paginated snapshot."
+    "refresh_reason": "Counts, package clusters, unclassified items, labels, evidence boundaries, and risk signals were regenerated from the final 2026-11-27 paginated snapshot after upstream advanced to 11c919ce."
   }
 }
