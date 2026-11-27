@@ -242,8 +242,20 @@ Checked for every branch with `git merge-tree --write-tree origin/main origin/<b
 | zero comments (any author) | 2394 |
 | labelled `bug` / `enhancement` | 201 / 189 |
 
-So the part that "clear them all" could even mean is **1681 unanswered non-maintainer issues** in
-magpie, plus the equivalent in plugins — not 5343. The other 1364 are the maintainer's own notes and
+**The same breakdown for plugins** (list API, all 403): 111 opened by the maintainer, 292 by others,
+**75 of those never commented on**, 402 of 403 unlabelled.
+
+**So the part that "clear them all" could even mean is 1762 issues, not 5752**:
+
+| | non-maintainer, never answered |
+| --- | --- |
+| `yetone/magpie` | **1681** |
+| `magpie-community/plugins` | **75** |
+| `magpie-providers-hub` | 0 — all six already answered |
+| **total** | **1756** |
+
+The other 3996 are the two maintainers' own notes (1364 + 111), issues that already have a thread, and
+the untouched labelled remainder. 1762 is the number worth planning against; 5752 is not. The other 1364 are the maintainer's own notes and
 are his to close, and 4953 of the whole set were never triaged at all.
 
 Three measurements decide how this has to be worked:
