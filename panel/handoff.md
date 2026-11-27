@@ -8,6 +8,50 @@ not have to re-derive it.
 Nothing here is merged upstream. A branch in this fork is a **proposal**: it
 carries the rebase and its tests, and the maintainer still decides.
 
+## Where things stand (2026-11-28)
+
+`magpie-community/plugins`, `yetone/magpie`, `Gyl1219/magpie-providers-hub`:
+
+| | count |
+| --- | --- |
+| open pull requests in plugins | **224** |
+| of those, a branch exists in this fork | **93** (110 distinct PR numbers over the whole run, including ones since closed) |
+| untouched open, statically self-consistent | **88** |
+| untouched open, blocked before any work | 43 (10 carry a binary file, 2 modify a file that is not in main) |
+| closed as already fixed | 2 |
+| judged not-rebaseable | 8 |
+| waiting on the author | 3 + 3 more raised this week |
+
+**What "not-rebaseable" turned out to mean**, in the three shapes seen so far — all
+discovered after a clean apply, never from a merge conflict:
+
+1. **a symbol the patch uses, absent from main** (`IMAGE_MODEL_ID`, `DUE_FOR_RENEWAL`,
+   `QUOTA_MARKER`, `FIRST_REPLY`): the patch was written against a branch that never
+   landed. `maintenance/preflight.py` finds these in seconds.
+2. **two generations of one subsystem** (`restModel/blocked` vs `rest/refused`;
+   `find/installedAt` vs `installed/elsewhere`; `endorse/probeKey` vs per-request
+   probing): the patch applies, both halves look sane, and the result is a model with
+   half of each. Not rebasable — it needs the author's call or a rewrite on main's
+   skeleton.
+3. **the patch changes a contract main pins in a test** (#1437: main asserts the first
+   browser sign-in has no prompts, "the host opens the window straight away"; the patch
+   gives both browser methods a browser-select prompt). The test is not stale — it
+   records an intent. Changing it is a product decision.
+
+**The judging order that saves the most time**, in this repository:
+
+1. `grep 'Binary files'` on the diff — if present, only the PR's tarball can build it.
+2. `grep -E '^diff --git'` → every modified (not `new file mode`) path must exist in
+   `origin/main`; `git apply --3way` says `does not exist in index` when one does not.
+3. `maintenance/preflight.py <diff> <repo> <package>` — names the patch uses but neither
+   defines nor finds. Exit 1 means another PR has to land first.
+4. If the patch rewrites `registry.json` whole (`@@ -1,N +1,M @@` with M far above the
+   current line count), take **only its own entry** from the PR's tarball, never the hunk.
+5. Apply, then compare the **staged `+/-` line counts** with the patch per file — that is
+   what caught a dropped `package.json` icon and a hunk applied twice.
+6. Run the package's suite **and the baseline**: `git stash` the patch, run again. A test
+   red in both is the environment; red only with the patch is the patch.
+
 ## How a pull request was judged
 
 In this order, because the order is what saves time:
