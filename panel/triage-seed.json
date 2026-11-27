@@ -831,7 +831,7 @@
       "package": "@magpie-community/opencode-zcode-auth",
       "risk": "P1",
       "reason": "Directly fixes the current ZCode 3.18 credential format and restores app-backed sign-in.",
-      "action": "直接 review",
+      "action": "直接 review；维护 fork 已实现，上游 PR 仍需 rebase",
       "linked_issues": [
         1196
       ],
@@ -869,16 +869,16 @@
         "packages/qoder/package.json",
         "packages/qoder/silent.test.mjs"
       ],
-      "validation_claim": "Author adds a regression that keeps the body reader cancellable by the watchdog; CI is unverified here.",
+      "validation_claim": "Maintenance fork qoder 0.2.76 keeps the body reader cancellable by the watchdog: focused test 7/7 and package 467/467 pass. Upstream PR remains CONFLICTING and must be rebased.",
       "draft": false,
-      "comments": 2,
-      "updated_at": "2026-11-18T05:01:05Z",
-      "mergeability": "unverified",
-      "status": "open",
+      "comments": 3,
+      "updated_at": "2026-11-27T05:11:13Z",
+      "mergeability": "conflicting",
+      "status": "fixed-locally",
       "evidence": {
         "status": "open",
-        "comments": 2,
-        "updated_at": "2026-11-18T05:01:05.000Z"
+        "comments": 3,
+        "updated_at": "2026-11-27T05:11:13.000Z"
       }
     },
     {

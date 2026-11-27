@@ -38,8 +38,8 @@ Curated from the public upstream snapshot at `2026-11-27T10:48:58.745+08:00`.
 
 | Rank | Risk | Package | Pull request | Status | Action | Linked issues |
 | ---: | :---: | :--- | :--- | :--- | :--- | :--- |
-| 1 | **P1** | `@magpie-community/opencode-zcode-auth` | [#1358 zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)](https://github.com/magpie-community/plugins/pull/1358) | open | Review directly | #1196 |
-| 2 | **P1** | `@magpie-community/opencode-qoder-auth` | [#1253 qoder 0.2.72: cancel the first-event read on watchdog](https://github.com/magpie-community/plugins/pull/1253) | open | Review directly | #1204, #1517 |
+| 1 | **P1** | `@magpie-community/opencode-zcode-auth` | [#1358 zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)](https://github.com/magpie-community/plugins/pull/1358) | open | 直接 review；维护 fork 已实现，上游 PR 仍需 rebase | #1196 |
+| 2 | **P1** | `@magpie-community/opencode-qoder-auth` | [#1253 qoder 0.2.72: cancel the first-event read on watchdog](https://github.com/magpie-community/plugins/pull/1253) | fixed-locally | Review directly | #1204, #1517 |
 | 3 | **P1** | `@magpie-community/opencode-agy-cli-auth` | [#1418 agy-cli 0.1.110: a standalone upstream status line is its HTTP error, not assistant text (#1416)](https://github.com/magpie-community/plugins/pull/1418) | open | Review directly | #1416 |
 | 4 | **P1** | `@magpie-community/opencode-catpaw-auth` | [#1427 catpaw 0.2.4: a pasted token gets its own identity](https://github.com/magpie-community/plugins/pull/1427) | open | Review directly | #1426 |
 | 5 | **P1** | `@magpie-community/opencode-codearts-auth` | [#1246 codearts 0.3.23: a refused catalog read no longer signs an account out](https://github.com/magpie-community/plugins/pull/1246) | open | Review directly | #1247 |
