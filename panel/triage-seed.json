@@ -563,17 +563,17 @@
       ],
       "reason": "Tool-free requests succeed while Cowork's built-in MCP declarations trigger content_policy_rejected, blocking the first turn and risking repeated policy violations.",
       "action": {
-        "primary": "复现",
-        "detail": "Bisect the built-in tool declarations on the same account and map policy rejection to a precise refusal without retry loops."
+        "primary": "直接 review",
+        "detail": "Local repair branch factory 0.1.60 removes the mcp__ exemption from full-retry aliasing and restores renamed Cowork MCP calls; 257 Factory tests pass, with a real signed-in Cowork rerun still unverified. Fork PR #14 records the maintenance repair; upstream PR #1611 (head 0c394583a7090753dfc99bcb6d2160bb14b739d4) remains open."
       },
       "evidence": {
-        "comments": 0,
+        "comments": 1,
         "reactions": 0,
         "created_at": "2026-11-21T23:36:31Z",
-        "updated_at": "2026-11-21T23:42:05.000Z",
+        "updated_at": "2026-11-27T04:01:32.000Z",
         "status": "open"
       },
-      "status": "open"
+      "status": "upstream-pr"
     },
     {
       "rank": 6,
