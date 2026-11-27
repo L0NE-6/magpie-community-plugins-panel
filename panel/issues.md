@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-27T01:43:47.596Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-27T02:48:58.745Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
 - Open issues: **401**
 - Priority: P0 **0**, P1 **0**, P2 **2**, P3 **399**
-- Comments: none **154**, light **186**, active **50**, hot **11**
-- Updated: 24h **29**, 7d **74**, 30d **227**, older **71**
+- Comments: none **155**, light **185**, active **50**, hot **11**
+- Updated: 24h **29**, 7d **72**, 30d **229**, older **71**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -25,7 +25,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P2 | 6 (active) | 2026-11-26T19:14:05.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1560 qoder：账号订阅里面的积分无法使用，都显示被放到p2队伍，已经测试了所有模型了](https://github.com/magpie-community/plugins/issues/1560) |
+| P2 | 7 (active) | 2026-11-27T02:06:20.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1560 qoder：账号订阅里面的积分无法使用，都显示被放到p2队伍，已经测试了所有模型了](https://github.com/magpie-community/plugins/issues/1560) |
 | P2 | 0 (none) | 2026-11-23T12:42:29.000Z | 7d | `@magpie-community/opencode-qoder-auth` | [#1489 qoder：请增加 WorkBuddy 插件同款“隐去 DeepSeek Harness 名字”清洗，避免 DSH 请求被 Qoder 放进 p2 队列](https://github.com/magpie-community/plugins/issues/1489) |
 
 
@@ -68,6 +68,12 @@ _No open issues._
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
 | P3 | 0 (none) | 2026-11-20T16:19:43.000Z | 7d | `@magpie-community/agent-nowledge-mem` | [#1410 nowledge-mem-agent sync.test: "unchanged managed provider stays…" red at 5.9s in a full run (WSL)](https://github.com/magpie-community/plugins/issues/1410) |
+
+### Package: `@magpie-community/agent-uebox`
+
+| Priority | Comments | Updated | Updated bucket | Package | Issue |
+| --- | ---: | --- | --- | --- | --- |
+| P3 | 0 (none) | 2026-11-26T13:03:23.000Z | 24h | `@magpie-community/agent-uebox` | [#1588 uebox: the paths test is red on macOS (XDG_CONFIG_HOME guard is !== win32)](https://github.com/magpie-community/plugins/issues/1588) |
 
 ### Package: `@magpie-community/gateway-nowledge-mem`
 
@@ -125,7 +131,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-27T01:38:31.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1602 agy-cli: 只有 free-tier 被标 UNSUPPORTED_LOCATION，`agy -p /usage` 就整体失败，而同一账号的 TUI `/usage` 能正常读](https://github.com/magpie-community/plugins/issues/1602) |
+| P3 | 0 (none) | 2026-11-27T01:52:32.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1602 agy-cli: 只有 free-tier 被标 UNSUPPORTED_LOCATION，`agy -p /usage` 就整体失败，而同一账号的 TUI `/usage` 能正常读](https://github.com/magpie-community/plugins/issues/1602) |
 | P3 | 2 (light) | 2026-11-26T23:41:38.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1592 agy-cli 0.1.144: matchesHistory still drops live session — first_diff missing_actual, rows:2, empty-reply 502 loop](https://github.com/magpie-community/plugins/issues/1592) |
 | P3 | 3 (light) | 2026-11-26T17:17:35.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1495 agy-cli: preserve native compaction history and cache, and fail closed on oversized replay](https://github.com/magpie-community/plugins/issues/1495) |
 | P3 | 0 (none) | 2026-11-26T11:28:20.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1584 agy-cli: test/catalog.mjs "an account of agy's own that agy held once…" fails on Windows (kept file mode 0o666)](https://github.com/magpie-community/plugins/issues/1584) |
@@ -164,7 +170,7 @@ _No open issues._
 | P3 | 0 (none) | 2026-11-20T10:22:56.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1398 agy-cli: reject_active on live attached/steering turn returns 409 instead of retryable 503 BusyError](https://github.com/magpie-community/plugins/issues/1398) |
 | P3 | 0 (none) | 2026-11-20T10:22:51.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1397 agy-cli: agy_same_generation emits all-zero usage (0/0/0/0), triggering uncached fallback tokenization in downstream proxies](https://github.com/magpie-community/plugins/issues/1397) |
 | P3 | 4 (active) | 2026-11-20T04:04:10.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1058 agy-cli 又出现缓存率0%的情况](https://github.com/magpie-community/plugins/issues/1058) |
-| P3 | 0 (none) | 2026-11-20T02:29:29.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1379 agy-cli: Claude Code's compaction request is summarized from a 112 KiB clipped replay instead of the live session](https://github.com/magpie-community/plugins/issues/1379) |
+| P3 | 0 (none) | 2026-11-20T02:29:29.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1379 agy-cli: Claude Code's compaction request is summarized from a 112 KiB clipped replay instead of the live session](https://github.com/magpie-community/plugins/issues/1379) |
 | P3 | 0 (none) | 2026-11-19T17:05:54.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1371 \[agy-cli\] Preserve session context when Codex tool_search adds tools mid-turn](https://github.com/magpie-community/plugins/issues/1371) |
 | P3 | 0 (none) | 2026-11-19T12:34:20.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1361 agy-cli：Gemini 请求中的 googleSearch 未执行或未返回搜索证据，仍返回 HTTP 200](https://github.com/magpie-community/plugins/issues/1361) |
 | P3 | 0 (none) | 2026-11-19T12:06:19.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1360 agy-cli: degraded ACP session with empty/missing configOptions falls back to legacy session/set_model with effort suffix and wraps error as 400](https://github.com/magpie-community/plugins/issues/1360) |
@@ -468,6 +474,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 0 (none) | 2026-11-27T02:30:20.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1605 trae-cn: namespace enterprise model ids by provider to fix config_name collision with presets](https://github.com/magpie-community/plugins/issues/1605) |
 | P3 | 4 (active) | 2026-11-26T04:23:02.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1516 trae: an enterprise sign-in's bare host is rejected, so every chat goes to the consumer gateway](https://github.com/magpie-community/plugins/issues/1516) |
 | P3 | 2 (light) | 2026-11-25T02:47:31.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1503 trae-cn: complete GLM-5.3 reply is converted from stop to length when reasoning tokens exceed max_tokens](https://github.com/magpie-community/plugins/issues/1503) |
 | P3 | 2 (light) | 2026-11-25T02:47:31.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1501 trae-cn: route fallback hides 1005 plan errors behind the final 4001](https://github.com/magpie-community/plugins/issues/1501) |
@@ -666,7 +673,6 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 2 (light) | 2026-11-27T01:36:13.000Z | 24h | _unmapped_ (`Bug`) | [#1591 Bug：Antigravity 接管后，Local agy CLI 无法读取 Google AI Pro 额度](https://github.com/magpie-community/plugins/issues/1591) |
 | P3 | 0 (none) | 2026-11-17T15:37:25.000Z | 30d | _unmapped_ (`Bug`) | [#1276 \[Bug\] trae-cn 全系模型失败（4222/4001/404）：trae 桌面端更新后 opencode-trae-auth 插件的旧版请求格式被企业 console 拒绝](https://github.com/magpie-community/plugins/issues/1276) |
 | P3 | 0 (none) | 2026-11-17T14:25:03.000Z | 30d | _unmapped_ (`Bug`) | [#1273 \[Bug\] `trae-cn/aliyuncs/kimi-k3.1-pro` 转发失败，assistant 返回空](https://github.com/magpie-community/plugins/issues/1273) |
 | P3 | 1 (light) | 2026-10-26T08:15:48.000Z | older | _unmapped_ (`Bug`) | [#410 \[Bug\] ZCode 本机登录仅有 project-key-location 时无法识别 BigModel Coding Plan](https://github.com/magpie-community/plugins/issues/410) |
@@ -886,7 +892,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-20T02:38:19.000Z | 7d | _unmapped_ (`root bun test`) | [#1380 root bun test: ~150 reds on macOS under GUI-suite load (window-warmup scheduler 5s waits and others); green alone and on CI](https://github.com/magpie-community/plugins/issues/1380) |
+| P3 | 0 (none) | 2026-11-20T02:38:19.000Z | 30d | _unmapped_ (`root bun test`) | [#1380 root bun test: ~150 reds on macOS under GUI-suite load (window-warmup scheduler 5s waits and others); green alone and on CI](https://github.com/magpie-community/plugins/issues/1380) |
 
 ### Package: `unmapped:rotating`
 
@@ -905,12 +911,6 @@ _No open issues._
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
 | P3 | 0 (none) | 2026-10-25T07:07:00.000Z | older | _unmapped_ (`trae, mimo`) | [#381 trae, mimo: a plan labelled "Free" alone reads as the model being free (#337 sibling)](https://github.com/magpie-community/plugins/issues/381) |
-
-### Package: `unmapped:uebox`
-
-| Priority | Comments | Updated | Updated bucket | Package | Issue |
-| --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-26T13:03:23.000Z | 24h | _unmapped_ (`uebox`) | [#1588 uebox: the paths test is red on macOS (XDG_CONFIG_HOME guard is !== win32)](https://github.com/magpie-community/plugins/issues/1588) |
 
 ### Package: `unmapped:上游中途关闭 SSE 流时，整轮回复被丢弃`
 

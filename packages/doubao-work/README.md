@@ -76,6 +76,28 @@ served here: the plugin lists only what the app's model menu offers from
 Doubao's side, and a model that runs on your own key is a direct call to that
 vendor, not a Doubao task. Add that API to magpie as its own provider instead.
 
+## Daily check-in (签到)
+
+Doubao's daily 签到 belongs to its growth campaign (豆包探索计划), and Doubao
+decides per account whether it offers one. The plugin presses it the way the
+app's own 签到 button does, through the app's page: it asks
+`/alice/ug/campaign/landing/get` what Doubao shows, and when that is the
+check-in page or a card with a 签到 button, reports the press
+(`landing/report`) and checks in (`landing/checkin`).
+
+- Turn it on in magpie: Settings → Usage → Plugins → 豆包工作 → Daily check-in
+  (off by default). magpie then checks each account in once a Beijing day;
+  *Check in now* on the account's Usage card does it at once.
+- Answers: `claimed` with the streak (连续签到天数), `done` when Doubao already
+  shows today's check-in, `inactive` when Doubao offers this account no 签到
+  now, `failed` with Doubao's own words.
+- Like usage, it runs only in a window already open: a check-in never starts
+  the app. With the window closed it fails and magpie asks again later.
+- Doubao has no make-up check-in (补签): its app has no such request, so
+  there is nothing to press for a missed day.
+- The reward is Doubao's to set (its incentive allowance, 激励额度); the
+  check-in's reply doesn't say how much, so magpie shows none.
+
 ## What it costs
 
 - **Unofficial.** It uses Doubao the way its own window does, but ByteDance
@@ -94,6 +116,14 @@ vendor, not a Doubao task. Add that API to magpie as its own provider instead.
   is read about seven times a second.
 - **Text only.** Images and files in a request are left out.
 - **Usage** is Doubao's own prompt count; the reply's tokens are estimated.
+- **A spent allowance** is not an answer. Doubao says it as an ordinary
+  reply (「本月额度已用完，下个月恢复为你服务。升级到标准套餐畅享更多额度。
+  升级正式订阅」, or 本周 / 今日 for a shorter window); a reply that is that
+  notice and nothing else is answered as a 429 with Doubao's words, so magpie
+  rests the account and asks the next one. When it says when it is back
+  (下个月, 下周, 明天), the 429 says that time too, on Beijing's clock, as
+  `resets_at` and `Retry-After`. A stream holds back a reply that begins like
+  the notice until it is either the notice or an answer.
 - **The DevTools port** is on 127.0.0.1 only, but any program on this
   computer can drive the signed-in Doubao window through it while it runs.
 - macOS and Windows. Neither app has a Linux build.

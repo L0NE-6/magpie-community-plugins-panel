@@ -54,16 +54,25 @@ marker, `{"type": "oauth", "source": "desktop", "accountId", "uid"}`. OpenCode k
 refreshed a minute before it ends, and the new one is saved; one minted to
 live long (the browser sign-in's access token lasts 28 days, its refresh
 token 30) is instead renewed before a request while it still has 10 days
-left, so a sign-in used every so often never runs out of refresh token. If
+left, or once it is a day old. WorkBuddy's own app renews its sign-in each
+time it starts, and each renewal gives a new refresh token with a new
+window (30 days or more), so since 0.2.42 a sign-in used at least once
+a month is never signed out; up to 0.2.41 one used only while its token
+still had more than 10 days left was, every month (plugins#1598). A renewal that
+names no end for its new refresh token takes the token's own, else
+leaves it unknown rather than keeping the old one's. WorkBuddy AI's
+sign-in ends a year after it was made, renewed or not. If
 the refresh fails, the old token is used while it lasts; an early renewal
 that fails is tried again after a minute, and after twice as long for each
 failure in a row.
 
 In magpie (0.1.684 or later) the plugin also gives `auth.refresh` with
-`refreshLead` of 10 days: magpie renews a sign-in as it comes due, once
-for the account, before its requests, models and usage ask, and saves what
-it gives. (magpie's host clamps the lead to a day, which still lands well
-inside the 30-day refresh token's life.) It goes through the same
+`refreshLead` of 5 minutes: magpie renews a browser sign-in 5 minutes
+before it ends, once for the account, before its requests, models and
+usage ask, and saves what it gives. The lead stays short because a
+sign-in whose token lives less than the lead would be due again as soon
+as it was renewed; a long-lived one is renewed 10 days ahead by a
+request, as above. It goes through the same
 one-refresh-at-a-time as a request's refresh, so a refresh token is never
 spent twice. A failed renewal, a refresh token past its end included,
 doesn't mark the account, as the built-in never did; magpie tries again
@@ -283,6 +292,11 @@ reasoning parts and make OpenCode Desktop freeze when restoring a session.
 Since 0.2.38 the plugin removes only that empty list from forwarded deltas;
 real tool calls and unaffected events pass through unchanged (#1532).
 
+Since 0.2.41 the forwarded reasoning deltas are also held and emitted as one
+event, flushed on 8 KB, on a 300 ms clock, or when the block ends, so a long
+answer no longer becomes thousands of parts and the message is not rewritten
+per delta. The text is unchanged; only the chunk boundaries move (#1393).
+
 A chat's tools are given shapes WorkBuddy's models take. Without them
 WorkBuddy AI answers 400 "Invalid request parameters" (11133), DeepSeek's
 models to each shape below and Kimi's, GPT's, Gemini's and GLM's to some:
@@ -390,6 +404,13 @@ sends its model requests (`RequestBodyGzip` in both builds' product.json).
 Claude's Messages route goes as it came, and so does anything that isn't a
 chat completion: magpie's drawings (`/v2/images/generations`,
 `/v2/images/edits`) go as plain JSON, which is all the images API reads.
+So do its videos (#1585): the models the config tags `text-to-video` or
+`image-to-video` (kling-video-v3, minimax-video-h3) are started at
+`/v2/videos/generations` and polled at `/v2/videos/tasks` as WorkBuddy's
+own CLI does, signed like a chat. magpie shapes those requests itself
+(magpie's `internal/gateway/video_workbuddy.go`); the plugin only signs and
+sends them. With "Free models only" on, a video is never started, since
+each costs credits.
 
 A model's price is its `credits` ("x0.29") and the config's
 `modelPromotions`. A discount for whole days (Step-5-Preview's 独家限免) is
@@ -487,8 +508,11 @@ to continue using it.
 That is a token allowance of its own — per account, per 24 hours, about 1e8
 tokens, counted as prompt + cache-read + completion. Nothing the vendor
 answers with reports it, so the plugin rebuilds the current window from
-magpie's `usage.jsonl` and gives it to the card as **Free model tokens**
-beside **Credits**. `quota alert` and `magpie quota` show it too; before,
+magpie's `usage.jsonl` and gives it to the card as
+**deepseek-v4.1-flash tokens (est.)** (~100M) beside **Credits**, while the
+account's model list has deepseek-v4.1-flash at x0.00. Once the list prices
+it or drops it, the card goes, and no other free model takes its count or
+cap: nothing has measured another model's window (plugins#1567). `quota alert` and `magpie quota` show it too; before,
 the card read 0% on an account that was already refused.
 
 What is measured, and what is easy to read wrongly:

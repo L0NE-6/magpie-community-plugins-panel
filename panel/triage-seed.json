@@ -1,22 +1,22 @@
 {
   "schema_version": "panel-triage-seed/v1",
-  "generated_at": "2026-11-26T14:15:00+08:00",
+  "generated_at": "2026-11-27T10:48:58.745+08:00",
   "repository": {
     "full_name": "magpie-community/plugins",
     "default_branch": "main",
     "snapshot_state": "open"
   },
   "summary": {
-    "open_total": 631,
-    "open_issues": 395,
-    "open_prs": 236,
+    "open_total": 624,
+    "open_issues": 401,
+    "open_prs": 223,
     "counts_match_github_page": true,
     "labeled_items_observed": 1,
-    "package_clusters_total": 60,
+    "package_clusters_total": 61,
     "package_clusters_listed": 40,
-    "other_known_packages": 23,
-    "other_known_items": 27,
-    "unclassified_items": 222,
+    "other_known_packages": 22,
+    "other_known_items": 23,
+    "unclassified_items": 218,
     "priority_issue_count": 15,
     "priority_pr_count": 15
   },
@@ -24,7 +24,7 @@
     "access_mode": "read-only",
     "transport": "GitHub REST API through the local 7897 proxy",
     "api_base": "https://api.github.com/repos/magpie-community/plugins",
-    "snapshot_fetched_at": "2026-11-26T06:15:00Z",
+    "snapshot_fetched_at": "2026-11-27T02:48:58.745Z",
     "pagination": {
       "page_size": 100,
       "issue_pages": 7,
@@ -37,16 +37,21 @@
       "prs_reviewed_or_merged": 0,
       "git_commands_run": 0,
       "repository_files_modified": [
-        "panel/triage-seed.json"
+        "panel/status.json",
+        "panel/issues.md",
+        "panel/pulls.md",
+        "panel/triage-seed.json",
+        "panel/priority.md",
+        "PANEL.md"
       ]
     },
     "evidence_boundaries": [
-      "Titles, bodies, open counts, comment counts, reactions, timestamps, draft state, and top-PR changed-file paths were read from the open-item snapshot.",
-      "Labels are almost unused upstream; only one labeled item was observed, so title prefixes, body/package names, and changed-file paths drive clustering.",
-      "Issue comments were not fetched; only comment counts are represented.",
+      "Titles, bodies, open counts, comment counts, timestamps, draft state, and labels were read from the final paginated open-item snapshot.",
+      "Closed priority items were checked separately through GraphQL and remain in the curated queue with their closed state and timestamps.",
+      "Package clusters and unclassified totals are computed from panel-sync's package mapping over every open item; priority and overlap queues remain curated.",
       "PR mergeability, conflict state and CI conclusions are recorded separately in panel/pr-audit.json; live behavior remains unverified.",
       "Author test claims in PR bodies are recorded as claims; this audit did not run every package suite.",
-      "The snapshot is point-in-time; panel-sync and panel-pr-audit must refresh from GitHub before acting."
+      "The snapshot is point-in-time; run panel-sync and panel-pr-audit again before acting on stale counts."
     ]
   },
   "risk_levels": {
@@ -56,65 +61,65 @@
     "P3": "Low-impact cleanup or enhancement."
   },
   "risk_signal_counts": {
-    "method": "Keyword signals across all open titles and bodies; counts overlap and are triage hints, not severity totals.",
+    "method": "Case-insensitive keyword signals over all open titles and bodies; categories overlap and are triage hints, not severity totals.",
     "issues": [
       {
         "signal": "os_compatibility",
-        "count": 188
+        "count": 210
       },
       {
         "signal": "login_failure",
-        "count": 130
+        "count": 246
       },
       {
         "signal": "stream_interruption",
-        "count": 68
+        "count": 102
       },
       {
         "signal": "data_loss",
-        "count": 63
+        "count": 146
       },
       {
         "signal": "security",
-        "count": 47
+        "count": 10
       },
       {
         "signal": "crash_freeze",
-        "count": 20
+        "count": 11
       },
       {
         "signal": "account_ban",
-        "count": 8
+        "count": 30
       }
     ],
     "prs": [
       {
         "signal": "os_compatibility",
-        "count": 102
+        "count": 100
       },
       {
         "signal": "login_failure",
-        "count": 98
-      },
-      {
-        "signal": "security",
-        "count": 79
+        "count": 133
       },
       {
         "signal": "stream_interruption",
-        "count": 49
+        "count": 63
       },
       {
         "signal": "data_loss",
-        "count": 30
+        "count": 81
+      },
+      {
+        "signal": "security",
+        "count": 19
       },
       {
         "signal": "crash_freeze",
-        "count": 7
+        "count": 3
       },
       {
         "signal": "account_ban",
-        "count": 3
+        "count": 14
       }
     ]
   },
@@ -122,319 +127,319 @@
     {
       "package": "unclassified",
       "path": null,
-      "issues": 78,
-      "prs": 122,
-      "total": 200,
+      "issues": 82,
+      "prs": 136,
+      "total": 218,
       "confidence": "low",
-      "reason": "New providers, generic feature requests, and titles without a registered package id."
+      "reason": "Open titles that panel-sync could not map to a package in the current catalog."
     },
     {
-      "package": "agy-cli",
-      "path": "packages/agy-cli",
-      "issues": 72,
-      "prs": 38,
-      "total": 110,
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "path": "agy-cli",
+      "issues": 77,
+      "prs": 23,
+      "total": 100,
       "confidence": "high"
     },
     {
-      "package": "trae",
-      "path": "packages/trae",
-      "issues": 22,
-      "prs": 6,
-      "total": 28,
-      "confidence": "high"
-    },
-    {
-      "package": "qoder",
-      "path": "packages/qoder",
-      "issues": 26,
+      "package": "@magpie-community/opencode-qoder-auth",
+      "path": "qoder",
+      "issues": 25,
       "prs": 1,
-      "total": 27,
+      "total": 26,
       "confidence": "high"
     },
     {
-      "package": "cursor",
-      "path": "packages/cursor",
-      "issues": 18,
-      "prs": 5,
-      "total": 23,
+      "package": "@magpie-community/opencode-trae-auth",
+      "path": "trae",
+      "issues": 22,
+      "prs": 2,
+      "total": 24,
       "confidence": "high"
     },
     {
-      "package": "zcode",
-      "path": "packages/zcode",
-      "issues": 13,
-      "prs": 8,
-      "total": 21,
+      "package": "@magpie-community/opencode-zcode-auth",
+      "path": "zcode",
+      "issues": 17,
+      "prs": 7,
+      "total": 24,
       "confidence": "high"
     },
     {
-      "package": "workbuddy",
-      "path": "packages/workbuddy",
-      "issues": 14,
-      "prs": 4,
+      "package": "@magpie-community/opencode-cursor-auth",
+      "path": "cursor",
+      "issues": 17,
+      "prs": 1,
       "total": 18,
       "confidence": "high"
     },
     {
-      "package": "factory",
-      "path": "packages/factory",
+      "package": "@magpie-community/opencode-workbuddy-auth",
+      "path": "workbuddy",
+      "issues": 16,
+      "prs": 0,
+      "total": 16,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-factory-auth",
+      "path": "factory",
       "issues": 12,
       "prs": 2,
       "total": 14,
       "confidence": "high"
     },
     {
-      "package": "gcp-ai",
-      "path": "packages/gcp-ai",
+      "package": "@magpie-community/opencode-gcp-ai-auth",
+      "path": "gcp-ai",
       "issues": 9,
       "prs": 3,
       "total": 12,
       "confidence": "high"
     },
     {
-      "package": "codearts",
-      "path": "packages/codearts",
-      "issues": 5,
-      "prs": 6,
-      "total": 11,
-      "confidence": "high"
-    },
-    {
-      "package": "agent-office",
-      "path": "packages/agent-office",
+      "package": "@magpie-community/page-agent-office",
+      "path": "agent-office",
       "issues": 8,
       "prs": 3,
       "total": 11,
       "confidence": "high"
     },
     {
-      "package": "zen-free",
-      "path": "packages/zen-free",
-      "issues": 7,
-      "prs": 3,
+      "package": "@magpie-community/opencode-minimax-auth",
+      "path": "minimax",
+      "issues": 8,
+      "prs": 2,
       "total": 10,
       "confidence": "high"
     },
     {
-      "package": "agent-console",
-      "path": "packages/agent-console",
+      "package": "@magpie-community/opencode-antigravity-auth",
+      "path": "antigravity",
       "issues": 7,
-      "prs": 3,
-      "total": 10,
+      "prs": 2,
+      "total": 9,
       "confidence": "high"
     },
     {
-      "package": "minimax",
-      "path": "packages/minimax",
-      "issues": 7,
-      "prs": 1,
+      "package": "@magpie-community/opencode-codearts-auth",
+      "path": "codearts",
+      "issues": 4,
+      "prs": 5,
+      "total": 9,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/page-agent-console",
+      "path": "agent-console",
+      "issues": 6,
+      "prs": 3,
+      "total": 9,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-zen-free-auth",
+      "path": "zen-free",
+      "issues": 5,
+      "prs": 3,
       "total": 8,
       "confidence": "high"
     },
     {
-      "package": "grok",
-      "path": "packages/grok",
+      "package": "@magpie-community/opencode-grok-auth",
+      "path": "grok",
       "issues": 6,
       "prs": 1,
       "total": 7,
       "confidence": "high"
     },
     {
-      "package": "doubao-work",
-      "path": "packages/doubao-work",
-      "issues": 5,
+      "package": "@magpie-community/opencode-autoclaw-auth",
+      "path": "autoclaw",
+      "issues": 4,
       "prs": 2,
-      "total": 7,
+      "total": 6,
       "confidence": "high"
     },
     {
-      "package": "antigravity",
-      "path": "packages/antigravity",
-      "issues": 6,
-      "prs": 1,
-      "total": 7,
-      "confidence": "high"
-    },
-    {
-      "package": "autoclaw",
-      "path": "packages/autoclaw",
-      "issues": 5,
-      "prs": 2,
-      "total": 7,
-      "confidence": "high"
-    },
-    {
-      "package": "atomcode",
-      "path": "packages/atomcode",
+      "package": "@magpie-community/opencode-atomcode-auth",
+      "path": "atomcode",
       "issues": 3,
       "prs": 2,
       "total": 5,
       "confidence": "high"
     },
     {
-      "package": "devin",
-      "path": "packages/devin",
+      "package": "@magpie-community/opencode-devin-auth",
+      "path": "devin",
       "issues": 3,
       "prs": 2,
       "total": 5,
       "confidence": "high"
     },
     {
-      "package": "kiro",
-      "path": "packages/kiro",
+      "package": "@magpie-community/opencode-doubao-work-auth",
+      "path": "doubao-work",
       "issues": 4,
       "prs": 1,
       "total": 5,
       "confidence": "high"
     },
     {
-      "package": "commandcode",
-      "path": "packages/commandcode",
-      "issues": 5,
-      "prs": 0,
-      "total": 5,
-      "confidence": "high"
-    },
-    {
-      "package": "raccoon",
-      "path": "packages/raccoon",
+      "package": "@magpie-community/opencode-inkstone-auth",
+      "path": "inkstone",
       "issues": 4,
       "prs": 1,
       "total": 5,
       "confidence": "high"
     },
     {
-      "package": "zed",
-      "path": "packages/zed",
+      "package": "@magpie-community/opencode-kiro-auth",
+      "path": "kiro",
+      "issues": 4,
+      "prs": 1,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-raccoon-auth",
+      "path": "raccoon",
+      "issues": 4,
+      "prs": 1,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-zed-auth",
+      "path": "zed",
+      "issues": 4,
+      "prs": 1,
+      "total": 5,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-commandcode-auth",
+      "path": "commandcode",
+      "issues": 4,
+      "prs": 0,
+      "total": 4,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-kimi-work-auth",
+      "path": "kimi-work",
       "issues": 3,
       "prs": 1,
       "total": 4,
       "confidence": "high"
     },
     {
-      "package": "kimi-work",
-      "path": "packages/kimi-work",
+      "package": "@magpie-community/tools-layerfs",
+      "path": "layerfs",
       "issues": 3,
       "prs": 1,
       "total": 4,
       "confidence": "high"
     },
     {
-      "package": "layerfs",
-      "path": "packages/layerfs",
+      "package": "@magpie-community/agent-kimi-desktop",
+      "path": "kimi-desktop",
       "issues": 3,
-      "prs": 1,
-      "total": 4,
+      "prs": 0,
+      "total": 3,
       "confidence": "high"
     },
     {
-      "package": "catpaw",
-      "path": "packages/catpaw",
+      "package": "@magpie-community/gateway-nowledge-mem",
+      "path": "nowledge-mem",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/middleware-system-prompt",
+      "path": "system-prompt",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/middleware-think-tags",
+      "path": "think-tags",
+      "issues": 3,
+      "prs": 0,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-catpaw-auth",
+      "path": "catpaw",
       "issues": 1,
-      "prs": 3,
-      "total": 4,
-      "confidence": "high"
-    },
-    {
-      "package": "inkstone",
-      "path": "packages/inkstone",
-      "issues": 3,
-      "prs": 1,
-      "total": 4,
-      "confidence": "high"
-    },
-    {
-      "package": "nowledge-mem",
-      "path": "packages/nowledge-mem",
-      "issues": 2,
-      "prs": 1,
-      "total": 3,
-      "confidence": "high"
-    },
-    {
-      "package": "loomy",
-      "path": "packages/loomy",
-      "issues": 2,
-      "prs": 1,
-      "total": 3,
-      "confidence": "high"
-    },
-    {
-      "package": "notify",
-      "path": "packages/notify",
-      "issues": 0,
-      "prs": 3,
-      "total": 3,
-      "confidence": "high"
-    },
-    {
-      "package": "kimi-desktop",
-      "path": "packages/kimi-desktop",
-      "issues": 3,
-      "prs": 0,
-      "total": 3,
-      "confidence": "high"
-    },
-    {
-      "package": "system-prompt",
-      "path": "packages/system-prompt",
-      "issues": 2,
-      "prs": 1,
-      "total": 3,
-      "confidence": "high"
-    },
-    {
-      "package": "think-tags",
-      "path": "packages/think-tags",
-      "issues": 3,
-      "prs": 0,
-      "total": 3,
-      "confidence": "high"
-    },
-    {
-      "package": "page-usage-board",
-      "path": "packages/page-usage-board",
-      "issues": 2,
-      "prs": 1,
-      "total": 3,
-      "confidence": "high"
-    },
-    {
-      "package": "joycode",
-      "path": "packages/joycode",
-      "issues": 0,
       "prs": 2,
-      "total": 2,
+      "total": 3,
       "confidence": "high"
     },
     {
-      "package": "tabbit",
-      "path": "packages/tabbit",
+      "package": "@magpie-community/opencode-loomy-auth",
+      "path": "loomy",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-opendesign-auth",
+      "path": "opendesign",
+      "issues": 2,
+      "prs": 1,
+      "total": 3,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/agent-lorca",
+      "path": "lorca",
       "issues": 1,
       "prs": 1,
       "total": 2,
       "confidence": "high"
     },
     {
-      "package": "orcaterm",
-      "path": "packages/orcaterm",
+      "package": "@magpie-community/opencode-astudio-auth",
+      "path": "astudio",
+      "issues": 2,
+      "prs": 0,
+      "total": 2,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/opencode-orcaterm-auth",
+      "path": "orcaterm",
       "issues": 1,
       "prs": 1,
       "total": 2,
       "confidence": "high"
     },
     {
-      "package": "lorca",
-      "path": "packages/lorca",
+      "package": "@magpie-community/opencode-tabbit-auth",
+      "path": "tabbit",
       "issues": 1,
       "prs": 1,
       "total": 2,
       "confidence": "high"
     },
     {
-      "package": "day-card",
-      "path": "packages/day-card",
+      "package": "@magpie-community/page-chat",
+      "path": "chat",
+      "issues": 2,
+      "prs": 0,
+      "total": 2,
+      "confidence": "high"
+    },
+    {
+      "package": "@magpie-community/page-day-card",
+      "path": "day-card",
       "issues": 2,
       "prs": 0,
       "total": 2,
@@ -442,9 +447,9 @@
     }
   ],
   "package_cluster_tail": {
-    "omitted_known_packages": 23,
-    "omitted_items": 27,
-    "reason": "The panel seed keeps the 40 largest clusters inline; panel-sync can hydrate the tail from the same snapshot."
+    "omitted_known_packages": 22,
+    "omitted_items": 23,
+    "reason": "The 40 listed rows are the unclassified bucket plus the 39 largest recognized packages; package_clusters_total counts only the 61 recognized packages."
   },
   "priority_issues": [
     {
@@ -464,11 +469,13 @@
         "detail": "Require a per-window URL token and same-origin POST, reject null origins, and add a cross-origin regression test."
       },
       "evidence": {
-        "comments": 0,
+        "comments": 3,
         "reactions": 0,
         "created_at": "2026-11-04T02:53:35Z",
-        "updated_at": "2026-11-04T02:53:35Z"
-      }
+        "updated_at": "2026-11-26T03:42:16.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 2,
@@ -489,8 +496,10 @@
         "comments": 1,
         "reactions": 0,
         "created_at": "2026-11-21T10:42:25Z",
-        "updated_at": "2026-11-21T14:46:46Z"
-      }
+        "updated_at": "2026-11-21T14:46:46.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 3,
@@ -511,14 +520,16 @@
         "comments": 31,
         "reactions": 1,
         "created_at": "2026-11-14T11:32:56Z",
-        "updated_at": "2026-11-14T18:57:26Z"
-      }
+        "updated_at": "2026-11-14T18:57:26.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 4,
       "number": 893,
       "title": "agy-cli: isolate agy home (--gemini-dir / --disable-telemetry), guard built-in tools, strip Claude Code CLI identity, and intercept in-band soft-ban notices",
-      "package": "agy-cli",
+      "package": "@magpie-community/opencode-agy-cli-auth",
       "risk": "P1",
       "risk_tags": [
         "account_ban",
@@ -534,14 +545,16 @@
         "comments": 0,
         "reactions": 0,
         "created_at": "2026-11-09T09:09:45Z",
-        "updated_at": "2026-11-09T09:09:45Z"
-      }
+        "updated_at": "2026-11-09T09:09:45.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 5,
       "number": 1446,
       "title": "Factory 0.1.56: Cowork built-in MCP tool declarations still receive content_policy_rejected on Magpie 0.1.4657",
-      "package": "factory",
+      "package": "@magpie-community/opencode-factory-auth",
       "risk": "P1",
       "risk_tags": [
         "policy_rejection",
@@ -557,8 +570,10 @@
         "comments": 0,
         "reactions": 0,
         "created_at": "2026-11-21T23:36:31Z",
-        "updated_at": "2026-11-21T23:42:05Z"
-      }
+        "updated_at": "2026-11-21T23:42:05.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 6,
@@ -576,16 +591,20 @@
         "detail": "Ignore empty tool_calls arrays, coalesce reasoning chunks, and add a session-restore regression with the reported part counts."
       },
       "evidence": {
-        "comments": 0,
+        "comments": 2,
         "reactions": 0,
         "created_at": "2026-11-24T22:02:25Z",
-        "updated_at": "2026-11-24T22:02:25Z"
-      }
+        "updated_at": "2026-11-25T11:54:36Z",
+        "status": "closed-unmerged",
+        "closed_at": "2026-11-25T11:52:29Z",
+        "merged_at": null
+      },
+      "status": "closed-unmerged"
     },
     {
       "rank": 7,
       "number": 1512,
-      "title": "agy-cli 0.1.116: validateBody 无条件拦截 tool_result + assistant prefill tail，导致流中断后 Magpie 断点续传必死 400",
+      "title": "agy-cli 0.1.116: validateBody 无条件拦截 tool_result + assistant prefill tail，导致流中断后 Magpie 断点续传必死 400（补 #1319/#1465 未覆盖根因与修复定位）",
       "package": "agy-cli",
       "risk": "P1",
       "risk_tags": [
@@ -599,17 +618,21 @@
         "detail": "Support or safely transform the prefill-tail shape, and add a resume test covering tool_result plus partial assistant text."
       },
       "evidence": {
-        "comments": 0,
+        "comments": 4,
         "reactions": 0,
         "created_at": "2026-11-24T07:03:09Z",
-        "updated_at": "2026-11-24T07:03:09Z"
-      }
+        "updated_at": "2026-11-26T14:05:18Z",
+        "status": "closed-unmerged",
+        "closed_at": "2026-11-26T14:05:18Z",
+        "merged_at": null
+      },
+      "status": "closed-unmerged"
     },
     {
       "rank": 8,
       "number": 209,
       "title": "[zen-free] Dropping unknown tool calls as text ends autonomous DSH turns instead of allowing recovery",
-      "package": "zen-free",
+      "package": "@magpie-community/opencode-zen-free-auth",
       "risk": "P1",
       "risk_tags": [
         "data_loss",
@@ -624,14 +647,16 @@
         "comments": 1,
         "reactions": 0,
         "created_at": "2026-10-17T13:04:53Z",
-        "updated_at": "2026-10-17T13:17:11Z"
-      }
+        "updated_at": "2026-10-17T13:53:13.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 9,
       "number": 1204,
       "title": "qoder-cn: chat returns 200 + keepalive only, never a single token (ideVersion sent empty)",
-      "package": "qoder",
+      "package": "@magpie-community/opencode-qoder-auth",
       "risk": "P1",
       "risk_tags": [
         "stream_interruption",
@@ -646,14 +671,16 @@
         "comments": 5,
         "reactions": 0,
         "created_at": "2026-11-16T06:10:55Z",
-        "updated_at": "2026-11-17T09:14:30Z"
-      }
+        "updated_at": "2026-11-17T09:14:30.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 10,
       "number": 1517,
-      "title": "qoder-cn: with DeepSeekRuntime (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)",
-      "package": "qoder",
+      "title": "qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)",
+      "package": "@magpie-community/opencode-qoder-auth",
       "risk": "P1",
       "risk_tags": [
         "stream_interruption",
@@ -666,17 +693,19 @@
         "detail": "Cross-link #1204/#1220 and verify PR #1253 in the Linux container with request and gateway traces; close as duplicate only if the root cause matches."
       },
       "evidence": {
-        "comments": 0,
+        "comments": 6,
         "reactions": 0,
         "created_at": "2026-11-24T08:09:27Z",
-        "updated_at": "2026-11-24T08:09:27Z"
-      }
+        "updated_at": "2026-11-27T01:34:51.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 11,
       "number": 1196,
-      "title": "zcode: ZCode 3.18 saves credentials as enc:v2: — decrypt() only reads enc:v1, so ZCode app's sign-in loses the ZCode session",
-      "package": "zcode",
+      "title": "zcode: ZCode 3.18 saves credentials as enc:v2: — decrypt() only reads enc:v1, so \"ZCode app's sign-in\" loses the ZCode session (gift plans / -Trial unusable)",
+      "package": "@magpie-community/opencode-zcode-auth",
       "risk": "P1",
       "risk_tags": [
         "login_failure",
@@ -691,14 +720,16 @@
         "comments": 5,
         "reactions": 0,
         "created_at": "2026-11-16T02:46:29Z",
-        "updated_at": "2026-11-20T16:05:53Z"
-      }
+        "updated_at": "2026-11-20T16:05:53.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 12,
       "number": 618,
-      "title": "Copilot slots lapse after ~24h idle although the GitHub OAuth token is still valid",
-      "package": "copilot",
+      "title": "Copilot slots lapse after ~24h idle although the GitHub OAuth token is still valid (only the active account is renewed)",
+      "package": "@magpie-community/opencode-copilot-auth",
       "risk": "P2",
       "risk_tags": [
         "login_failure",
@@ -713,14 +744,16 @@
         "comments": 1,
         "reactions": 0,
         "created_at": "2026-11-02T03:12:33Z",
-        "updated_at": "2026-11-02T04:04:01Z"
-      }
+        "updated_at": "2026-11-02T04:04:01.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 13,
       "number": 1516,
       "title": "trae: an enterprise sign-in's bare host is rejected, so every chat goes to the consumer gateway",
-      "package": "trae",
+      "package": "@magpie-community/opencode-trae-auth",
       "risk": "P1",
       "risk_tags": [
         "login_failure",
@@ -732,17 +765,19 @@
         "detail": "Normalize enterprise bare-host storage and add a SaaS catalog/chat regression."
       },
       "evidence": {
-        "comments": 3,
+        "comments": 4,
         "reactions": 0,
         "created_at": "2026-11-24T07:51:20Z",
-        "updated_at": "2026-11-25T02:27:47Z"
-      }
+        "updated_at": "2026-11-26T04:23:02.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 14,
       "number": 1417,
-      "title": "[doubao-work] Windows 环境下非默认路径安装时启动崩溃 (0x80000003)",
-      "package": "doubao-work",
+      "title": "[doubao-work] Windows 环境下非默认路径安装时启动崩溃 (0x80000003)，建议默认追加 --no-sandbox 参数",
+      "package": "@magpie-community/opencode-doubao-work-auth",
       "risk": "P1",
       "risk_tags": [
         "windows",
@@ -757,14 +792,16 @@
         "comments": 0,
         "reactions": 0,
         "created_at": "2026-11-20T17:56:17Z",
-        "updated_at": "2026-11-20T17:56:17Z"
-      }
+        "updated_at": "2026-11-20T17:56:17.000Z",
+        "status": "open"
+      },
+      "status": "open"
     },
     {
       "rank": 15,
       "number": 1234,
       "title": "agy-cli (Windows): background quota refresh opens Google OAuth on transient token refresh failure at startup",
-      "package": "agy-cli",
+      "package": "@magpie-community/opencode-agy-cli-auth",
       "risk": "P2",
       "risk_tags": [
         "windows",
@@ -780,8 +817,10 @@
         "comments": 2,
         "reactions": 0,
         "created_at": "2026-11-16T18:18:10Z",
-        "updated_at": "2026-11-18T19:42:46Z"
-      }
+        "updated_at": "2026-11-18T19:42:46.000Z",
+        "status": "open"
+      },
+      "status": "open"
     }
   ],
   "priority_prs": [
@@ -789,7 +828,7 @@
       "rank": 1,
       "number": 1358,
       "title": "zcode 0.1.69: reads ZCode 3.18's enc:v2 sign-in (#1196)",
-      "package": "zcode",
+      "package": "@magpie-community/opencode-zcode-auth",
       "risk": "P1",
       "reason": "Directly fixes the current ZCode 3.18 credential format and restores app-backed sign-in.",
       "action": "直接 review",
@@ -805,13 +844,19 @@
       "draft": false,
       "comments": 3,
       "updated_at": "2026-11-23T03:12:42Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 4,
+        "updated_at": "2026-11-25T03:26:27.000Z"
+      }
     },
     {
       "rank": 2,
       "number": 1253,
       "title": "qoder 0.2.72: cancel the first-event read on watchdog",
-      "package": "qoder",
+      "package": "@magpie-community/opencode-qoder-auth",
       "risk": "P1",
       "reason": "Small, targeted fix for silent HTTP 200 streams that never deliver a first event, including the reported qoder-cn keepalive-only failure.",
       "action": "直接 review",
@@ -828,13 +873,19 @@
       "draft": false,
       "comments": 2,
       "updated_at": "2026-11-18T05:01:05Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 2,
+        "updated_at": "2026-11-18T05:01:05.000Z"
+      }
     },
     {
       "rank": 3,
       "number": 1418,
       "title": "agy-cli 0.1.110: a standalone upstream status line is its HTTP error, not assistant text (#1416)",
-      "package": "agy-cli",
+      "package": "@magpie-community/opencode-agy-cli-auth",
       "risk": "P1",
       "reason": "Stops upstream 400/403 status banners from being returned as successful assistant text, restoring correct retry and refusal behavior.",
       "action": "直接 review",
@@ -850,13 +901,19 @@
       "draft": false,
       "comments": 0,
       "updated_at": "2026-11-21T16:22:26Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 0,
+        "updated_at": "2026-11-21T16:22:26.000Z"
+      }
     },
     {
       "rank": 4,
       "number": 1427,
-      "title": "fix(catpaw): 手动粘贴 token 补 current-user 身份，多个粘贴账号不再互相覆盖",
-      "package": "catpaw",
+      "title": "catpaw 0.2.4: a pasted token gets its own identity",
+      "package": "@magpie-community/opencode-catpaw-auth",
       "risk": "P1",
       "reason": "Prevents a second manually pasted account from overwriting the first account's derived storage slot.",
       "action": "直接 review",
@@ -873,13 +930,19 @@
       "draft": false,
       "comments": 0,
       "updated_at": "2026-11-21T04:43:01Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 1,
+        "updated_at": "2026-11-25T11:10:20.000Z"
+      }
     },
     {
       "rank": 5,
       "number": 1246,
       "title": "codearts 0.3.23: a refused catalog read no longer signs an account out",
-      "package": "codearts",
+      "package": "@magpie-community/opencode-codearts-auth",
       "risk": "P1",
       "reason": "Separates an OfficeAce catalog credential refusal from the user's actual sign-in state, preventing false logout alarms.",
       "action": "直接 review",
@@ -896,7 +959,13 @@
       "draft": false,
       "comments": 0,
       "updated_at": "2026-11-17T04:08:29Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 0,
+        "updated_at": "2026-11-17T04:08:29.000Z"
+      }
     },
     {
       "rank": 6,
@@ -918,7 +987,15 @@
       "draft": false,
       "comments": 0,
       "updated_at": "2026-11-24T01:24:59Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "closed-unmerged",
+      "evidence": {
+        "status": "closed-unmerged",
+        "comments": 1,
+        "updated_at": "2026-11-25T13:31:50Z",
+        "closed_at": "2026-11-25T13:31:50Z",
+        "merged_at": null
+      }
     },
     {
       "rank": 7,
@@ -937,13 +1014,19 @@
       "draft": false,
       "comments": 0,
       "updated_at": "2026-11-21T15:40:01Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 0,
+        "updated_at": "2026-11-21T15:40:01.000Z"
+      }
     },
     {
       "rank": 8,
       "number": 1296,
       "title": "agy-cli 0.1.117: recover from agy UNAUTHENTICATED (code 401) endings on a fresh process",
-      "package": "agy-cli",
+      "package": "@magpie-community/opencode-agy-cli-auth",
       "risk": "P1",
       "reason": "Recovers long-lived ACP sessions whose in-memory token cache goes stale after another process refreshes the token.",
       "action": "直接 review",
@@ -961,7 +1044,13 @@
       "draft": false,
       "comments": 3,
       "updated_at": "2026-11-24T13:37:30Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 3,
+        "updated_at": "2026-11-24T13:37:30.000Z"
+      }
     },
     {
       "rank": 9,
@@ -984,13 +1073,21 @@
       "draft": false,
       "comments": 2,
       "updated_at": "2026-11-24T21:18:05Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "closed-unmerged",
+      "evidence": {
+        "status": "closed-unmerged",
+        "comments": 3,
+        "updated_at": "2026-11-25T13:31:58Z",
+        "closed_at": "2026-11-25T13:31:58Z",
+        "merged_at": null
+      }
     },
     {
       "rank": 10,
       "number": 1394,
       "title": "agy-cli 0.1.113: preserve ACP sessions and support long MCP tool names",
-      "package": "agy-cli",
+      "package": "@magpie-community/opencode-agy-cli-auth",
       "risk": "P1",
       "reason": "Avoids dropping a live ACP session when tool_search grows tools mid-turn and supports long MCP tool names.",
       "action": "直接 review",
@@ -1010,13 +1107,19 @@
       "draft": false,
       "comments": 0,
       "updated_at": "2026-11-22T11:48:15Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 0,
+        "updated_at": "2026-11-22T11:48:15.000Z"
+      }
     },
     {
       "rank": 11,
       "number": 1287,
       "title": "agy-cli: preserve active context across suggestions, history forks and compaction",
-      "package": "agy-cli",
+      "package": "@magpie-community/opencode-agy-cli-auth",
       "risk": "P1",
       "reason": "Separates background suggestions from the live conversation and preserves alternate histories before replay budget clipping.",
       "action": "直接 review",
@@ -1032,12 +1135,18 @@
       "draft": false,
       "comments": 1,
       "updated_at": "2026-11-19T06:54:04Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 1,
+        "updated_at": "2026-11-19T06:54:04.000Z"
+      }
     },
     {
       "rank": 12,
       "number": 1524,
-      "title": "agy-cli 0.1.117: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays",
+      "title": "agy-cli 0.1.122: preserve active DSH <available_skills> and workspace instructions when clipping >112 KiB replays",
       "package": "agy-cli",
       "risk": "P1",
       "reason": "Prevents long DSH sessions from losing workspace instructions and available skills during cold replay clipping.",
@@ -1055,13 +1164,21 @@
       "draft": false,
       "comments": 1,
       "updated_at": "2026-11-24T21:18:07Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "closed-unmerged",
+      "evidence": {
+        "status": "closed-unmerged",
+        "comments": 4,
+        "updated_at": "2026-11-25T13:25:56Z",
+        "closed_at": "2026-11-25T13:25:56Z",
+        "merged_at": null
+      }
     },
     {
       "rank": 13,
       "number": 219,
       "title": "autoclaw: proactively refresh token on 401/403 before failing",
-      "package": "autoclaw",
+      "package": "@magpie-community/opencode-autoclaw-auth",
       "risk": "P1",
       "reason": "Adds a single-flight refresh and retry path so a revoked but refreshable access token no longer strands an account in backoff.",
       "action": "直接 review",
@@ -1078,13 +1195,19 @@
       "draft": false,
       "comments": 1,
       "updated_at": "2026-11-10T13:17:31Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 1,
+        "updated_at": "2026-11-10T13:17:31.000Z"
+      }
     },
     {
       "rank": 14,
       "number": 1333,
       "title": "agent-console 1.3.11: keep following replies and queued turns active",
-      "package": "agent-console",
+      "package": "@magpie-community/page-agent-console",
       "risk": "P2",
       "reason": "Fixes stream-follow scroll races and queued-turn handoff so a live reply does not appear to stop while content continues.",
       "action": "直接 review",
@@ -1111,13 +1234,19 @@
       "draft": false,
       "comments": 0,
       "updated_at": "2026-11-24T06:28:35Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 0,
+        "updated_at": "2026-11-24T06:28:35.000Z"
+      }
     },
     {
       "rank": 15,
       "number": 1066,
       "title": "autoclaw 0.2.26: remote-web panel login and startup isolation",
-      "package": "autoclaw",
+      "package": "@magpie-community/opencode-autoclaw-auth",
       "risk": "P1",
       "reason": "Adds CSRF-protected remote login, one-time tickets, bounded bodies, and startup isolation while preventing a panel port conflict from disabling both providers.",
       "action": "直接 review",
@@ -1140,7 +1269,13 @@
       "draft": false,
       "comments": 2,
       "updated_at": "2026-11-13T03:41:40Z",
-      "mergeability": "unverified"
+      "mergeability": "unverified",
+      "status": "open",
+      "evidence": {
+        "status": "open",
+        "comments": 2,
+        "updated_at": "2026-11-13T03:41:40.000Z"
+      }
     }
   ],
   "overlap_and_hold_clusters": [
@@ -1155,7 +1290,13 @@
       ],
       "canonical": 1358,
       "action": "直接 review",
-      "reason": "All four touch ZCode 3.18 credential decryption or Keychain prompting. Review #1358 first, compare platform coverage, then consolidate the remaining stack instead of merging overlapping implementations."
+      "reason": "All four touch ZCode 3.18 credential decryption or Keychain prompting. Review #1358 first, compare platform coverage, then consolidate the remaining stack instead of merging overlapping implementations.",
+      "statuses": {
+        "1116": "open-pr",
+        "1154": "open-pr",
+        "1161": "open-pr",
+        "1358": "open-pr"
+      }
     },
     {
       "id": "agy-session-context-stack",
@@ -1169,7 +1310,14 @@
       ],
       "canonical": 1520,
       "action": "直接 review",
-      "reason": "These changes overlap in packages/agy-cli/index.mjs and address related conversation-key, replay, and live-session behavior. Review in the listed order and require rebases after each merge."
+      "reason": "These changes overlap in packages/agy-cli/index.mjs and address related conversation-key, replay, and live-session behavior. Review in the listed order and require rebases after each merge.",
+      "statuses": {
+        "1283": "open-pr",
+        "1287": "open-pr",
+        "1394": "open-pr",
+        "1520": "closed",
+        "1524": "closed"
+      }
     },
     {
       "id": "lobster-account-ban-evidence",
@@ -1180,7 +1328,11 @@
       ],
       "canonical": 1433,
       "action": "求日志",
-      "reason": "Issue #1433 reports an account ban while PR #1209 would add a LobsterAI registry entry. Do not promote the entry until source provenance and ban-risk evidence are reviewed."
+      "reason": "Issue #1433 reports an account ban while PR #1209 would add a LobsterAI registry entry. Do not promote the entry until source provenance and ban-risk evidence are reviewed.",
+      "statuses": {
+        "1209": "open-pr",
+        "1433": "open-issue"
+      }
     }
   ],
   "panel_sync": {
@@ -1201,6 +1353,6 @@
       "package": "package"
     },
     "refresh_required": true,
-    "refresh_reason": "Mergeability and CI were not fetched in this seed, and the public mirror snapshot must be reconciled with GitHub before panel actions."
+    "refresh_reason": "The public snapshot was refreshed at the timestamp above; mergeability and CI still need a separate PR audit before panel actions."
   }
 }

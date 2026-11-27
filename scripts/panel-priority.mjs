@@ -31,6 +31,12 @@ function link(label, url) {
   return `[${text}](${url})`
 }
 
+function statusText(item) {
+  const status = item.status || "open"
+  const closed = item.evidence?.closed_at ? `; closed ${item.evidence.closed_at}` : ""
+  return `${status}${closed}`
+}
+
 function validateSeed(seed) {
   if (seed?.schema_version !== "panel-triage-seed/v1") throw new Error("unsupported triage seed schema")
   if (seed.repository?.full_name !== "magpie-community/plugins") throw new Error("unexpected upstream repository")
@@ -75,7 +81,7 @@ export function renderPriority(seed) {
     const issueUrl = `https://github.com/${repository}/issues/${item.number}`
     const action = item.action?.detail || item.action?.primary || ""
     const comments = item.evidence?.comments ?? 0
-    const evidence = `${comments} ${comments === 1 ? "comment" : "comments"}; updated ${item.evidence?.updated_at ?? "unknown"}`
+    const evidence = `${statusText(item)}; ${comments} ${comments === 1 ? "comment" : "comments"}; updated ${item.evidence?.updated_at ?? "unknown"}`
     lines.push(
       `| ${item.rank} | **${item.risk}** | \`${escapeCell(item.package || "unclassified")}\` | ${link(`#${item.number} ${item.title}`, issueUrl)} | ${escapeCell(action)} | ${escapeCell(evidence)} |`,
     )
@@ -85,8 +91,8 @@ export function renderPriority(seed) {
     "",
     "## Priority Pull Requests",
     "",
-    "| Rank | Risk | Package | Pull request | Action | Linked issues |",
-    "| ---: | :---: | :--- | :--- | :--- | :--- |",
+    "| Rank | Risk | Package | Pull request | Status | Action | Linked issues |",
+    "| ---: | :---: | :--- | :--- | :--- | :--- | :--- |",
   )
 
   for (const item of seed.priority_prs) {
@@ -96,14 +102,17 @@ export function renderPriority(seed) {
       : "none"
     const action = actionLabels.get(item.action) || item.action
     lines.push(
-      `| ${item.rank} | **${item.risk}** | \`${escapeCell(item.package || "unclassified")}\` | ${link(`#${item.number} ${item.title}`, pullUrl)} | ${escapeCell(action)} | ${linked} |`,
+      `| ${item.rank} | **${item.risk}** | \`${escapeCell(item.package || "unclassified")}\` | ${link(`#${item.number} ${item.title}`, pullUrl)} | ${escapeCell(statusText(item))} | ${escapeCell(action)} | ${linked} |`,
     )
   }
 
   lines.push("", "## Overlap Clusters", "")
   for (const cluster of seed.overlap_and_hold_clusters ?? []) {
     const numbers = cluster.numbers.map((number) => `#${number}`).join(", ")
-    lines.push(`- **${escapeCell(cluster.id)}** (${numbers}): ${escapeCell(cluster.reason)}`)
+    const statuses = cluster.statuses
+      ? ` Status: ${cluster.numbers.map((number) => `#${number} ${cluster.statuses[number] || "unknown"}`).join(", ")}.`
+      : ""
+    lines.push(`- **${escapeCell(cluster.id)}** (${numbers}): ${escapeCell(cluster.reason)}${statuses}`)
   }
 
   lines.push(

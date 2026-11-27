@@ -14,6 +14,7 @@ import fs from "node:fs"
 import os from "node:os"
 import path from "node:path"
 import { execFileSync } from "node:child_process"
+import { randomUUID } from "node:crypto"
 import { App, Page, sleep } from "./cdp.mjs"
 
 // isChat says whether a page is either app's chat page. The page reports
@@ -534,6 +535,95 @@ export const QUOTA = js(`
   } catch (e) { return { error: String(e && e.message || e) }; }
 `)
 
+// ALICE posts a JSON body to one of Doubao's /alice/ paths the way the
+// page's own calls go: with its cookies and the query its other /alice/
+// calls carry (version_code, aid, device_id...; msToken and a_bogus left
+// out, as LIST leaves them). It answers {status, body} or, when nothing
+// answered, {error}.
+export const ALICE = (path, body) => js(`
+  const urls = performance.getEntriesByType("resource").map((e) => e.name).filter((u) => u.startsWith("https://www.doubao.com/alice/") && u.includes("?"));
+  const q = new URL(urls.pop() || "https://www.doubao.com/alice/").searchParams;
+  q.delete("msToken"); q.delete("a_bogus");
+  const query = String(q);
+  try {
+    const r = await fetch("https://www.doubao.com" + ${JSON.stringify(path)} + (query ? "?" + query : ""), { method: "POST", credentials: "include", headers: { "content-type": "application/json" }, body: ${JSON.stringify(JSON.stringify(body))} });
+    const t = await r.text();
+    let j = null;
+    try { j = JSON.parse(t); } catch {}
+    return { status: r.status, body: j };
+  } catch (e) { return { error: String(e && e.message || e) }; }
+`)
+
+// Doubao's daily check-in (签到) belongs to its growth campaign
+// (豆包探索计划), read from the app's own bundle (UgCampaignApiService): the page
+// asks landing/get what to show, and a 签到 button there reports the press
+// (landing/report) and checks in (landing/checkin). Doubao decides per
+// account whether it offers one; it has no make-up check-in (补签).
+export const LANDING = "/alice/ug/campaign/landing/get"
+export const CHECKIN = "/alice/ug/campaign/landing/checkin"
+export const REPORT = "/alice/ug/campaign/landing/report"
+
+// landing/get's chosen_type: 1 the check-in page, 2 the page after it (today
+// is in), 3 cards. A button's type: button_type on the pages, interaction_type
+// on a card; 2 is 签到 on both.
+const MAIN_PAGE = 1, CHECKED_IN = 2, CARDS = 3, CHECK_IN = 2
+// reward_status 4 is a check-in whose reward failed
+const REWARD_FAILED = 4
+
+const words = (info) => [info?.title, info?.content].map((s) => String(s ?? "").trim()).filter(Boolean).join("，")
+
+// refusal is a reply that isn't Doubao's yes, as magpie's outcome: codes 0
+// and 200 (or none) are the page's yes.
+function refusal(read, what) {
+  if (read?.error) throw new DoubaoError(`${what}没有回复：${read.error}`, "doubao_network")
+  if (read?.status === 401 || read?.status === 403) return { outcome: "failed", message: "豆包登录已过期，请重新登录豆包工作窗口。" }
+  const b = read?.body
+  if (!b || typeof b !== "object") return { outcome: "failed", message: `${what}的回复不是 JSON（HTTP ${read?.status ?? "?"}）` }
+  if (b.code != null && !["0", "200"].includes(String(b.code))) return { outcome: "failed", message: `${what}失败：${b.msg || "code " + b.code}` }
+  return null
+}
+
+// offerOf is the 签到 button landing/get offers: on the check-in page, or
+// on a card (whose press is reported with the card's id).
+function offerOf(d) {
+  const type = Number(d?.chosen_type)
+  if (type === MAIN_PAGE && (d.main_page_info?.buttons ?? []).some((b) => Number(b?.button_type) === CHECK_IN)) return {}
+  if (type === CARDS)
+    for (const c of d.landing_cards ?? []) {
+      const b = (c?.buttons ?? []).find((b) => Number(b?.interaction_type) === CHECK_IN)
+      if (b && c.card_id) return { card: { card_id: String(c.card_id), ...(b.button_id ? { button_id: String(b.button_id) } : {}) } }
+    }
+  return null
+}
+
+// checkinOf checks the account in as the page's 签到 button does, through
+// call(path, body) ({status, body} or {error}), and says it as magpie's
+// check-in outcome. A request nothing answered is thrown.
+export async function checkinOf(call, { newId = randomUUID } = {}) {
+  const landing = await call(LANDING, {})
+  const no = refusal(landing, "读取豆包签到")
+  if (no) return no
+  const d = landing.body.data ?? {}
+  if (Number(d.chosen_type) === CHECKED_IN) return { outcome: "done", ...(words(d.complete_page_info) ? { message: words(d.complete_page_info) } : {}) }
+  const offer = offerOf(d)
+  if (!offer) return { outcome: "inactive", message: "豆包现在没有给这个账号签到入口（签到是豆包探索计划的活动，由豆包按账号推送）" }
+  // the page reports the press beside the check-in and doesn't wait for it
+  const report = call(REPORT, { event_type: "user_operate", biz_event_name: "check_in", ...(offer.card ? { card_event: { ...offer.card, event_id: newId() } } : {}) }).catch(() => {})
+  let got
+  try {
+    got = await call(CHECKIN, {})
+  } finally {
+    await report
+  }
+  const refused = refusal(got, "豆包签到")
+  if (refused) return refused
+  const r = got.body.data ?? {}
+  if (!r.checked_in) return { outcome: "failed", message: got.body.msg || "豆包没有完成签到" }
+  const streak = Number(r.continuous_days)
+  const said = Number(r.reward_status) === REWARD_FAILED ? "已签到，但豆包这次没有发放签到奖励" : words(d.complete_page_info)
+  return { outcome: "claimed", ...(streak > 0 ? { streak } : {}), ...(said ? { message: said } : {}) }
+}
+
 // BOT_ID is the bot Doubao's page names when it asks for its action bar
 // (the app's code has it as a constant); without it brief_list answers
 // 710010202.
@@ -600,6 +690,74 @@ export const usageOf = (raw) => {
   } catch {
     return 0
   }
+}
+
+// A spent allowance is no error on Doubao's page. In place of running the
+// task, Doubao answers with a reply of its own, as ordinary text (aaron0x10
+// on X, 2026-11):
+//
+//   本月额度已用完，下个月恢复为你服务。升级到标准套餐畅享更多额度。
+//
+//   升级正式订阅
+//
+// Given to the agent as the model's answer, it ended the agent's work. It is
+// a 429 instead (doubao_quota), with Doubao's own words, so magpie rests the
+// account and asks the next one. Only a reply that is that notice whole is
+// one: its head (本月, or a shorter window's 本周, 今日, 今天), maybe when it
+// is back, then nothing but lines offering an upgrade. An answer that only
+// mentions 额度 is an answer.
+const SPENT_HEADS = ["本月", "本周", "今日", "今天"].map((s) => s + "额度已用完")
+const SPENT = /^(本月|本周|今日|今天)额度已用完(?:[，,]\s*(下个月|下月|下周|明天|明日)恢复为你服务)?[。！!.]?/
+// the longest a notice is: a reply longer than this is an answer
+const SPENT_MAX = 160
+
+// spentNotice reads a whole reply as Doubao's notice that the allowance is
+// spent: { words, when } (when: 下个月, 明天..., "" when it doesn't say), or
+// null when the reply is anything else.
+export function spentNotice(text) {
+  const t = String(text ?? "").trim()
+  if (!t || t.length > SPENT_MAX) return null
+  const m = t.match(SPENT)
+  if (!m) return null
+  // what may follow the head: the upgrade offer, sentence by sentence or
+  // line by line, each beginning 升级
+  const rest = t.slice(m[0].length).split(/[。！!\n]+/).map((s) => s.trim()).filter(Boolean)
+  if (!rest.every((s) => s.startsWith("升级") && s.length <= 30)) return null
+  return { words: t.replace(/\s*\n\s*/g, " "), when: m[2] ?? "" }
+}
+
+// maySpend says whether a reply still growing could be that notice: empty
+// yet, part of a head, or a head and short enough. A stream holds such a
+// reply back, so a notice is a 429 and never an answer begun.
+export function maySpend(text) {
+  const t = String(text ?? "").trimStart()
+  if (!t) return true
+  if (SPENT_HEADS.some((h) => h.startsWith(t))) return true
+  return SPENT_HEADS.some((h) => t.startsWith(h)) && t.length <= SPENT_MAX
+}
+
+// BEIJING is the clock Doubao's allowance runs on: Doubao is ByteDance's
+// China service, so a month (or a day, or a week) is Beijing's, UTC+8 with
+// no summer time.
+const BEIJING = 8 * HOUR
+
+// backAt is when a notice's "下个月 恢复为你服务" says the allowance is
+// back, in ms: the start of next month, tomorrow or next Monday on Beijing's
+// clock. 0 when it doesn't say.
+export function backAt(when, now = Date.now()) {
+  const d = new Date(now + BEIJING) // read in UTC, its fields are Beijing's
+  const y = d.getUTCFullYear(), m = d.getUTCMonth(), day = d.getUTCDate()
+  if (when === "下个月" || when === "下月") return Date.UTC(y, m + 1, 1) - BEIJING
+  if (when === "明天" || when === "明日") return Date.UTC(y, m, day + 1) - BEIJING
+  if (when === "下周") return Date.UTC(y, m, day + 7 - ((d.getUTCDay() + 6) % 7)) - BEIJING
+  return 0
+}
+
+// spentError is the doubao_quota error for a notice: a 429 with Doubao's
+// words and, when it says, the time it is back (resetsAt, ms).
+export function spentError(notice, now = Date.now()) {
+  const at = backAt(notice.when, now)
+  return new DoubaoError("豆包工作：" + notice.words, "doubao_quota", { status: 429, ...(at > now ? { resetsAt: at } : {}) })
 }
 
 // CACHE is the models.json format: 2 since the list comes from brief_list.
@@ -775,6 +933,18 @@ export class Doubao {
     return page.eval(QUOTA)
   }
 
+  // checkin presses Doubao's daily 签到 through the app's page, from a
+  // window already open only, as quota reads: a check-in never brings
+  // Doubao up (#1117).
+  async checkin({ signal } = {}) {
+    if (!(this.page && !this.page.closed)) {
+      if (!this.app?.start) throw new DoubaoError("没有找到豆包。", "app_missing")
+      if (this.app.dataDir && !fs.existsSync(this.app.dataDir)) throw new DoubaoError("还没有登录过豆包工作窗口。", "doubao_signin")
+    }
+    const page = await this.connect(signal, { launch: false })
+    return checkinOf((p, body) => page.eval(ALICE(p, body)))
+  }
+
   // connect gives the page of the app's chat window, starting the app
   // when launch says so; without it a closed app is the app_closed error
   async connect(signal, { launch = true } = {}) {
@@ -891,6 +1061,8 @@ export class Doubao {
       }
       last = r
       if (r.finished) {
+        const spent = spentNotice(r.text)
+        if (spent) throw spentError(spent)
         if (!r.text && !r.reasoning && (r.error || !/^succeed/i.test(r.reason || "succeed")))
           throw new DoubaoError(`豆包没有回复（${r.status || r.reason || r.error || "unknown"}）`, "doubao_failed", { status: 502 })
         return r

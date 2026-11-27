@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-27T01:43:47.596Z",
+  "generatedAt": "2026-11-27T02:48:58.745Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
@@ -27,8 +27,8 @@
     },
     "byComments": {
       "issues": {
-        "none": 154,
-        "light": 186,
+        "none": 155,
+        "light": 185,
         "active": 50,
         "hot": 11
       },
@@ -42,14 +42,14 @@
     "byUpdated": {
       "issues": {
         "24h": 29,
-        "7d": 74,
-        "30d": 227,
+        "7d": 72,
+        "30d": 229,
         "older": 71
       },
       "pulls": {
         "24h": 10,
-        "7d": 78,
-        "30d": 117,
+        "7d": 77,
+        "30d": 118,
         "older": 18
       }
     },
@@ -68,9 +68,9 @@
       "titlePrefix": "qoder",
       "priority": "P2",
       "prioritySource": "title",
-      "comments": 6,
+      "comments": 7,
       "commentBucket": "active",
-      "updatedAt": "2026-11-26T19:14:05.000Z",
+      "updatedAt": "2026-11-27T02:06:20.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T02:34:06.000Z",
       "labels": [],
@@ -94,6 +94,40 @@
       "author": "tyh97"
     },
     {
+      "number": 1605,
+      "title": "trae-cn: namespace enterprise model ids by provider to fix config_name collision with presets",
+      "url": "https://github.com/magpie-community/plugins/issues/1605",
+      "package": "@magpie-community/opencode-trae-auth",
+      "packageDirectory": "trae",
+      "titlePrefix": "trae",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T02:30:20.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T02:30:20.000Z",
+      "labels": [],
+      "author": "shex816"
+    },
+    {
+      "number": 1602,
+      "title": "agy-cli: 只有 free-tier 被标 UNSUPPORTED_LOCATION，`agy -p /usage` 就整体失败，而同一账号的 TUI `/usage` 能正常读",
+      "url": "https://github.com/magpie-community/plugins/issues/1602",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T01:52:32.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T01:38:31.000Z",
+      "labels": [],
+      "author": "cyclonevox"
+    },
+    {
       "number": 1603,
       "title": "factory 0.1.58: Codex 调用 factory/deepseek-v4.1-flash-1017 仍返回 400 content_policy_rejected",
       "url": "https://github.com/magpie-community/plugins/issues/1603",
@@ -109,40 +143,6 @@
       "createdAt": "2026-11-27T01:41:12.000Z",
       "labels": [],
       "author": "gengyubo"
-    },
-    {
-      "number": 1602,
-      "title": "agy-cli: 只有 free-tier 被标 UNSUPPORTED_LOCATION，`agy -p /usage` 就整体失败，而同一账号的 TUI `/usage` 能正常读",
-      "url": "https://github.com/magpie-community/plugins/issues/1602",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-27T01:38:31.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-27T01:38:31.000Z",
-      "labels": [],
-      "author": "cyclonevox"
-    },
-    {
-      "number": 1591,
-      "title": "Bug：Antigravity 接管后，Local agy CLI 无法读取 Google AI Pro 额度",
-      "url": "https://github.com/magpie-community/plugins/issues/1591",
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "Bug",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 2,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-27T01:36:13.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T14:35:50.000Z",
-      "labels": [],
-      "author": "I-am-c"
     },
     {
       "number": 1517,
@@ -318,8 +318,8 @@
       "number": 1588,
       "title": "uebox: the paths test is red on macOS (XDG_CONFIG_HOME guard is !== win32)",
       "url": "https://github.com/magpie-community/plugins/issues/1588",
-      "package": null,
-      "packageDirectory": null,
+      "package": "@magpie-community/agent-uebox",
+      "packageDirectory": "uebox",
       "titlePrefix": "uebox",
       "priority": "P3",
       "prioritySource": "default",
@@ -1788,7 +1788,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-20T02:38:19.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-20T02:38:19.000Z",
       "labels": [],
       "author": "yetone"
@@ -1805,7 +1805,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-20T02:29:29.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-20T02:29:29.000Z",
       "labels": [],
       "author": "Laokashouji"
@@ -7475,24 +7475,6 @@
       "author": "jinpy666"
     },
     {
-      "number": 1590,
-      "title": "minimax-design-auth 0.1.0: MiniMax Design desktop provider plugin (CN & Global)",
-      "url": "https://github.com/magpie-community/plugins/pull/1590",
-      "draft": false,
-      "package": "@magpie-community/agent-minimax-design",
-      "packageDirectory": "minimax-design",
-      "titlePrefix": "minimax-design",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 3,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-27T01:10:09.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T13:39:47.000Z",
-      "labels": [],
-      "author": "GoooIce"
-    },
-    {
       "number": 1134,
       "title": "agent-meowcode 0.1.1: the new icon",
       "url": "https://github.com/magpie-community/plugins/pull/1134",
@@ -7745,6 +7727,24 @@
       "author": "shiyang1026"
     },
     {
+      "number": 1436,
+      "title": "trae 0.2.58: a turn's cache read and credits from the conversation's settled record",
+      "url": "https://github.com/magpie-community/plugins/pull/1436",
+      "draft": false,
+      "package": "@magpie-community/opencode-trae-auth",
+      "packageDirectory": "trae",
+      "titlePrefix": "trae",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-27T02:13:19.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-21T11:37:45.000Z",
+      "labels": [],
+      "author": "facron2004"
+    },
+    {
       "number": 1529,
       "title": "feat(memory-graph): local semantic similarity engine, strict origin security, Obsidian UI & tests",
       "url": "https://github.com/magpie-community/plugins/pull/1529",
@@ -7761,24 +7761,6 @@
       "createdAt": "2026-11-24T15:33:45.000Z",
       "labels": [],
       "author": "pzjyyds666"
-    },
-    {
-      "number": 1436,
-      "title": "trae 0.2.58: a turn's cache read and credits from the conversation's settled record",
-      "url": "https://github.com/magpie-community/plugins/pull/1436",
-      "draft": false,
-      "package": "@magpie-community/opencode-trae-auth",
-      "packageDirectory": "trae",
-      "titlePrefix": "trae",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 2,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T15:58:08.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-21T11:37:45.000Z",
-      "labels": [],
-      "author": "facron2004"
     },
     {
       "number": 1307,
@@ -8067,6 +8049,24 @@
       "createdAt": "2026-10-06T18:07:37.000Z",
       "labels": [],
       "author": "gaoyuyun"
+    },
+    {
+      "number": 1576,
+      "title": "registry: add Prices 价格 (magpie-models-price)",
+      "url": "https://github.com/magpie-community/plugins/pull/1576",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "registry",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-27T02:18:09.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T08:38:26.000Z",
+      "labels": [],
+      "author": "zrtzrt"
     },
     {
       "number": 1403,
@@ -8987,40 +8987,22 @@
       "author": "MasakiMu319"
     },
     {
-      "number": 1576,
-      "title": "registry: add Prices 价格 (magpie-models-price)",
-      "url": "https://github.com/magpie-community/plugins/pull/1576",
+      "number": 1606,
+      "title": "Add a Factory Droid CLI provider over ACP",
+      "url": "https://github.com/magpie-community/plugins/pull/1606",
       "draft": false,
       "package": null,
       "packageDirectory": null,
-      "titlePrefix": "registry",
+      "titlePrefix": null,
       "priority": "P3",
       "prioritySource": "default",
       "comments": 0,
       "commentBucket": "none",
-      "updatedAt": "2026-11-27T01:43:29.000Z",
+      "updatedAt": "2026-11-27T02:43:05.000Z",
       "updatedBucket": "24h",
-      "createdAt": "2026-11-26T08:38:26.000Z",
+      "createdAt": "2026-11-27T02:38:24.000Z",
       "labels": [],
-      "author": "zrtzrt"
-    },
-    {
-      "number": 1601,
-      "title": "agy-cli 0.1.152: a conversation parked by the old host after an update resumes on the new one, and up to 256 conversations stay parked",
-      "url": "https://github.com/magpie-community/plugins/pull/1601",
-      "draft": false,
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-27T01:18:32.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-27T01:18:32.000Z",
-      "labels": [],
-      "author": "yzlhccdec"
+      "author": "cloudonly"
     },
     {
       "number": 1570,
@@ -9034,11 +9016,29 @@
       "prioritySource": "default",
       "comments": 0,
       "commentBucket": "none",
-      "updatedAt": "2026-11-26T09:13:26.000Z",
+      "updatedAt": "2026-11-27T02:18:57.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T07:03:35.000Z",
       "labels": [],
       "author": "EFate"
+    },
+    {
+      "number": 1604,
+      "title": "fix(commandcode): strip upstream-incompatible tool schema keywords",
+      "url": "https://github.com/magpie-community/plugins/pull/1604",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "fix(commandcode)",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T02:03:15.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T02:03:15.000Z",
+      "labels": [],
+      "author": "Roing"
     },
     {
       "number": 1496,
@@ -9917,7 +9917,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-20T02:48:24.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-20T01:36:52.000Z",
       "labels": [],
       "author": "ljq29"
