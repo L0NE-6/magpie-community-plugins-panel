@@ -1,14 +1,14 @@
 # Upstream open pull requests
 
-Generated at `2026-11-27T06:49:50.337Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-27T07:20:20.220Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 
-- Open pull requests: **229**
-- Draft: **11**, ready: **218**
-- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **229**
-- Comments: none **116**, light **88**, active **24**, hot **1**
-- Updated: 24h **18**, 7d **72**, 30d **121**, older **18**
+- Open pull requests: **228**
+- Draft: **11**, ready: **217**
+- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **228**
+- Comments: none **115**, light **88**, active **24**, hot **1**
+- Updated: 24h **17**, 7d **72**, 30d **121**, older **18**
 
 Pull requests are ordered by draft state, priority, comments, updated time, and number.
 
@@ -80,12 +80,6 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 3 (light) | 2026-11-25T07:15:55.000Z | 7d | `@magpie-community/agent-meowcode` | [#1134 agent-meowcode 0.1.1: the new icon](https://github.com/magpie-community/plugins/pull/1134) |
 
-### Package: `@magpie-community/agent-uebox`
-
-| Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
-| --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 0 (none) | 2026-11-27T03:08:52.000Z | 24h | `@magpie-community/agent-uebox` | [#1607 uebox: the paths test runs its linux assertion on every host (#1588)](https://github.com/magpie-community/plugins/pull/1607) |
-
 ### Package: `@magpie-community/gateway-agentcompass`
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
@@ -110,8 +104,9 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 3 (light) | 2026-11-24T13:37:30.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1296 agy-cli 0.1.117: recover from agy UNAUTHENTICATED (code 401) endings on a fresh process](https://github.com/magpie-community/plugins/pull/1296) |
 | P3 | ready | 1 (light) | 2026-11-19T06:54:04.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1287 agy-cli: preserve active context across suggestions, history forks and compaction](https://github.com/magpie-community/plugins/pull/1287) |
+| P3 | ready | 0 (none) | 2026-11-27T07:16:40.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1620 agy-cli 0.1.154: re-probe what agy acp offers after a TTL, so the model list follows the server (#1592)](https://github.com/magpie-community/plugins/pull/1620) |
+| P3 | ready | 0 (none) | 2026-11-27T07:11:41.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1612 agy-cli 0.1.154: a user's video or audio reaches Gemini through agy's view_file](https://github.com/magpie-community/plugins/pull/1612) |
 | P3 | ready | 0 (none) | 2026-11-27T04:28:35.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1613 agy-cli 0.1.154: fail fast for unaliased missing models and isolate per-account catalogRows (#1542)](https://github.com/magpie-community/plugins/pull/1613) |
-| P3 | ready | 0 (none) | 2026-11-27T04:25:38.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1612 agy-cli 0.1.154: a user's video or audio reaches Gemini through agy's view_file](https://github.com/magpie-community/plugins/pull/1612) |
 | P3 | ready | 0 (none) | 2026-11-27T03:41:07.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1610 agy-cli: compare and hash long conversation histories incrementally](https://github.com/magpie-community/plugins/pull/1610) |
 | P3 | ready | 0 (none) | 2026-11-27T03:38:22.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1609 agy-cli: reuse retained images when the gateway continues a live session](https://github.com/magpie-community/plugins/pull/1609) |
 | P3 | ready | 0 (none) | 2026-11-25T13:32:12.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1496 agy-cli: use a private control socket on macOS](https://github.com/magpie-community/plugins/pull/1496) |
@@ -203,7 +198,6 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 0 (none) | 2026-11-27T03:50:22.000Z | 24h | `@magpie-community/opencode-factory-auth` | [#1611 factory 0.1.60: Cowork MCP names take part in full retry](https://github.com/magpie-community/plugins/pull/1611) |
 | P3 | ready | 0 (none) | 2026-11-20T04:40:15.000Z | 30d | `@magpie-community/opencode-factory-auth` | [#1382 factory 0.1.54: add recent Droid models and clarify plugin options](https://github.com/magpie-community/plugins/pull/1382) |
 | P3 | ready | 0 (none) | 2026-11-19T11:11:43.000Z | 30d | `@magpie-community/opencode-factory-auth` | [#1348 factory 0.1.52: add GPT-6.2 Astra, GPT-6.2 Sol and Gemini 4 Neon](https://github.com/magpie-community/plugins/pull/1348) |
 
@@ -781,7 +775,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 7 (active) | 2026-11-14T21:03:43.000Z | 30d | _unmapped_ (`registry`) | [#1112 registry: providers-hub 新增腾讯 Marvis（hub-marvis）](https://github.com/magpie-community/plugins/pull/1112) |
-| P3 | ready | 5 (active) | 2026-11-27T06:06:33.000Z | 24h | _unmapped_ (`registry`) | [#1576 registry: add Prices 价格 (magpie-models-price)](https://github.com/magpie-community/plugins/pull/1576) |
+| P3 | ready | 5 (active) | 2026-11-27T07:18:48.000Z | 24h | _unmapped_ (`registry`) | [#1576 registry: add Prices 价格 (magpie-models-price)](https://github.com/magpie-community/plugins/pull/1576) |
 | P3 | ready | 3 (light) | 2026-11-13T13:15:28.000Z | 30d | _unmapped_ (`registry`) | [#1085 registry: add AMD Cloud (magpie-amd-cloud)](https://github.com/magpie-community/plugins/pull/1085) |
 | P3 | ready | 2 (light) | 2026-11-25T08:45:25.000Z | 7d | _unmapped_ (`registry`) | [#1144 registry: list @godwit/magpie-agent (Godwit)](https://github.com/magpie-community/plugins/pull/1144) |
 | P3 | ready | 2 (light) | 2026-11-25T08:03:08.000Z | 7d | _unmapped_ (`registry`) | [#1045 registry: add Melete Magpie](https://github.com/magpie-community/plugins/pull/1045) |
