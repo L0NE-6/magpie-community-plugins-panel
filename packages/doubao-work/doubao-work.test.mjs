@@ -2,8 +2,9 @@ import { test, expect } from "bun:test"
 import fs from "node:fs"
 import os from "node:os"
 import path from "node:path"
+import vm from "node:vm"
 import { App, Page, copies, portIn } from "./cdp.mjs"
-import { Doubao, NEW_TASK, CLOUD, MENU, LIST, SEND, READ, STATE, MODELS, EFFORT, idFor, tableFrom, listOf, lookup, effortFor, rateIn, APPS, binary, choose, dataDir, installedAt, hintsWin, hintsMac, owns, isChat, usageOf, QUOTA, quotaOf, rateOf } from "./doubao.mjs"
+import { Doubao, NEW_TASK, CLOUD, MENU, LIST, SEND, READ, STATE, MODELS, EFFORT, spentNotice, maySpend, backAt, idFor, tableFrom, listOf, lookup, effortFor, rateIn, APPS, binary, choose, dataDir, installedAt, hintsWin, hintsMac, owns, isChat, usageOf, QUOTA, quotaOf, rateOf, LANDING, CHECKIN, REPORT, checkinOf } from "./doubao.mjs"
 import { Streamer, sse, completion } from "./openai.mjs"
 import { flatten, parse, heldFrom } from "./prompt.mjs"
 import { _internal as I } from "./index.mjs"
@@ -1006,4 +1007,244 @@ test("ask sends with the send button, and with Enter only when there is none", a
   const p2 = fakePage([ok])
   await new Doubao({ app: fakeApp, openPage: async () => p2, poll: 1 }).ask("x")
   expect(p2.keys).toEqual(["Enter"])
+})
+
+// ---- a spent allowance ----
+
+// SPENT is Doubao's reply when the month's allowance is spent, as aaron0x10
+// on X quoted it (2026-11)
+const SPENT = "本月额度已用完，下个月恢复为你服务。升级到标准套餐畅享更多额度。\n\n升级正式订阅"
+
+test("spentNotice reads Doubao's spent-allowance notice, and only a reply that is that notice whole", () => {
+  expect(spentNotice(SPENT)).toEqual({ words: "本月额度已用完，下个月恢复为你服务。升级到标准套餐畅享更多额度。 升级正式订阅", when: "下个月" })
+  expect(spentNotice("\n" + SPENT + "\n")?.when).toBe("下个月")
+  expect(spentNotice("本月额度已用完，下个月恢复为你服务。")?.when).toBe("下个月")
+  expect(spentNotice("本月额度已用完，下个月恢复为你服务。升级到标准套餐畅享更多额度。")?.when).toBe("下个月")
+  expect(spentNotice("今日额度已用完，明天恢复为你服务。升级到标准套餐畅享更多额度。\n\n升级正式订阅")?.when).toBe("明天")
+  expect(spentNotice("本周额度已用完，下周恢复为你服务。\n\n升级正式订阅")?.when).toBe("下周")
+  expect(spentNotice("本月额度已用完。\n\n升级正式订阅")).toEqual({ words: "本月额度已用完。 升级正式订阅", when: "" })
+  for (const answer of [
+    "",
+    "ok",
+    "豆包工作的额度每月 1 日恢复，本月额度已用完时可以升级到标准套餐。",
+    "你的本月额度已用完，下个月恢复为你服务。",
+    "本月额度已用完的话，可以升级到标准套餐。",
+    SPENT + "\n\n下面是你要的代码：\n```js\nconsole.log(1)\n```",
+    "本月额度已用完，下个月恢复为你服务。<tool_call>{\"name\":\"Read\",\"arguments\":{}}</tool_call>",
+    "本月额度已用完，下个月恢复为你服务。" + "升级".repeat(80),
+  ])
+    expect(spentNotice(answer)).toBeNull()
+})
+
+test("maySpend holds a reply that could still grow into the notice, and lets an answer go", () => {
+  for (const part of ["", "本", "本月额", "本月额度已用完", "本月额度已用完，下个月恢", SPENT.slice(0, 30), SPENT, "今日额度"]) expect(maySpend(part)).toBe(true)
+  for (const answer of ["好", "我来", "额度", "本月的额度", "本月额度还剩 20%", "本月额度已用完" + "。".repeat(200)]) expect(maySpend(answer)).toBe(false)
+})
+
+test("backAt is the start of next month, tomorrow or next Monday on Beijing's clock", () => {
+  const at = (s) => Date.parse(s)
+  // 2026-11-26 18:00 in Beijing
+  expect(backAt("下个月", at("2026-11-26T10:00:00Z"))).toBe(at("2026-12-01T00:00:00+08:00"))
+  expect(backAt("下月", at("2026-11-26T10:00:00Z"))).toBe(at("2026-12-01T00:00:00+08:00"))
+  // already 12-01 01:00 in Beijing, while UTC still says 11-30
+  expect(backAt("下个月", at("2026-11-30T17:00:00Z"))).toBe(at("2027-01-01T00:00:00+08:00"))
+  expect(backAt("下个月", at("2026-12-15T00:00:00Z"))).toBe(at("2027-01-01T00:00:00+08:00"))
+  expect(backAt("明天", at("2026-11-26T17:00:00Z"))).toBe(at("2026-11-28T00:00:00+08:00"))
+  // a Thursday: next Monday; a Monday: the Monday after
+  expect(backAt("下周", at("2026-11-26T10:00:00Z"))).toBe(at("2026-11-30T00:00:00+08:00"))
+  expect(backAt("下周", at("2026-11-30T01:00:00Z"))).toBe(at("2026-12-07T00:00:00+08:00"))
+  expect(backAt("", at("2026-11-26T10:00:00Z"))).toBe(0)
+})
+
+// spentReads is the notice as the page renders it, a read at a time
+const spentReads = (reasoning = "") => [
+  { sends: 1, reply: true, text: "", reasoning, finished: false },
+  { sends: 1, reply: true, text: "本月额度", reasoning, finished: false },
+  { sends: 1, reply: true, text: "本月额度已用完，下个月恢复为你服务。", reasoning, finished: false },
+  { sends: 1, reply: true, text: "本月额度已用完，下个月恢复为你服务。升级到标准套餐畅享更多额度。\n\n", reasoning, finished: false },
+  { sends: 1, reply: true, text: SPENT, reasoning, finished: true, status: "Success", reason: "succeed" },
+]
+
+test("ask fails Doubao's spent-allowance reply as a 429 that says when it is back", async () => {
+  const before = backAt("下个月")
+  const d = new Doubao({ app: fakeApp, openPage: async () => fakePage(spentReads()), poll: 1 })
+  const e = await d.ask("hi").catch((e) => e)
+  expect(e).toMatchObject({ code: "doubao_quota", status: 429 })
+  expect(e.message).toBe("豆包工作：本月额度已用完，下个月恢复为你服务。升级到标准套餐畅享更多额度。 升级正式订阅")
+  expect([before, backAt("下个月")]).toContain(e.resetsAt)
+  // an answer about 额度 is an answer
+  const text = "本月额度已用完时，可以升级到标准套餐。"
+  const ok = new Doubao({ app: fakeApp, openPage: async () => fakePage([{ sends: 1, reply: true, text, reasoning: "", finished: true, reason: "succeed" }]), poll: 1 })
+  expect((await ok.ask("hi")).text).toBe(text)
+})
+
+test("the plugin answers a spent allowance with 429, resets_at and Retry-After, whole and streamed, never a 200", async () => {
+  const plugin = () => I.createPlugin({ doubao: new Doubao({ app: fakeApp, openPage: async () => fakePage(spentReads()), poll: 1 }), newId: ids })
+  for (const stream of [false, true]) {
+    const loader = await plugin().auth.loader(async () => ({}))
+    const r = await loader.fetch(req({ model: "auto", stream, messages: [{ role: "user", content: "hello" }] }))
+    expect(r.status).toBe(429)
+    const e = (await r.json()).error
+    expect(e).toMatchObject({ type: "doubao_quota", status: 429 })
+    expect(e.message).toContain("本月额度已用完，下个月恢复为你服务")
+    expect([backAt("下个月") / 1000]).toContain(e.resets_at)
+    const after = Number(r.headers.get("retry-after"))
+    expect(Math.abs(Date.now() / 1000 + after - e.resets_at)).toBeLessThan(5)
+  }
+})
+
+test("a stream holds a reply that starts like the notice until it is an answer", async () => {
+  const answer = "本月额度已用完的话，可以升级到标准套餐，也可以换一个账号。"
+  const page = fakePage([
+    { sends: 1, reply: true, text: "本月额度", reasoning: "", finished: false },
+    { sends: 1, reply: true, text: "本月额度已用完的话，", reasoning: "", finished: false },
+    { sends: 1, reply: true, text: answer, reasoning: "", finished: true, reason: "succeed" },
+  ])
+  const loader = await I.createPlugin({ doubao: new Doubao({ app: fakeApp, openPage: async () => page, poll: 1 }), newId: ids }).auth.loader(async () => ({}))
+  const r = await loader.fetch(req({ model: "auto", stream: true, messages: [{ role: "user", content: "hello" }] }))
+  expect(r.status).toBe(200)
+  const ev = await events(r)
+  expect(ev.filter((e) => e.choices?.[0]?.delta?.content).map((e) => e.choices[0].delta.content).join("")).toBe(answer)
+  expect(ev.some((e) => e.error)).toBe(false)
+})
+
+test("a notice after a stream began with thinking ends it with a 429 frame, and none of its words as content", async () => {
+  const loader = await I.createPlugin({ doubao: new Doubao({ app: fakeApp, openPage: async () => fakePage(spentReads("想一想")), poll: 1 }), newId: ids }).auth.loader(async () => ({}))
+  const r = await loader.fetch(req({ model: "auto", stream: true, messages: [{ role: "user", content: "hello" }] }))
+  expect(r.status).toBe(200)
+  const ev = await events(r)
+  expect(ev.filter((e) => e.choices?.[0]?.delta?.content).length).toBe(0)
+  expect(ev.filter((e) => e.choices?.[0]?.delta?.reasoning_content).map((e) => e.choices[0].delta.reasoning_content).join("")).toBe("想一想")
+  const e = ev.find((x) => x.error).error
+  expect(e).toMatchObject({ type: "doubao_quota", status: 429, resets_at: backAt("下个月") / 1000 })
+})
+
+// ---- the daily check-in (签到) ----
+
+// fakeDoubao is Doubao's /alice/ug/campaign/landing endpoints as the app's
+// bundle (UgCampaignApiService, the sidebar popup host) shapes them: the
+// check-in scripts run as the page runs them, in a context whose fetch is
+// this fake and whose performance holds the page's own /alice/ calls.
+function fakeDoubao(routes) {
+  const seen = []
+  const fetch = async (url, init) => {
+    const u = new URL(url)
+    seen.push({ path: u.pathname, query: Object.fromEntries(u.searchParams), body: JSON.parse(init.body), credentials: init.credentials, method: init.method })
+    const r = routes[u.pathname]
+    if (!r) throw new TypeError("Failed to fetch")
+    const { status = 200, body } = typeof r === "function" ? r() : r
+    return { status, text: async () => (typeof body === "string" ? body : JSON.stringify(body)) }
+  }
+  const performance = { getEntriesByType: () => [{ name: "https://www.doubao.com/alice/basic/launch?version_code=20800&aid=497858&device_id=7001&msToken=tok&a_bogus=bog" }] }
+  const page = {
+    closed: false,
+    calls: [],
+    async eval(expr) {
+      page.calls.push(expr)
+      return vm.runInNewContext(expr, { fetch, performance, URL, JSON, String, Promise, setTimeout })
+    },
+  }
+  return { seen, page }
+}
+
+const checkinPlugin = (page, extra = {}) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "doubao-checkin-"))
+  const started = []
+  const d = new Doubao({ app: { start: async () => (started.push(1), 1), running: async () => (page ? 1 : 0), dataDir: dir, ...extra }, openPage: async () => page, poll: 1 })
+  return { p: I.createPlugin({ doubao: d }), started, dir }
+}
+
+// landing/get's check-in page (chosen_type 1) with a 签到 button
+// (button_type 2), and the page it turns into once checked in
+const MAIN = { code: 0, msg: "", data: { chosen_type: 1,
+  main_page_info: { title: "每日签到领额度", content: "签到即得额外额度", buttons: [{ content: "立即签到", button_type: 2, button_style: 2 }, { content: "了解更多", button_type: 1, button_style: 1, action_link: "https://www.doubao.com/chat/" }] },
+  complete_page_info: { title: "签到成功", content: "已连续签到 3 天", buttons: [{ content: "知道了", button_type: 3, button_style: 1 }] },
+  extra_params: { campaign_code: "pc_incentive_task_mvp_v3" } } }
+const CHECKED = { code: 0, msg: "", data: { checked_in: true, reward_status: 3, reward_code: "quota", reward_type: 1, continuous_days: 3 } }
+
+test("the check-in presses Doubao's 签到 the way its page does, and says the streak", async () => {
+  const { seen, page } = fakeDoubao({ [LANDING]: { body: MAIN }, [REPORT]: { body: { code: 0, msg: "" } }, [CHECKIN]: { body: CHECKED } })
+  const { p, started, dir } = checkinPlugin(page)
+  expect(await p.auth.checkin(async () => ({}), {})).toEqual({ outcome: "claimed", streak: 3, message: "签到成功，已连续签到 3 天" })
+  expect(seen.map((s) => s.path)).toEqual([LANDING, REPORT, CHECKIN])
+  // the page's query and cookies, without its signature; the bodies the
+  // page sends (no scene: the landing popup has no campaign group)
+  for (const s of seen) {
+    expect(s.query).toEqual({ version_code: "20800", aid: "497858", device_id: "7001" })
+    expect(s).toMatchObject({ method: "POST", credentials: "include" })
+  }
+  expect(seen[0].body).toEqual({})
+  expect(seen[1].body).toEqual({ event_type: "user_operate", biz_event_name: "check_in" })
+  expect(seen[2].body).toEqual({})
+  // the window is never opened for it
+  expect(started).toEqual([])
+  fs.rmSync(dir, { recursive: true, force: true })
+})
+
+test("a 签到 card checks in and reports the card it was pressed on", async () => {
+  const cards = { code: 0, data: { chosen_type: 3, landing_cards: [
+    { card_id: "c1", card_code: "explore_task", card_style: 1, title: "完成任务", buttons: [{ button_id: "b0", content: "去完成", interaction_type: 1, button_data: "{}" }] },
+    { card_id: "c2", card_code: "daily_checkin", card_style: 1, title: "每日签到", buttons: [{ button_id: "b1", content: "签到", interaction_type: "2", button_data: "{}" }] }] } }
+  const { seen, page } = fakeDoubao({ [LANDING]: { body: cards }, [REPORT]: { body: { code: 0 } }, [CHECKIN]: { body: { code: "200", data: { checked_in: true, reward_status: 4, continuous_days: 1 } } } })
+  const { p, dir } = checkinPlugin(page)
+  expect(await p.auth.checkin(async () => ({}), {})).toEqual({ outcome: "claimed", streak: 1, message: "已签到，但豆包这次没有发放签到奖励" })
+  expect(seen[1].body).toMatchObject({ event_type: "user_operate", biz_event_name: "check_in", card_event: { card_id: "c2", button_id: "b1" } })
+  expect(seen[1].body.card_event.event_id).toBeString()
+  fs.rmSync(dir, { recursive: true, force: true })
+})
+
+test("a day already in, or no 签到 offered, checks nothing in", async () => {
+  for (const [data, want] of [
+    [{ chosen_type: 2, complete_page_info: { title: "今日已签到", buttons: [] } }, { outcome: "done", message: "今日已签到" }],
+    [{ chosen_type: 0 }, { outcome: "inactive" }],
+    [{ chosen_type: 3, landing_cards: [{ card_id: "c1", card_code: "t", title: "完成任务", buttons: [{ button_id: "b0", interaction_type: 1 }] }] }, { outcome: "inactive" }],
+    [{ chosen_type: 1, main_page_info: { title: "下载豆包", buttons: [{ content: "去下载", button_type: 1, action_link: "https://www.doubao.com/" }] } }, { outcome: "inactive" }],
+  ]) {
+    const { seen, page } = fakeDoubao({ [LANDING]: { body: { code: 0, data } } })
+    const { p, dir } = checkinPlugin(page)
+    expect(await p.auth.checkin(async () => ({}), {})).toMatchObject(want)
+    expect(seen.map((s) => s.path)).toEqual([LANDING])
+    fs.rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test("a check-in Doubao refuses fails with its words, and one nobody answered throws", async () => {
+  const cases = [
+    [{ [LANDING]: { status: 401, body: "" } }, "登录已过期"],
+    [{ [LANDING]: { body: { code: 710012001, msg: "活动已结束" } } }, "活动已结束"],
+    [{ [LANDING]: { body: MAIN }, [REPORT]: { body: { code: 0 } }, [CHECKIN]: { body: { code: 710022004, msg: "签到太频繁" } } }, "签到太频繁"],
+    [{ [LANDING]: { body: MAIN }, [REPORT]: { body: { code: 0 } }, [CHECKIN]: { body: { code: 0, msg: "", data: { checked_in: false } } } }, "没有完成签到"],
+    // the press's report failing is the page's business, not the check-in's
+    [{ [LANDING]: { body: MAIN }, [CHECKIN]: { body: { code: 0, data: { checked_in: false } } } }, "没有完成签到"],
+  ]
+  for (const [routes, want] of cases) {
+    const { page } = fakeDoubao(routes)
+    const { p, dir } = checkinPlugin(page)
+    const r = await p.auth.checkin(async () => ({}), {})
+    expect(r.outcome).toBe("failed")
+    expect(r.message).toContain(want)
+    fs.rmSync(dir, { recursive: true, force: true })
+  }
+  const { page } = fakeDoubao({})
+  const { p, dir } = checkinPlugin(page)
+  await expect(p.auth.checkin(async () => ({}), {})).rejects.toThrow("Failed to fetch")
+  fs.rmSync(dir, { recursive: true, force: true })
+})
+
+test("a closed window is not opened to check in", async () => {
+  const { p, started, dir } = checkinPlugin(null)
+  const r = await p.auth.checkin(async () => ({}), {})
+  expect(r.outcome).toBe("failed")
+  expect(r.message).toContain("没有打开")
+  expect(started).toEqual([])
+  fs.rmSync(dir, { recursive: true, force: true })
+  // never signed in through the plugin: said so, nothing started
+  const never = checkinPlugin(null, { dataDir: path.join(os.tmpdir(), "doubao-checkin-none-" + Date.now()) })
+  expect((await never.p.auth.checkin(async () => ({}), {})).message).toContain("还没有登录")
+  fs.rmSync(never.dir, { recursive: true, force: true })
+})
+
+test("checkinOf leaves the reply's own code to decide, 0 and 200 alike", async () => {
+  const call = async (p) => (p === LANDING ? { status: 200, body: MAIN } : p === CHECKIN ? { status: 200, body: { code: 200, data: { checked_in: true } } } : { status: 200, body: { code: 0 } })
+  expect(await checkinOf(call)).toEqual({ outcome: "claimed", message: "签到成功，已连续签到 3 天" })
 })

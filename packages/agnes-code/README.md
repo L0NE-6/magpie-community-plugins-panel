@@ -38,7 +38,7 @@ products: neither entry replaces the other.
 三种方式（登录时三选一）：
 
 1. **浏览器登录（推荐，三平台）**——点一下就打开该站的登录页，本地 `127.0.0.1:<随机端口>` 起一个回调监听，登录成功后自动换票完成，不需要桌面端、不需要密码，因此也没有「错密码反复重试被锁号」的风险。协议细节见下节。窗口没自动弹出时把上面给的链接手动打开即可。
-   注意：如果那个浏览器**已经登录着该站**，登录页会直接跳进网页版首页、不回传授权码（表现为一直转圈）。把链接粘到无痕/隐私窗口再打开一次即可。桌面端已登录的用户直接用下一条更省事。
+   登录页只给白名单里的 `redirect_uri` 发码：`agnes-code` 只认 `agnes://auth/callback`，`agh-code` 只认 `aghcode://`，而 `agnes-cli*` 才认 `http://127.0.0.1:<port>/auth/callback`。所以插件的回环登录必须用 `client=agnes-cli`；用 `agnes-code` 会被判 `invalidRedirect`，页面当普通登录直接跳首页、永不回调。另外打开链接请直接交给浏览器（或用本插件），别经 `cmd /c start`：URL 里的 `&` 会被 cmd 当命令分隔符，浏览器只会拿到第一段参数，表现和一个错的 client 完全一样。
 2. **读取 Agnes Code 桌面端登录态（仅 Windows）**——本机装有 Agnes Code 桌面版并登录过即可，不用填任何东西。没装/没登录时这一步会给出 [Agnes Code 官网页](https://agnes-ai.com/agnescode) 链接并自动等待：装好登录后自动完成，不用回来点按钮。本机已有数据但读不出来（登录已过期、DPAPI 解不开、会话里没有 accessToken）会直接说明原因，打开桌面端登录或修好后同样自动完成。插件按 Chrome 同款方案解出会话（`Local State` 的 DPAPI 包裹 AES 主密钥 → 解 `code-auth-session.v1` 的 AES-256-GCM），只在本机、当前 Windows 用户下可解，凭据不外传：
    - 会话目录：`%APPDATA%\AgnesCode\`，文件名按端区分：`code-auth-session.v1`（国际站）、`code-auth-session.cn.v1`（国内站，实测 657 字节）。只认这一族文件，别的文件不碰。macOS/Linux 下桌面端解密不可用，会明确提示改用浏览器登录或粘贴。
    - 会话里的 `bffPublicBaseUrl` 会被读出来并钉死到 `https://*.agnes-ai.cn` / `.com`：它决定这份凭据属于哪一端。会话属于另一端时会直接报错让用户换对应端的登录入口，而不是拿着 token 去打错的域名。
@@ -48,11 +48,11 @@ products: neither entry replaces the other.
 ## 浏览器登录协议
 
 ```
-打开  {loginUrl}?client=agnes-code&redirect_uri=http://127.0.0.1:<port>/auth/callback&state=<uuid>
+打开  {loginUrl}?client=agnes-cli&redirect_uri=http://127.0.0.1:<port>/auth/callback&state=<uuid>
 页面  POST {code,state} 回本地（跨域：OPTIONS 预检必须回 Access-Control-Allow-Origin；GET query 兜底）
 换票  POST {bffBase}/api/v1/code/auth/exchange-code
       headers: origin=<登录页 origin>、x-platform: 1、content-type: json
-      body:    {code, redirect_uri, state, client_id:"agnes-code"}
+      body:    {code, redirect_uri, state, client_id:"agnes-cli"}（被拒则再按 agnes-code 重试一次）
       成功 = body.code 为 "000000" 或 "0"，token 在 data.access_token
 ```
 

@@ -9,11 +9,11 @@
 //   ② 浏览器 loopback 登录（协议取自 dsh-connect-agnes-token-plan 的实测，三平台可用，
 //      不再依赖 Windows 与桌面端）：
 //
-//        打开  {loginUrl}?client=agnes-code&redirect_uri=http://127.0.0.1:<port>/auth/callback&state=<uuid>
+//        打开  {loginUrl}?client=agnes-cli&redirect_uri=http://127.0.0.1:<port>/auth/callback&state=<uuid>
 //        页面  POST {code,state} 回本地（跨域，OPTIONS 预检必须回 CORS 头；GET query 兜底）
 //        换票  POST {bffBase}/api/v1/code/auth/exchange-code
 //              headers: origin=<登录页 origin>、x-platform: 1、content-type: json
-//              body:    {code, redirect_uri, state, client_id:"agnes-code"}
+//              body:    {code, redirect_uri, state, client_id:"agnes-cli"}（被拒则再试 agnes-code）
 //              成功 = body.code 为 "000000" 或 "0"，token 在 data.access_token
 //
 // 桌面端会话（Windows DPAPI）保留，但会把会话里的 bffPublicBaseUrl 读出来并钉死域名：
@@ -63,7 +63,13 @@ export const SITES = {
   },
 }
 
-const CLIENT_ID = "agnes-code"
+// 登录页的 s(client, redirect_uri) 只放行这三种固定组合：
+//   agnes-code → 只认 agnes://auth/callback（桌面端深链）
+//   agh-code   → 只认 aghcode://auth/callback
+//   agnes-cli* → 只认 http://127.0.0.1:<port>/auth/callback
+// 回环登录必须用 agnes-cli 前缀；用 agnes-code + 127.0.0.1 会被判 invalidRedirect，
+// 页面当普通网页登录直接跳首页，永不回调。
+const CLIENT_ID = "agnes-cli"
 const CB_PATH = "/auth/callback"
 // 等用户在浏览器里登完的上限。magpie 自己的 signInTimeout 可能更短，超时文案要能重试。
 const LOGIN_WAIT_MS = 3 * 60 * 1000
@@ -274,9 +280,10 @@ async function readDesktopCredential({ site, homedir = osHomedir(), platform = p
     let sessionNames
     try {
       sessionNames = readDir(dir).filter((name) => SESSION_FILE_PATTERN.test(name))
-    } catch (error) {
-      problems.push(`${dir}（列目录失败：${error?.message ?? "未知"}）`)
-      continue
+    } catch {
+      // 列目录失败（权限、或调用方只注入了 readFile）时退回已知候选名：
+      // “某个文件读不到”和“这台机器上没有会话”是两件事，不能因为列不了目录就当成后者。
+      sessionNames = [site ? `code-auth-session.${site.domain}.v1` : null, "code-auth-session.v1"].filter(Boolean)
     }
     if (!sessionNames.length) continue
     // 站点专属文件优先，其次无后缀的（国际站），最后是别的端的。
@@ -322,9 +329,10 @@ async function readDesktopCredential({ site, homedir = osHomedir(), platform = p
       }
 
       // 会话自带 BFF 源站：判断账号属于哪一端最可靠的信号；老会话没写这个字段时，
-      // 退回文件名里的端标记（code-auth-session.cn.v1 是桌面端自己写的，同等可信）。
+      // 退回文件名里的端标记：带 .cn 的是国内站，其余（含无后缀的 code-auth-session.v1）按国际站算，
+      // 这样国内站 provider 读到无后缀文件会明确报 domain_mismatch，而不是拿国际站 token 去打 .cn 得 401。
       const rawBase = typeof session.bffPublicBaseUrl === "string" ? session.bffPublicBaseUrl : ""
-      const sessionSite = rawBase ? siteOfBase(rawBase) : name === "code-auth-session.cn.v1" ? SITES.cn : null
+      const sessionSite = rawBase ? siteOfBase(rawBase) : name === "code-auth-session.cn.v1" ? SITES.cn : SITES.intl
       if (rawBase && !sessionSite) {
         throw Object.assign(new Error(`桌面端会话里的 bffPublicBaseUrl 不在信任范围（${rawBase}），已拒绝使用这份凭据`), { code: "untrusted" })
       }
@@ -444,30 +452,43 @@ function waitForCallback(server, { state, origin, timeoutMs = LOGIN_WAIT_MS, sig
 
 async function exchangeCode(code, { redirectUri, state, site, fetchImpl = globalThis.fetch, timeoutMs = EXCHANGE_TIMEOUT_MS } = {}) {
   const url = `${site.bffBase}/api/v1/code/auth/exchange-code`
-  const res = await fetchImpl(url, {
-    method: "POST",
-    // origin 头由 BFF 校验：不带它、或带成别站的 origin，换票都会被拒。
-    headers: {
-      "content-type": "application/json",
-      origin: site.origin,
-      "x-platform": "1",
-    },
-    body: JSON.stringify({ code, redirect_uri: redirectUri, state, client_id: CLIENT_ID }),
-    signal: AbortSignal.timeout(timeoutMs),
-    redirect: "error",
-  })
-  let body = {}
-  try {
-    body = await res.json()
-  } catch {}
-  const codeStr = String(body?.code ?? "")
-  if (!res.ok || (codeStr !== "000000" && codeStr !== "0")) {
-    const message = String(body?.message ?? "").trim()
-    throw new Error(`授权码兑换失败：${message || `HTTP ${res.status} / code ${codeStr || "无"}`}`)
+  // 码是登录页用 client_id=agnes-cli 签发的；换票端按历史约定还可能只认 agnes-code，两种都试。
+  let lastError
+  for (const clientId of [CLIENT_ID, "agnes-code"]) {
+    // 手写 AbortController 而不是 AbortSignal.timeout：后者会留下一个 30s 定时器把进程吊住。
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), timeoutMs)
+    timer.unref?.()
+    try {
+      const res = await fetchImpl(url, {
+        method: "POST",
+        // origin 头由 BFF 校验：不带它、或带成别站的 origin，换票都会被拒。
+        headers: {
+          "content-type": "application/json",
+          origin: site.origin,
+          "x-platform": "1",
+        },
+        body: JSON.stringify({ code, redirect_uri: redirectUri, state, client_id: clientId }),
+        signal: controller.signal,
+        redirect: "error",
+      })
+      let body = {}
+      try {
+        body = await res.json()
+      } catch {}
+      const codeStr = String(body?.code ?? "")
+      if (res.ok && (codeStr === "000000" || codeStr === "0")) {
+        const token = String(body?.data?.access_token ?? "").trim()
+        if (!token) throw new Error("授权码兑换没有返回 access_token")
+        return token
+      }
+      const message = String(body?.message ?? "").trim()
+      lastError = new Error(`授权码兑换失败：${message || `HTTP ${res.status} / code ${codeStr || "无"}`}`)
+    } finally {
+      clearTimeout(timer)
+    }
   }
-  const token = String(body?.data?.access_token ?? "").trim()
-  if (!token) throw new Error("授权码兑换没有返回 access_token")
-  return token
+  throw lastError
 }
 
 // authResultFromToken 把换来的 token 变成 magpie 的登录结果（metadata 留给 loader / usage）。
@@ -494,6 +515,10 @@ async function browserLogin(site, { fetchImpl = globalThis.fetch, waitMs = LOGIN
   // 监听器必须在返回 url 之前就挂上：用户可能比宿主先完成登录，晚挂的 request 监听会收不到
   // 已经到达的那一发 POST（Node 只在有监听者时才派发 request 事件）。
   const codePromise = waitForCallback(server, { state, origin: site.origin, timeoutMs: waitMs, signal })
+  // 宿主可能在授权和回调之间就放弃（用户关窗口、宿主不给 callback），此时没人 await codePromise。
+  // 先挂一个空 catch，避免那次 rejection 变成 unhandled rejection 把整个宿主进程带走；
+  // 真正的 await 仍然会拿到同一次失败。
+  codePromise.catch(() => {})
   return {
     url,
     redirectUri,
@@ -603,7 +628,7 @@ export function createPlugin(site, { fetchImpl = globalThis.fetch, env = process
             const login = await browserLogin(site, { fetchImpl, listenImpl, signal })
             return {
               url: login.url,
-              instructions: `在打开的登录页完成登录（${site.loginHint}）。完成后这里会自动结束；窗口没弹出就手动打开上面的链接。若打开后直接进了网页版首页（没出现扫码/登录页），说明这个浏览器已经登录着该站，不会回传授权码——把链接粘到无痕窗口再打开一次。`,
+              instructions: `在打开的登录页完成登录（${site.loginHint}）。完成后这里会自动结束；窗口没弹出就手动把上面的链接粘到浏览器地址栏打开（别经过命令行拼接，链接里的 & 容易被截断，只传过去前一段就等于没有 client/state）。`,
               method: "auto",
               callback: async () => {
                 try {
@@ -767,6 +792,11 @@ export const AgnesCNPlugin = async () => createPlugin(SITES.cn)
 export const _internal = {
   SITES,
   CLIENT_ID,
+  // 0.1.x 测试里用到的派生常量：让恢复回来的测试不必为了取站点常量再拆一份实现。
+  ID: SITES.intl.id,
+  OFFICIAL_SITE: SITES.intl.officialSite,
+  CHAT_GATEWAY_BASE: chatBase(SITES.intl),
+  MODELS_URL: modelsUrl(SITES.intl),
   CB_PATH,
   createPlugin,
   chatBase,
