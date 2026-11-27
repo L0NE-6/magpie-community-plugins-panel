@@ -223,6 +223,21 @@ Checked for every branch with `git merge-tree --write-tree origin/main origin/<b
 | merge cleanly into `origin/main` | **169** |
 | would conflict | 0 |
 
+## Issues answered
+
+Pull requests are half of the queue; these were answered from the same evidence — read the code,
+`git blame` the feature, or check whether the claim still holds:
+
+| issue | repo | what the answer established |
+| --- | --- | --- |
+| `#5` Accio international site | providers-hub | **Already fixed** by the author's own `b38d0ab`; the issue was filed against v0.12.2 |
+| `#7` monkeycode 国内版 404 | providers-hub | **Real gap** — no `modelId`/`modelName` mapping in `src/monkeycode.mjs`; the fix is PR `#2`, which is blocked on a rebase |
+| `#20` 腾讯 Marvis 503 | providers-hub | **Not the plugin** — `4100404 请求被风控拦截` is the vendor's one-shot uskey being spent |
+| `#3` remote OAuth callback on Linux | providers-hub | **Already implemented** (`accab19`): `oauthCallbackPort` + `oauthCallbackBindHost` |
+| `#6` 超级麦吉 403 | providers-hub | **Two possible 403s**, separated by one observable: is the body the seven letters `forbidden` (the plugin's own same-origin guard) or the vendor's page? |
+| `#1` split `src/*.mjs` into packages | providers-hub | **The two behavioural concerns are gone** — `providerIdOf` gives every channel its own provider id, so failover and per-provider settings no longer couple; three of the six cited mechanisms were removed |
+| `#1637` agy-cli quota on Windows | plugins | **The premise is wrong**: the POSIX fallback the report cites is **not in the package** (`statusLine`/`typeof bun` — no match), and `#1602` is a closed issue, not a PR. The work is to implement it, not port it |
+
 ## What was not done
 
 
