@@ -673,6 +673,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 2 (light) | 2026-11-27T01:36:13.000Z | 24h | _unmapped_ (`Bug`) | [#1591 Bug：Antigravity 接管后，Local agy CLI 无法读取 Google AI Pro 额度](https://github.com/magpie-community/plugins/issues/1591) |
 | P3 | 0 (none) | 2026-11-17T15:37:25.000Z | 30d | _unmapped_ (`Bug`) | [#1276 \[Bug\] trae-cn 全系模型失败（4222/4001/404）：trae 桌面端更新后 opencode-trae-auth 插件的旧版请求格式被企业 console 拒绝](https://github.com/magpie-community/plugins/issues/1276) |
 | P3 | 0 (none) | 2026-11-17T14:25:03.000Z | 30d | _unmapped_ (`Bug`) | [#1273 \[Bug\] `trae-cn/aliyuncs/kimi-k3.1-pro` 转发失败，assistant 返回空](https://github.com/magpie-community/plugins/issues/1273) |
 | P3 | 1 (light) | 2026-10-26T08:15:48.000Z | older | _unmapped_ (`Bug`) | [#410 \[Bug\] ZCode 本机登录仅有 project-key-location 时无法识别 BigModel Coding Plan](https://github.com/magpie-community/plugins/issues/410) |
@@ -911,6 +912,12 @@ _No open issues._
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
 | P3 | 0 (none) | 2026-10-25T07:07:00.000Z | older | _unmapped_ (`trae, mimo`) | [#381 trae, mimo: a plan labelled "Free" alone reads as the model being free (#337 sibling)](https://github.com/magpie-community/plugins/issues/381) |
+
+### Package: `unmapped:uebox`
+
+| Priority | Comments | Updated | Updated bucket | Package | Issue |
+| --- | ---: | --- | --- | --- | --- |
+| P3 | 0 (none) | 2026-11-26T13:03:23.000Z | 24h | _unmapped_ (`uebox`) | [#1588 uebox: the paths test is red on macOS (XDG_CONFIG_HOME guard is !== win32)](https://github.com/magpie-community/plugins/issues/1588) |
 
 ### Package: `unmapped:上游中途关闭 SSE 流时，整轮回复被丢弃`
 
