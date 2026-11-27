@@ -115,7 +115,7 @@ itself.
     powered by DeepSeek Harness.`, goes with a comma before `powered by`
     (since 0.2.73, #1517): Qoder CN puts a request whose system prompt
     holds that line, as written, in a queue that never moves.
-  - **Hide DeepSeekRuntime's name** (on by default, since 0.2.74, #1489)
+  - **Hide DeepSeekRuntime's name** (on by default, since 0.2.75, #1489)
     removes DeepSeekRuntime and DSH prose from the system prompt and tool
     descriptions before they are sent. Paths, commands, tool names, tool
     results and the user's own words stay as they are. Turn it off to send
@@ -597,7 +597,7 @@ Since **0.2.28** a queued request waits its turn as Qoder's own client
 model and the plan's `queueType`, at once and then every
 `retryAfterSeconds` (held to 0.5–30s, 30s when unsaid), and once
 `isQueued` is false it waits that state's `retryAfterSeconds` and sends the
-same request again (up to 10 times). Since **0.2.74** `isQueued` false with
+same request again (up to 10 times). Since **0.2.75** `isQueued` false with
 `serviceAvailable` false is waited on too, as Qoder's client reads it
 (qoderclicn 1.1.98), rather than sent into the queue again. Three failed status asks in a row, a
 404, or a cancelled request end the wait early.
@@ -624,7 +624,7 @@ minutes at most before the 503. Claude Code takes a ping as life only 30
 times in a row, about 35 minutes, so a longer wait still ends there.
 
 A queued request holds a lease in Qoder's queue (its `request_set_id` and
-model) until Qoder hears `/api/v2/service/ask/finish`. Before **0.2.74** the
+model) until Qoder hears `/api/v2/service/ask/finish`. Before **0.2.75** the
 plugin never told it, so each lease stayed until Qoder's own TTL let it go
 (plugins#1560). Now it tells finish as Qoder's client does: at once when a
 request gives up waiting (the 503 above, or a cancelled request), and
