@@ -1,61 +1,61 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-26T16:52:18.799Z",
+  "generatedAt": "2026-11-27T01:43:47.596Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 399,
-    "pullCount": 227,
+    "issueCount": 401,
+    "pullCount": 223,
     "draftPullCount": 11,
-    "readyPullCount": 216,
+    "readyPullCount": 212,
     "byPriority": {
       "issues": {
         "P0": 0,
         "P1": 0,
         "P2": 2,
-        "P3": 397
+        "P3": 399
       },
       "pulls": {
         "P0": 0,
         "P1": 0,
         "P2": 0,
-        "P3": 227
+        "P3": 223
       }
     },
     "byComments": {
       "issues": {
-        "none": 155,
-        "light": 183,
-        "active": 51,
-        "hot": 10
+        "none": 154,
+        "light": 186,
+        "active": 50,
+        "hot": 11
       },
       "pulls": {
-        "none": 110,
-        "light": 93,
+        "none": 109,
+        "light": 90,
         "active": 23,
         "hot": 1
       }
     },
     "byUpdated": {
       "issues": {
-        "24h": 28,
-        "7d": 75,
-        "30d": 225,
+        "24h": 29,
+        "7d": 74,
+        "30d": 227,
         "older": 71
       },
       "pulls": {
-        "24h": 14,
-        "7d": 81,
-        "30d": 114,
+        "24h": 10,
+        "7d": 78,
+        "30d": 117,
         "older": 18
       }
     },
     "byDraft": {
       "draft": 11,
-      "ready": 216
+      "ready": 212
     }
   },
   "issues": [
@@ -68,9 +68,9 @@
       "titlePrefix": "qoder",
       "priority": "P2",
       "prioritySource": "title",
-      "comments": 5,
+      "comments": 6,
       "commentBucket": "active",
-      "updatedAt": "2026-11-26T14:21:12.000Z",
+      "updatedAt": "2026-11-26T19:14:05.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T02:34:06.000Z",
       "labels": [],
@@ -94,9 +94,26 @@
       "author": "tyh97"
     },
     {
-      "number": 1597,
-      "title": "agy-cli：希望提供只通过 agy 读取额度的选项，不直接调用 retrieveUserQuotaSummary",
-      "url": "https://github.com/magpie-community/plugins/issues/1597",
+      "number": 1603,
+      "title": "factory 0.1.58: Codex 调用 factory/deepseek-v4.1-flash-1017 仍返回 400 content_policy_rejected",
+      "url": "https://github.com/magpie-community/plugins/issues/1603",
+      "package": "@magpie-community/opencode-factory-auth",
+      "packageDirectory": "factory",
+      "titlePrefix": "factory",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T01:41:12.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-27T01:41:12.000Z",
+      "labels": [],
+      "author": "gengyubo"
+    },
+    {
+      "number": 1602,
+      "title": "agy-cli: 只有 free-tier 被标 UNSUPPORTED_LOCATION，`agy -p /usage` 就整体失败，而同一账号的 TUI `/usage` 能正常读",
+      "url": "https://github.com/magpie-community/plugins/issues/1602",
       "package": "@magpie-community/opencode-agy-cli-auth",
       "packageDirectory": "agy-cli",
       "titlePrefix": "agy-cli",
@@ -104,11 +121,62 @@
       "prioritySource": "default",
       "comments": 0,
       "commentBucket": "none",
-      "updatedAt": "2026-11-26T16:51:12.000Z",
+      "updatedAt": "2026-11-27T01:38:31.000Z",
       "updatedBucket": "24h",
-      "createdAt": "2026-11-26T16:51:12.000Z",
+      "createdAt": "2026-11-27T01:38:31.000Z",
       "labels": [],
-      "author": "PosvdM"
+      "author": "cyclonevox"
+    },
+    {
+      "number": 1591,
+      "title": "Bug：Antigravity 接管后，Local agy CLI 无法读取 Google AI Pro 额度",
+      "url": "https://github.com/magpie-community/plugins/issues/1591",
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "Bug",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-27T01:36:13.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T14:35:50.000Z",
+      "labels": [],
+      "author": "I-am-c"
+    },
+    {
+      "number": 1517,
+      "title": "qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)",
+      "url": "https://github.com/magpie-community/plugins/issues/1517",
+      "package": "@magpie-community/opencode-qoder-auth",
+      "packageDirectory": "qoder",
+      "titlePrefix": "qoder",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 6,
+      "commentBucket": "active",
+      "updatedAt": "2026-11-27T01:34:51.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-24T08:09:27.000Z",
+      "labels": [],
+      "author": "Cnxiaohun"
+    },
+    {
+      "number": 1592,
+      "title": "agy-cli 0.1.144: matchesHistory still drops live session — first_diff missing_actual, rows:2, empty-reply 502 loop",
+      "url": "https://github.com/magpie-community/plugins/issues/1592",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T23:41:38.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T15:18:03.000Z",
+      "labels": [],
+      "author": "ninago4nina"
     },
     {
       "number": 1563,
@@ -119,13 +187,64 @@
       "titlePrefix": "antigravity",
       "priority": "P3",
       "prioritySource": "default",
-      "comments": 9,
-      "commentBucket": "active",
-      "updatedAt": "2026-11-26T16:41:38.000Z",
+      "comments": 12,
+      "commentBucket": "hot",
+      "updatedAt": "2026-11-26T20:34:12.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T03:43:58.000Z",
       "labels": [],
       "author": "NeroLiang19"
+    },
+    {
+      "number": 1599,
+      "title": "ownHome() fails to isolate accounts when system keyring (gemini:antigravity) has an empty id_token_email on Windows, causing multi-account cross-contamination",
+      "url": "https://github.com/magpie-community/plugins/issues/1599",
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "ownHome() fails to isolate accounts when system keyring (gemini",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T20:27:34.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T19:01:36.000Z",
+      "labels": [],
+      "author": "RainintoWine"
+    },
+    {
+      "number": 1572,
+      "title": "zcode: Start Plan throughput 52-60 tok/s and 180s stalls, vs 200+ tok/s on other providers",
+      "url": "https://github.com/magpie-community/plugins/issues/1572",
+      "package": "@magpie-community/opencode-zcode-auth",
+      "packageDirectory": "zcode",
+      "titlePrefix": "zcode",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 4,
+      "commentBucket": "active",
+      "updatedAt": "2026-11-26T19:01:02.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T07:19:54.000Z",
+      "labels": [],
+      "author": "llyy873"
+    },
+    {
+      "number": 1598,
+      "title": "workbuddy插件可以增加自动保活与刷新凭证吗",
+      "url": "https://github.com/magpie-community/plugins/issues/1598",
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": null,
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T19:01:00.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T17:08:11.000Z",
+      "labels": [],
+      "author": "BlestHeart"
     },
     {
       "number": 1495,
@@ -136,9 +255,9 @@
       "titlePrefix": "agy-cli",
       "priority": "P3",
       "prioritySource": "default",
-      "comments": 2,
+      "comments": 3,
       "commentBucket": "light",
-      "updatedAt": "2026-11-26T16:32:55.000Z",
+      "updatedAt": "2026-11-26T17:17:35.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-23T14:25:28.000Z",
       "labels": [],
@@ -177,57 +296,6 @@
       "createdAt": "2026-11-26T15:18:11.000Z",
       "labels": [],
       "author": "yetone"
-    },
-    {
-      "number": 1592,
-      "title": "agy-cli 0.1.144: matchesHistory still drops live session — first_diff missing_actual, rows:2, empty-reply 502 loop",
-      "url": "https://github.com/magpie-community/plugins/issues/1592",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-26T15:18:03.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T15:18:03.000Z",
-      "labels": [],
-      "author": "ninago4nina"
-    },
-    {
-      "number": 1556,
-      "title": "agy-cli: matchesHistory drops live ACP session on transient hoisted tool images and one-request gateway hook tags",
-      "url": "https://github.com/magpie-community/plugins/issues/1556",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 4,
-      "commentBucket": "active",
-      "updatedAt": "2026-11-26T14:43:07.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-25T23:07:20.000Z",
-      "labels": [],
-      "author": "shinnamu"
-    },
-    {
-      "number": 1591,
-      "title": "Bug：Antigravity 接管后，Local agy CLI 无法读取 Google AI Pro 额度",
-      "url": "https://github.com/magpie-community/plugins/issues/1591",
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "Bug",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-26T14:35:50.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T14:35:50.000Z",
-      "labels": [],
-      "author": "I-am-c"
     },
     {
       "number": 1585,
@@ -332,23 +400,6 @@
       "author": "ReneXiong"
     },
     {
-      "number": 1572,
-      "title": "zcode: Start Plan throughput 52-60 tok/s and 180s stalls, vs 200+ tok/s on other providers",
-      "url": "https://github.com/magpie-community/plugins/issues/1572",
-      "package": "@magpie-community/opencode-zcode-auth",
-      "packageDirectory": "zcode",
-      "titlePrefix": "zcode",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T09:31:50.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T07:19:54.000Z",
-      "labels": [],
-      "author": "llyy873"
-    },
-    {
       "number": 1559,
       "title": "zcode: Start Plan (GLM-5.4) triggers 405/3012 anti-proxy risk control on non-suspended accounts — account suspension risk",
       "url": "https://github.com/magpie-community/plugins/issues/1559",
@@ -415,23 +466,6 @@
       "createdAt": "2026-11-19T16:28:08.000Z",
       "labels": [],
       "author": "nullburn"
-    },
-    {
-      "number": 1517,
-      "title": "qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)",
-      "url": "https://github.com/magpie-community/plugins/issues/1517",
-      "package": "@magpie-community/opencode-qoder-auth",
-      "packageDirectory": "qoder",
-      "titlePrefix": "qoder",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 4,
-      "commentBucket": "active",
-      "updatedAt": "2026-11-26T08:19:23.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-24T08:09:27.000Z",
-      "labels": [],
-      "author": "Cnxiaohun"
     },
     {
       "number": 1070,
@@ -547,7 +581,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-26T01:33:47.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-08T15:22:54.000Z",
       "labels": [],
       "author": "duhu2000"
@@ -1788,7 +1822,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-19T18:27:45.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-19T18:27:45.000Z",
       "labels": [],
       "author": "eugene1003"
@@ -1805,7 +1839,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-19T17:05:54.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-19T17:05:54.000Z",
       "labels": [],
       "author": "nullburn"
@@ -7441,22 +7475,22 @@
       "author": "jinpy666"
     },
     {
-      "number": 1587,
-      "title": "uebox 0.1.2: add Library support for instructions, MCP servers, and skills",
-      "url": "https://github.com/magpie-community/plugins/pull/1587",
+      "number": 1590,
+      "title": "minimax-design-auth 0.1.0: MiniMax Design desktop provider plugin (CN & Global)",
+      "url": "https://github.com/magpie-community/plugins/pull/1590",
       "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "uebox 0.1.2",
+      "package": "@magpie-community/agent-minimax-design",
+      "packageDirectory": "minimax-design",
+      "titlePrefix": "minimax-design",
       "priority": "P3",
       "prioritySource": "default",
       "comments": 3,
       "commentBucket": "light",
-      "updatedAt": "2026-11-26T16:50:03.000Z",
+      "updatedAt": "2026-11-27T01:10:09.000Z",
       "updatedBucket": "24h",
-      "createdAt": "2026-11-26T12:28:56.000Z",
+      "createdAt": "2026-11-26T13:39:47.000Z",
       "labels": [],
-      "author": "wjf990711"
+      "author": "GoooIce"
     },
     {
       "number": 1134,
@@ -7722,7 +7756,7 @@
       "prioritySource": "default",
       "comments": 2,
       "commentBucket": "light",
-      "updatedAt": "2026-11-26T16:50:14.000Z",
+      "updatedAt": "2026-11-26T17:11:52.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-24T15:33:45.000Z",
       "labels": [],
@@ -7759,7 +7793,7 @@
       "comments": 2,
       "commentBucket": "light",
       "updatedAt": "2026-11-26T00:52:47.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-18T06:28:52.000Z",
       "labels": [],
       "author": "liyihang866"
@@ -8035,24 +8069,6 @@
       "author": "gaoyuyun"
     },
     {
-      "number": 1590,
-      "title": "minimax-design-auth 0.1.0: MiniMax Design desktop provider plugin (CN & Global)",
-      "url": "https://github.com/magpie-community/plugins/pull/1590",
-      "draft": false,
-      "package": "@magpie-community/agent-minimax-design",
-      "packageDirectory": "minimax-design",
-      "titlePrefix": "minimax-design",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T16:24:18.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T13:39:47.000Z",
-      "labels": [],
-      "author": "GoooIce"
-    },
-    {
       "number": 1403,
       "title": "memorysql 0.7.0: cross-agent session archive, memory activity, tidy undo and project summaries",
       "url": "https://github.com/magpie-community/plugins/pull/1403",
@@ -8089,24 +8105,6 @@
       "author": "lizimu0"
     },
     {
-      "number": 1481,
-      "title": "packages/pace-board: a page that explains the pace routing strategy",
-      "url": "https://github.com/magpie-community/plugins/pull/1481",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "packages",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T07:19:18.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-23T08:46:39.000Z",
-      "labels": [],
-      "author": "pzjyyds666"
-    },
-    {
       "number": 1386,
       "title": "Add wps-comate: WPS Comate (金山办公) provider plugin",
       "url": "https://github.com/magpie-community/plugins/pull/1386",
@@ -8137,7 +8135,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-25T19:00:16.000Z",
-      "updatedBucket": "24h",
+      "updatedBucket": "7d",
       "createdAt": "2026-11-23T10:59:57.000Z",
       "labels": [],
       "author": "Arobotmaster"
@@ -8375,24 +8373,6 @@
       "createdAt": "2026-11-17T04:30:59.000Z",
       "labels": [],
       "author": "zalan159"
-    },
-    {
-      "number": 1312,
-      "title": "doubao-work 0.1.14: a free account's 活动赠送额度 is read, and 签到 is offered to magpie",
-      "url": "https://github.com/magpie-community/plugins/pull/1312",
-      "draft": false,
-      "package": "@magpie-community/opencode-doubao-work-auth",
-      "packageDirectory": "doubao-work",
-      "titlePrefix": "doubao-work",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-20T02:25:20.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-18T08:16:38.000Z",
-      "labels": [],
-      "author": "baoxin"
     },
     {
       "number": 1277,
@@ -9007,9 +8987,27 @@
       "author": "MasakiMu319"
     },
     {
-      "number": 1595,
-      "title": "agy-cli 0.1.145: Claude Code's input suggestion is answered empty, outside the conversation's session",
-      "url": "https://github.com/magpie-community/plugins/pull/1595",
+      "number": 1576,
+      "title": "registry: add Prices 价格 (magpie-models-price)",
+      "url": "https://github.com/magpie-community/plugins/pull/1576",
+      "draft": false,
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "registry",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-27T01:43:29.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T08:38:26.000Z",
+      "labels": [],
+      "author": "zrtzrt"
+    },
+    {
+      "number": 1601,
+      "title": "agy-cli 0.1.152: a conversation parked by the old host after an update resumes on the new one, and up to 256 conversations stay parked",
+      "url": "https://github.com/magpie-community/plugins/pull/1601",
       "draft": false,
       "package": "@magpie-community/opencode-agy-cli-auth",
       "packageDirectory": "agy-cli",
@@ -9018,9 +9016,9 @@
       "prioritySource": "default",
       "comments": 0,
       "commentBucket": "none",
-      "updatedAt": "2026-11-26T16:07:36.000Z",
+      "updatedAt": "2026-11-27T01:18:32.000Z",
       "updatedBucket": "24h",
-      "createdAt": "2026-11-26T16:07:36.000Z",
+      "createdAt": "2026-11-27T01:18:32.000Z",
       "labels": [],
       "author": "yzlhccdec"
     },
@@ -9043,24 +9041,6 @@
       "author": "EFate"
     },
     {
-      "number": 1576,
-      "title": "registry: add Prices 价格 (magpie-models-price)",
-      "url": "https://github.com/magpie-community/plugins/pull/1576",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "registry",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-26T09:02:10.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T08:38:26.000Z",
-      "labels": [],
-      "author": "zrtzrt"
-    },
-    {
       "number": 1496,
       "title": "agy-cli: use a private control socket on macOS",
       "url": "https://github.com/magpie-community/plugins/pull/1496",
@@ -9077,24 +9057,6 @@
       "createdAt": "2026-11-23T15:32:20.000Z",
       "labels": [],
       "author": "hipposonCN"
-    },
-    {
-      "number": 1294,
-      "title": "fix(agy-cli): 修复 agy acp 扫描 prompt 误触发 /learn 等内置斜杠命令的问题",
-      "url": "https://github.com/magpie-community/plugins/pull/1294",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "fix(agy",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-25T07:40:10.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-18T02:48:01.000Z",
-      "labels": [],
-      "author": "huangzhenhao90"
     },
     {
       "number": 1288,
@@ -9973,7 +9935,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-20T01:25:19.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-20T01:25:19.000Z",
       "labels": [],
       "author": "eisen0419"
@@ -9991,7 +9953,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-20T00:27:25.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-20T00:27:25.000Z",
       "labels": [],
       "author": "eisen0419"
@@ -10009,7 +9971,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-19T18:27:15.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-19T18:27:15.000Z",
       "labels": [],
       "author": "garyhedgeme"
