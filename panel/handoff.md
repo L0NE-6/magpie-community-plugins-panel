@@ -1,0 +1,117 @@
+# Upstream pull requests: what is done, what is waiting, what should not be done
+
+Written 2026-11-27 after working through the open pull requests of
+`magpie-community/plugins`, `yetone/magpie` and `Gyl1219/magpie-providers-hub`.
+It records the state of each one this fork acted on, so the next person does
+not have to re-derive it.
+
+Nothing here is merged upstream. A branch in this fork is a **proposal**: it
+carries the rebase and its tests, and the maintainer still decides.
+
+## How a pull request was judged
+
+In this order, because the order is what saves time:
+
+1. **Shape first.** `added` vs `modified` file counts say most of it. A patch
+   that only adds files cannot have a semantic conflict; one that rewrites a
+   block upstream rewrote has no usable intersection.
+2. **Has upstream touched that block since?** `git log --since='60 days ago'
+   --oneline origin/main -- packages/<pkg>`. A busy package is not the same as
+   a busy block: `agy-cli` had 157 changes in 60 days and one pull request
+   still applied cleanly because its twenty lines were quiet.
+3. **Is the issue still open?** `grep` the issue number in `origin/main`.
+   Found in code *and* in tests → the fix exists, close the pull request.
+4. **Run the package's own suite before committing.** A red suite that is also
+   red on `origin/main` is the environment, not the patch — measure the
+   baseline and compare (`gcp-ai`: 11 of 96 fail both ways, they drive Chrome).
+
+## Delivered: 33 pull requests in `magpie-community/plugins`
+
+Each is a branch in this fork, based on `origin/main`, with the package's own
+tests green. Grouped by how much they needed.
+
+| Pull request | Branch | Note |
+| --- | --- | --- |
+| #717 | `add/717-willdeep` | two agent packages, new files only |
+| #1246 | `fix/1246-codearts-catalog` | a refused catalog read is not a sign-out |
+| #1277 | `add/1277-qianwen` | new provider; **the package ships no tests** |
+| #1358 | `review/1358-zcode-v2` | review branch |
+| #1363 | `add/1363-packycode-balance` | new package, 9 tests |
+| #1375 | `fix/1375-agy-open-object` | open object keeps extra keys |
+| #1377 | `fix/1377-lorca` | keeps Lorca's MCP block when writing Magpie's provider |
+| #1386 | `fix/1386-wps-comate` | **two product bugs fixed**: `homedir()` caches start-up value; latest-session tie picked the older conversation |
+| #1389 | `fix/1389-agy-degraded-session` | session without a model catalog is closed and retried |
+| #1390 | `fix/1390-kiro-thinking` | thinking budgets fit one turn |
+| #1404 | `add/1404-clixad` | new provider, 7 tests |
+| #1420 | `fix/1420-antigravity` | a stalled stream ends on its own deadlines |
+| #1424 | `fix/1424-gcp-ai` | fractional JPY credits; 11 failures are the environment (Chrome), same on `main` |
+| #1431 | `add/1431-astergate` | new provider, 4 tests |
+| #1438 | `add/1438-unisound` | registry entry |
+| #1440 | `fix/1440-tianshu-registry` | registry entry |
+| #1444 | `fix/1444-atomcode` | unconfirmed CodingPlan status |
+| #1209 | `fix/1209-lobsterai-registry` | registry entry |
+| #870 | `fix/870-mask-context-registry` | registry entry |
+| #1004 | `add/1004-route-insight` | new page; `start` moved onto the default export so `check.mjs` stops calling it as a plugin |
+| #1066 | `feat/1066-autoclaw-login` | remote web sign-in panel |
+| #1348 | `fix/1348-factory-models` | three models; the PR ships real Droid output as test data |
+| #1419 | `fix/1419-layerfs` | `cmd.exe` on Windows, so quoting survives |
+| #1427 | `fix/1427-catpaw-uid` | uid handling |
+| #1444 … | … | see `git ls-remote origin` for the full list |
+| #219 | `fix/219-autoclaw-refresh` | single-flight 401 renewal, keeps main's fingerprint verdict |
+| #1468 | `fix/1468-agy-empty-after-tool` | an empty turn after a refused tool is asked again |
+| #1472 | `fix/1472-agy-side-conversation` | a side conversation gets its own key |
+| #1488 | `add/1488-firstmate` | 248 files; **use the PR's tarball, not the diff** — 191 SVGs come back as binary patches |
+| #1539 | `fix/1539-cam` | `panelDir()` read where used; publisher throttle forced in the test |
+| #1606 | `fix/1606-factory-droid` | pool lists are newer than the older provider's catalogue: compare **set difference**, not equality |
+| #1628 | `add/1628-seu-chat` | 71 tests; `opencode2.mjs` is a byte-for-byte copy of `scripts/opencode2.mjs` |
+
+## Closed as already fixed: 2
+
+| Pull request | Why |
+| --- | --- |
+| #1258 | the behaviour it fixed had been implemented upstream |
+| #1469 | `main` has `holdsHome()` in `platform.mjs`, which is **wider** than the patch's `path.resolve(workDir) !== path.resolve(os.homedir())` — it excludes home *and anything containing it*, with win32/posix path rules — and three tests already check it (`repeat-batch.mjs:2606`, `smoke.mjs:1113`, `platform.mjs:10`) |
+| #438 | `main` has `startGate` / `startSlots` / `REQUEUE_MAX` / `startQueueAnswer`: the same queue, more complete. Merging the patch would **downgrade** it. Only `options: start-plan-three-concurrent` is still missing |
+
+## Waiting on the maintainer: 3
+
+All three are `agy-cli`, and each needs a decision rather than more work:
+
+| Pull request | What is needed |
+| --- | --- |
+| #1416 | implemented (58 lines, 55 tests still green) but the end-to-end case cannot reach the path: `#onNotification` (`index.mjs:2741`) returns early on `!turn \|\| turn.done \|\| turn.finalized`, and under `testkit`'s scheduling `turn.done` may already be set when `agent.text()` lands. Needs a test entry that drives `#onNotification` directly |
+| #1418 | **not** superseded — the issue is open and `main` only recognises a whitelist of banners. But the patch's ten conflicts all sit in `dropRetryBanner` / `heldFrom` / `startsLine`, which main rewrote. The generic `⚠ <STATUS> (code <NNN>):` shape cannot be matched with the `startsWith` test main uses, so it needs ~30–40 lines written against the current structure |
+| #1296 | whether a UNAUTHENTICATED ending that arrives as **text** should be retried transparently, or answered 401 — a product decision |
+
+## Needs to be redone, not rebased: 2
+
+| Pull request | Why |
+| --- | --- |
+| #1394 | four of five conflicts resolve to "main is already more complete"; only `proc.ephemeral` and `toolsByMcpName()` remain. Two attempts broke `class Proc` (`Private field '#markDead' must be declared in an enclosing class`) — take the two pieces out of the patch instead of applying it whole |
+| #1033 (in `yetone/magpie`) | 38 of its 48 files are new and can be copied; the other 10 cannot take their hunks at all (`does not match index`, 0/10 with `--include`). Its `agentenv.go` predates `ClaudeProviders`, which `testenv.go:138` and `path_other.go:134` now use
+
+## Do not touch: 3 (in `yetone/magpie`)
+
+`docs/contributors.md` stops a review for changes to `.github/`, release and
+publish scripts, `Dockerfile`, and `site/`. These three cross that line:
+
+| Pull request | Path |
+| --- | --- |
+| #951 | `site/public/docs/zh/start.html`, `…/subscriptions.html` |
+| #1020 | `ci` — `.github/` |
+| #1157 | `ci` — `.github/` |
+
+## What went wrong, so it does not again
+
+- `git apply` aborts the **whole** patch when one file's hunks fail. Use
+  `--exclude='registry.json'` to land the package, then add the registry entry
+  by hand and check the entry count.
+- A patch carrying images cannot be applied from the diff API: they arrive as
+  `GIT binary patch` that `git apply` cannot rebuild. Take the PR's tarball
+  (`refs/pull/<n>/head`). The tell is "apply succeeded" with zero files on disk.
+- Before inserting or deleting a method inside a class, `grep -c` that it is not
+  already there. `node --check` saying a private field is "not in an enclosing
+  class" means the **class boundary** broke, not the field.
+- A test that is red both with and without the patch is the environment. Measure
+  the baseline before calling it a regression.
+- Commit messages: use `-F <file>`. A backtick in `-m` is executed by the shell.
