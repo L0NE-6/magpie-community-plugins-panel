@@ -1,14 +1,14 @@
 # Upstream open pull requests
 
-Generated at `2026-11-26T06:15:00.000Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
+Generated at `2026-11-26T06:57:38.039Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/pulls).
 
 ## Summary
 
-- Open pull requests: **236**
-- Draft: **12**, ready: **224**
-- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **236**
-- Comments: none **117**, light **94**, active **24**, hot **1**
-- Updated: 24h **29**, 7d **86**, 30d **103**, older **18**
+- Open pull requests: **233**
+- Draft: **12**, ready: **221**
+- Priority: P0 **0**, P1 **0**, P2 **0**, P3 **233**
+- Comments: none **116**, light **92**, active **24**, hot **1**
+- Updated: 24h **26**, 7d **83**, 30d **106**, older **18**
 
 Pull requests are ordered by draft state, priority, comments, updated time, and number.
 
@@ -115,9 +115,8 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 3 (light) | 2026-11-24T13:37:30.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1296 agy-cli 0.1.117: recover from agy UNAUTHENTICATED (code 401) endings on a fresh process](https://github.com/magpie-community/plugins/pull/1296) |
-| P3 | ready | 2 (light) | 2026-11-26T04:36:33.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1562 agy-cli 0.1.135: usage reports the plan loadCodeAssist names, and the stored email](https://github.com/magpie-community/plugins/pull/1562) |
 | P3 | ready | 1 (light) | 2026-11-26T02:55:58.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1551 agy-cli 0.1.132: add native image generation, editing and web search](https://github.com/magpie-community/plugins/pull/1551) |
-| P3 | ready | 1 (light) | 2026-11-19T06:54:04.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1287 agy-cli: preserve active context across suggestions, history forks and compaction](https://github.com/magpie-community/plugins/pull/1287) |
+| P3 | ready | 1 (light) | 2026-11-19T06:54:04.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1287 agy-cli: preserve active context across suggestions, history forks and compaction](https://github.com/magpie-community/plugins/pull/1287) |
 | P3 | ready | 0 (none) | 2026-11-25T13:32:12.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1496 agy-cli: use a private control socket on macOS](https://github.com/magpie-community/plugins/pull/1496) |
 | P3 | ready | 0 (none) | 2026-11-23T13:20:56.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1472 agy-cli 0.1.114: a Codex side conversation gets a session of its own](https://github.com/magpie-community/plugins/pull/1472) |
 | P3 | ready | 0 (none) | 2026-11-23T13:20:53.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1469 agy-cli 0.1.114: a home working directory is not added to agy's workspace, so the client's largest tools stay (#1405)](https://github.com/magpie-community/plugins/pull/1469) |
@@ -279,6 +278,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 1 (light) | 2026-11-22T12:20:15.000Z | 7d | `@magpie-community/opencode-raccoon-auth` | [#1372 raccoon: take thinking levels from the catalog](https://github.com/magpie-community/plugins/pull/1372) |
+| P3 | ready | 0 (none) | 2026-11-26T06:39:57.000Z | 24h | `@magpie-community/opencode-raccoon-auth` | [#1569 raccoon 0.1.15: every chat request names its conversation and turn](https://github.com/magpie-community/plugins/pull/1569) |
 
 ### Package: `@magpie-community/opencode-sap-aicore-auth`
 
@@ -529,7 +529,7 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 
 | Priority | Draft | Comments | Updated | Updated bucket | Package | Pull request |
 | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | ready | 0 (none) | 2026-11-19T06:30:43.000Z | 7d | _unmapped_ (`QuWork 0.1.4`) | [#1321 QuWork 0.1.4: official browser sign-in and model key fallback](https://github.com/magpie-community/plugins/pull/1321) |
+| P3 | ready | 0 (none) | 2026-11-19T06:30:43.000Z | 30d | _unmapped_ (`QuWork 0.1.4`) | [#1321 QuWork 0.1.4: official browser sign-in and model key fallback](https://github.com/magpie-community/plugins/pull/1321) |
 
 ### Package: `unmapped:add @magpie`
 
@@ -661,9 +661,8 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 1 (light) | 2026-11-16T01:50:41.000Z | 30d | _unmapped_ (`feat`) | [#1195 feat: list PipeLLM WebSearch tools](https://github.com/magpie-community/plugins/pull/1195) |
 | P3 | ready | 1 (light) | 2026-11-14T14:16:05.000Z | 30d | _unmapped_ (`feat`) | [#1152 feat: add XiaoYunQue native image/video provider](https://github.com/magpie-community/plugins/pull/1152) |
 | P3 | ready | 1 (light) | 2026-10-29T13:12:23.000Z | 30d | _unmapped_ (`feat`) | [#341 feat: add native private TRAE provider with verified SSO and quota handling](https://github.com/magpie-community/plugins/pull/341) |
-| P3 | ready | 0 (none) | 2026-11-26T04:37:58.000Z | 24h | _unmapped_ (`feat`) | [#1564 feat: 新增 UEBox agent 插件](https://github.com/magpie-community/plugins/pull/1564) |
 | P3 | ready | 0 (none) | 2026-11-23T10:40:05.000Z | 7d | _unmapped_ (`feat`) | [#1245 feat: add account-level Provider Quota page](https://github.com/magpie-community/plugins/pull/1245) |
-| P3 | ready | 0 (none) | 2026-11-19T06:56:31.000Z | 7d | _unmapped_ (`feat`) | [#1274 feat: add GitHub profile usage cards page with local daily sync](https://github.com/magpie-community/plugins/pull/1274) |
+| P3 | ready | 0 (none) | 2026-11-19T06:56:31.000Z | 30d | _unmapped_ (`feat`) | [#1274 feat: add GitHub profile usage cards page with local daily sync](https://github.com/magpie-community/plugins/pull/1274) |
 | P3 | ready | 0 (none) | 2026-11-18T17:05:30.000Z | 30d | _unmapped_ (`feat`) | [#1340 feat: add GenericAgent agent plugin](https://github.com/magpie-community/plugins/pull/1340) |
 
 ### Package: `unmapped:feat(agents)`
@@ -808,7 +807,6 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | --- | --- | ---: | --- | --- | --- | --- |
 | P3 | ready | 7 (active) | 2026-11-14T21:03:43.000Z | 30d | _unmapped_ (`registry`) | [#1112 registry: providers-hub 新增腾讯 Marvis（hub-marvis）](https://github.com/magpie-community/plugins/pull/1112) |
 | P3 | ready | 3 (light) | 2026-11-13T13:15:28.000Z | 30d | _unmapped_ (`registry`) | [#1085 registry: add AMD Cloud (magpie-amd-cloud)](https://github.com/magpie-community/plugins/pull/1085) |
-| P3 | ready | 2 (light) | 2026-11-26T04:36:31.000Z | 24h | _unmapped_ (`registry`) | [#1561 registry: list magpie-vetta (Vetta Desktop)](https://github.com/magpie-community/plugins/pull/1561) |
 | P3 | ready | 2 (light) | 2026-11-25T08:45:25.000Z | 24h | _unmapped_ (`registry`) | [#1144 registry: list @godwit/magpie-agent (Godwit)](https://github.com/magpie-community/plugins/pull/1144) |
 | P3 | ready | 2 (light) | 2026-11-25T08:03:08.000Z | 24h | _unmapped_ (`registry`) | [#1045 registry: add Melete Magpie](https://github.com/magpie-community/plugins/pull/1045) |
 | P3 | ready | 2 (light) | 2026-11-16T07:48:55.000Z | 30d | _unmapped_ (`registry`) | [#1209 registry: add magpie-lobsterai-auth (LobsterAI)](https://github.com/magpie-community/plugins/pull/1209) |
@@ -817,7 +815,6 @@ Pull requests are ordered by draft state, priority, comments, updated time, and 
 | P3 | ready | 1 (light) | 2026-11-18T09:27:14.000Z | 30d | _unmapped_ (`registry`) | [#1317 registry: add magpie-muse-web-connector (Muse Web connector)](https://github.com/magpie-community/plugins/pull/1317) |
 | P3 | ready | 1 (light) | 2026-11-16T16:38:43.000Z | 30d | _unmapped_ (`registry`) | [#1232 registry: add Ducoro agent plugin](https://github.com/magpie-community/plugins/pull/1232) |
 | P3 | ready | 1 (light) | 2026-11-14T12:07:33.000Z | 30d | _unmapped_ (`registry`) | [#1149 registry: add magpie-kilo-auth (Kilo Gateway provider plugin)](https://github.com/magpie-community/plugins/pull/1149) |
-| P3 | ready | 0 (none) | 2026-11-26T04:57:13.000Z | 24h | _unmapped_ (`registry`) | [#1565 registry: add Context 上下文 (magpie-context)](https://github.com/magpie-community/plugins/pull/1565) |
 | P3 | ready | 0 (none) | 2026-11-21T16:06:57.000Z | 7d | _unmapped_ (`registry`) | [#1442 registry: add Model Speed Test page plugin](https://github.com/magpie-community/plugins/pull/1442) |
 | P3 | ready | 0 (none) | 2026-11-21T15:15:24.000Z | 7d | _unmapped_ (`registry`) | [#1440 registry: add 天枢 Tianshu (magpie-agent-tianshu-harness)](https://github.com/magpie-community/plugins/pull/1440) |
 | P3 | ready | 0 (none) | 2026-11-21T03:28:00.000Z | 7d | _unmapped_ (`registry`) | [#1425 registry: add D-message page plugin](https://github.com/magpie-community/plugins/pull/1425) |

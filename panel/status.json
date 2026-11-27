@@ -1,61 +1,61 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-26T06:15:00.000Z",
+  "generatedAt": "2026-11-26T06:57:38.039Z",
   "source": {
     "repository": "magpie-community/plugins",
     "issuesUrl": "https://api.github.com/repos/magpie-community/plugins/issues",
     "pullsUrl": "https://api.github.com/repos/magpie-community/plugins/pulls"
   },
   "summary": {
-    "issueCount": 395,
-    "pullCount": 236,
+    "issueCount": 397,
+    "pullCount": 233,
     "draftPullCount": 12,
-    "readyPullCount": 224,
+    "readyPullCount": 221,
     "byPriority": {
       "issues": {
         "P0": 0,
         "P1": 0,
         "P2": 2,
-        "P3": 393
+        "P3": 395
       },
       "pulls": {
         "P0": 0,
         "P1": 0,
         "P2": 0,
-        "P3": 236
+        "P3": 233
       }
     },
     "byComments": {
       "issues": {
-        "none": 150,
-        "light": 189,
+        "none": 151,
+        "light": 190,
         "active": 46,
         "hot": 10
       },
       "pulls": {
-        "none": 117,
-        "light": 94,
+        "none": 116,
+        "light": 92,
         "active": 24,
         "hot": 1
       }
     },
     "byUpdated": {
       "issues": {
-        "24h": 26,
-        "7d": 78,
-        "30d": 226,
+        "24h": 32,
+        "7d": 77,
+        "30d": 223,
         "older": 65
       },
       "pulls": {
-        "24h": 29,
-        "7d": 86,
-        "30d": 103,
+        "24h": 26,
+        "7d": 83,
+        "30d": 106,
         "older": 18
       }
     },
     "byDraft": {
       "draft": 12,
-      "ready": 224
+      "ready": 221
     }
   },
   "issues": [
@@ -68,9 +68,9 @@
       "titlePrefix": "qoder",
       "priority": "P2",
       "prioritySource": "title",
-      "comments": 1,
+      "comments": 2,
       "commentBucket": "light",
-      "updatedAt": "2026-11-26T04:02:48.000Z",
+      "updatedAt": "2026-11-26T06:32:14.000Z",
       "updatedBucket": "24h",
       "createdAt": "2026-11-26T02:34:06.000Z",
       "labels": [],
@@ -92,6 +92,142 @@
       "createdAt": "2026-11-23T12:18:48.000Z",
       "labels": [],
       "author": "tyh97"
+    },
+    {
+      "number": 512,
+      "title": "raccoon: an account-level token throughput wall (`user_model_rate_limited`) is retried 8x as if it were transient throttling",
+      "url": "https://github.com/magpie-community/plugins/issues/512",
+      "package": "@magpie-community/opencode-raccoon-auth",
+      "packageDirectory": "raccoon",
+      "titlePrefix": "raccoon",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T06:41:02.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-10-30T07:00:12.000Z",
+      "labels": [],
+      "author": "cycocyco"
+    },
+    {
+      "number": 1559,
+      "title": "zcode: Start Plan (GLM-5.4) triggers 405/3012 anti-proxy risk control on non-suspended accounts — account suspension risk",
+      "url": "https://github.com/magpie-community/plugins/issues/1559",
+      "package": "@magpie-community/opencode-zcode-auth",
+      "packageDirectory": "zcode",
+      "titlePrefix": "zcode",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T06:30:48.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T02:33:07.000Z",
+      "labels": [],
+      "author": "ArmedHelicopter"
+    },
+    {
+      "number": 1567,
+      "title": "workbuddy-ai: decouple the token quota card from the hardcoded DeepSeek promotion",
+      "url": "https://github.com/magpie-community/plugins/issues/1567",
+      "package": "@magpie-community/opencode-workbuddy-auth",
+      "packageDirectory": "workbuddy",
+      "titlePrefix": "workbuddy",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-26T06:29:25.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T06:14:26.000Z",
+      "labels": [],
+      "author": "ReneXiong"
+    },
+    {
+      "number": 1557,
+      "title": "astudio: sign-in can't find a portable Chrome++ default browser, and Chrome++'s relaunch drops the CDP pipe",
+      "url": "https://github.com/magpie-community/plugins/issues/1557",
+      "package": "@magpie-community/opencode-astudio-auth",
+      "packageDirectory": "astudio",
+      "titlePrefix": "astudio",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T06:28:22.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T01:26:06.000Z",
+      "labels": [],
+      "author": "LingYingNX"
+    },
+    {
+      "number": 1568,
+      "title": "[Feature] 支持自定义 magpie 数据目录（artifacts 等默认强制存 C 盘用户目录）",
+      "url": "https://github.com/magpie-community/plugins/issues/1568",
+      "package": null,
+      "packageDirectory": null,
+      "titlePrefix": "Feature",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 1,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T06:24:15.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T06:21:28.000Z",
+      "labels": [],
+      "author": "GZYY003348"
+    },
+    {
+      "number": 1064,
+      "title": "agy-cli: provider.models() requires 3 sequential refreshes to list claude-opus-5-5 / claude-sonnet-5-5 / gpt-oss-120b on real signed-in agy (Call #1 returns 2 fallback models, Call #2 drops non-Gemini)",
+      "url": "https://github.com/magpie-community/plugins/issues/1064",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T06:13:05.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-13T02:35:43.000Z",
+      "labels": [],
+      "author": "hiee3"
+    },
+    {
+      "number": 1053,
+      "title": "agy-cli: renderInitialPromptParts drops the active tool loop's user prompt when trimming >112 KiB history replays",
+      "url": "https://github.com/magpie-community/plugins/issues/1053",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 2,
+      "commentBucket": "light",
+      "updatedAt": "2026-11-26T06:13:03.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-12T13:34:46.000Z",
+      "labels": [],
+      "author": "hiee3"
+    },
+    {
+      "number": 1070,
+      "title": "agy-cli: \"test/smoke.mjs against a fake agy\" red at 40s under the root bun test on macOS (mica), green alone",
+      "url": "https://github.com/magpie-community/plugins/issues/1070",
+      "package": "@magpie-community/opencode-agy-cli-auth",
+      "packageDirectory": "agy-cli",
+      "titlePrefix": "agy-cli",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 6,
+      "commentBucket": "active",
+      "updatedAt": "2026-11-26T06:12:09.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-13T05:17:00.000Z",
+      "labels": [],
+      "author": "yetone"
     },
     {
       "number": 1447,
@@ -162,23 +298,6 @@
       "author": "Cnxiaohun"
     },
     {
-      "number": 1559,
-      "title": "zcode: Start Plan (GLM-5.4) triggers 405/3012 anti-proxy risk control on non-suspended accounts — account suspension risk",
-      "url": "https://github.com/magpie-community/plugins/issues/1559",
-      "package": "@magpie-community/opencode-zcode-auth",
-      "packageDirectory": "zcode",
-      "titlePrefix": "zcode",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T04:02:34.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T02:33:07.000Z",
-      "labels": [],
-      "author": "ArmedHelicopter"
-    },
-    {
       "number": 1563,
       "title": "antigravity 在magpie的 antigravity CLI 插件封号概率高吗？",
       "url": "https://github.com/magpie-community/plugins/issues/1563",
@@ -211,23 +330,6 @@
       "createdAt": "2026-11-04T02:53:35.000Z",
       "labels": [],
       "author": "yetone"
-    },
-    {
-      "number": 1557,
-      "title": "astudio: sign-in can't find a portable Chrome++ default browser, and Chrome++'s relaunch drops the CDP pipe",
-      "url": "https://github.com/magpie-community/plugins/issues/1557",
-      "package": "@magpie-community/opencode-astudio-auth",
-      "packageDirectory": "astudio",
-      "titlePrefix": "astudio",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T03:40:14.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T01:26:06.000Z",
-      "labels": [],
-      "author": "LingYingNX"
     },
     {
       "number": 1556,
@@ -636,23 +738,6 @@
       "createdAt": "2026-11-24T02:56:53.000Z",
       "labels": [],
       "author": "6westboy9"
-    },
-    {
-      "number": 1070,
-      "title": "agy-cli: \"test/smoke.mjs against a fake agy\" red at 40s under the root bun test on macOS (mica), green alone",
-      "url": "https://github.com/magpie-community/plugins/issues/1070",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 5,
-      "commentBucket": "active",
-      "updatedAt": "2026-11-24T21:13:04.000Z",
-      "updatedBucket": "7d",
-      "createdAt": "2026-11-13T05:17:00.000Z",
-      "labels": [],
-      "author": "yetone"
     },
     {
       "number": 1498,
@@ -3290,23 +3375,6 @@
       "author": "wolfing88"
     },
     {
-      "number": 1064,
-      "title": "agy-cli: provider.models() requires 3 sequential refreshes to list claude-opus-5-5 / claude-sonnet-5-5 / gpt-oss-120b on real signed-in agy (Call #1 returns 2 fallback models, Call #2 drops non-Gemini)",
-      "url": "https://github.com/magpie-community/plugins/issues/1064",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-13T03:09:08.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-13T02:35:43.000Z",
-      "labels": [],
-      "author": "hiee3"
-    },
-    {
       "number": 1059,
       "title": "Add Image Models plugin",
       "url": "https://github.com/magpie-community/plugins/issues/1059",
@@ -3339,23 +3407,6 @@
       "createdAt": "2026-11-12T13:51:02.000Z",
       "labels": [],
       "author": "Yezike-yyy"
-    },
-    {
-      "number": 1053,
-      "title": "agy-cli: renderInitialPromptParts drops the active tool loop's user prompt when trimming >112 KiB history replays",
-      "url": "https://github.com/magpie-community/plugins/issues/1053",
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-12T13:58:14.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-11-12T13:34:46.000Z",
-      "labels": [],
-      "author": "hiee3"
     },
     {
       "number": 1052,
@@ -5262,23 +5313,6 @@
       "createdAt": "2026-10-30T08:39:22.000Z",
       "labels": [],
       "author": "yetone"
-    },
-    {
-      "number": 512,
-      "title": "raccoon: an account-level token throughput wall (`user_model_rate_limited`) is retried 8x as if it were transient throttling",
-      "url": "https://github.com/magpie-community/plugins/issues/512",
-      "package": "@magpie-community/opencode-raccoon-auth",
-      "packageDirectory": "raccoon",
-      "titlePrefix": "raccoon",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 1,
-      "commentBucket": "light",
-      "updatedAt": "2026-10-30T07:41:21.000Z",
-      "updatedBucket": "30d",
-      "createdAt": "2026-10-30T07:00:12.000Z",
-      "labels": [],
-      "author": "cycocyco"
     },
     {
       "number": 109,
@@ -7679,42 +7713,6 @@
       "author": "eghrhegpe"
     },
     {
-      "number": 1562,
-      "title": "agy-cli 0.1.135: usage reports the plan loadCodeAssist names, and the stored email",
-      "url": "https://github.com/magpie-community/plugins/pull/1562",
-      "draft": false,
-      "package": "@magpie-community/opencode-agy-cli-auth",
-      "packageDirectory": "agy-cli",
-      "titlePrefix": "agy-cli",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 2,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T04:36:33.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T03:35:58.000Z",
-      "labels": [],
-      "author": "Oakshen"
-    },
-    {
-      "number": 1561,
-      "title": "registry: list magpie-vetta (Vetta Desktop)",
-      "url": "https://github.com/magpie-community/plugins/pull/1561",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "registry",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 2,
-      "commentBucket": "light",
-      "updatedAt": "2026-11-26T04:36:31.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T02:52:57.000Z",
-      "labels": [],
-      "author": "bent2685"
-    },
-    {
       "number": 1307,
       "title": "cursor 0.2.49: a temporary resource_exhausted is an upstream failure, not a quota (#1290)",
       "url": "https://github.com/magpie-community/plugins/pull/1307",
@@ -8411,7 +8409,7 @@
       "comments": 1,
       "commentBucket": "light",
       "updatedAt": "2026-11-19T06:54:04.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T01:22:52.000Z",
       "labels": [],
       "author": "UserJTZhang"
@@ -8993,6 +8991,24 @@
       "author": "MasakiMu319"
     },
     {
+      "number": 1569,
+      "title": "raccoon 0.1.15: every chat request names its conversation and turn",
+      "url": "https://github.com/magpie-community/plugins/pull/1569",
+      "draft": false,
+      "package": "@magpie-community/opencode-raccoon-auth",
+      "packageDirectory": "raccoon",
+      "titlePrefix": "raccoon",
+      "priority": "P3",
+      "prioritySource": "default",
+      "comments": 0,
+      "commentBucket": "none",
+      "updatedAt": "2026-11-26T06:39:57.000Z",
+      "updatedBucket": "24h",
+      "createdAt": "2026-11-26T06:39:57.000Z",
+      "labels": [],
+      "author": "wzrove"
+    },
+    {
       "number": 1566,
       "title": "verboo 0.1.0: Verboo Code Router provider plugin (browser OAuth & API key)",
       "url": "https://github.com/magpie-community/plugins/pull/1566",
@@ -9009,42 +9025,6 @@
       "createdAt": "2026-11-26T05:43:25.000Z",
       "labels": [],
       "author": "lizimu0"
-    },
-    {
-      "number": 1565,
-      "title": "registry: add Context 上下文 (magpie-context)",
-      "url": "https://github.com/magpie-community/plugins/pull/1565",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "registry",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-26T04:57:13.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T04:57:13.000Z",
-      "labels": [],
-      "author": "zrtzrt"
-    },
-    {
-      "number": 1564,
-      "title": "feat: 新增 UEBox agent 插件",
-      "url": "https://github.com/magpie-community/plugins/pull/1564",
-      "draft": false,
-      "package": null,
-      "packageDirectory": null,
-      "titlePrefix": "feat",
-      "priority": "P3",
-      "prioritySource": "default",
-      "comments": 0,
-      "commentBucket": "none",
-      "updatedAt": "2026-11-26T04:37:58.000Z",
-      "updatedBucket": "24h",
-      "createdAt": "2026-11-26T04:37:58.000Z",
-      "labels": [],
-      "author": "wjf990711"
     },
     {
       "number": 1436,
@@ -10247,7 +10227,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-19T06:56:31.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-17T14:53:08.000Z",
       "labels": [],
       "author": "wolfvoid"
@@ -10265,7 +10245,7 @@
       "comments": 0,
       "commentBucket": "none",
       "updatedAt": "2026-11-19T06:30:43.000Z",
-      "updatedBucket": "7d",
+      "updatedBucket": "30d",
       "createdAt": "2026-11-18T10:32:28.000Z",
       "labels": [],
       "author": "kshu06537-bot"
