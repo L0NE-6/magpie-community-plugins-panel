@@ -88,7 +88,44 @@ All three are `agy-cli`, and each needs a decision rather than more work:
 | Pull request | Why |
 | --- | --- |
 | #1394 | four of five conflicts resolve to "main is already more complete"; only `proc.ephemeral` and `toolsByMcpName()` remain. Two attempts broke `class Proc` (`Private field '#markDead' must be declared in an enclosing class`) — take the two pieces out of the patch instead of applying it whole |
-| #1033 (in `yetone/magpie`) | 38 of its 48 files are new and can be copied; the other 10 cannot take their hunks at all (`does not match index`, 0/10 with `--include`). Its `agentenv.go` predates `ClaudeProviders`, which `testenv.go:138` and `path_other.go:134` now use
+| #1033 (in `yetone/magpie`) | **in progress**: `wip/1033-reasonix` carries 38 new files and all eight modified ones, and `go build -tags nogui ./...` passes. See below for what is left
+
+
+## #1033 in progress: what is left
+
+`wip/1033-reasonix` (L0NE-6/magpie-panel) compiles. Two things remain, both
+needing a decision or a debugger rather than a rebase.
+
+**1. A panic under `refresh`.** The trace lands on `reasonix.go:300`
+(`s.DBRevision = f.m().rev`) with the parameter printed as `0x0?`; a build
+with `-gcflags=all='-N -l'` prints the real one and it is **not** nil, so the
+printed argument was an inlined artefact. A nil guard at the top of
+`reasonixMetadata` and an `s != nil` at its call site are both in place. Next:
+`dlv` on that line, or a look at what the compiler inserts for the string
+assignment.
+
+**2. `TestReasonix229SidecarRefreshAndTail` reads `Input` 0.** A probe in
+`parseRead`'s cache check shows **both** files of that session arriving with
+`old == false` after the marker is written:
+
+    [probe] …/2026-10-06.session.jsonl       old false size 7477
+    [probe] …/2026-10-06.session.wire.jsonl  old false size 2894
+
+So the whole conversation is re-parsed as new, not just its usage dropped —
+`reasonixMetadata` never touches tokens. Two readings, and the maintainer
+decides:
+
+- the PR's `List` kept the previous state in the cache and re-read
+  incrementally; main does not, so `Input` 0 is correct and the **test**
+  should expect it (or only check `UsageIncomplete`);
+- or main's cache semantics are unchanged and the wiring puts a changing value
+  into `f.path`, so every poll is a new file.
+
+Five structure adaptations main needed were made on that branch and are worth
+reusing for any other reasonix work: `fileMore` (`f.m().sid` to read),
+`named[Tokens]` for Models, Reasonix's fields inside `StateMore` (so `state`
+stays in the 416-byte class, `s.more()` / `s.own()`), `lazyre.New`, and
+`allFilesWith` / `Dirs` for the wiring.
 
 ## Do not touch: 3 (in `yetone/magpie`)
 
