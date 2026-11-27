@@ -265,6 +265,40 @@ away"); the patch gives both browser methods a browser-select prompt.
 comment), `#545` (`refused` as a side channel), `#713` (shared probe), `#928` (identity-less
 accounts), `#1296`, `#1416`, `#1418`, `#978` (magpie-panel).
 
+## Resuming this work
+
+Four commands do almost all of it, and they live in `maintenance/`:
+
+| what | command |
+| --- | --- |
+| fetch a pull request's diff | `curl -H "Accept: application/vnd.github.diff" -H "Authorization: Bearer $TOKEN" .../pulls/<n> -o maintenance/prdiffs/pr<n>.diff` — tarball instead when the diff says `Binary files` |
+| does the patch use a name nobody defines? | `python3 maintenance/preflight.py <diff> <repo-root> packages/<pkg>` — exit 1 means a missing symbol, an import the target does not export, or a context line importing something main lacks |
+| add only the entry a pull request adds | `python3 maintenance/registry_add.py <pr> <package>` — reads the entry from the pull request's own `registry.json`, validates the whole file before writing |
+| do the branches still merge? | `git merge-tree --write-tree origin/main origin/<branch>`, run over every branch |
+
+**The order that saves the most time, per pull request:**
+
+1. `grep -cE '^diff --git'` and `grep 'Binary files'` — know the shape before applying anything.
+2. **What share of the files are new?** Above ~70% it will apply; the largest change sitting in an
+   existing package's core file is where two generations collide (`#647` — 8 conflicted files).
+3. `git apply --3way --exclude=<generated files>`; then `grep -rl '^<<<<<<<'` — **conflict markers do not
+   only appear as `UU` in `git status`**; `U ` (unmerged, one side) hides them too.
+4. Conflict triage, by shape rather than by effort:
+   - both sides add a struct field / import / a UI section → keep both;
+   - the conflict's **`theirs` side imports a name main does not have** → depends on an unlanded
+     pull request; stop (`#1017` `loadGatewayKeys`, `#1640`, `#1641`, `#1074`);
+   - the two sides' **main function differs** (`OpenDesignAuthPlugin` vs `bodyText`) → two
+     generations; stop (`#129`, `#647`, `#930`, `#1333`);
+   - **`ours` carries an explanatory comment and `theirs` does not** → main fixed a bug the patch
+     would reintroduce (`#1181`: local cards have no `kind`);
+   - the patch's **version field is older than main's** → the branch is behind (`#1435`).
+5. Before believing a red suite: run it against `origin/main` **in a worktree**, and compare the
+   failure sets (`comm -23`). This box's chrome, root user and parallel suites each produce red that
+   is not the patch's (`#846`, `#1068`, `#1245`, `#1288`, `#1305`).
+
+**Two things never to push**: a branch whose package does not build, and a branch whose own tests are
+red for a reason inside the patch. Three were dropped that way (`#1331`, `#977`, `#129`).
+
 ## How a pull request was judged
 
 In this order, because the order is what saves time:
