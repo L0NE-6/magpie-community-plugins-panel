@@ -1,13 +1,13 @@
 # Upstream open issues
 
-Generated at `2026-11-27T02:48:58.745Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
+Generated at `2026-11-27T06:49:50.337Z` from [magpie-community/plugins](https://github.com/magpie-community/plugins/issues).
 
 ## Summary
 
-- Open issues: **401**
-- Priority: P0 **0**, P1 **0**, P2 **2**, P3 **399**
-- Comments: none **155**, light **185**, active **50**, hot **11**
-- Updated: 24h **29**, 7d **72**, 30d **229**, older **71**
+- Open issues: **403**
+- Priority: P0 **0**, P1 **0**, P2 **2**, P3 **401**
+- Comments: none **154**, light **187**, active **51**, hot **11**
+- Updated: 24h **32**, 7d **70**, 30d **231**, older **70**
 
 Issues are ordered by priority, then updated time, comments, and number.
 
@@ -131,15 +131,18 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-27T01:52:32.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1602 agy-cli: 只有 free-tier 被标 UNSUPPORTED_LOCATION，`agy -p /usage` 就整体失败，而同一账号的 TUI `/usage` 能正常读](https://github.com/magpie-community/plugins/issues/1602) |
-| P3 | 2 (light) | 2026-11-26T23:41:38.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1592 agy-cli 0.1.144: matchesHistory still drops live session — first_diff missing_actual, rows:2, empty-reply 502 loop](https://github.com/magpie-community/plugins/issues/1592) |
+| P3 | 3 (light) | 2026-11-27T05:39:06.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1592 agy-cli 0.1.144: matchesHistory still drops live session — first_diff missing_actual, rows:2, empty-reply 502 loop](https://github.com/magpie-community/plugins/issues/1592) |
+| P3 | 2 (light) | 2026-11-27T04:54:56.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1602 agy-cli: 只有 free-tier 被标 UNSUPPORTED_LOCATION，`agy -p /usage` 就整体失败，而同一账号的 TUI `/usage` 能正常读](https://github.com/magpie-community/plugins/issues/1602) |
+| P3 | 2 (light) | 2026-11-27T04:04:13.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#942 agy-cli: ToolSearch-loaded tools stay unknown for the rest of the agy turn](https://github.com/magpie-community/plugins/issues/942) |
+| P3 | 3 (light) | 2026-11-27T03:39:07.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1234 agy-cli (Windows): background quota refresh opens Google OAuth on transient token refresh failure at startup](https://github.com/magpie-community/plugins/issues/1234) |
+| P3 | 0 (none) | 2026-11-27T03:16:12.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1608 agy-cli: test/windows-nc.mjs "falls back to nc.cmd" red on CI: the ncbuild dir is removed without an await](https://github.com/magpie-community/plugins/issues/1608) |
+| P3 | 8 (active) | 2026-11-27T03:05:53.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1070 agy-cli: "test/smoke.mjs against a fake agy" red at 40s under the root bun test on macOS (mica), green alone](https://github.com/magpie-community/plugins/issues/1070) |
 | P3 | 3 (light) | 2026-11-26T17:17:35.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1495 agy-cli: preserve native compaction history and cache, and fail closed on oversized replay](https://github.com/magpie-community/plugins/issues/1495) |
 | P3 | 0 (none) | 2026-11-26T11:28:20.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1584 agy-cli: test/catalog.mjs "an account of agy's own that agy held once…" fails on Windows (kept file mode 0o666)](https://github.com/magpie-community/plugins/issues/1584) |
 | P3 | 0 (none) | 2026-11-26T11:28:18.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1583 agy-cli: test/signin.mjs "macOS: a login keychain this process doesn't search…" fails on Windows](https://github.com/magpie-community/plugins/issues/1583) |
 | P3 | 2 (light) | 2026-11-26T08:23:05.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1447 agy-cli 0.1.109: OMP 图片配额裁剪与上下文压缩触发 drop_live，重建受 112 KiB 预算截断导致长任务失忆死循环](https://github.com/magpie-community/plugins/issues/1447) |
 | P3 | 3 (light) | 2026-11-26T08:19:52.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1369 \[agy-cli\] Codex message predictions can replace the main session history and force a replay](https://github.com/magpie-community/plugins/issues/1369) |
-| P3 | 7 (active) | 2026-11-26T08:04:56.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1070 agy-cli: "test/smoke.mjs against a fake agy" red at 40s under the root bun test on macOS (mica), green alone](https://github.com/magpie-community/plugins/issues/1070) |
-| P3 | 2 (light) | 2026-11-26T03:35:17.000Z | 24h | `@magpie-community/opencode-agy-cli-auth` | [#1491 agy-cli: image-slim's placeholder for an earlier image drops the live session (Codex view_image)](https://github.com/magpie-community/plugins/issues/1491) |
+| P3 | 2 (light) | 2026-11-26T03:35:17.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1491 agy-cli: image-slim's placeholder for an earlier image drops the live session (Codex view_image)](https://github.com/magpie-community/plugins/issues/1491) |
 | P3 | 1 (light) | 2026-11-25T14:38:37.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1502 agy-cli plugin: quota read always fails on Linux — readStoredValue never reads agy's token file](https://github.com/magpie-community/plugins/issues/1502) |
 | P3 | 2 (light) | 2026-11-25T14:05:30.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1475 agy-cli: replaying an unchanged tool_result can return 409 after the bridge appends system notices](https://github.com/magpie-community/plugins/issues/1475) |
 | P3 | 2 (light) | 2026-11-25T13:37:49.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1542 agy-cli: models only the own-~/.gemini account offers are routed to the other accounts (sonnet-5-5 silently served as sonnet-4-6, gemini-4-argon 400)](https://github.com/magpie-community/plugins/issues/1542) |
@@ -169,7 +172,7 @@ _No open issues._
 | P3 | 2 (light) | 2026-11-20T13:22:21.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1292 agy-cli: every eager MCP tool of an agy client fails with "'/required': items at 1 and 2 are equal" (toolSummary dedup only covers run_command)](https://github.com/magpie-community/plugins/issues/1292) |
 | P3 | 0 (none) | 2026-11-20T10:22:56.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1398 agy-cli: reject_active on live attached/steering turn returns 409 instead of retryable 503 BusyError](https://github.com/magpie-community/plugins/issues/1398) |
 | P3 | 0 (none) | 2026-11-20T10:22:51.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1397 agy-cli: agy_same_generation emits all-zero usage (0/0/0/0), triggering uncached fallback tokenization in downstream proxies](https://github.com/magpie-community/plugins/issues/1397) |
-| P3 | 4 (active) | 2026-11-20T04:04:10.000Z | 7d | `@magpie-community/opencode-agy-cli-auth` | [#1058 agy-cli 又出现缓存率0%的情况](https://github.com/magpie-community/plugins/issues/1058) |
+| P3 | 4 (active) | 2026-11-20T04:04:10.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1058 agy-cli 又出现缓存率0%的情况](https://github.com/magpie-community/plugins/issues/1058) |
 | P3 | 0 (none) | 2026-11-20T02:29:29.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1379 agy-cli: Claude Code's compaction request is summarized from a 112 KiB clipped replay instead of the live session](https://github.com/magpie-community/plugins/issues/1379) |
 | P3 | 0 (none) | 2026-11-19T17:05:54.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1371 \[agy-cli\] Preserve session context when Codex tool_search adds tools mid-turn](https://github.com/magpie-community/plugins/issues/1371) |
 | P3 | 0 (none) | 2026-11-19T12:34:20.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1361 agy-cli：Gemini 请求中的 googleSearch 未执行或未返回搜索证据，仍返回 HTTP 200](https://github.com/magpie-community/plugins/issues/1361) |
@@ -181,7 +184,6 @@ _No open issues._
 | P3 | 1 (light) | 2026-11-19T03:45:03.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1345 agy-cli: flattened system prompt tokens trigger agy built-in /learn expansion, injecting "The user invoked /learn" into every affected turn](https://github.com/magpie-community/plugins/issues/1345) |
 | P3 | 7 (active) | 2026-11-19T03:25:13.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1051 agy-cli: background compaction and side-request forks kill live tool turns and cause 409 ("no active MCP call matches these tool results")](https://github.com/magpie-community/plugins/issues/1051) |
 | P3 | 0 (none) | 2026-11-19T01:01:57.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1341 agy-cli: Usage page shows logged-in account as "API key", all quotas stuck at 100%, no Argon quota](https://github.com/magpie-community/plugins/issues/1341) |
-| P3 | 2 (light) | 2026-11-18T19:42:46.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1234 agy-cli (Windows): background quota refresh opens Google OAuth on transient token refresh failure at startup](https://github.com/magpie-community/plugins/issues/1234) |
 | P3 | 0 (none) | 2026-11-18T15:27:21.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1338 agy-cli: Model discovery leaves empty Antigravity conversations](https://github.com/magpie-community/plugins/issues/1338) |
 | P3 | 0 (none) | 2026-11-18T13:45:15.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1332 agy-cli: open object schemas with empty `properties: {}` and omitted `additionalProperties` fail agy tool validation](https://github.com/magpie-community/plugins/issues/1332) |
 | P3 | 0 (none) | 2026-11-18T09:45:30.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#1319 agy-cli: silent long generation hits TURN_TIMEOUT, then magpie's prefill continuation is rejected ("live tool_result + assistant prefill tail"), turn dies and session is lost](https://github.com/magpie-community/plugins/issues/1319) |
@@ -205,7 +207,6 @@ _No open issues._
 | P3 | 2 (light) | 2026-11-11T10:04:58.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#980 agy-cli: a 429 to a turned-away system prompt is reported as an exhausted quota instead of a prompt rejection](https://github.com/magpie-community/plugins/issues/980) |
 | P3 | 1 (light) | 2026-11-10T20:34:29.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#909 agy-cli: "text beside a live tool_result" refuses every turn from a DeepSeek harness agent](https://github.com/magpie-community/plugins/issues/909) |
 | P3 | 0 (none) | 2026-11-10T20:34:28.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#952 agy-cli: text plus an image before a live tool_result still gets 400 (#909, #951)](https://github.com/magpie-community/plugins/issues/952) |
-| P3 | 1 (light) | 2026-11-10T19:23:35.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#942 agy-cli: ToolSearch-loaded tools stay unknown for the rest of the agy turn](https://github.com/magpie-community/plugins/issues/942) |
 | P3 | 0 (none) | 2026-11-09T09:09:47.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#894 agy-cli: isolate conversationKey via chat.headers and x-magpie-session / x-magpie-subagent headers](https://github.com/magpie-community/plugins/issues/894) |
 | P3 | 0 (none) | 2026-11-09T09:09:45.000Z | 30d | `@magpie-community/opencode-agy-cli-auth` | [#893 agy-cli: isolate agy home (--gemini-dir / --disable-telemetry), guard built-in tools, strip Claude Code CLI identity, and intercept in-band soft-ban notices](https://github.com/magpie-community/plugins/issues/893) |
 
@@ -213,7 +214,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 12 (hot) | 2026-11-26T20:34:12.000Z | 24h | `@magpie-community/opencode-antigravity-auth` | [#1563 antigravity 在magpie的 antigravity CLI 插件封号概率高吗？](https://github.com/magpie-community/plugins/issues/1563) |
+| P3 | 18 (hot) | 2026-11-27T06:45:38.000Z | 24h | `@magpie-community/opencode-antigravity-auth` | [#1563 antigravity 在magpie的 antigravity CLI 插件封号概率高吗？](https://github.com/magpie-community/plugins/issues/1563) |
 | P3 | 0 (none) | 2026-11-18T09:38:25.000Z | 30d | `@magpie-community/opencode-antigravity-auth` | [#1318 antigravity: disable Bun fixed 300s fetch timeout on streamGenerateContent and enforce explicit first-chunk / stream-idle deadlines](https://github.com/magpie-community/plugins/issues/1318) |
 | P3 | 4 (active) | 2026-11-17T08:05:20.000Z | 30d | `@magpie-community/opencode-antigravity-auth` | [#1105 opencode-antigravity-auth: DeepSeek Harness identity lines are not cloaked, Carbon output falls back to Flash Lite behavior](https://github.com/magpie-community/plugins/issues/1105) |
 | P3 | 3 (light) | 2026-11-14T11:38:02.000Z | 30d | `@magpie-community/opencode-antigravity-auth` | [#1118 antigravity: broken-up Claude Code, Codex and Hermes lines are still turned away 1-2 times in 10](https://github.com/magpie-community/plugins/issues/1118) |
@@ -225,7 +226,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 2 (light) | 2026-11-26T06:28:22.000Z | 24h | `@magpie-community/opencode-astudio-auth` | [#1557 astudio: sign-in can't find a portable Chrome++ default browser, and Chrome++'s relaunch drops the CDP pipe](https://github.com/magpie-community/plugins/issues/1557) |
+| P3 | 2 (light) | 2026-11-26T06:28:22.000Z | 7d | `@magpie-community/opencode-astudio-auth` | [#1557 astudio: sign-in can't find a portable Chrome++ default browser, and Chrome++'s relaunch drops the CDP pipe](https://github.com/magpie-community/plugins/issues/1557) |
 | P3 | 2 (light) | 2026-11-25T03:37:09.000Z | 7d | `@magpie-community/opencode-astudio-auth` | [#990 astudio: two credit windows make magpie misread account as exhausted; never picked as fallback](https://github.com/magpie-community/plugins/issues/990) |
 
 ### Package: `@magpie-community/opencode-atomcode-auth`
@@ -281,7 +282,7 @@ _No open issues._
 | --- | ---: | --- | --- | --- | --- |
 | P3 | 0 (none) | 2026-11-24T01:48:02.000Z | 7d | `@magpie-community/opencode-cursor-auth` | [#1499 cursor: billing-cycle windows send no span, so the Usage table can't place them](https://github.com/magpie-community/plugins/issues/1499) |
 | P3 | 0 (none) | 2026-11-20T11:26:57.000Z | 7d | `@magpie-community/opencode-cursor-auth` | [#1402 cursor 0.2.48: reuse server checkpoint across user turns (and past 120s resultWait) to avoid ~67-69% new-turn cache misses](https://github.com/magpie-community/plugins/issues/1402) |
-| P3 | 11 (hot) | 2026-11-20T05:32:20.000Z | 7d | `@magpie-community/opencode-cursor-auth` | [#635 cursor：无法调用网络搜索](https://github.com/magpie-community/plugins/issues/635) |
+| P3 | 11 (hot) | 2026-11-20T05:32:20.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#635 cursor：无法调用网络搜索](https://github.com/magpie-community/plugins/issues/635) |
 | P3 | 1 (light) | 2026-11-18T06:28:44.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#1290 cursor: a temporary `resource_exhausted` ("Network Error ... please try again") is reported as "usage limit reached", so OpenCode stops instead of retrying](https://github.com/magpie-community/plugins/issues/1290) |
 | P3 | 0 (none) | 2026-11-10T13:48:16.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#940 cursor: native-e2e.test.mjs HTTP/2 writeWait test red under a full suite run (WSL)](https://github.com/magpie-community/plugins/issues/940) |
 | P3 | 0 (none) | 2026-11-06T12:54:36.000Z | 30d | `@magpie-community/opencode-cursor-auth` | [#797 cursor: follow-ups from #796 (nextStep reset untested; #31-counted stateless step leaves its dashboard event unowned)](https://github.com/magpie-community/plugins/issues/797) |
@@ -318,8 +319,8 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-27T01:41:12.000Z | 24h | `@magpie-community/opencode-factory-auth` | [#1603 factory 0.1.58: Codex 调用 factory/deepseek-v4.1-flash-1017 仍返回 400 content_policy_rejected](https://github.com/magpie-community/plugins/issues/1603) |
-| P3 | 0 (none) | 2026-11-21T23:42:05.000Z | 7d | `@magpie-community/opencode-factory-auth` | [#1446 Factory 0.1.56: Cowork built-in MCP tool declarations still receive content_policy_rejected on Magpie 0.1.4657](https://github.com/magpie-community/plugins/issues/1446) |
+| P3 | 1 (light) | 2026-11-27T04:01:32.000Z | 24h | `@magpie-community/opencode-factory-auth` | [#1446 Factory 0.1.56: Cowork built-in MCP tool declarations still receive content_policy_rejected on Magpie 0.1.4657](https://github.com/magpie-community/plugins/issues/1446) |
+| P3 | 1 (light) | 2026-11-27T03:00:29.000Z | 24h | `@magpie-community/opencode-factory-auth` | [#1603 factory 0.1.58: Codex 调用 factory/deepseek-v4.1-flash-1017 仍返回 400 content_policy_rejected](https://github.com/magpie-community/plugins/issues/1603) |
 | P3 | 3 (light) | 2026-11-21T07:10:26.000Z | 7d | `@magpie-community/opencode-factory-auth` | [#1310 factory: Codex 无法再通过 Magpie 使用 Factory 模型](https://github.com/magpie-community/plugins/issues/1310) |
 | P3 | 4 (active) | 2026-11-19T09:06:39.000Z | 30d | `@magpie-community/opencode-factory-auth` | [#1284 Factory: Compatibility issue with OMP default system prompt](https://github.com/magpie-community/plugins/issues/1284) |
 | P3 | 5 (active) | 2026-11-19T01:08:05.000Z | 30d | `@magpie-community/opencode-factory-auth` | [#1291 factory 0.1.47: Claude Code 403 since 2026-11-17 — environment line and hooks note refused in prompt text](https://github.com/magpie-community/plugins/issues/1291) |
@@ -425,7 +426,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 6 (active) | 2026-11-27T01:34:51.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1517 qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)](https://github.com/magpie-community/plugins/issues/1517) |
+| P3 | 7 (active) | 2026-11-27T03:41:46.000Z | 24h | `@magpie-community/opencode-qoder-auth` | [#1517 qoder-cn: with DeepSeek Harness (DSH) client — 200 + keepalive only, never a token (0.2.72, magpie 0.1.4746, Docker/Linux)](https://github.com/magpie-community/plugins/issues/1517) |
 | P3 | 4 (active) | 2026-11-24T01:25:59.000Z | 7d | `@magpie-community/opencode-qoder-auth` | [#1220 qoder-cn: a frozen RESOURCE_LIMIT queue (10605, queueCount never advances) is waited out silently for the full QUEUE.held hour — agent sees only keepalives](https://github.com/magpie-community/plugins/issues/1220) |
 | P3 | 0 (none) | 2026-11-23T08:55:21.000Z | 7d | `@magpie-community/opencode-qoder-auth` | [#1483 qoder: models never expose "none" reasoning level in variants even when thinking can be disabled](https://github.com/magpie-community/plugins/issues/1483) |
 | P3 | 0 (none) | 2026-11-17T11:05:34.000Z | 30d | `@magpie-community/opencode-qoder-auth` | [#1264 qoder: classify HTTP 406 "Session blocked" as a content-safety/context rejection](https://github.com/magpie-community/plugins/issues/1264) |
@@ -453,7 +454,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 2 (light) | 2026-11-26T06:41:02.000Z | 24h | `@magpie-community/opencode-raccoon-auth` | [#512 raccoon: an account-level token throughput wall (`user_model_rate_limited`) is retried 8x as if it were transient throttling](https://github.com/magpie-community/plugins/issues/512) |
+| P3 | 2 (light) | 2026-11-26T06:41:02.000Z | 7d | `@magpie-community/opencode-raccoon-auth` | [#512 raccoon: an account-level token throughput wall (`user_model_rate_limited`) is retried 8x as if it were transient throttling](https://github.com/magpie-community/plugins/issues/512) |
 | P3 | 0 (none) | 2026-11-18T04:49:07.000Z | 30d | `@magpie-community/opencode-raccoon-auth` | [#1299 raccoon: 积分消耗计算不准确](https://github.com/magpie-community/plugins/issues/1299) |
 | P3 | 1 (light) | 2026-11-17T19:13:31.000Z | 30d | `@magpie-community/opencode-raccoon-auth` | [#598 raccoon: every model says it thinks, none gives variants, so its reasoning levels are a guess](https://github.com/magpie-community/plugins/issues/598) |
 | P3 | 0 (none) | 2026-10-31T08:23:08.000Z | 30d | `@magpie-community/opencode-raccoon-auth` | [#554 raccoon: X-Client-Platform test fails once under the full suite (macOS)](https://github.com/magpie-community/plugins/issues/554) |
@@ -474,14 +475,14 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 0 (none) | 2026-11-27T02:30:20.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1605 trae-cn: namespace enterprise model ids by provider to fix config_name collision with presets](https://github.com/magpie-community/plugins/issues/1605) |
-| P3 | 4 (active) | 2026-11-26T04:23:02.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1516 trae: an enterprise sign-in's bare host is rejected, so every chat goes to the consumer gateway](https://github.com/magpie-community/plugins/issues/1516) |
+| P3 | 5 (active) | 2026-11-27T03:41:47.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1516 trae: an enterprise sign-in's bare host is rejected, so every chat goes to the consumer gateway](https://github.com/magpie-community/plugins/issues/1516) |
+| P3 | 1 (light) | 2026-11-27T03:37:18.000Z | 24h | `@magpie-community/opencode-trae-auth` | [#1605 trae-cn: namespace enterprise model ids by provider to fix config_name collision with presets](https://github.com/magpie-community/plugins/issues/1605) |
 | P3 | 2 (light) | 2026-11-25T02:47:31.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1503 trae-cn: complete GLM-5.3 reply is converted from stop to length when reasoning tokens exceed max_tokens](https://github.com/magpie-community/plugins/issues/1503) |
 | P3 | 2 (light) | 2026-11-25T02:47:31.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1501 trae-cn: route fallback hides 1005 plan errors behind the final 4001](https://github.com/magpie-community/plugins/issues/1501) |
 | P3 | 27 (hot) | 2026-11-24T07:19:10.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1366 trae: an enterprise seat's llm_utils_chat replies still stop at ~2000 output tokens (0.2.44/0.2.45 unverified)](https://github.com/magpie-community/plugins/issues/1366) |
 | P3 | 0 (none) | 2026-11-23T08:55:23.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1484 trae: no "none" reasoning level or way to disable thinking](https://github.com/magpie-community/plugins/issues/1484) |
 | P3 | 6 (active) | 2026-11-20T17:42:36.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1157 trae / qoder / autoclaw：三个插件的到期时间都没进路由排序（本机实测）](https://github.com/magpie-community/plugins/issues/1157) |
-| P3 | 3 (light) | 2026-11-20T04:10:54.000Z | 7d | `@magpie-community/opencode-trae-auth` | [#1328 opencode-trae-auth: Trae CN authorization page no longer offers enterprise/SSO sign-in after the 2026-11-18 Doubao/Feishu account upgrade](https://github.com/magpie-community/plugins/issues/1328) |
+| P3 | 3 (light) | 2026-11-20T04:10:54.000Z | 30d | `@magpie-community/opencode-trae-auth` | [#1328 opencode-trae-auth: Trae CN authorization page no longer offers enterprise/SSO sign-in after the 2026-11-18 Doubao/Feishu account upgrade](https://github.com/magpie-community/plugins/issues/1328) |
 | P3 | 5 (active) | 2026-11-19T02:54:17.000Z | 30d | `@magpie-community/opencode-trae-auth` | [#1258 trae: enterprise built-in models (config_source 2) missing; a hand-added one gets a bare 502](https://github.com/magpie-community/plugins/issues/1258) |
 | P3 | 4 (active) | 2026-11-16T08:35:21.000Z | 30d | `@magpie-community/opencode-trae-auth` | [#1143 opencode-trae-auth: enterprise (SaaS) account's usage is never read — no quota card, "暂无额度数据"](https://github.com/magpie-community/plugins/issues/1143) |
 | P3 | 6 (active) | 2026-11-16T08:04:54.000Z | 30d | `@magpie-community/opencode-trae-auth` | [#1155 trae cn企业账号选不到 DeepSeek-V4.1-Flash-1017模型了](https://github.com/magpie-community/plugins/issues/1155) |
@@ -522,7 +523,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 4 (active) | 2026-11-26T19:01:02.000Z | 24h | `@magpie-community/opencode-zcode-auth` | [#1572 zcode: Start Plan throughput 52-60 tok/s and 180s stalls, vs 200+ tok/s on other providers](https://github.com/magpie-community/plugins/issues/1572) |
+| P3 | 5 (active) | 2026-11-27T05:02:00.000Z | 24h | `@magpie-community/opencode-zcode-auth` | [#1572 zcode: Start Plan throughput 52-60 tok/s and 180s stalls, vs 200+ tok/s on other providers](https://github.com/magpie-community/plugins/issues/1572) |
 | P3 | 0 (none) | 2026-11-26T15:18:11.000Z | 24h | `@magpie-community/opencode-zcode-auth` | [#1593 zcode: "a team seat's request goes as the agent sent it" is red on its second run in one process (--rerun-each)](https://github.com/magpie-community/plugins/issues/1593) |
 | P3 | 1 (light) | 2026-11-26T10:20:54.000Z | 24h | `@magpie-community/opencode-zcode-auth` | [#1344 zcode: let a sign-in with no plan yet be kept (shown as such, never routed) so a later gift plan is seen and claimed](https://github.com/magpie-community/plugins/issues/1344) |
 | P3 | 4 (active) | 2026-11-26T09:31:48.000Z | 24h | `@magpie-community/opencode-zcode-auth` | [#1559 zcode: Start Plan (GLM-5.4) triggers 405/3012 anti-proxy risk control on non-suspended accounts — account suspension risk](https://github.com/magpie-community/plugins/issues/1559) |
@@ -553,10 +554,10 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 2 (light) | 2026-11-27T03:41:48.000Z | 24h | `@magpie-community/opencode-zen-free-auth` | [#209 \[zen-free\] Dropping unknown tool calls as text ends autonomous DSH turns instead of allowing recovery](https://github.com/magpie-community/plugins/issues/209) |
 | P3 | 0 (none) | 2026-11-17T13:06:13.000Z | 30d | `@magpie-community/opencode-zen-free-auth` | [#1270 zen-free: ZCode 3.18 gets 429 FreeUsageLimitError — its capitalized Edit and Read hit Zen's edit/read refusal](https://github.com/magpie-community/plugins/issues/1270) |
 | P3 | 7 (active) | 2026-10-30T02:52:38.000Z | 30d | `@magpie-community/opencode-zen-free-auth` | [#109 zen-free：magpie 只显示 3 个免费模型（上游有 11 个），且重启后从 8 个回退到 3 个](https://github.com/magpie-community/plugins/issues/109) |
 | P3 | 0 (none) | 2026-10-20T10:10:18.000Z | older | `@magpie-community/opencode-zen-free-auth` | [#269 zen-free: the free-tier gate is `read` alone — what the other four stand-ins do, and a three-branch shape for the injection](https://github.com/magpie-community/plugins/issues/269) |
-| P3 | 1 (light) | 2026-10-17T13:53:13.000Z | older | `@magpie-community/opencode-zen-free-auth` | [#209 \[zen-free\] Dropping unknown tool calls as text ends autonomous DSH turns instead of allowing recovery](https://github.com/magpie-community/plugins/issues/209) |
 | P3 | 0 (none) | 2026-10-17T13:46:17.000Z | older | `@magpie-community/opencode-zen-free-auth` | [#212 zen-free: header tests red under node --test (Node's fetch adds accept-language and sec-fetch-mode)](https://github.com/magpie-community/plugins/issues/212) |
 
 ### Package: `@magpie-community/page-agent-console`
@@ -627,13 +628,14 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
+| P3 | 0 (none) | 2026-11-27T06:09:50.000Z | 24h | _unmapped_ | [#1617 workbuddy插件添加TTS、ASR](https://github.com/magpie-community/plugins/issues/1617) |
+| P3 | 0 (none) | 2026-11-27T05:05:14.000Z | 24h | _unmapped_ | [#1615 挂载到sub2api 中转上，出现0输入和0输出token 情况](https://github.com/magpie-community/plugins/issues/1615) |
 | P3 | 1 (light) | 2026-11-26T19:01:00.000Z | 24h | _unmapped_ | [#1598 workbuddy插件可以增加自动保活与刷新凭证吗](https://github.com/magpie-community/plugins/issues/1598) |
-| P3 | 1 (light) | 2026-11-26T14:09:50.000Z | 24h | _unmapped_ | [#1585 workbuddy插件可以添加视频生成模型吗？](https://github.com/magpie-community/plugins/issues/1585) |
 | P3 | 1 (light) | 2026-11-24T21:05:21.000Z | 7d | _unmapped_ | [#1498 这个经常做任务或签到等其他方式获取的积分，还有n小时就过期了，这个在magpie中路由使用反而最先使用还有m天过期的（已尝试使用多种路由模式）](https://github.com/magpie-community/plugins/issues/1498) |
 | P3 | 6 (active) | 2026-11-24T14:46:27.000Z | 7d | _unmapped_ | [#427 Qoder插件好像用不了](https://github.com/magpie-community/plugins/issues/427) |
 | P3 | 0 (none) | 2026-11-21T07:47:40.000Z | 7d | _unmapped_ | [#1430 zcode有多个订阅，没读取到](https://github.com/magpie-community/plugins/issues/1430) |
 | P3 | 0 (none) | 2026-11-20T07:13:27.000Z | 7d | _unmapped_ | [#1388 Fetching quota timed out](https://github.com/magpie-community/plugins/issues/1388) |
-| P3 | 0 (none) | 2026-11-20T05:34:18.000Z | 7d | _unmapped_ | [#1385 目前不支持图生图](https://github.com/magpie-community/plugins/issues/1385) |
+| P3 | 0 (none) | 2026-11-20T05:34:18.000Z | 30d | _unmapped_ | [#1385 目前不支持图生图](https://github.com/magpie-community/plugins/issues/1385) |
 | P3 | 0 (none) | 2026-11-19T04:25:23.000Z | 30d | _unmapped_ | [#1346 workbuddy自动签到功能失效](https://github.com/magpie-community/plugins/issues/1346) |
 | P3 | 17 (hot) | 2026-11-18T05:08:25.000Z | 30d | _unmapped_ | [#473 raccoon商汤小浣熊插件有盗号嫌疑 There's a burglary on the raccoon plug.](https://github.com/magpie-community/plugins/issues/473) |
 | P3 | 0 (none) | 2026-11-17T06:21:17.000Z | 30d | _unmapped_ | [#1252 Day Card 存在token消费记录不足的地方](https://github.com/magpie-community/plugins/issues/1252) |
@@ -880,7 +882,7 @@ _No open issues._
 
 | Priority | Comments | Updated | Updated bucket | Package | Issue |
 | --- | ---: | --- | --- | --- | --- |
-| P3 | 3 (light) | 2026-11-26T03:42:16.000Z | 24h | _unmapped_ (`providers`) | [#699 providers-hub: the sign-in page's /paste takes a POST from any web page (no Origin check, no token)](https://github.com/magpie-community/plugins/issues/699) |
+| P3 | 4 (active) | 2026-11-27T03:39:07.000Z | 24h | _unmapped_ (`providers`) | [#699 providers-hub: the sign-in page's /paste takes a POST from any web page (no Origin check, no token)](https://github.com/magpie-community/plugins/issues/699) |
 
 ### Package: `unmapped:registry 去重标准`
 
