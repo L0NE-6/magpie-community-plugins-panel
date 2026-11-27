@@ -156,6 +156,41 @@ agent's `POST https://trae-api-cn.mchost.guru/api/agent/v3/llm_utils_chat`:
     not as a 0% miss (0.2.26). So does one that counts 0 read and 0
     written: Trae answers that while it bills the turn at its cache price
     (0.2.31).
+  - After the answer the plugin reads Trae's commercial session usage
+    (`/api/v1/commercial/get_session_usage`). That record is the
+    conversation's, since `session_id` is (above), and it holds all of its
+    turns' charges and cache reads together, so a turn reports its share of
+    it: the record now, less the record last read for that conversation. A
+    turn with no baseline yet — the conversation's first one here, or a
+    caller that names each request's own session — is reported as it is when
+    the record holds only that turn's own prompt and reply; one that holds
+    more is the conversation's, and is only the baseline of the turns after
+    it. A record that hasn't moved past that baseline is one still being
+    written — it holds the earlier turns already — so it is read again within
+    the wait; a turn whose record never moves reports nothing, no `credit`
+    and no `cached_tokens`, rather than a false 0, and the next turn's share
+    then covers both. Its `credits_by_source` (a string, where `credits_float` rounds
+    a small charge to 0) goes on the response as `usage.credit` (and
+    `usage.credits`): magpie's ledger reads the singular `credit`, as kiro
+    reports it (yetone/magpie#4328), and its
+    `extra_info.cache_read_token` fills `cached_tokens` when `token_usage`
+    named no cache read (0.2.58). A cache count the stream did name wins;
+    a refused or failed lookup leaves the answer unchanged. The host is
+    `TRAE_USAGE_API_HOST` when set, else the realm's own — and Trae CN is the
+    one realm that has one: Trae Global's commercial host is not known
+    (`api5-normal.trae.ai` does not resolve), so its turns read no settlement
+    at all rather than ask a host that never answers. A read has a
+    timeout of its own (2 s), and an answer's end waits for it only as long
+    as its wait allows: 400 ms for a stream, whose end must not be held back
+    by a record that settles slowly, and 2.5 s for a body, which closes
+    nothing early. An enterprise model asked at its own endpoint (0.2.53) is
+    the tenant's own service, which Trae books nothing for: its usage is that
+    endpoint's own, and no settlement is read.
+    Two requests of one conversation in flight together (a title asked
+    beside the body, a subagent) each read the record from the same last
+    reading, so the earlier turn's share can be counted in both; Trae's own
+    totals stay right, and reads are not serialized because a turn would
+    then wait behind another's read.
     `done`'s `finish_reason` `length`/`max_tokens` is OpenAI's `length`.
   - Queue events are ignored.
   - A `{"reasoning_content": …}` object written into the text is reasoning,
@@ -268,9 +303,18 @@ body, as Trae CN 3.4.20's own `llm_utils_chat` request does (0.2.43; 0.2.41
 put them under `user_message_context.model_info`, and an enterprise seat got
 4001 "the param is invalid" on every function; 0.2.42 read `provider` off the
 config, where Trae's list doesn't carry it, sent no `model_name`, and got
-4023 "something went wrong") — **not verified with a real enterprise seat**. A refused chat's error names
-the model, the functions tried and the host, and says when the account's
-list doesn't have the model. Context is the list's
+4023 "something went wrong") — **not verified with a real enterprise seat**.
+An enterprise model whose `config_name` a Trae preset has too (Trae CN lists
+`kimi-k3.1-pro` as both, the tenant's one on `aliyuncs`) is listed as
+`<provider>//<config_name>`, as the enterprise console writes it
+(`aliyuncs//kimi-k3.1-pro`), and is still asked by its bare `config_name`
+with `config_source` 2; the preset keeps the bare id. Before 0.2.59 both
+went under the bare id, the preset's entry won, and the enterprise model
+couldn't be asked (#1605). An enterprise model no preset shares a name with
+keeps its `config_name` as its id, and answers to `<provider>//<config_name>`
+too. A refused chat's error names
+the model, the functions tried and the host, says when the account's
+list doesn't have the model, and names a preset's enterprise twin. Context is the list's
 `context_window_tokens.max` for a model measured to serve a prompt past its
 `dev` budget on the base entry (yetone/magpie#5809 and the measurements in
 its follow-up, all on Trae CN; the models are listed in `WIDENED`, and
