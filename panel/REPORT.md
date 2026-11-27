@@ -223,6 +223,31 @@ Checked for every branch with `git merge-tree --write-tree origin/main origin/<b
 | merge cleanly into `origin/main` | **169** |
 | would conflict | 0 |
 
+## The issue surface, measured
+
+| repo | open issues | closed | total |
+| --- | --- | --- | --- |
+| `yetone/magpie` | **5343** | 2099 | 7442 |
+| `magpie-community/plugins` | **403** | 289 | 692 |
+| `Gyl1219/magpie-providers-hub` | **6** | 4 | 10 |
+
+Three measurements decide how this has to be worked:
+
+1. **80–100% carry no label** (magpie sample 401 of 500 unlabeled; plugins 301 of 302). There is no
+   existing triage to inherit, so reading them one at a time is not a plan.
+2. **The maintainer is the largest single author** — `yetone` filed 93 of the 500 sampled in magpie,
+   80 of the 302 in plugins. A large share of "open issues" are the author's own working notes, which
+   are not tickets for anyone else to close.
+3. What remains splits by what it takes to act on: a reproduction, a question, or a pointer at
+   something already fixed.
+
+`maintenance/triage_issues.py` sorts the newest 100–500 per repo into `self-note` / `maybe-fixed` /
+`repro` / `question` / `other`, carrying number, author, date and title so the next step is a batch per
+bucket. First run, the 109 newest in plugins: **repro 58, other 19, maybe-fixed 18, question 14**.
+
+**What the buckets do not do**: `maybe-fixed` only says the text mentions a closed PR or a commit —
+each still has to be checked against `git log` before anyone claims it is done.
+
 ## Issues answered
 
 Pull requests are half of the queue; these were answered from the same evidence — read the code,
