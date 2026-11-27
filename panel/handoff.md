@@ -116,6 +116,97 @@ close; a fork account cannot. What can be done from here is exactly what was don
 PR that still applies, a green suite, `check.mjs`, the exact commands in a comment, and an honest
 line when the patch needs its author.
 
+## The 70 pull requests left untouched, classified
+
+Shape, `+` lines, whether a hunk replaces a whole function (the strongest predictor of a
+non-rebaseable patch), and whether the diff carries a binary blob:
+
+| PR | 形态 | +行 | 整函数重写块 | 二进制 |
+| --- | --- | --- | --- | --- |
+| `#73` | 整包新增 | 233 | 0 |  |
+| `#869` | 整包新增 | 269 | 0 |  |
+| `#342` | 整包新增 | 276 | 0 | 是 |
+| `#261` | 整包新增 | 519 | 0 |  |
+| `#294` | 整包新增 | 560 | 0 |  |
+| `#531` | 整包新增 | 915 | 0 |  |
+| `#335` | 整包新增 | 929 | 0 |  |
+| `#338` | 整包新增 | 933 | 0 |  |
+| `#312` | 整包新增 | 1216 | 0 |  |
+| `#270` | 整包新增 | 1305 | 0 |  |
+| `#89` | 整包新增 | 1730 | 0 |  |
+| `#1160` | 整包新增 | 2344 | 0 |  |
+| `#1245` | 整包新增 | 2437 | 0 | 是 |
+| `#87` | 整包新增 | 2465 | 0 |  |
+| `#341` | 整包新增 | 2568 | 0 |  |
+| `#1288` | 整包新增 | 2913 | 0 | 是 |
+| `#127` | 整包新增 | 3219 | 0 |  |
+| `#1269` | 既有包改动 | 4 | 0 |  |
+| `#1279` | 既有包改动 | 19 | 0 |  |
+| `#1261` | 既有包改动 | 22 | 0 |  |
+| `#1620` | 既有包改动 | 24 | 0 |  |
+| `#1469` | 既有包改动 | 30 | 0 |  |
+| `#928` | 既有包改动 | 64 | 0 |  |
+| `#1640` | 既有包改动 | 68 | 0 |  |
+| `#1456` | 既有包改动 | 70 | 0 |  |
+| `#1461` | 既有包改动 | 125 | 0 |  |
+| `#1244` | 既有包改动 | 132 | 0 |  |
+| `#1041` | 既有包改动 | 150 | 1 |  |
+| `#1272` | 既有包改动 | 152 | 0 |  |
+| `#233` | 既有包改动 | 178 | 0 |  |
+| `#1624` | 既有包改动 | 180 | 0 |  |
+| `#1610` | 既有包改动 | 190 | 1 |  |
+| `#1437` | 既有包改动 | 191 | 1 |  |
+| `#1641` | 既有包改动 | 202 | 0 |  |
+| `#713` | 既有包改动 | 222 | 2 |  |
+| `#1283` | 既有包改动 | 231 | 4 |  |
+| `#1382` | 既有包改动 | 241 | 1 |  |
+| `#545` | 既有包改动 | 251 | 0 |  |
+| `#32` | 既有包改动 | 263 | 2 |  |
+| `#345` | 既有包改动 | 268 | 1 |  |
+| `#1432` | 既有包改动 | 278 | 9 |  |
+| `#1399` | 既有包改动 | 284 | 0 |  |
+| `#1333` | 既有包改动 | 290 | 0 |  |
+| `#1296` | 既有包改动 | 386 | 2 |  |
+| `#586` | 既有包改动 | 416 | 4 |  |
+| `#1287` | 既有包改动 | 476 | 0 |  |
+| `#1154` | 既有包改动 | 511 | 6 |  |
+| `#743` | 既有包改动 | 522 | 2 |  |
+| `#238` | 既有包改动 | 532 | 0 |  |
+| `#1463` | 既有包改动 | 572 | 4 |  |
+| `#1418` | 既有包改动 | 575 | 0 |  |
+| `#1394` | 既有包改动 | 626 | 0 |  |
+| `#1238` | 既有包改动 | 680 | 1 |  |
+| `#1413` | 既有包改动 | 710 | 1 |  |
+| `#438` | 既有包改动 | 723 | 2 |  |
+| `#1046` | 既有包改动 | 734 | 4 |  |
+| `#1439` | 既有包改动 | 742 | 0 |  |
+| `#1056` | 既有包改动 | 759 | 1 |  |
+| `#1116` | 既有包改动 | 797 | 6 |  |
+| `#1384` | 既有包改动 | 860 | 1 |  |
+| `#1376` | 既有包改动 | 981 | 0 |  |
+| `#1435` | 既有包改动 | 983 | 0 |  |
+| `#129` | 既有包改动 | 1280 | 0 |  |
+| `#647` | 既有包改动 | 1322 | 0 |  |
+| `#861` | 既有包改动 | 1477 | 3 |  |
+| `#1331` | 既有包改动 | 1642 | 0 |  |
+| `#1019` | 既有包改动 | 2215 | 5 |  |
+| `#1351` | 既有包改动 | 5239 | 0 |  |
+| `#1096` | 既有包改动 | 5327 | 0 |  |
+| `#1422` | 既有包改动 | 41142 | 20 |  |
+
+**Three of these were tried and settled this round**, one per class:
+
+- `#73` (index-translate, +233): its `index.mjs` has no OpenCode 2.x default `{id, setup}` and the
+  package ships neither `opencode.mjs` nor `opencode2.mjs` — the same gap as `#531`.
+- `#1641` (zcode, +202): `patch failed: packages/zcode/index.mjs:4107`, and main's file is 3674
+  lines — the context the patch edits does not exist (same as `#1640`).
+- `#238` (loomy, +532): a different generation of the package — main exports `LoomyAuthPlugin` with
+  `bun:test`, the patch exports `Loomy` with `node:test` and a separate `core.mjs`.
+
+That is the pattern across the rest: **either the adapter surface is missing, the context the patch
+edits is gone, or the package has moved to a different generation.** None of those are settled by
+trying harder.
+
 ## How a pull request was judged
 
 In this order, because the order is what saves time:
