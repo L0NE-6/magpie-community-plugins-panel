@@ -204,22 +204,24 @@ a suite has pre-existing failures on this machine, the comment says so with the 
 | `#7214` | `fix/7214-gcp-ai-neon-upstream` | `c8b3fc7c` | gcp-ai | gcp-ai 0.2.4: seed Gemini 4 Neon (#7214) |
 
 
+## Merged upstream
+
+Seven of the delivered pull requests are **merged**: `#1209`, `#1246`, `#1253`, `#1358`, `#1375`,
+`#1427`, `#1440`. Their branches stay here — if upstream later reverted any of it, the work is still
+on them.
+
+Eight branches were **removed** because the pull request number answers 404: `#1446`, `#1491`,
+`#1512`, `#1522`, `#1532`, `#1556`, `#1557`, `#7214`. A branch with no pull request is queue noise.
+
 ## Do the branches still merge into today's main?
 
 Checked for every branch with `git merge-tree --write-tree origin/main origin/<branch>`:
 
 | | |
 | --- | --- |
-| branches | **177** |
-| merge cleanly into `origin/main` | **177** |
+| branches | **169** |
+| merge cleanly into `origin/main` | **169** |
 | would conflict | 0 |
-
-Two branches that failed this check were **removed rather than left in the queue**:
-
-- `fix/1541-agy-503-watchdog` — it rebased over commits belonging to other pull requests (orphan
-  work), and its pull request number now answers **404**.
-- `fix/1547-kiro-external-idp` — rebasing it produced a **zero diff** against main: its change is
-  already upstream. Its pull request also answers 404.
 
 ## What was not done
 
