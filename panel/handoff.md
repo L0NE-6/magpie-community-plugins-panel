@@ -52,6 +52,33 @@ discovered after a clean apply, never from a merge conflict:
 6. Run the package's suite **and the baseline**: `git stash` the patch, run again. A test
    red in both is the environment; red only with the patch is the patch.
 
+## Registry audit (2026-11-28)
+
+Every delivered branch's `registry.json` was read back and validated. 169 branches:
+
+| entries | branches | meaning |
+| --- | --- | --- |
+| 129 | 67 | main's count — a modification PR, no new package |
+| 130 | 97 | main + the one entry the patch adds |
+| 152 | 1 | `add/543-omo` — the 23 OmO roles, one entry each |
+| 131 | 1 | `add/717-willdeep` — two packages |
+
+**Eight branches carried registry damage and were repaired**:
+
+- six had **incidental entries** from their PR's base (`fix/1541-…`, `fix/1253-…`, `fix/1427-…`,
+  `fix/1446-…`, `fix/pages-actions` — 7–8 extra entries each; `review/1539-cam-gateway` — 6 extra
+  beside its own). Cause: `registry_delta.py` used to apply every entry the PR's registry held and
+  main lacked. Each now has main's 129 (or 130, for the one that adds `gateway-cam`).
+- three were **behind main** (`review/1358-zcode-v2` at 126, `fix/1532-…` and `fix/upstream-1532`
+  at 128): merging them would have **removed** entries main has added since. Their patches add no
+  entries, so they were brought up to 129.
+
+The tool now defaults to "only the package this patch adds" (`own` = its `+` `"package"` lines,
+minus what main already has), which is what those six needed.
+
+**What the audit does not prove**: that each branch's own change still applies cleanly on top of a
+current main — it only proves the registry it carries is the right one.
+
 ## How a pull request was judged
 
 In this order, because the order is what saves time:
