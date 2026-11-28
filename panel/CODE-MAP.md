@@ -179,6 +179,28 @@ account** (Gemini's models drawing on one allowance), while `#1414` wants a grou
 (a limited-time credit from vendor A ranking against a free model from vendor B). That cross-provider step
 is a routing decision and stays host-side — but the shape to imitate is already in the codebase.
 
+
+## How magpie tells three kinds of "the upstream stopped" apart
+
+`internal/gateway/continuation.go` names three endings, and where each is raised matters more than what it
+says:
+
+| ending | raised at | condition | what magpie does with it |
+| --- | --- | --- | --- |
+| `errStreamCut` | `continuation.go:709` | the upstream sent an **error event**; the read stops once it is in hand | treated as a cut (`:725`) |
+| `errDoneSaid` | `continuation.go:714` | a **Chat** upstream said `[DONE]` — whole by its protocol | ends the read normally (`:725`) |
+| `errEndedShort` | `continuation.go:744` | the connection closed **cleanly** without the closing event (Anthropic: no `stop_reason`/`message_stop`; Responses: no `response.completed`) | **fails the reply**: `continuation.go:861-862` builds `"<provider>: the reply ended before it was complete"`, `fallback.go:3759` turns it into **502**, and `fallback.go:2370` matches that phrase as transport-ish, so a fallback may be tried |
+
+**And this is the piece that makes `#1480` understandable**: the `[DONE]` in `chat.go:1828` comes from
+`chatEncoder.finish()`, which runs on the **normal** path. A reply that ends short **aborts before
+`finish()`**, so the client is left with a stream that stops — the exact symptom the issue reports. It is not
+that the host forgot the `[DONE]`; it is that **two different endings reach the client in two different
+shapes**: one with the frame, one without.
+
+So the question a fix has to answer is not "should the plugin add `[DONE]`" (the host does), but
+**"after a mid-stream abort, should the client get a bare close or a final error frame?"** — and per the table
+above, the host can only answer that once it can no longer send a 502, i.e. after the first chunk is out.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
