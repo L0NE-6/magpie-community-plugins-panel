@@ -302,6 +302,32 @@ that separate two issues I had been treating as one family:
 That is the distinction worth carrying into any answer: **a number that only labels a card, and a number that
 decides whether an account is asked at all, are the same bug in the plugin and different bugs in the host.**
 
+
+### `#1486`'s premise, checked rather than assumed
+
+My prescription there rested on "the host cannot see per-account model lists". Reading the builder:
+
+```go
+// internal/gateway/fallback.go
+389: func … candidate{p: a.Provider, model: model, rest: rest, rank: a.Rank, capped: capped}
+398: func … candidate{p: p.WithKey(k.KeyAccount), model: model, rest: rest, rank: k.Rank, capped: capped}
+538: func (s *Server) candidates(p provider.Provider, model string, from provider.Protocol) []candidate
+```
+
+Candidates **are** built per account (`a.Provider`) and per key (`p.WithKey(k.KeyAccount)`) — so the host does
+distinguish accounts — but the builder is handed **one model** and enumerates whoever serves it. There is no
+per-account model set in the signature, and the only per-provider filter I found is
+`provider.DisabledModels()` (codex_backend.go:2710), which is provider-wide, not per key.
+
+**So the premise holds**: the host knows *accounts* and it knows *the model the caller asked for*, and it has
+no field in which a plugin could say "key B does not serve model X". The prescription for `#1486` stands — a
+plugin that reports one union model list per provider cannot be routed by account, and the fix is to express
+the difference (per-account provider id, or account-qualified model names, or a refusal the host can read).
+
+**Worth stating as a rule**, because it saved an answer here: **before answering "the plugin must expose X",
+find the field the host would read X from.** If there is none, the answer is right; if there is, the answer
+was about the wrong repository.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
