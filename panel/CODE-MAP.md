@@ -160,6 +160,25 @@ And next to it, `partial bool`:
    reading" per window, so `Text`/omit does not have to be the only route. That is a `magpie` change, and it
    is the one place where the fix for the seven issues is not purely plugin-side.
 
+
+### Pools already exist on the window, and are rendered by the host
+
+```go
+// internal/provider/google.go:1580 — PooledWindows
+// PooledWindows are ws as a page of text shows them: a pool's own windows,
+// named with their pool ("Gemini · 7 days"), in place of the per-model
+// windows drawing on it; ws as it is when it has no pool.
+```
+
+A plugin sets `QuotaWindow.Pool` on the windows that draw on a shared allowance, and the host collapses
+the per-model windows into the pool's, naming them `"Gemini · 7 days"`. That is precedent for `#1414`'s
+"free resources as one pool": the vocabulary for grouping windows exists and is already rendered.
+
+**It is not the whole answer**, and the difference matters: `Pool` groups windows **within one plugin's
+account** (Gemini's models drawing on one allowance), while `#1414` wants a group across **providers**
+(a limited-time credit from vendor A ranking against a free model from vendor B). That cross-provider step
+is a routing decision and stays host-side — but the shape to imitate is already in the codebase.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
