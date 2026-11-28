@@ -128,6 +128,38 @@ turned into a *full* allowance by the host. It also means the fix must be on the
 change can recover a distinction that was already lost before the value arrived (`Text: true` or an absent
 `Used` are the two ways to keep it).
 
+
+### The host already knows this class — and calls it `noShare`
+
+`internal/provider/subscription_usage.go:175` is the struct a plugin actually populates, and just above it
+sits a flag the maintainer added for exactly the problem the seven issues describe:
+
+```go
+// noShare is set on a window set aside whose used the plugin left out:
+// its Used is 0 for want of a share said, not a reading at 0, so quota
+// history keeps no line for it (#4825). The card still tells the row's
+// text and routing still sets it aside.
+noShare bool
+```
+
+And next to it, `partial bool`:
+
+```go
+// partial is set on the windows of a reading that may leave some out …
+// five hours alone there needn't mean no week.
+```
+
+**Three consequences worth stating plainly:**
+
+1. **The distinction is a known upstream concern** (`#4825`), not something a reviewer has to be convinced of.
+   The maintainer wrote a flag for "0 for want of a share said, not a reading at 0".
+2. **A plugin cannot set it**: `noShare` is unexported, set host-side. So the only correct plugin-side move for
+   a missing reading is to **omit the window or send `Text: true` with the vendor's `Display`** — sending
+   `Used: 0` cannot be distinguished, however the plugin meant it.
+3. **That also makes a host-side improvement worth proposing**: expose a way for a plugin to say "no numeric
+   reading" per window, so `Text`/omit does not have to be the only route. That is a `magpie` change, and it
+   is the one place where the fix for the seven issues is not purely plugin-side.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
