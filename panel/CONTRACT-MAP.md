@@ -32,3 +32,29 @@ plugin change; if it is unexported, the proposal belongs upstream.** Two of the 
 Every row was read in the current `main` and quoted with its file and line in `CODE-MAP.md`. The mapping
 from field to issue is my reading of the issue text — `#1414` in particular says it wants cross-provider
 grouping, which `Pool` does **not** provide; that half stays host-side and is stated as such.
+
+## The other contract: what one registry entry may contain
+
+`scripts/registry.mjs` validates `registry.json` against what magpie's reader (`internal/plugin/market.go`)
+takes, and its header says why the rules are strict: the reader unmarshals the whole file into typed
+fields, so **one value of the wrong type loses every listing, not just its own**.
+
+| rule | exact shape | failure seen in practice |
+| --- | --- | --- |
+| file size | ≤ **1 MiB** (`1 << 20`) — "more than magpie fetches" | — |
+| shape | JSON object, `version === 1`, `plugins` a non-empty array | — |
+| entry fields | **only** `package`, `name`, `icon`, `providers`, `community`, `replaces`, `kind`, `summary` — any other key is an error | — |
+| `package` | `^(@[a-z0-9][a-z0-9._~-]*\/)?[a-z0-9][a-z0-9._~-]*$`, ≤ 214 chars, **no duplicates** | `#1269`: `github:ygq-future/magpie-prompt-guard` is not an npm name |
+| `name` | non-empty text | — |
+| `kind` | if present, one of `middleware` / `hooks` / `agent` / `tools` / `page` — **a provider has none** | — |
+| `community` | if present, a **boolean** (`"true"` fails) | — |
+| `replaces` | if present, non-empty text naming a **subscription id** | — |
+| `providers` | if present, non-empty array of non-empty strings | — |
+| `icon` | if present, non-empty; if it contains `:` or `/` it must start with `https://` or `data:image/` | — |
+| `summary` | **object with `en` and `zh`, both non-empty strings** | `#1449`, `#1529`, `#603`, `#992`: no entry written at all |
+
+**The two rows that cost the most work**: `kind` is what the page sorts by ("an unknown kind lists a
+middleware or an agent as a provider"), so getting it wrong misfiles the plugin rather than hiding it; and
+`summary` requiring **both** languages is why a missing entry cannot be filled in from the package — the
+`magpie` block in those packages carries no name or summary to copy.
+
