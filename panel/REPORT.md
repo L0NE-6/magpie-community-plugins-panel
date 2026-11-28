@@ -275,6 +275,28 @@ bucket. First run, the 109 newest in plugins: **repro 58, other 19, maybe-fixed 
 **What the buckets do not do**: `maybe-fixed` only says the text mentions a closed PR or a commit —
 each still has to be checked against `git log` before anyone claims it is done.
 
+## What magpie's 1681 ignored issues actually are
+
+Sampled 204 of them (the newest open, not the maintainer's, never commented) and sorted by what the text
+asks for:
+
+| what it is | share |
+| --- | --- |
+| other (proposals written in the maintainer's own style, protocol notes, questions) | **45%** |
+| feature requests | **37%** |
+| display or wrong data | 14% |
+| broken / does not work | **3%** |
+| timeout or slowness | 1% |
+
+**Only about 4% are reproducible defects.** That decides the shape of the work: magpie's backlog is
+mostly *product decisions and design conversations*, which a fork cannot settle — the answer is triage
+and a maintainer's call, not a patch. The plugins repository is the opposite: 75 ignored issues there and
+more than a third are concrete defects with a line to change.
+
+So the two repos need different work, and `triage_issues.py` already separates them. Anyone picking this
+up should start with the 3% + 14% in magpie (about 290 issues at the sampled rate) rather than the whole
+5343, and with the plugins' 75, which is where an outside contributor can actually close things.
+
 ## Issues answered
 
 Pull requests are half of the queue; these were answered from the same evidence — read the code,
