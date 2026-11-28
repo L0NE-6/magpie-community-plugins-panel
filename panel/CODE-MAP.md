@@ -272,6 +272,36 @@ rate. So a routing order that prefers "least used" is ranking **observed tokens*
 `0%` is still a display lie and still worth fixing, but it does not distort routing. Saying otherwise
 overstated the damage.
 
+
+### A candidate is a (provider, model, account) — and `capped` is where a plugin's usage does reach routing
+
+```go
+// internal/gateway/fallback.go:51
+type candidate struct {
+    p     provider.Provider
+    model string
+    rest  string // what rests after a failure: the provider, or one of its keys
+    rank  int    // its place in its provider's own list of accounts or keys (#217)
+    // capped is set on an account left out as held at its usage cap
+    capped *capHold
+    …
+}
+```
+
+**So the host does read a plugin's usage — but only as a cap, to leave an account out.** Two consequences
+that separate two issues I had been treating as one family:
+
+- **`#1434` (atomcode placeholder plan) is a routing bug, and the mechanism is this field.** A placeholder
+  plan reported as "used 0" never reaches `capped`, so the account is **never left out**, is selected again
+  after a short backoff, and answers `403 no codingplan` again. The loop the issue describes is exactly
+  "not capped → picked → refused → rests briefly → picked". **Fixing the placeholder to report "needs
+  claim" is what puts it in `capped`.**
+- **`#1254` (loomy false 0%) is display only**, as corrected above: no percentage feeds `capped`, only the
+  cap does. Two issues from the same "invented zero" family, **two different blast radii.**
+
+That is the distinction worth carrying into any answer: **a number that only labels a card, and a number that
+decides whether an account is asked at all, are the same bug in the plugin and different bugs in the host.**
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
