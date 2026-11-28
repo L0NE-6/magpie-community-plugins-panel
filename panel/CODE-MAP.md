@@ -245,6 +245,33 @@ plugin, never by the provider's id, which a user's own provider may share."** ZC
 its `429` is read as the vendor's answer and fails the request — which is right for an expired plan, and is
 why `#1470` fails fast rather than retrying forever.
 
+
+## Routing: backoff comes from the vendor's own words, and "used" is the host's count
+
+Two facts in `internal/gateway/routing.go` (3,011 lines) that correct two things I said earlier:
+
+```go
+// routing.go:316
+func creditBackoff(id string, header http.Header, body []byte, now time.Time) (d time.Duration, by string, n int, …)
+const quotaRest   = 15 * time.Minute   // out of quota, with no word of when it resets
+const longestQuota = 8 * 24 * time.Hour
+```
+
+**1. The host already backs off, from the vendor's own reset hint.** `creditBackoff` reads the response's
+header and body, and falls back to `quotaRest` (15 minutes) when the vendor says nothing, up to 8 days. So
+`#1342`'s "renewal retried every 3–4 seconds" **cannot be the gateway's retry** — the gateway would wait 15
+minutes. That 3–4 second loop is the **plugin's own** renewal loop, which confirms my earlier prescription
+(add backoff **there**) and rules out "the gateway is retrying".
+
+**2. "Used" in routing is the host's own token count, not the plugin's quota.** `served(rest, key string,
+tokens int)` records what the gateway served per account and model, and `tokenUse.now(t)` turns it into a
+rate. So a routing order that prefers "least used" is ranking **observed tokens**, not `Quota.Remaining`.
+
+**That corrects my warning on `#1254`.** I wrote that an account whose usage is `unknown` would be treated as
+"least used" and picked first. **It would not** — the ranking does not read the plugin's quota at all. The
+`0%` is still a display lie and still worth fixing, but it does not distort routing. Saying otherwise
+overstated the damage.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
