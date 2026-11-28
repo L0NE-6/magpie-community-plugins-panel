@@ -108,6 +108,26 @@ type QuotaSpan struct {
 Both are the same shape as the `Balance string` finding above: the contract already carries the answer, and
 the plugin is not using it.
 
+
+### The line that turns a missing reading into "100% left"
+
+`quotaReport` in `internal/provider/quotas.go` builds every card by copying the plugin's
+`SubscriptionQuota` through — `AsOf`, `ReadAt`, `ReadDeferred`, `ReadError`, `Error`, `Balance` all pass
+straight from the plugin. Then, for each window:
+
+```go
+Remaining: max(0, 100-w.Used),
+```
+
+**`Remaining` is computed from `Used`, not read from the vendor.** So a plugin that sends `Used: 0` because
+the denominator was missing is rendered as **`Remaining: 100`** — the host has no way to tell "used none"
+from "did not know", because it derives one from the other on this line.
+
+That is `#1254`'s `0%` and `#1434`'s "quota left" **mechanically**, not as a vibe: the invented `0` is
+turned into a *full* allowance by the host. It also means the fix must be on the plugin side — no host
+change can recover a distinction that was already lost before the value arrived (`Text: true` or an absent
+`Used` are the two ways to keep it).
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
