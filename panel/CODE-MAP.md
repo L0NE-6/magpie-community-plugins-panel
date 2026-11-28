@@ -34,6 +34,44 @@ decision that made the aggregate behave like separate providers.
 | plugins | `scripts/check.mjs`, `scripts/registry.mjs`, then one package of each `magpie` kind | the contracts, then the six shapes |
 | providers-hub | `src/aggregate.mjs`, `src/shared.mjs`, `tests/setup.mjs` | the wrapper, the transport, and how tests drive a fake vendor |
 
+
+## magpie's provider contract — and what it proves about the "fake zero" family
+
+`internal/provider/` is **1,078 Go files, 232,407 lines** (`models.go` 4,649, `group.go` 2,802,
+`provider.go` 2,757, `account.go` 2,108, `logins.go` 2,056, `balance.go` 1,845, `google.go` 1,841).
+Too much to read whole; the file that answers the question is `quotas.go`.
+
+```go
+// internal/provider/quotas.go:79
+type Quota struct {
+    Provider string
+    Name     string
+    Kind     string   // subscription, plan (bought with a key) or balance (a key's money)
+    Windows  []QuotaSpan
+    Balance  string   `json:"balance,omitempty"`      // ← a string, not a float
+    Error    string   `json:"error,omitempty"`
+    AsOf     *time.Time `json:"asOf,omitempty"`       // when the cached reading was taken
+    ReadDeferred bool   `json:"readDeferred,omitempty"` // "no request made", not "failed"
+    ReadError    string `json:"readError,omitempty"`    // why AsOf stands in for failed
+    ReadAt       *time.Time
+    Until        *time.Time
+    …
+}
+```
+
+**The host already has the vocabulary for "I do not know":**
+
+- `Balance` is a **string**, so "no balance" and `"0"` are different values by construction;
+- `AsOf` / `ReadAt` / `ReadDeferred` / `ReadError` / `Error` distinguish **stale**, **not asked**, and **failed**
+  — three states the cards can render differently.
+
+So the seven "invented a zero" issues (`#1254`, `#1299`, `#1341`, `#1434`, `#1303`, `#1365`, `#1406`) are
+**entirely a plugin-side choice**: the plugin sends `"0"` or a plausible number where the host was ready to
+carry "unknown", "stale" or "failed". `UNKNOWN-SEMANTICS.md` said the capability existed in the plugins;
+this says the **host expects it too** — a plugin that sends `0` is discarding a contract, not filling a gap.
+
+That also bounds the fix: no host change and no new field is needed for those seven; only the plugins' output.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
