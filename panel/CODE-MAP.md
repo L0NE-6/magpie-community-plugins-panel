@@ -72,6 +72,42 @@ this says the **host expects it too** — a plugin that sends `0` is discarding 
 
 That also bounds the fix: no host change and no new field is needed for those seven; only the plugins' output.
 
+
+### `QuotaSpan` — two fields that answer two open issues outright
+
+```go
+// internal/provider/quotas.go:127
+type QuotaSpan struct {
+    Unlimited bool
+    Name      string
+    Used      float64
+    Remaining float64
+    Display   string    // the vendor's own count, "1.2k / 3k"
+    // Text: the window is its Display alone, Used and Remaining no reading
+    Text      bool
+    Lane      string
+    Amount, Limit float64
+    Unit, Pool    string
+    // RunsOutAt is when the soonest of what is left is lost, apart from the reset
+    RunsOutAt *time.Time
+    RunsOut   float64
+    …
+}
+```
+
+1. **`Text: true` is the sanctioned way to say "no numeric reading".** The comment is explicit: the window
+   is its `Display` alone, `Used` and `Remaining` are not a reading. So `#1254`'s false `0%` is not a gap
+   the host lacks — the plugin should send the vendor's own text with `Text: true` instead of computing a
+   percentage from a missing denominator.
+2. **`RunsOutAt` / `RunsOut` already exist on the window.** `#1414` asked for expiry to be part of routing so
+   "use before expiry" can rank free resources; the host field is there (`RunsOutAt` is when the soonest of
+   what is left is lost, apart from the reset), and the issue's own note says `#1157` already populates it
+   for one vendor. **The work on `#1414` is populating an existing field in the other plugins, not building
+   a pool.**
+
+Both are the same shape as the `Balance string` finding above: the contract already carries the answer, and
+the plugin is not using it.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
