@@ -58,3 +58,39 @@ middleware or an agent as a provider"), so getting it wrong misfiles the plugin 
 `summary` requiring **both** languages is why a missing entry cannot be filled in from the package — the
 `magpie` block in those packages carries no name or summary to copy.
 
+## What a package must export — `opencode2Problems` in full
+
+`scripts/check.mjs` loads each package twice: once as OpenCode 1.x and once as 2.x. The 2.x half is
+`opencode2Problems`, and its rules are exact:
+
+| rule | exact shape |
+| --- | --- |
+| entry point | `exports["."]` (a bare string, or the object's `.import` / `.default` / `.`), else `main`; not a string → `exports["."] is not a file` |
+| default export | `{ id: <non-empty string>, setup: <function> }` — **or `effect: <function>`** instead of `setup` |
+| the adapter | if the package ships `opencode2.mjs`, it must be **byte-for-byte** `scripts/opencode2.mjs` ("copy it again" is the message) |
+| `files` | must list the entry, `opencode2.mjs` when present, **and** `main` — "`<name>` is not in files" otherwise |
+
+**A correction to what I wrote in earlier answers**: I said the default must carry `setup`; the checker
+accepts `setup` **or** `effect` (`typeof d.setup !== "function" && typeof d.effect !== "function"`). Both
+satisfy it.
+
+**The `files` rule is the one that bites outside 2.x too.** I hit it on `#659` (`page/layouts.js` newly
+loaded by `index.html` but not added to `files`, caught by the package's own `package-files.test.mjs`).
+The rule is the same in both places: **a file the package ships must be named in `files`**, and the checker
+enforces it for the entry, the adapter and `main`.
+
+## Which packages are skipped, and why
+
+Two skips in the main loop, both deliberate:
+
+```js
+if (pkg.magpie?.middleware || pkg.magpie?.gateway || pkg.magpie?.agent || pkg.magpie?.hooks) continue
+if (pkg.magpie?.page && !pkg.main && !pkg.exports) continue
+```
+
+- **middleware, gateway, agent and hooks plugins have no OpenCode face at all** — "their own tests check
+  them". That is why `#312` (middleware) and `#270` (gateway) applied cleanly while `#531` and `#73`
+  (providers) did not: **the rule is about what the plugin is, not how big it is**.
+- **A page with `main` or `exports` is *not* skipped** — it is checked for a 2.x face, which surprises
+  page authors who think pages are exempt.
+
