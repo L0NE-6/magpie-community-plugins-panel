@@ -46,3 +46,26 @@ An error stops the user. An invented value **sends them in the wrong direction**
 Routing policy. `Least used first` needs a comparable number; an `unknown` account cannot be ranked, so
 the routing layer has to decide what to do with unknowns (skip them, or put them last). That is a host
 decision, and worth stating explicitly rather than letting a fake zero make it quietly.
+
+## The capability is already there — it is not used on these paths
+
+Counted `unknown` / "not available" in each package that the seven issues name:
+
+| package | `unknown` mentions | "not available" |
+| --- | --- | --- |
+| `agy-cli` | 52 | 3 |
+| `atomcode` | 17 | 1 |
+| `gcp-ai` | 9 | 3 |
+| `inkstone` | 8 | 0 |
+| `kiro` | 6 | 0 |
+| `loomy` | **1** | 0 |
+| `raccoon` | **1** | 0 |
+
+So this is not "the plugins cannot say unknown" — five of the seven say it in dozens of places. It is
+that **a specific path skips it** and falls back to a concrete value. That makes the fix narrow: find the
+fallback on the path the issue names, and replace it with the `unknown` the package already uses
+everywhere else. `loomy` and `raccoon` are the two where the notion itself is barely present, so those
+two need it added as well as used.
+
+**Where to look, per issue**: the fallback is almost always a `?? 0`, a `|| 0`, a `0%`, or a literal
+default assignment in the function that builds the card — not in the parser that reads the response.
