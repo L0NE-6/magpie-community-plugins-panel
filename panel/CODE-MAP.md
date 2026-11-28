@@ -201,6 +201,50 @@ So the question a fix has to answer is not "should the plugin add `[DONE]`" (the
 **"after a mid-stream abort, should the client get a bare close or a final error frame?"** — and per the table
 above, the host can only answer that once it can no longer send a 502, i.e. after the first chunk is out.
 
+
+## `transportFailed` — why a plugin's wording decides whether a request is retried
+
+```go
+// internal/gateway/fallback.go:2368
+// transportWords are a failure that never reached a vendor's answer … a request that met one
+// may well fit, and is asked again.
+func transportFailed(body []byte) bool {
+    return transportWords.Match(body) || bytes.Contains(body, []byte(errEndedShort.Error())) ||
+        bodyHas(body, didNotStream) || magpieSaid(string(body))
+}
+```
+
+An error body is a **transport failure — so ask again** — when it matches any of four things:
+
+1. `transportWords`: `dial tcp`, `connectex`, `wsarecv`, `i/o timeout`, `TLS handshake timeout`, `context deadline exceeded`, …
+2. `errEndedShort` ("the reply ended before it was complete")
+3. **`didNotStream`** — the phrase a provider says when an upstream answered **without a stream**
+4. `magpieSaid(...)`
+
+**That third one is the mechanism behind the ZCode family.** `#1635` reports the vendor answering `200 {"code":0,"msg":""}`;
+magpie surfaces that as `ZCode did not stream: unexpected reply: …` — and `didNotStream` makes
+`transportFailed` say "this never reached the vendor, ask again". So the request **is** retried, against a
+vendor that will keep answering the same empty envelope. The waste in `#1470` and `#1639` follows.
+
+**So the fix is not "retry or do not retry" in the plugin — it is that this reply must not be worded as
+`didNotStream`.** A vendor's own refusal (`code:1309`, `code:0`) is an **answer**, and belongs with
+`unsaidStatus`-style classification, not with transport.
+
+### `unsaidStatus` is keyed by plugin, not provider id
+
+```go
+var unsaidStatus = map[string][]int{
+    "devin": {500, 502, 503, 504}, "qoder": {400, 413, 422}, "workbuddy": {400, 413, 422},
+    "factory": {413}, …
+}
+```
+
+These are statuses a vendor returns **for a request past its model's window while saying nothing about
+length** — a size problem wearing a generic status. The comment is explicit about the key: **"Keyed by the
+plugin, never by the provider's id, which a user's own provider may share."** ZCode is not in the table, so
+its `429` is read as the vendor's answer and fails the request — which is right for an expired plan, and is
+why `#1470` fails fast rather than retrying forever.
+
 ## What this pass is not
 
 It is a **count and a skeleton**. The next pass has to read those files, and the honest way to show that
