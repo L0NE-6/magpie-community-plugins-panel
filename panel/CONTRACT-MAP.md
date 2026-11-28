@@ -94,3 +94,29 @@ if (pkg.magpie?.page && !pkg.main && !pkg.exports) continue
 - **A page with `main` or `exports` is *not* skipped** — it is checked for a 2.x face, which surprises
   page authors who think pages are exempt.
 
+## The 2.x adapter — 620 lines, and what it deliberately loses
+
+`scripts/opencode2.mjs` is the one file the checker requires byte-identical everywhere, and its header states
+what the 1.x face looks like to 2.x. Four things worth knowing before writing a 2.x-compatible package:
+
+1. **How the 1.x plugin is found** (`pluginsOf`): a `default` carrying `server`, `id` or `tui` **is** the one
+   plugin; otherwise every exported function, and every exported object with a `server`. So a package that
+   exports a plugin both ways gets it once, not twice.
+2. **The SDK becomes pin-specified** (`packageOf`): `@ai-sdk/openai-compatible` → `aisdk:@ai-sdk/openai-compatible@2.0.41`,
+   other `@ai-sdk/*` → `ai-v6`. The comment says why a version matters: it keeps 2.x from swapping `@ai-sdk/*`
+   for its **native providers, "which never call the sdk hook below"** — an unpinned name silently loses the hook.
+3. **The key is a placeholder** (`PLACEHOLDER`): the SDK is built with `opencode2-v1-key` so that the account's
+   own key can go on each request in its place (`wrapFetch`) — "a key read when the SDK was made can't go out
+   after the account changed".
+4. **Values are coerced with a zero fallback**: `int(n, 0)` → 0 for non-finite or negative, `money(n)` → 0 when
+   not finite or negative. **This is the same "invent a 0" pattern, inside the repo's own shared adapter** —
+   and unlike the host's `Text`/`noShare` vocabulary there is no "unknown" channel here. A package that needs
+   to say "no reading" on the 2.x face has to do it before the adapter coerces.
+
+### What the adapter does not carry
+
+The header of `opencode2.mjs` lists the 1.x surface 2.x has no place for: `chat.headers`, `chat.params`
+(2.x's sdk hook does not carry the session), magpie's `usage` and `checkin`, tools and events. So a provider
+whose value depends on those (a usage card, a check-in, a per-request header) is **1.x-only by
+construction** — which is worth stating in a package README rather than discovering at review.
+
